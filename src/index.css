@@ -1,5 +1,49 @@
 @import-normalize; /* bring in normalize.css styles */
 
+/* Manrope--Regular */
+@font-face {
+  font-family: 'Manrope';
+  src: local('Manrope  Regular'), local('Manrope--Regular'),
+    url('../fonts/Manrope-Regular.woff2') format('woff2'),
+    url('../fonts/Manrope-Regular.woff') format('woff'),
+    url('../fonts/Manrope-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Manrope--Medium */
+@font-face {
+  font-family: 'Manrope ';
+  src: local('Manrope  Medium'), local('Manrope--Medium'),
+    url('../fonts/Manrope-Medium.woff2') format('woff2'),
+    url('../fonts/Manrope-Medium.woff') format('woff'),
+    url('../fonts/Manrope-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Manrope--Bold */
+@font-face {
+  font-family: 'Manrope ';
+  src: local('Manrope  Bold'), local('Manrope--Bold'),
+    url('../fonts/Manrope-Bold.woff2') format('woff2'),
+    url('../fonts/Manrope-Bold.woff') format('woff'),
+    url('../fonts/Manrope-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Manrope--Manrope-SemiBold */
+@font-face {
+  font-family: 'Manrope ';
+  src: local('Manrope  SemiBold'), local('Manrope--SemiBold'),
+    url('../fonts/Manrope-Manrope-SemiBold.woff2') format('woff2'),
+    url('../fonts/Manrope-Manrope-SemiBold.woff') format('woff'),
+    url('../fonts/Manrope-Manrope-SemiBold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
 :root {
   --main-color: #111111;
   --accent-color: #ffc107;
@@ -8,17 +52,14 @@
   --faile-color: #f43f5e;
   --dark-blu: #54adff;
   --lightblue: #cce4fb;
-  --gragient-blue: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+  --gragient-blue-bg: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: var(--main-color);
 }
 
 code {
