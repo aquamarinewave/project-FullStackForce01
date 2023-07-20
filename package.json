@@ -4,13 +4,23 @@
   "private": true,
   "homepage": "https://aquamarinewave.github.io/project-FullStackForce01/",
   "dependencies": {
+    "@redux-devtools/extension": "^3.2.5",
+    "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.4.0",
+    "formik": "^2.4.2",
+    "modern-normalize": "^2.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.3"
+    "redux": "^4.2.1",
+    "styled-components": "^6.0.4",
+    "web-vitals": "^2.1.3",
+    "yup": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
