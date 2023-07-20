@@ -4,9 +4,9 @@
 @font-face {
   font-family: 'Manrope';
   src: local('Manrope  Regular'), local('Manrope--Regular'),
-    url('../fonts/Manrope-Regular.woff2') format('woff2'),
-    url('../fonts/Manrope-Regular.woff') format('woff'),
-    url('../fonts/Manrope-Regular.ttf') format('truetype');
+    url('./fonts/Manrope-Regular.woff2') format('woff2'),
+    url('./fonts/Manrope-Regular.woff') format('woff'),
+    url('./fonts/Manrope-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
@@ -15,9 +15,9 @@
 @font-face {
   font-family: 'Manrope ';
   src: local('Manrope  Medium'), local('Manrope--Medium'),
-    url('../fonts/Manrope-Medium.woff2') format('woff2'),
-    url('../fonts/Manrope-Medium.woff') format('woff'),
-    url('../fonts/Manrope-Medium.ttf') format('truetype');
+    url('./fonts/Manrope-Medium.woff2') format('woff2'),
+    url('./fonts/Manrope-Medium.woff') format('woff'),
+    url('./fonts/Manrope-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
@@ -26,9 +26,9 @@
 @font-face {
   font-family: 'Manrope ';
   src: local('Manrope  Bold'), local('Manrope--Bold'),
-    url('../fonts/Manrope-Bold.woff2') format('woff2'),
-    url('../fonts/Manrope-Bold.woff') format('woff'),
-    url('../fonts/Manrope-Bold.ttf') format('truetype');
+    url('./fonts/Manrope-Bold.woff2') format('woff2'),
+    url('./fonts/Manrope-Bold.woff') format('woff'),
+    url('./fonts/Manrope-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
@@ -37,9 +37,9 @@
 @font-face {
   font-family: 'Manrope ';
   src: local('Manrope  SemiBold'), local('Manrope--SemiBold'),
-    url('../fonts/Manrope-Manrope-SemiBold.woff2') format('woff2'),
-    url('../fonts/Manrope-Manrope-SemiBold.woff') format('woff'),
-    url('../fonts/Manrope-Manrope-SemiBold.ttf') format('truetype');
+    url('./fonts/Manrope-SemiBold.woff2') format('woff2'),
+    url('./fonts/Manrope-SemiBold.woff') format('woff'),
+    url('./fonts/Manrope-SemiBold.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
