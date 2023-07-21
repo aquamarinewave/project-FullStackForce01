@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const MainContainer = styled.div` 
+const MainContainer = styled.div`
   min-width: 320px;
   max-width: 480px;
   margin: 0 auto;
@@ -18,5 +18,5 @@ const MainContainer = styled.div`
     padding-left: 16px;
     padding-right: 16px;
   }
-`
+`;
 export default MainContainer;
