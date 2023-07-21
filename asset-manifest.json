@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-FullStackForce01/static/css/main.02508d3a.css",
-    "main.js": "/project-FullStackForce01/static/js/main.6756f849.js",
+    "main.js": "/project-FullStackForce01/static/js/main.4e8307e0.js",
     "static/js/328.532bfdf7.chunk.js": "/project-FullStackForce01/static/js/328.532bfdf7.chunk.js",
     "static/js/852.f0a3b9f6.chunk.js": "/project-FullStackForce01/static/js/852.f0a3b9f6.chunk.js",
     "static/js/589.64698d15.chunk.js": "/project-FullStackForce01/static/js/589.64698d15.chunk.js",
@@ -27,12 +27,12 @@
     "static/media/Manrope-Medium.woff2": "/project-FullStackForce01/static/media/Manrope-Medium.0b33f41eb1974d58060a.woff2",
     "index.html": "/project-FullStackForce01/index.html",
     "main.02508d3a.css.map": "/project-FullStackForce01/static/css/main.02508d3a.css.map",
-    "main.6756f849.js.map": "/project-FullStackForce01/static/js/main.6756f849.js.map",
+    "main.4e8307e0.js.map": "/project-FullStackForce01/static/js/main.4e8307e0.js.map",
     "328.532bfdf7.chunk.js.map": "/project-FullStackForce01/static/js/328.532bfdf7.chunk.js.map",
     "608.33d59c54.chunk.js.map": "/project-FullStackForce01/static/js/608.33d59c54.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.02508d3a.css",
-    "static/js/main.6756f849.js"
+    "static/js/main.4e8307e0.js"
   ]
 }
