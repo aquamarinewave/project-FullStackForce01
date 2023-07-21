@@ -1,16 +1,17 @@
 {
   "files": {
     "main.css": "/project-FullStackForce01/static/css/main.02508d3a.css",
-    "main.js": "/project-FullStackForce01/static/js/main.b182c19a.js",
-    "static/js/672.29e72eb3.chunk.js": "/project-FullStackForce01/static/js/672.29e72eb3.chunk.js",
-    "static/js/727.996200e5.chunk.js": "/project-FullStackForce01/static/js/727.996200e5.chunk.js",
-    "static/js/432.ef1f6eff.chunk.js": "/project-FullStackForce01/static/js/432.ef1f6eff.chunk.js",
-    "static/js/637.1a49db6e.chunk.js": "/project-FullStackForce01/static/js/637.1a49db6e.chunk.js",
-    "static/js/693.39e5c82b.chunk.js": "/project-FullStackForce01/static/js/693.39e5c82b.chunk.js",
-    "static/js/918.3a0f5e0a.chunk.js": "/project-FullStackForce01/static/js/918.3a0f5e0a.chunk.js",
-    "static/js/426.3f4c0484.chunk.js": "/project-FullStackForce01/static/js/426.3f4c0484.chunk.js",
-    "static/js/150.176fd52b.chunk.js": "/project-FullStackForce01/static/js/150.176fd52b.chunk.js",
-    "static/js/806.048864d2.chunk.js": "/project-FullStackForce01/static/js/806.048864d2.chunk.js",
+    "main.js": "/project-FullStackForce01/static/js/main.6756f849.js",
+    "static/js/328.532bfdf7.chunk.js": "/project-FullStackForce01/static/js/328.532bfdf7.chunk.js",
+    "static/js/852.f0a3b9f6.chunk.js": "/project-FullStackForce01/static/js/852.f0a3b9f6.chunk.js",
+    "static/js/589.64698d15.chunk.js": "/project-FullStackForce01/static/js/589.64698d15.chunk.js",
+    "static/js/664.c13630db.chunk.js": "/project-FullStackForce01/static/js/664.c13630db.chunk.js",
+    "static/js/202.b7cee7b1.chunk.js": "/project-FullStackForce01/static/js/202.b7cee7b1.chunk.js",
+    "static/js/982.7fa0f481.chunk.js": "/project-FullStackForce01/static/js/982.7fa0f481.chunk.js",
+    "static/js/460.77f182d8.chunk.js": "/project-FullStackForce01/static/js/460.77f182d8.chunk.js",
+    "static/js/199.2ac727e6.chunk.js": "/project-FullStackForce01/static/js/199.2ac727e6.chunk.js",
+    "static/js/561.c6c8caf3.chunk.js": "/project-FullStackForce01/static/js/561.c6c8caf3.chunk.js",
+    "static/js/794.8467939f.chunk.js": "/project-FullStackForce01/static/js/794.8467939f.chunk.js",
     "static/js/608.33d59c54.chunk.js": "/project-FullStackForce01/static/js/608.33d59c54.chunk.js",
     "static/media/Manrope-SemiBold.ttf": "/project-FullStackForce01/static/media/Manrope-SemiBold.310f108cc524df0e5ffc.ttf",
     "static/media/Manrope-Medium.ttf": "/project-FullStackForce01/static/media/Manrope-Medium.08894ccb04665d1a9d53.ttf",
@@ -26,12 +27,12 @@
     "static/media/Manrope-Medium.woff2": "/project-FullStackForce01/static/media/Manrope-Medium.0b33f41eb1974d58060a.woff2",
     "index.html": "/project-FullStackForce01/index.html",
     "main.02508d3a.css.map": "/project-FullStackForce01/static/css/main.02508d3a.css.map",
-    "main.b182c19a.js.map": "/project-FullStackForce01/static/js/main.b182c19a.js.map",
-    "672.29e72eb3.chunk.js.map": "/project-FullStackForce01/static/js/672.29e72eb3.chunk.js.map",
+    "main.6756f849.js.map": "/project-FullStackForce01/static/js/main.6756f849.js.map",
+    "328.532bfdf7.chunk.js.map": "/project-FullStackForce01/static/js/328.532bfdf7.chunk.js.map",
     "608.33d59c54.chunk.js.map": "/project-FullStackForce01/static/js/608.33d59c54.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.02508d3a.css",
-    "static/js/main.b182c19a.js"
+    "static/js/main.6756f849.js"
   ]
 }
