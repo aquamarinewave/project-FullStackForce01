@@ -1,4 +1,5 @@
-@import-normalize; /* bring in normalize.css styles */
+@import-normalize;
+/* bring in normalize.css styles */
 
 /* Manrope--Regular */
 @font-face {
@@ -50,7 +51,7 @@
   --container-bg: #fdf7f2;
   --success-color: #00c3ad;
   --faile-color: #f43f5e;
-  --dark-blu: #54adff;
+  --dark-blue: #54adff;
   --lightblue: #cce4fb;
   --gragient-blue-bg: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
 }
