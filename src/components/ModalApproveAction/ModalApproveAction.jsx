@@ -1,5 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import { ApproveBtn, Backdrop, BtnContainer, CancelBtn, Container, Content } from './ModalApproveAction.styled';
+import Icon from 'utils/Icon/Icon';
+import {
+  ApproveBtn,
+  Backdrop,
+  BtnContainer,
+  CancelBtn,
+  Container,
+  Content,
+  TrashIcon,
+} from './ModalApproveAction.styled';
 
 const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
   const modalRef = useRef();
@@ -34,7 +43,9 @@ const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
         <Content>{children}</Content>
         <BtnContainer>
           <CancelBtn onClick={onRequestClose}>Cancel</CancelBtn>
-          <ApproveBtn onClick={onApprove}>Yes</ApproveBtn>
+          <ApproveBtn onClick={onApprove}>
+            <span>Yes</span> {<TrashIcon name="trash-2" color="#fef9f9" size="24" />}
+          </ApproveBtn>
         </BtnContainer>
       </Container>
     </Backdrop>

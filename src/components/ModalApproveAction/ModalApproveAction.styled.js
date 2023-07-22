@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Icon from 'utils/Icon/Icon';
 
 export const Backdrop = styled.div`
   position: relative;
@@ -31,6 +32,7 @@ export const BtnContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   margin: 44px 12px 0 12px;
 `;
@@ -53,7 +55,9 @@ export const CancelBtn = styled.button`
 `;
 
 export const ApproveBtn = styled.button`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   width: 100%;
   padding: 9px 0;
@@ -66,4 +70,8 @@ export const ApproveBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.64px;
+`;
+
+export const TrashIcon = styled(Icon)`
+  margin-left: 80px;
 `;
