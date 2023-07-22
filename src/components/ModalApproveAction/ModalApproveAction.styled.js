@@ -72,6 +72,6 @@ export const ApproveBtn = styled.button`
   letter-spacing: 0.64px;
 `;
 
-export const TrashIcon = styled(Icon)`
-  margin-left: 80px;
+export const BtnText = styled.span`
+  margin-right: 8px;
 `;

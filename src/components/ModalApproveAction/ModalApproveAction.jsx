@@ -4,6 +4,7 @@ import {
   ApproveBtn,
   Backdrop,
   BtnContainer,
+  BtnText,
   CancelBtn,
   Container,
   Content,
@@ -44,7 +45,7 @@ const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
         <BtnContainer>
           <CancelBtn onClick={onRequestClose}>Cancel</CancelBtn>
           <ApproveBtn onClick={onApprove}>
-            <span>Yes</span> {<TrashIcon name="trash-2" color="#fef9f9" size="24" />}
+            <BtnText>Yes</BtnText> {<Icon name="trash-2" color="#fef9f9" size="24" />}
           </ApproveBtn>
         </BtnContainer>
       </Container>
