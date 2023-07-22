@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import BgLagre from '../images/x1/bg/bgLagre.png';
+import BgMedium from '../images/x1/bg/bgMedium.png';
+import BgSmall from '../images/x1/bg/bgSmall.png';
+
 import PetsLarge from '../images/x1/homePage/PetsLarge.png';
 import PetsMedium from '../images/x1/homePage/PetsMedium.png';
 import PetsSmall from '../images/x1/homePage/PetsSmall.png';
@@ -59,11 +63,22 @@ const MainPageImage = styled.img`
 `;
 
 const MainPageDiv = styled.div`
+  background-image: url(${BgSmall});
+
+  @media screen and (min-width: 768px) {
+    background-image: url(${BgMedium});
+  }
+
   @media screen and (min-width: 1280px) {
     width: 1280px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
+
+    background-image: url(${BgLagre});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
 `;
 
