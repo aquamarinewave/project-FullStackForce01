@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/project-FullStackForce01/static/css/main.ff067d8a.css",
-    "main.js": "/project-FullStackForce01/static/js/main.e388061d.js",
+    "main.js": "/project-FullStackForce01/static/js/main.9e691ca2.js",
     "static/js/328.532bfdf7.chunk.js": "/project-FullStackForce01/static/js/328.532bfdf7.chunk.js",
-    "static/js/852.f0a3b9f6.chunk.js": "/project-FullStackForce01/static/js/852.f0a3b9f6.chunk.js",
+    "static/js/449.a3af725a.chunk.js": "/project-FullStackForce01/static/js/449.a3af725a.chunk.js",
     "static/js/589.64698d15.chunk.js": "/project-FullStackForce01/static/js/589.64698d15.chunk.js",
     "static/js/664.c13630db.chunk.js": "/project-FullStackForce01/static/js/664.c13630db.chunk.js",
     "static/js/202.b7cee7b1.chunk.js": "/project-FullStackForce01/static/js/202.b7cee7b1.chunk.js",
@@ -13,6 +13,9 @@
     "static/js/561.c6c8caf3.chunk.js": "/project-FullStackForce01/static/js/561.c6c8caf3.chunk.js",
     "static/js/794.8467939f.chunk.js": "/project-FullStackForce01/static/js/794.8467939f.chunk.js",
     "static/js/608.33d59c54.chunk.js": "/project-FullStackForce01/static/js/608.33d59c54.chunk.js",
+    "static/media/PetsMedium.png": "/project-FullStackForce01/static/media/PetsMedium.b6cceec99e961dce8328.png",
+    "static/media/PetsLarge.png": "/project-FullStackForce01/static/media/PetsLarge.1571f47157e7f14843f4.png",
+    "static/media/PetsSmall.png": "/project-FullStackForce01/static/media/PetsSmall.5138b3b026904b7e5b45.png",
     "static/media/Manrope-SemiBold.ttf": "/project-FullStackForce01/static/media/Manrope-SemiBold.310f108cc524df0e5ffc.ttf",
     "static/media/Manrope-Medium.ttf": "/project-FullStackForce01/static/media/Manrope-Medium.08894ccb04665d1a9d53.ttf",
     "static/media/Manrope-Regular.ttf": "/project-FullStackForce01/static/media/Manrope-Regular.a9b9e09fe6b69741f316.ttf",
@@ -25,14 +28,16 @@
     "static/media/Manrope-SemiBold.woff2": "/project-FullStackForce01/static/media/Manrope-SemiBold.1462dbdef4469fb3b4c3.woff2",
     "static/media/Manrope-Regular.woff2": "/project-FullStackForce01/static/media/Manrope-Regular.2e6d3d21cb34c92a8f7a.woff2",
     "static/media/Manrope-Medium.woff2": "/project-FullStackForce01/static/media/Manrope-Medium.0b33f41eb1974d58060a.woff2",
+    "static/media/bgMedium.png": "/project-FullStackForce01/static/media/bgMedium.1f23f50a8de903ac9b8e.png",
     "index.html": "/project-FullStackForce01/index.html",
     "main.ff067d8a.css.map": "/project-FullStackForce01/static/css/main.ff067d8a.css.map",
-    "main.e388061d.js.map": "/project-FullStackForce01/static/js/main.e388061d.js.map",
+    "main.9e691ca2.js.map": "/project-FullStackForce01/static/js/main.9e691ca2.js.map",
     "328.532bfdf7.chunk.js.map": "/project-FullStackForce01/static/js/328.532bfdf7.chunk.js.map",
+    "449.a3af725a.chunk.js.map": "/project-FullStackForce01/static/js/449.a3af725a.chunk.js.map",
     "608.33d59c54.chunk.js.map": "/project-FullStackForce01/static/js/608.33d59c54.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff067d8a.css",
-    "static/js/main.e388061d.js"
+    "static/js/main.9e691ca2.js"
   ]
 }
