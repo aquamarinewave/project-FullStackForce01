@@ -1,7 +1,7 @@
 import { BackgroundImage } from './NotFoundPage.styled';
 import { PageHeader } from './NotFoundPage.styled';
 import { LinkBtn } from './NotFoundPage.styled';
-import Icon from '../../utils/Icon'; // Path to your icons.svg
+import Icon from '../../utils/Icon/Icon'; // Path to your icons.svg
 
 const NotFoundPage = () => {
   return (
