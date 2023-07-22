@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import {
   Form as FormikForm,
   Field,
-  // ErrorMessage as FieldError,
 } from 'formik';
 
 export const Form = styled(FormikForm)`
@@ -29,7 +28,7 @@ export const FieldLabel = styled.label`
 
 export const InputField = styled(Field)`
   max-width: 100%;
-  height: 40px;
+  height: 24px;
   padding: 8px 16px;
   font-family: Manrope;
   font-size: 14px;
@@ -37,7 +36,7 @@ export const InputField = styled(Field)`
   font-weight: 400;
   /* line-height: 150%; */
   /* letter-spacing: 0.56px; */
-  border: 1px solid var(--dark-blu);
+  border: 1px solid var(--dark-blue);
   border-radius: 40px;
 
   &::placeholder {
@@ -61,10 +60,9 @@ export const InputFieldTextArea = styled(Field)`
 `;
 
 export const TextArea = styled.textarea`
-  /* width: 100%; */
   max-height: 92px;
   padding: 8px 16px;
-  border: 1px solid var(--dark-blu);
+  border: 1px solid var(--dark-blue);
   border-radius: 20px;
   resize: vertical;
 `;
@@ -96,7 +94,6 @@ export const ShowPlaceholderAvatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 1px dashed #ccc; */
   height: 100%;
 `;
 
@@ -124,11 +121,11 @@ export const NextStageForm = styled.h3`
   font-weight: 500;
   line-height: normal;
   width: 80px;
-  color: ${props => (props.current === 'first' ? 'var(--dark-blu)' : `var(--success-color)`)};
+  color: ${props => (props.current === 'first' ? 'var(--dark-blue)' : `var(--success-color)`)};
   &:after {
     content: '';
     position: absolute;
-    background-color: ${props => (props.current === 'first' ? 'var(--dark-blu)' : `var(--success-color)`)};
+    background-color: ${props => (props.current === 'first' ? 'var(--dark-blue)' : `var(--success-color)`)};
     border-radius: 8px;
     width: 80px;
     height: 8px;
@@ -136,16 +133,16 @@ export const NextStageForm = styled.h3`
     left: 0;
   }
   &:nth-child(2) {
-    color: ${props => (props.current === 'second' ? 'var(--dark-blu)' : `#888`)};
+    color: ${props => (props.current === 'second' ? 'var(--dark-blue)' : `#888`)};
   }
   &:nth-child(2)::after {
-    background-color: ${props => (props.current === 'second' ? 'var(--dark-blu)' : `var(--lightblue)`)};
+    background-color: ${props => (props.current === 'second' ? 'var(--dark-blue)' : `var(--lightblue)`)};
   }
   &:last-child {
-    color: ${props => (props.current === 'third' ? 'var(--dark-blu)' : `#888`)};
+    color: ${props => (props.current === 'third' ? 'var(--dark-blue)' : `#888`)};
   }
   &:last-child::after {
-    background-color: ${props => (props.current === 'third' ? 'var(--dark-blu)' : `var(--lightblue)`)};
+    background-color: ${props => (props.current === 'third' ? 'var(--dark-blue)' : `var(--lightblue)`)};
   }
 `;
 
@@ -163,11 +160,16 @@ export const BoxFieldsForm = styled.div`
 
 export const RadioButton = styled.label`
   display: inline-block;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.56px;
   border-radius: 40px;
   padding: 8px 16px;
   margin-right: 10px;
-  background-color: ${props => (props.checked ? 'var(--dark-blu)' : 'var(--lightblue)')};
-  color: ${props => (props.checked ? '#fef9f9' : 'var(--dark-blu)')};
+  background-color: ${props => (props.checked ? 'var(--dark-blue)' : 'var(--lightblue)')};
+  color: ${props => (props.checked ? '#fef9f9' : 'var(--dark-blue)')};
   cursor: pointer;
   width: fit-content;
 
@@ -184,7 +186,7 @@ export const Button = styled.button`
   display: flex;
   gap: 12px;
   justify-content: center;
-  background-color: var(--dark-blu);
+  background-color: var(--dark-blue);
   border: none;
   border-radius: 40px;
   padding: 8px 28px;
@@ -192,6 +194,12 @@ export const Button = styled.button`
   align-content: center;
   align-items: center;
   color: #fef9f9;
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.64px;
 
   & span {
     margin: auto 0;
@@ -203,11 +211,11 @@ export const Button = styled.button`
   }
   &:active {
     background-color: #fef9f9;
-    color: var(--dark-blu);
+    color: var(--dark-blue);
   }
   &:last-child {
     background-color: transparent;
-    color: var(--dark-blu);
+    color: var(--dark-blue);
     text-align: center;
     align-content: center;
     align-items: center;
@@ -219,10 +227,3 @@ export const BoxButton = styled.div`
   gap: 12px 0;
 `;
 
-// const FieldLabel = styled.label`
-//   display: block;
-//   margin-bottom: 8px;
-//   font-size: 14px;
-//   font-weight: bold;
-//   color: #333;
-// `;

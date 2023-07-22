@@ -45,6 +45,43 @@ const AddPetForm = () => {
     }
   };
 
+  const FirstStageForm = ({ values }) => (
+    <>
+      <RadioButton checked={values.option === 'your pet'}>
+        <Field type="radio" name="option" value="your pet" />
+        <span>your pet</span>
+      </RadioButton>
+      <RadioButton checked={values.option === 'sell'}>
+        <Field type="radio" name="option" value="sell" />
+        <span>sell</span>
+      </RadioButton>
+      <RadioButton checked={values.option === 'lost/found'}>
+        <Field type="radio" name="option" value="lost/found" />
+        <span>lost/found</span>
+      </RadioButton>
+      <RadioButton checked={values.option === 'in good hands'}>
+        <Field type="radio" name="option" value="in good hands" />
+        <span>in good hands</span>
+      </RadioButton>
+    </>
+  );
+  const SecondStageForm = ({ values }) => (
+    <>
+      <BoxInputField>
+        <FieldLabel htmlFor="name">Pet’s name</FieldLabel>
+        <InputField type="text" name="name" placeholder="Type name pet" />
+      </BoxInputField>
+      <BoxInputField>
+        <FieldLabel htmlFor="date">Date of birth</FieldLabel>
+        <InputField type="text" name="date" placeholder="Type date of birth" />
+      </BoxInputField>
+      <BoxInputField>
+        <FieldLabel htmlFor="type">Type</FieldLabel>
+        <InputField type="text" name="type" placeholder="Type of pet" />
+      </BoxInputField>
+    </>
+  );
+
   const ThirdStageForm = () => {
     const handlePhotoChange = event => {
       const file = event.currentTarget.files[0];
@@ -111,43 +148,6 @@ const AddPetForm = () => {
       </>
     );
   };
-
-  const FirstStageForm = ({ values }) => (
-    <>
-      <RadioButton checked={values.option === 'your pet'}>
-        <Field type="radio" name="option" value="your pet" />
-        <span>your pet</span>
-      </RadioButton>
-      <RadioButton checked={values.option === 'sell'}>
-        <Field type="radio" name="option" value="sell" />
-        <span>sell</span>
-      </RadioButton>
-      <RadioButton checked={values.option === 'lost/found'}>
-        <Field type="radio" name="option" value="lost/found" />
-        <span>lost/found</span>
-      </RadioButton>
-      <RadioButton checked={values.option === 'in good hands'}>
-        <Field type="radio" name="option" value="in good hands" />
-        <span>in good hands</span>
-      </RadioButton>
-    </>
-  );
-  const SecondStageForm = ({ values }) => (
-    <>
-      <BoxInputField>
-        <FieldLabel htmlFor="name">Pet’s name</FieldLabel>
-        <InputField type="text" name="name" placeholder="Type name pet" />
-      </BoxInputField>
-      <BoxInputField>
-        <FieldLabel htmlFor="date">Date of birth</FieldLabel>
-        <InputField type="text" name="date" placeholder="Type date of birth" />
-      </BoxInputField>
-      <BoxInputField>
-        <FieldLabel htmlFor="type">Type</FieldLabel>
-        <InputField type="text" name="type" placeholder="Type of pet" />
-      </BoxInputField>
-    </>
-  );
 
   return (
     <Formik
