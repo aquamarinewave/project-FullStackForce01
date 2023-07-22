@@ -1,4 +1,4 @@
-import { PageHeader, BackgroundImage, LinkBtn, IconPaw, Wrapper, ImageError, BtnText } from './NotFoundPage.styled';
+import { PageHeader, BackgroundImage, LinkBtn, Wrapper, ImageError, BtnText } from './NotFoundPage.styled';
 import Smallpng from '../../images/x1/page404/404Small.png';
 import Small from '../../images/x1/page404/404Small.webp';
 import SmallRetina from '../../images/x2/page404/404Small.webp';
