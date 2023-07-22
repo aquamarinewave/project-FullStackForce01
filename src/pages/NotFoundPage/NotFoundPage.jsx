@@ -1,6 +1,4 @@
-import { PageHeader, BackgroundImage } from './NotFoundPage.styled';
-import { LinkBtn } from './NotFoundPage.styled';
-import Icon from '../../utils/Icon/Icon'; // Path to your icons.svg
+import { PageHeader, BackgroundImage, LinkBtn, IconPaw, Wrapper, ImageError, BtnText } from './NotFoundPage.styled';
 import Smallpng from '../../images/x1/page404/404Small.png';
 import Small from '../../images/x1/page404/404Small.webp';
 import SmallRetina from '../../images/x2/page404/404Small.webp';
@@ -8,17 +6,18 @@ import Medium from '../../images/x1/page404/404Medium.webp';
 import MediumRetina from '../../images/x2/page404/404Medium.webp';
 import Large from '../../images/x1/page404/404Large.webp';
 import LargeRetina from '../../images/x2/page404/404Large.png';
+import Icon from '../../utils/Icon/Icon'; // Path to your icons.svg
 
 const NotFoundPage = () => {
   return (
-    <div>
+    <Wrapper>
       <BackgroundImage>
         <PageHeader>Ooops! This page not found :</PageHeader>
-        <picture>
+        <ImageError>
           <source
-            media="(min-width: 1200px)"
-            srcSet={`${Small} 1x, 
-              ${SmallRetina} 2x
+            media="(min-width: 1280px)"
+            srcSet={`${Large} 1x, 
+              ${LargeRetina} 2x
         `}
             type="image/webp"
           />
@@ -31,19 +30,19 @@ const NotFoundPage = () => {
           />
           <source
             media="(max-width: 767px)"
-            srcSet={`${Large} 1x,
-              ${LargeRetina} 2x
+            srcSet={`${Small} 1x,
+              ${SmallRetina} 2x
         `}
             type="image/webp"
           />
           <img src={Smallpng} alt="error-404" />
-        </picture>
+        </ImageError>
 
         <LinkBtn to="/main">
-          To main page <Icon name="pawprint-1" color="#FFFFFF" size={35} />
+          <BtnText>To main page</BtnText> <Icon name="pawprint-1" color="#FFFFFF" size={24} />
         </LinkBtn>
       </BackgroundImage>
-    </div>
+    </Wrapper>
   );
 };
 
