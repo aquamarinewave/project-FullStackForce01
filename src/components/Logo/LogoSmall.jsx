@@ -15,8 +15,8 @@ const handleImageSrc = src => {
  
 const image =  ({ src }) => handleImageSrc(src);
 
-const Logo = ({width, src}) => {
-    return (<MainLogo src={LogoImageBig} alt={'Logo'} />)
+const LogoSmall = ({width, src}) => {
+    return (<MainLogo width={width} src={LogoImageSmall} alt={'Logo'} />)
 }
 
-export default Logo;
+export default LogoSmall;
