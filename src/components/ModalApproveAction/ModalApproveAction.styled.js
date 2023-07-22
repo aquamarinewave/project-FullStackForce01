@@ -24,6 +24,13 @@ export const Container = styled.div`
   transform: translate(-50%, -50%);
 `;
 
+export const CloseIcon = styled(Icon)`
+  position: absolute;
+  display: block;
+  top: 20px;
+  right: 20px;
+`;
+
 export const Content = styled.div`
   text-align: center;
 `;

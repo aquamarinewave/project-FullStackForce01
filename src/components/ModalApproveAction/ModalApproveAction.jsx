@@ -6,9 +6,9 @@ import {
   BtnContainer,
   BtnText,
   CancelBtn,
+  CloseIcon,
   Container,
   Content,
-  TrashIcon,
 } from './ModalApproveAction.styled';
 
 const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
@@ -41,6 +41,7 @@ const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
   return isOpen ? (
     <Backdrop ref={modalRef} onClick={handleBackdropClick}>
       <Container>
+        <CloseIcon name="cross" size="24" />
         <Content>{children}</Content>
         <BtnContainer>
           <CancelBtn onClick={onRequestClose}>Cancel</CancelBtn>
