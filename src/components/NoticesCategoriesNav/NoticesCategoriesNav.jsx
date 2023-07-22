@@ -4,9 +4,9 @@ const NoticesCategoriesNav = () => {
   return (
     <div>
       <nav>
-        <NavLink to="/notices/sell">Home</NavLink>
-        <NavLink to="/notices/lost-found">Home</NavLink>
-        <NavLink to="/notices/for-free">Movies</NavLink>
+        <NavLink to="/notices/sell">sell</NavLink>
+        <NavLink to="/notices/lost-found">lost/found</NavLink>
+        <NavLink to="/notices/for-free">in good hands</NavLink>
       </nav>
     </div>
   );

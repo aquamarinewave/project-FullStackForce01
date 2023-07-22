@@ -1,10 +1,18 @@
+import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
+
 const NoticesCategoriesList = () => {
   return (
     <div>
       <ul>
-        <li>item1</li>
-        <li>item2</li>
-        <li>item3</li>
+        <li>
+          <NoticeCategoryItem />
+        </li>
+        <li>
+          <NoticeCategoryItem />
+        </li>
+        <li>
+          <NoticeCategoryItem />
+        </li>
       </ul>
     </div>
   );
