@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BgLagre from '../images/x1/bg/bgLagre.png';
-import BgMedium from '../images/x1/bg/bgMedium.png';
-import BgSmall from '../images/x1/bg/bgSmall.png';
+import BgLagre from '../../images/x1/bg/bgLagre.png';
+import BgMedium from '../../images/x1/bg/bgMedium.png';
+import BgSmall from '../../images/x1/bg/bgSmall.png';
 
-import PetsLarge from '../images/x1/homePage/PetsLarge.png';
-import PetsMedium from '../images/x1/homePage/PetsMedium.png';
-import PetsSmall from '../images/x1/homePage/PetsSmall.png';
+import PetsLarge from '../../images/x1/homePage/PetsLarge.png';
+import PetsMedium from '../../images/x1/homePage/PetsMedium.png';
+import PetsSmall from '../../images/x1/homePage/PetsSmall.png';
 
-import PetsLargeX2 from '../images/x2/homePage/PetsLarge.png';
-import PetsMediumX2 from '../images/x2/homePage/PetsMedium.png';
-import PetsSmallX2 from '../images/x2/homePage/PetsSmall.png';
+import PetsLargeX2 from '../../images/x2/homePage/PetsLarge.png';
+import PetsMediumX2 from '../../images/x2/homePage/PetsMedium.png';
+import PetsSmallX2 from '../../images/x2/homePage/PetsSmall.png';
 
 const Title = styled.h1`
   margin-top: 60px;
