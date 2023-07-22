@@ -1,21 +1,21 @@
 import MainHeader from './Header.styled';
 import LoginButton from './Buttons/LoginButton';
 import RegisterButton from './Buttons/RegisterButton';
-import UserButton from './Buttons/UserButton';
+// import UserButton from './Buttons/UserButton';
 import ButtonText from './ButtonText/ButtonText';
 import MenuLink from './MenuLink/MenuLink';
-import Paw from './Icon';
+// import Paw from './Icon';
 import Icon from 'utils/Icon/Icon';
-import UserNavContainer from '../UserNav/UserNavContainer/UserNavContainer';
+// import UserNavContainer from '../UserNav/UserNavContainer/UserNavContainer';
 import AuthNavContainer from '../AuthNav/AuthNavContainer/AuthNavContainer';
 import NavContainer from '../Nav/NavContainer/NavContainer';
 import Logo from 'components/Logo/Logo';
 import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav/AuthNav';
-import UserNav from 'components/UserNav/UserNav';
-import Logout from 'components/Logout/Logout.styled';
-import MobileMenu from '../MobileMenu/MobileMenu';
-import Mob from 'components/MobileMenu/Mob';
+// import UserNav from 'components/UserNav/UserNav';
+// import Logout from 'components/Logout/Logout.styled';
+// import MobileMenu from '../MobileMenu/MobileMenu';
+// import Mob from 'components/MobileMenu/Mob';
 
 import { NavLink } from 'react-router-dom';
 
