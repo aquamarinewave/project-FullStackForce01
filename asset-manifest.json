@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/project-FullStackForce01/static/css/main.ff067d8a.css",
-    "main.js": "/project-FullStackForce01/static/js/main.9e691ca2.js",
-    "static/js/328.532bfdf7.chunk.js": "/project-FullStackForce01/static/js/328.532bfdf7.chunk.js",
+    "main.js": "/project-FullStackForce01/static/js/main.6f9d21c4.js",
+    "static/js/845.e8ad90dc.chunk.js": "/project-FullStackForce01/static/js/845.e8ad90dc.chunk.js",
     "static/js/449.a3af725a.chunk.js": "/project-FullStackForce01/static/js/449.a3af725a.chunk.js",
     "static/js/589.64698d15.chunk.js": "/project-FullStackForce01/static/js/589.64698d15.chunk.js",
     "static/js/664.c13630db.chunk.js": "/project-FullStackForce01/static/js/664.c13630db.chunk.js",
@@ -28,16 +28,17 @@
     "static/media/Manrope-SemiBold.woff2": "/project-FullStackForce01/static/media/Manrope-SemiBold.1462dbdef4469fb3b4c3.woff2",
     "static/media/Manrope-Regular.woff2": "/project-FullStackForce01/static/media/Manrope-Regular.2e6d3d21cb34c92a8f7a.woff2",
     "static/media/Manrope-Medium.woff2": "/project-FullStackForce01/static/media/Manrope-Medium.0b33f41eb1974d58060a.woff2",
+    "static/media/icons.svg": "/project-FullStackForce01/static/media/icons.e907929b12a4351bc22bcd31f8fd0a00.svg",
     "static/media/bgMedium.png": "/project-FullStackForce01/static/media/bgMedium.1f23f50a8de903ac9b8e.png",
     "index.html": "/project-FullStackForce01/index.html",
     "main.ff067d8a.css.map": "/project-FullStackForce01/static/css/main.ff067d8a.css.map",
-    "main.9e691ca2.js.map": "/project-FullStackForce01/static/js/main.9e691ca2.js.map",
-    "328.532bfdf7.chunk.js.map": "/project-FullStackForce01/static/js/328.532bfdf7.chunk.js.map",
+    "main.6f9d21c4.js.map": "/project-FullStackForce01/static/js/main.6f9d21c4.js.map",
+    "845.e8ad90dc.chunk.js.map": "/project-FullStackForce01/static/js/845.e8ad90dc.chunk.js.map",
     "449.a3af725a.chunk.js.map": "/project-FullStackForce01/static/js/449.a3af725a.chunk.js.map",
     "608.33d59c54.chunk.js.map": "/project-FullStackForce01/static/js/608.33d59c54.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff067d8a.css",
-    "static/js/main.9e691ca2.js"
+    "static/js/main.6f9d21c4.js"
   ]
 }
