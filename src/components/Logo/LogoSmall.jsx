@@ -1,5 +1,5 @@
-import LogoImageBig from '../../images/x1/logo/LogoDefault.png';
-// import LogoImageSmall from '../../images/x1/logo/LogoSmall.png';
+// import LogoImageBig from '../../images/x1/logo/LogoDefault.png';
+import LogoImageSmall from '../../images/x1/logo/LogoSmall.png';
 import MainLogo from './Logo.styled';
 
 // const handleImageSrc = src => {
@@ -15,8 +15,8 @@ import MainLogo from './Logo.styled';
  
 // const image =  ({ src }) => handleImageSrc(src);
 
-const Logo = ({width, src}) => {
-    return (<MainLogo src={LogoImageBig} alt={'Logo'} />)
+const LogoSmall = ({width, src}) => {
+    return (<MainLogo width={width} src={LogoImageSmall} alt={'Logo'} />)
 }
 
-export default Logo;
+export default LogoSmall;
