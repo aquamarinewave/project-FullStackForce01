@@ -1,11 +1,18 @@
+import Icon from 'utils/Icon/Icon';
+import { SearchContainer, SearchForm, SearchInput, SearchIconContainer, SearchIconBtn } from './NoticesSearch.styled';
+
 const NoticesSearch = () => {
   return (
-    <div>
-      <form>
-        <input type="text" name="searchforpet" />
-        <button type="submit">Search</button>
-      </form>
-    </div>
+    <SearchContainer>
+      <SearchForm>
+        <SearchInput type="text" name="searchforpet" placeholder="Search" />
+        <SearchIconContainer>
+          <SearchIconBtn type="button">
+            <Icon name="search" color="var(--dark-blue)" size={17} />
+          </SearchIconBtn>
+        </SearchIconContainer>
+      </SearchForm>
+    </SearchContainer>
   );
 };
 

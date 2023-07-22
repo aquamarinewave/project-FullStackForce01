@@ -1,15 +1,16 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
+import { NoticesPageContainer, Title } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   return (
-    <div>
-      <h1>Find your favorite pet</h1>
+    <NoticesPageContainer>
+      <Title>Find your favorite pet</Title>
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
-    </div>
+    </NoticesPageContainer>
   );
 };
 

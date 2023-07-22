@@ -7,7 +7,7 @@ const NoticeCategoryItem = () => {
     <div>
       <img src={Pet} alt="pet" />
       <button type="button">
-        <Icon name="heart" color="#ff520e" size={18} />
+        <Icon name="heart" color="var(--dark-blue)" size={18} />
       </button>
       <NavLink to="/add-pet">Add pet</NavLink>
       <h3>Сute dog looking for a home</h3>
