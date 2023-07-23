@@ -1,8 +1,20 @@
 import styled from 'styled-components';
 
-import BgLagre from '../../images/x1/bg/bgLagre.png';
-import BgMedium from '../../images/x1/bg/bgMedium.png';
-import BgSmall from '../../images/x1/bg/bgSmall.png';
+import Smallbg from '../../images/x1/bg/bgSmall.png';
+import SmallbgRetina from '../../images/x2/bg/bgSmall.png';
+import Mediumbg from '../../images/x1/bg/bgMedium.png';
+import MediumbgRetina from '../../images/x2/bg/bgMedium.png';
+import Largebg from '../../images/x1/bg/bgLagre.png';
+import LargebgRetina from '../../images/x2/bg/bgLarge.png';
+
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: 1280px) {
+    display: block;
+  }
+`;
 
 export const Title = styled.h1`
   margin-top: 60px;
@@ -28,7 +40,7 @@ export const Title = styled.h1`
 
   @media screen and (min-width: 1280px) {
     text-align: left;
-    margin-left: 18px;
+    margin-left: calc((100% - 1246px)/2);
     margin-top: 188px;
     width: 501px;
     font-weight: 800;
@@ -49,27 +61,30 @@ export const Picture = styled.picture`
 
   @media screen and (min-width: 1280px) {
     position: absolute;
-    top: -293px;
-    right: 15px;
+    bottom: 20px;
+    ${'' /* top: -293px; */}
+    right: calc((100% - 1314px)/2);
   }
 `;
 
-export const MainPageDiv = styled.div`
-  background-image: url(${BgSmall});
-
-  @media screen and (min-width: 768px) {
-    background-image: url(${BgMedium});
+export const BackgroundImage = styled.div`
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url(${Smallbg});
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    background-image: url(${SmallbgRetina});
   }
-
+  @media screen and (min-width: 768px) {
+    background-image: url(${Mediumbg});
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background-image: url(${MediumbgRetina});
+    }
+  }
   @media screen and (min-width: 1280px) {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-
-    background-image: url(${BgLagre});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    background-image: url(${Largebg});
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background-image: url(${LargebgRetina});
+    }
   }
 `;
