@@ -1,108 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import BgLagre from '../../images/x1/bg/bgLagre.png';
-import BgMedium from '../../images/x1/bg/bgMedium.png';
-import BgSmall from '../../images/x1/bg/bgSmall.png';
+import { Title, BackgroundImage, Wrapper, Picture } from './MainPage.styled';
 
-import PetsLarge from '../../images/x1/homePage/PetsLarge.png';
-import PetsMedium from '../../images/x1/homePage/PetsMedium.png';
-import PetsSmall from '../../images/x1/homePage/PetsSmall.png';
+import PetsLargeDef from '../../images/x1/homePage/PetsLarge.png';
+import PetsLarge from '../../images/x1/homePage/PetsLarge.webp';
+import PetsMedium from '../../images/x1/homePage/PetsMedium.webp';
+import PetsSmall from '../../images/x1/homePage/PetsSmall.webp';
 
-import PetsLargeX2 from '../../images/x2/homePage/PetsLarge.png';
-import PetsMediumX2 from '../../images/x2/homePage/PetsMedium.png';
-import PetsSmallX2 from '../../images/x2/homePage/PetsSmall.png';
-
-const Title = styled.h1`
-  margin-top: 60px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 280px;
-  color: var(--main-color);
-  font-family: Manrope;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.37;
-
-  @media screen and (min-width: 768px) {
-    margin-left: 32px;
-    text-align: left;
-    width: 588px;
-    font-size: 68px;
-    font-weight: 700;
-    line-height: 100px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    text-align: left;
-    margin-left: 18px;
-    margin-top: 188px;
-    width: 501px;
-    font-weight: 800;
-    line-height: 130%;
-  }
-`;
-
-const MainPageImage = styled.img`
-  margin: auto;
-  width: 474px;
-
-  @media screen and (min-width: 768px) {
-    margin-top: 27px;
-    width: 985px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    position: absolute;
-    top: -293px;
-    right: 15px;
-    width: 954px;
-  }
-`;
-
-const MainPageDiv = styled.div`
-  background-image: url(${BgSmall});
-
-  @media screen and (min-width: 768px) {
-    background-image: url(${BgMedium});
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-
-    background-image: url(${BgLagre});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-`;
+import PetsLargeX2 from '../../images/x2/homePage/PetsLarge.webp';
+import PetsMediumX2 from '../../images/x2/homePage/PetsMedium.webp';
+import PetsSmallX2 from '../../images/x2/homePage/PetsSmall.webp';
 
 const MainPage = () => {
   return (
     <>
-      <MainPageDiv>
+      <Wrapper>
+      <BackgroundImage>
         <Title>Take good care of your small pets</Title>
-        {window.devicePixelRatio > 1 ? (
-          window.screen.width >= 1280 ? (
-            <MainPageImage src={PetsLargeX2} alt="Pictures small pets x2" />
-          ) : window.screen.width < 1280 && window.screen.width >= 768 ? (
-            <MainPageImage src={PetsMediumX2} alt="Pictures small pets x2" />
-          ) : (
-            <MainPageImage src={PetsSmallX2} alt="Pictures small pets x2" />
-          )
-        ) : window.screen.width >= 1280 ? (
-          <MainPageImage src={PetsLarge} alt="Pictures small pets" />
-        ) : window.screen.width < 1280 && window.screen.width >= 768 ? (
-          <MainPageImage src={PetsMedium} alt="Pictures small pets" />
-        ) : (
-          <MainPageImage src={PetsSmall} alt="Pictures small pets" />
-        )}
-      </MainPageDiv>
+        <Picture className="about__img">
+          <source media="(min-width: 1280px)" srcSet={`${PetsLarge} 1x, ${PetsLargeX2} 2x`} type="image/webp" />
+          <source media="(min-width: 768px)" srcSet={`${PetsMedium} 1x, ${PetsMediumX2} 2x`} type="image/webp" />
+          <source media="(max-width: 767px)" srcSet={`${PetsSmall} 1x, ${PetsSmallX2} 2x`} type="image/webp" />
+          <img src={PetsLargeDef} alt="Pictures small pets" />
+        </Picture>
+        </BackgroundImage>
+      </Wrapper>
     </>
   );
 };
