@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  Form as FormikForm,
-  Field,
-} from 'formik';
+import { Form as FormikForm, Field } from 'formik';
 
 export const Form = styled(FormikForm)`
   display: flex;
@@ -226,4 +223,3 @@ export const BoxButton = styled.div`
   flex-direction: column;
   gap: 12px 0;
 `;
-
