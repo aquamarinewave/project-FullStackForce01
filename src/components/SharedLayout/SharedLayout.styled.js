@@ -19,4 +19,4 @@ const Container = styled.div`
     padding-right: 16px;
   }
 `;
-export default Container;
+export { Container };
