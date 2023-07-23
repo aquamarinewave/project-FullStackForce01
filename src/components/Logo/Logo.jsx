@@ -1,6 +1,7 @@
 import LogoBig from '../../images/x1/logo/LogoDefault.png';
 import LogoSmall from '../../images/x1/logo/LogoSmall.png';
 import { NavLink } from 'react-router-dom';
+import { MainLogo } from './Logo.styled';
 
 // const handleImageSrc = src => {
 //   switch (src) {
@@ -26,7 +27,7 @@ const Logo = () => {
     <NavLink to="/">
       <picture>
         <source srcSet={LogoSmall} media="(max-width: 767px)" />
-        <img src={LogoBig} alt="Logo" />
+        <MainLogo src={LogoBig} alt="Logo" />
       </picture>
     </NavLink>
   );
