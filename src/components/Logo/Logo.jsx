@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom';
 //       return LogoImageSmall;
 //   }
 // };
- 
+
 // const image =  ({ src }) => handleImageSrc(src);
 
 // const Logo = ({width, src}) => {
@@ -22,14 +22,14 @@ import { NavLink } from 'react-router-dom';
 // export default Logo;
 
 const Logo = () => {
-    return (
-      <NavLink to="/main">
-        <picture>
-          <source srcset={LogoSmall} media="(max-width: 767px)" />
-          <img src={LogoBig} alt="Logo"  />
-        </picture>
-      </NavLink>
-    );
-}
+  return (
+    <NavLink to="/">
+      <picture>
+        <source srcSet={LogoSmall} media="(max-width: 767px)" />
+        <img src={LogoBig} alt="Logo" />
+      </picture>
+    </NavLink>
+  );
+};
 
 export default Logo;
