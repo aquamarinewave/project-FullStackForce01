@@ -3,10 +3,6 @@ import { Nav, MButtonText, LoginButton, RegisterButton, BurgerButton, IconPawPri
 import sprite from '../../images/icons.svg';
 // import Button from 'components/Button/Button';
 
-<IconPawPrint width={24} height={24}>
-  <use href={`${sprite}#icon-pawprint-1`}></use>
-</IconPawPrint>;
-
 const isTabletOrMobile = window.screen.width < 1279;
 
 const AuthNav = () => {
