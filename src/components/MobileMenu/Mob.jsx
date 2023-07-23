@@ -1,18 +1,31 @@
+import { Link, CloseButton, ButtonText, TopMenu} from './MobileMenu.styled';
 import MobileMenu from './MobileMenu';
-import LogoSmall from '../Logo/Logo';
+import Logo from '../Logo/Logo';
 import Nav from '../Nav/Nav';
-import MenuLink from '../Header/MenuLink/MenuLink';
+import Icon from 'utils/Icon/Icon';
+import Logout from 'components/Logout/Logout.styled';
 
 const Mob = () => {
-    return (
-      <MobileMenu>
-        <LogoSmall />
+  return (
+   <MobileMenu>
+        <TopMenu>
+          <Logo />
+          <Logout type="button">
+            <ButtonText color="logout" weight="bold" margin="8px">
+              Logout
+            </ButtonText>
+            <Icon name="logout" color="#FEF9F9" size={24} />
+          </Logout>
+          <CloseButton type="button">
+            <Icon name="cross" color="#FFC107" size={24} />
+          </CloseButton>
+        </TopMenu>
         <Nav>
-          <MenuLink to="/news">News</MenuLink>
-          <MenuLink to="/notices">Find Pet</MenuLink>
-          <MenuLink to="/friends">Our Friends</MenuLink>
+          <Link to="/news">News</Link>
+          <Link to="/notices">Find Pet</Link>
+          <Link to="/friends">Our Friends</Link>
         </Nav>
-      </MobileMenu>
+    </MobileMenu> 
     );
 }
 

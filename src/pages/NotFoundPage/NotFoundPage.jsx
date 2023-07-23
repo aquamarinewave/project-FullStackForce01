@@ -38,7 +38,7 @@ const NotFoundPage = () => {
           <img src={Smallpng} alt="error-404" />
         </ImageError>
 
-        <LinkBtn to="/main">
+        <LinkBtn to="/">
           <BtnText>To main page</BtnText> <Icon name="pawprint-1" color="#FFFFFF" size={24} />
         </LinkBtn>
       </BackgroundImage>

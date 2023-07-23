@@ -5,9 +5,13 @@ const Logout = styled.button`
   background: var(--dark-blue);
   border: 2px solid var(--dark-blue);
   cursor: pointer;
+  display: none;
 
   @media screen and (min-width: 768px) {
     height: 44px;
+    height: 40px;
+    width: 135px;
+    justify-content: center;
     ${'' /* margin-top: 24px; */}
     display: flex;
     align-items: center;

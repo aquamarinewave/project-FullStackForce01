@@ -16,13 +16,14 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route path="/main" element={<MainPage />} />
+        <Route index element={<MainPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/add-pet" element={<AddPetPage />} />
-        <Route path="/notices/:categoryName" element={<NoticesPage />} />
-        <Route path="/notices" element={<Navigate to="/notices/sell" />} />
+        <Route path="/notices" element={<Navigate to="/notices/sell" />}>
+          <Route path=":categoryName" element={<NoticesPage />} />
+        </Route>
         <Route path="/news" element={<NewsPage />} />
         <Route path="/friends" element={<OurFriendsPage />} />
         <Route path="*" element={<NotFoundPage />} />
