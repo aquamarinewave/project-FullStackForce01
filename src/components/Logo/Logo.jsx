@@ -1,6 +1,6 @@
-import LogoImageBig from '../../images/x1/logo/LogoDefault.png';
-// import LogoImageSmall from '../../images/x1/logo/LogoSmall.png';
-import MainLogo from './Logo.styled';
+import LogoBig from '../../images/x1/logo/LogoDefault.png';
+import LogoSmall from '../../images/x1/logo/LogoSmall.png';
+import { NavLink } from 'react-router-dom';
 
 // const handleImageSrc = src => {
 //   switch (src) {
@@ -15,8 +15,21 @@ import MainLogo from './Logo.styled';
  
 // const image =  ({ src }) => handleImageSrc(src);
 
-const Logo = ({width, src}) => {
-    return (<MainLogo src={LogoImageBig} alt={'Logo'} />)
+// const Logo = ({width, src}) => {
+//     return (<MainLogo src={LogoImageBig} alt={'Logo'} />)
+// }
+
+// export default Logo;
+
+const Logo = () => {
+    return (
+      <NavLink to="/main">
+        <picture>
+          <source srcset={LogoSmall} media="(max-width: 767px)" />
+          <img src={LogoBig} alt="Logo"  />
+        </picture>
+      </NavLink>
+    );
 }
 
 export default Logo;
