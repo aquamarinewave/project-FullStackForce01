@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import { MainNav, Link } from "./Nav.styled"
 
-const Nav = styled.nav`
-display: none;
-  @media screen and (min-width: 768px) {
-    display: none;    
-  }
-  @media screen and (min-width: 1280px) {
-    display: block;
-    margin-left: 80px;
-  }
-`;
+const Nav = () => {
+  return (
+      <MainNav>
+        <Link to="/news">News</Link>
+        <Link to="/notices">Find Pet</Link>
+        <Link to="/friends">Our Friends</Link>
+      </MainNav>
+  );
+};
+
 export default Nav;
