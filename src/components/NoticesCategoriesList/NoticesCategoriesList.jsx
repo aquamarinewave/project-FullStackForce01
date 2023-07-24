@@ -1,37 +1,31 @@
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useParams, Navigate } from 'react-router-dom';
+import { fetchByCategory } from '../../services/api/noticesFetch';
 
 const NoticesCategoriesList = () => {
   const [resByCategory, setResByCategory] = useState();
+  console.log('resByCategory:', resByCategory);
   const { categoryName } = useParams();
-  console.log('categoryName:', categoryName);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const searchByCategoty = searchParams.get(categoryName);
-  // console.log('searchByCategoty:', searchByCategoty);
 
   useEffect(() => {
     if (!categoryName) return;
 
     const controller = new AbortController();
 
-    axios.defaults.baseURL = 'https://fullstackforce.onrender.com/api';
-    axios.defaults.params = {
-      category: `${categoryName}`,
-    };
-
-    async function fetchByCategory() {
+    async function fetchDataByCategory() {
       try {
-        const response = await axios.get('/notices', {
-          signal: controller.signal,
-        });
+        const response = await fetchByCategory(categoryName, controller);
 
-        setResByCategory(response.data);
+        // if (response.data) return setResByCategory(null);
+
+        response.data.map(({ notices }) => {
+          return setResByCategory(notices);
+        });
       } catch (error) {}
     }
 
-    fetchByCategory();
+    fetchDataByCategory();
 
     return () => {
       controller.abort();
@@ -42,13 +36,29 @@ const NoticesCategoriesList = () => {
     <div>
       {resByCategory && (
         <ul>
-          {resByCategory.map(({ _id, comments }) => {
-            return (
-              <li key={_id}>
-                <NoticeCategoryItem comments={comments} />
-              </li>
-            );
-          })}
+          {resByCategory.map(
+            ({ _id, comments, title, birthday, category, location, name, owner, sex, type, avatarURL }) => {
+              return (
+                <li key={_id}>
+                  <NoticeCategoryItem
+                    responseByCategory={{
+                      _id,
+                      comments,
+                      title,
+                      birthday,
+                      category,
+                      location,
+                      name,
+                      owner,
+                      sex,
+                      type,
+                      avatarURL,
+                    }}
+                  />
+                </li>
+              );
+            }
+          )}
         </ul>
       )}
     </div>
@@ -56,3 +66,37 @@ const NoticesCategoriesList = () => {
 };
 
 export default NoticesCategoriesList;
+
+// <div>
+//   {!resByCategory ? (
+//     <Navigate to="*" />
+//   ) : (
+//     <ul>
+//       {resByCategory.map(({ _id, comments, title, birthday, category, location, name, owner, sex, type }) => {
+//         return (
+//           <li key={_id}>
+//             <NoticeCategoryItem
+//               responseByCategory={{ _id, comments, title, birthday, category, location, name, owner, sex, type }}
+//             />
+//           </li>
+//         );
+//       })}
+//     </ul>
+//   )}
+// </div>;
+
+// <div>
+//   {resByCategory && (
+//     <ul>
+//       {resByCategory.map(({ _id, comments, title, birthday, category, location, name, owner, sex, type }) => {
+//         return (
+//           <li key={_id}>
+//             <NoticeCategoryItem
+//               responseByCategory={{ _id, comments, title, birthday, category, location, name, owner, sex, type }}
+//             />
+//           </li>
+//         );
+//       })}
+//     </ul>
+//   )}
+// </div>;
