@@ -1,11 +1,11 @@
 import { PageHeader, BackgroundImage, LinkBtn, Wrapper, ImageError, BtnText } from './NotFoundPage.styled';
-import Smallpng from '../../images/x1/page404/404Small.png';
-import Small from '../../images/x1/page404/404Small.webp';
-import SmallRetina from '../../images/x2/page404/404Small.webp';
-import Medium from '../../images/x1/page404/404Medium.webp';
-import MediumRetina from '../../images/x2/page404/404Medium.webp';
-import Large from '../../images/x1/page404/404Large.webp';
-import LargeRetina from '../../images/x2/page404/404Large.png';
+import Smallpng from '../../images/x1/page404/404-small.png';
+import Small from '../../images/x1/page404/404-small.webp';
+import SmallRetina from '../../images/x2/page404/404-small.webp';
+import Medium from '../../images/x1/page404/404-medium.webp';
+import MediumRetina from '../../images/x2/page404/404-medium.webp';
+import Large from '../../images/x1/page404/404-large.webp';
+import LargeRetina from '../../images/x2/page404/404-large.png';
 import Icon from '../../utils/Icon/Icon'; // Path to your icons.svg
 
 const NotFoundPage = () => {
