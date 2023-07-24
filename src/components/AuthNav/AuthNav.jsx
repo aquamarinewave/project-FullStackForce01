@@ -1,5 +1,13 @@
 import { NavLink } from 'react-router-dom';
-import { Nav, MButtonText, LoginButton, RegisterButton, BurgerButton, IconPawPrint, IconBurger } from './AuthNav.styled';
+import {
+  Nav,
+  MButtonText,
+  LoginButton,
+  RegisterButton,
+  BurgerButton,
+  IconPawPrint,
+  IconBurger,
+} from './AuthNav.styled';
 import sprite from '../../images/icons.svg';
 // import Button from 'components/Button/Button';
 

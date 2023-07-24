@@ -1,7 +1,4 @@
-import {
-  MainHeader, Container,
-  UserNavContainer
-} from './Header.styled';
+import { MainHeader, Container, UserNavContainer } from './Header.styled';
 import Logo from 'components/Logo/Logo';
 import Nav from 'components/Nav/Nav';
 // import AuthNav from 'components/AuthNav/AuthNav';

@@ -48,7 +48,6 @@ const UserNav = () => {
       )}
     </Nav>
   );
-}
+};
 
 export default UserNav;
-

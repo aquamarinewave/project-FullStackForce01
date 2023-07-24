@@ -10,8 +10,6 @@ export const Nav = styled.nav`
     display: flex;
     ${'' /* margin-left: 80px; */}
   }
-
-  
 `;
 
 const handleColorText = color => {
