@@ -13,7 +13,7 @@ import {
 
 const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
   const modalRef = useRef();
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleKeyDown = event => {
     if (event.key === 'Escape') {
       onRequestClose();
@@ -41,10 +41,13 @@ const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
   return isOpen ? (
     <Backdrop ref={modalRef} onClick={handleBackdropClick}>
       <Container>
-        <CloseIcon name="cross" size="24" />
+        <CloseIcon onClick={() => onRequestClose()}>
+          <Icon name="cross" size="24" color="var(--dark-blue)" />
+        </CloseIcon>
+
         <Content>{children}</Content>
         <BtnContainer>
-          <CancelBtn onClick={onRequestClose}>Cancel</CancelBtn>
+          <CancelBtn onClick={() => onRequestClose()}>Cancel</CancelBtn>
           <ApproveBtn onClick={onApprove}>
             <BtnText>Yes</BtnText> {<Icon name="trash-2" color="#fef9f9" size="24" />}
           </ApproveBtn>
