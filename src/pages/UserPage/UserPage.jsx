@@ -8,14 +8,15 @@
 
 import PetsData from '../../components/PetsData/PetsData';
 import { UserPageContainer } from './UserPage.styled';
+import UserForm from '../../components/UserForm/UserForm';
 
 const UserPage = () => {
   return (
     <UserPageContainer>
+      <UserForm />
       {/* <UserData />
 
       <Logout /> */}
-      <div>User data</div>
 
       <PetsData />
     </UserPageContainer>

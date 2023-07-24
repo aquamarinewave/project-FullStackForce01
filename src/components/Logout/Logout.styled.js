@@ -13,8 +13,12 @@ const Logout = styled.button`
     width: 135px;
     justify-content: center;
     ${'' /* margin-top: 24px; */}
-    display: flex;
-    align-items: center;
+    //mobile
+    ${
+      '' /* display: flex;
+    align-items: center; */
+    }
+    display:none;
   }
 
   @media screen and (min-width: 1280px) {
@@ -27,6 +31,7 @@ const Logout = styled.button`
     display: flex;
     justify-content: center;
     margin-right: 20px;
+    align-items: center;
   }
 `;
 

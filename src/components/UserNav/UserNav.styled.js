@@ -10,8 +10,6 @@ export const Nav = styled.nav`
     display: flex;
     ${'' /* margin-left: 80px; */}
   }
-
-  
 `;
 
 const handleColorText = color => {
@@ -106,4 +104,28 @@ export const BurgerButton = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+`;
+
+export const IconLogout = styled.svg`
+  stroke: #fef9f9;
+
+  &:hover {
+    ${'' /* fill: green; */}
+  }
+`;
+
+export const IconUser = styled.svg`
+  stroke: #ffc107;
+
+  &:hover {
+    ${'' /* fill: green; */}
+  }
+`;
+
+export const IconBurger = styled.svg`
+  stroke: #ffc107;
+
+  &:hover {
+    ${'' /* fill: green; */}
+  }
 `;
