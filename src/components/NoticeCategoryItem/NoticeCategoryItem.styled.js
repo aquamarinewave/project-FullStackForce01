@@ -13,7 +13,7 @@ const CategoriesContainer = styled.div`
   height: 36px;
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
-  top: 0;
+  top: 34px;
 `;
 
 const Category = styled.span``;
