@@ -13,7 +13,7 @@ import {
   WrapperField,
   IconEdit,
 } from './UserForm.styled';
-import avatarDefault from '../../images/profilephoto/avatar-default.png';
+import avatarDefault from '../../images/profilephotos/avatar-default.png';
 import sprite from '../../images/icons.svg';
 
 const UserForm = () => {
