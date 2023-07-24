@@ -9,61 +9,58 @@ import {
   EditButton,
   ImgAvatar,
   ProfileField,
-  Div,
-  Diiv,
+  WrapperCard,
+  WrapperField,
+  IconEdit,
 } from './UserForm.styled';
 import avatarDefault from '../../images/profilePhoto/avatarDefault.png';
-import { Edit } from './Icon/Icon';
-// const inputs = [
-//   { type: 'text', name: 'name', placeholder: 'Enter your name' },
-//   { type: 'text', name: 'email', placeholder: 'example@mail.com' },
-//   { type: 'date', name: 'birthday', placeholder: '01.01.2000' },
-//   { type: 'tel', name: 'phone', placeholder: '+380000000000' },
-//   { type: 'text', name: 'city', placeholder: 'Kyiv' },
-// ];
+import sprite from '../../images/icons.svg';
+
 const UserForm = () => {
   return (
     <>
-      <Div>
+      <WrapperCard>
         <ProfileTitle>My information:</ProfileTitle>
         <ProfileInfo>
           <Formik>
             <Form>
               <AvatarWrapper>
                 <EditButton>
-                  <Edit />
+                  <IconEdit width={24} height={24}>
+                    <use href={`${sprite}#icon-edit-2`}></use>
+                  </IconEdit>
                 </EditButton>
                 <ImgAvatar src={avatarDefault} alt="avatar" />
               </AvatarWrapper>
 
-              <Diiv>
+              <WrapperField>
                 <Label htmlFor="text"> Name:</Label>
 
                 <ProfileField type="text" name="text" placeholder="Enter your name" readOnly={true} />
-              </Diiv>
-              <Diiv>
+              </WrapperField>
+              <WrapperField>
                 <Label htmlFor="email"> Email:</Label>
                 <ProfileField type="email" name="email" placeholder="example@mail.com" readOnly={true} />
-              </Diiv>
-              <Diiv>
+              </WrapperField>
+              <WrapperField>
                 <Label htmlFor="date"> Birthday:</Label>
                 <ProfileField type="numder" name="birthday" placeholder="01.01.2000" readOnly={true} />
-              </Diiv>
+              </WrapperField>
 
-              <Diiv>
+              <WrapperField>
                 <Label htmlFor="phone"> Phone:</Label>
 
                 <ProfileField placeholder="+380000000000" type="phone" name="phone" readOnly={true} />
-              </Diiv>
+              </WrapperField>
 
-              <Diiv>
+              <WrapperField>
                 <Label htmlFor="email"> City:</Label>
                 <ProfileField type="email" name="email" placeholder="Kyiv" readOnly={true} />
-              </Diiv>
+              </WrapperField>
             </Form>
           </Formik>
         </ProfileInfo>
-      </Div>
+      </WrapperCard>
     </>
   );
 };

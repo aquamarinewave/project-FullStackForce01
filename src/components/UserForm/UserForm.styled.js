@@ -16,7 +16,7 @@ export const ProfileInfo = styled.div`
   margin-bottom: 57px;
 `;
 
-export const Div = styled.div`
+export const WrapperCard = styled.div`
   margin-right: 32px;
 `;
 
@@ -64,7 +64,7 @@ export const ProfileField = styled(Field)`
   }
 `;
 
-export const Diiv = styled.div`
+export const WrapperField = styled.div`
   display: flex;
   justify-content: space-between;
 `;
@@ -88,4 +88,8 @@ export const EditButton = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+`;
+
+export const IconEdit = styled.svg`
+  fill: #54adff;
 `;
