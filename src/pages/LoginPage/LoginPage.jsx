@@ -1,9 +1,7 @@
-import AuthFormLogin from "components/AuthForm/AuthFormLogin"
+import AuthFormLogin from 'components/AuthForm/AuthFormLogin';
 
 function LoginPage() {
-  return (
-    <AuthFormLogin/>
-  )
+  return <AuthFormLogin />;
 }
 
 export default LoginPage;
