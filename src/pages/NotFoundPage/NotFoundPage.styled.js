@@ -7,6 +7,10 @@ import MediumbgRetina from '../../images/x2/bg/bg-medium.png';
 import Largebg from '../../images/x1/bg/bg-lagre.png';
 import LargebgRetina from '../../images/x2/bg/bg-large.png';
 
+export const IconPawPrint = styled.svg`
+  fill: #ffffff;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;

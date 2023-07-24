@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PetCard = styled.li`
+export const PetCard = styled.div`
   width: 280px;
   height: 541px;
 
