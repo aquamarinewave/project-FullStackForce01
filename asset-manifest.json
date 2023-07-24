@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/project-FullStackForce01/static/css/main.b338cb8b.css",
-    "main.js": "/project-FullStackForce01/static/js/main.1e9ae647.js",
-    "static/js/937.053ce422.chunk.js": "/project-FullStackForce01/static/js/937.053ce422.chunk.js",
+    "main.js": "/project-FullStackForce01/static/js/main.d4618097.js",
+    "static/js/752.98a57514.chunk.js": "/project-FullStackForce01/static/js/752.98a57514.chunk.js",
     "static/js/993.e131ee9f.chunk.js": "/project-FullStackForce01/static/js/993.e131ee9f.chunk.js",
     "static/js/589.841b2d09.chunk.js": "/project-FullStackForce01/static/js/589.841b2d09.chunk.js",
     "static/js/664.503fba8b.chunk.js": "/project-FullStackForce01/static/js/664.503fba8b.chunk.js",
@@ -39,10 +39,12 @@
     "static/media/404Large.webp": "/project-FullStackForce01/static/media/404Large.ac1a0861453d1060deb7.webp",
     "static/media/icons.svg": "/project-FullStackForce01/static/media/icons.e907929b12a4351bc22bcd31f8fd0a00.svg",
     "static/media/404Small.webp": "/project-FullStackForce01/static/media/404Small.7b207b5ed619a1bf45f8.webp",
+    "static/media/LogoDefault.webp": "/project-FullStackForce01/static/media/LogoDefault.5742edbb186b697753bd.webp",
+    "static/media/LogoSmall.webp": "/project-FullStackForce01/static/media/LogoSmall.1debf6693c81405101b6.webp",
     "index.html": "/project-FullStackForce01/index.html",
     "main.b338cb8b.css.map": "/project-FullStackForce01/static/css/main.b338cb8b.css.map",
-    "main.1e9ae647.js.map": "/project-FullStackForce01/static/js/main.1e9ae647.js.map",
-    "937.053ce422.chunk.js.map": "/project-FullStackForce01/static/js/937.053ce422.chunk.js.map",
+    "main.d4618097.js.map": "/project-FullStackForce01/static/js/main.d4618097.js.map",
+    "752.98a57514.chunk.js.map": "/project-FullStackForce01/static/js/752.98a57514.chunk.js.map",
     "993.e131ee9f.chunk.js.map": "/project-FullStackForce01/static/js/993.e131ee9f.chunk.js.map",
     "889.52ef7350.chunk.js.map": "/project-FullStackForce01/static/js/889.52ef7350.chunk.js.map",
     "781.a22273bb.chunk.js.map": "/project-FullStackForce01/static/js/781.a22273bb.chunk.js.map",
@@ -54,6 +56,6 @@
   },
   "entrypoints": [
     "static/css/main.b338cb8b.css",
-    "static/js/main.1e9ae647.js"
+    "static/js/main.d4618097.js"
   ]
 }
