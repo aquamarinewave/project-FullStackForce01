@@ -6,6 +6,10 @@ export const MainHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 2;
+  position: sticky;
+  
+ 
 
   @media screen and (min-width: 768px) {
     height: 44px;
@@ -19,7 +23,7 @@ export const MainHeader = styled.header`
 `;
 
 export const Container = styled.div`
-  display: flex;
+  display: flex ;
 `;
 
 export const UserNavContainer = styled.div`
