@@ -1,11 +1,8 @@
-import {
-  MainHeader, Container,
-  // UserNavContainer
-} from './Header.styled';
+import { MainHeader, Container, UserNavContainer } from './Header.styled';
 import Logo from 'components/Logo/Logo';
 import Nav from 'components/Nav/Nav';
-import AuthNav from 'components/AuthNav/AuthNav';
-// import UserNav from 'components/UserNav/UserNav';
+// import AuthNav from 'components/AuthNav/AuthNav';
+import UserNav from 'components/UserNav/UserNav';
 //testing mobile menu
 // import Mobi from '../MobileMenu/MobileMenu';
 // import Mob from 'components/MobileMenu/Mob';
@@ -24,13 +21,13 @@ const Header = () => {
         <Nav />
       </Container>
       {/* {!isAuth ? ( */}
-      <div>
+      {/* <div>
         <AuthNav/>
-      </div>
+      </div> */}
       {/* ) : ( */}
-      {/* <UserNavContainer>
+      <UserNavContainer>
         <UserNav />
-      </UserNavContainer> */}
+      </UserNavContainer>
       {/* )} */}
     </MainHeader>
   );

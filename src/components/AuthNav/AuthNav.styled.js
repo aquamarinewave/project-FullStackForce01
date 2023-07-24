@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
+  ${
+    '' /* position: relative;
+  top:0;
+  right: 0; */
+  }
   @media screen and (min-width: 768px) {
   }
   @media screen and (min-width: 1280px) {
@@ -25,7 +30,7 @@ export const LoginButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px ;
+    margin-right: 20px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -124,7 +129,6 @@ export const RegisterButton = styled.button`
   }
 `;
 
-
 export const BurgerButton = styled.button`
   cursor: pointer;
   color: white;
@@ -133,4 +137,20 @@ export const BurgerButton = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+`;
+
+export const IconPawPrint = styled.svg`
+  fill: #ffffff;
+
+  &:hover {
+    ${'' /* fill: green; */}
+  }
+`;
+
+export const IconBurger = styled.svg`
+  stroke: #ffc107;
+
+  &:hover {
+    ${'' /* fill: green; */}
+  }
 `;

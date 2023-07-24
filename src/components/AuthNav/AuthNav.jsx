@@ -1,6 +1,14 @@
 import { NavLink } from 'react-router-dom';
-import { Nav, MButtonText, LoginButton, RegisterButton, BurgerButton } from './AuthNav.styled';
-import Icon from 'utils/Icon/Icon';
+import {
+  Nav,
+  MButtonText,
+  LoginButton,
+  RegisterButton,
+  BurgerButton,
+  IconPawPrint,
+  IconBurger,
+} from './AuthNav.styled';
+import sprite from '../../images/icons.svg';
 // import Button from 'components/Button/Button';
 
 const isTabletOrMobile = window.screen.width < 1279;
@@ -13,7 +21,9 @@ const AuthNav = () => {
           <MButtonText color="login" margin="8px" weight="bold">
             Log IN
           </MButtonText>
-          <Icon name="pawprint-1" color="white" size={24} />
+          <IconPawPrint width={24} height={24}>
+            <use href={`${sprite}#icon-pawprint-1`}></use>
+          </IconPawPrint>
         </LoginButton>
       </NavLink>
       <NavLink to="/register">
@@ -25,7 +35,9 @@ const AuthNav = () => {
       </NavLink>
       {isTabletOrMobile && (
         <BurgerButton type="button">
-          <Icon name="menu-hamburger" color="#FFC107" size={24} />
+          <IconBurger width={24} height={24}>
+            <use href={`${sprite}#icon-menu-hamburger`}></use>
+          </IconBurger>
         </BurgerButton>
       )}
     </Nav>
