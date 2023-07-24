@@ -1,6 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
-import Modal from './ModalApproveAction/ModalApproveAction';
 
 const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -16,14 +15,14 @@ const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Modal isOpen={true}>{<h1>Are u sure?</h1>}</Modal>}>
-        <Route path="/main" element={<MainPage />} />
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<MainPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/add-pet" element={<AddPetPage />} />
-        <Route path="/notices" element={<NoticesPage />}>
-          <Route path="/notices/:categoryName" element={<NoticesPage />} />
+        <Route path="/notices" element={<Navigate to="/notices/sell" />}>
+          <Route path=":categoryName" element={<NoticesPage />} />
         </Route>
         <Route path="/news" element={<NewsPage />} />
         <Route path="/friends" element={<OurFriendsPage />} />

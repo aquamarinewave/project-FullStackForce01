@@ -1,5 +1,5 @@
-@import-normalize;
-/* bring in normalize.css styles */
+@import-normalize; /* bring in normalize.css styles */
+@import '../node_modules/modern-normalize/modern-normalize.css';
 
 /* Manrope--Regular */
 @font-face {
@@ -38,6 +38,7 @@
 }
 
 :root {
+  --bg-color: #fef9f9;
   --main-color: #111111;
   --accent-color: #ffc107;
   --container-bg: #fdf7f2;
@@ -53,6 +54,7 @@ body {
   font-family: 'Manrope', sans-serif;
   font-size: 16px;
   color: var(--main-color);
+  background-color: var(--bg-color);
 }
 
 code {

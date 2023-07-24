@@ -1,14 +1,16 @@
-//import { Outlet } from 'react-router-dom';
-//import Container from '../SharedLayout/SharedLayout.styled';
-//import Header from '../Header/Header';
+import { Outlet } from 'react-router-dom';
+import { Container } from './SharedLayout.styled';
+import Header from '../Header/Header';
 
-//const SharedLayout = () => {
-//  return (
-//    <Container>
-//      <Header />
-//      <Outlet />
-//    </Container>
-//  );
-//};
+const SharedLayout = () => {
+  return (
+    <Container>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+    </Container>
+  );
+};
 
-//export default SharedLayout;
+export default SharedLayout;

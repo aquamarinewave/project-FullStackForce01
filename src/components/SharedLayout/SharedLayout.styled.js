@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+export const Container = styled.div`
   min-width: 320px;
   max-width: 480px;
   margin: 0 auto;
@@ -19,4 +19,3 @@ const Container = styled.div`
     padding-right: 16px;
   }
 `;
-export default Container;
