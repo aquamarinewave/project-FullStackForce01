@@ -1,9 +1,7 @@
-import AuthFormRegister from "components/AuthForm/AuthFormRegister" 
+import AuthFormRegister from 'components/AuthForm/AuthFormRegister';
 
 function RegisterPage() {
-  return (
-    <AuthFormRegister/>
-  )
+  return <AuthFormRegister />;
 }
 
-export default RegisterPage
+export default RegisterPage;
