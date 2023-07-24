@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import Icon from '../../utils/Icon/Icon';
 import React, { useState } from 'react';
-// import { ModalNotice } from '../ModalNotice/ModalNotice';
-import { Category, NoticesItemThumb } from './NoticeCategoryItem.styled';
+import { ModalNotice } from '../ModalNotice/ModalNotice';
+import { CategoriesContainer, Category, NoticesItemThumb } from './NoticeCategoryItem.styled';
 
 const NoticeCategoryItem = ({ responseByCategory }) => {
   // const [showModal, setShowModal] = useState(false);
   const [setShowModal] = useState(false);
 
-  // const { _id, comments, title, birthday, category, location, name, owner, sex, type, avatarURL } = responseByCategory;
-  const { title, category, avatarURL } = responseByCategory;
+  const { _id, comments, title, birthday, category, location, name, owner, sex, type, avatarURL } = responseByCategory;
+  // const { title, category, avatarURL } = responseByCategory;
 
   const openModal = () => {
     setShowModal(showModal => !showModal);
@@ -19,7 +19,9 @@ const NoticeCategoryItem = ({ responseByCategory }) => {
     <div>
       <NoticesItemThumb>
         <img src={avatarURL} alt="pets avatar" />
-        <Category>{category}</Category>
+        <CategoriesContainer>
+          <Category>{category}</Category>
+        </CategoriesContainer>
         <button type="button">
           <Icon name="heart" color="var(--dark-blue)" size={18} />
         </button>

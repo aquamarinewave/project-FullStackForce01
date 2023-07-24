@@ -4,11 +4,18 @@ const NoticesItemThumb = styled.div`
   position: relative;
 `;
 
-const Category = styled.span`
-  display: block;
-  text-align: center;
-  background-color: grey;
+const CategoriesContainer = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lightblue);
   height: 36px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  top: 0;
 `;
 
-export { NoticesItemThumb, Category };
+const Category = styled.span``;
+
+export { NoticesItemThumb, Category, CategoriesContainer };
