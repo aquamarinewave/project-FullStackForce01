@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import Icon from '../../utils/Icon/Icon';
 import React, { useState } from 'react';
-import { ModalNotice } from '../ModalNotice/ModalNotice';
+// import { ModalNotice } from '../ModalNotice/ModalNotice';
 import { Category, NoticesItemThumb } from './NoticeCategoryItem.styled';
 
 const NoticeCategoryItem = ({ responseByCategory }) => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  const [setShowModal] = useState(false);
 
-  const { _id, comments, title, birthday, category, location, name, owner, sex, type, avatarURL } = responseByCategory;
+  // const { _id, comments, title, birthday, category, location, name, owner, sex, type, avatarURL } = responseByCategory;
+  const { title, category, avatarURL } = responseByCategory;
 
   const openModal = () => {
     setShowModal(showModal => !showModal);
