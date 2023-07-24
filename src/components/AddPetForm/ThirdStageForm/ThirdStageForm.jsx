@@ -2,6 +2,7 @@ import { Field } from 'formik';
 import {
   BoxPetAvatar,
   ContainerAvatar,
+  FieldAvatar,
   InputFieldTextArea,
   ParagraphPetAvatar,
   ShowPlaceholderAvatar,
@@ -9,7 +10,14 @@ import {
   TextSpan,
 } from './ThirdStageForm.styled';
 
-const ThirdStageForm = ({ showPlaceholder, setPreviewImage, setShowPlaceholder, setSelectedFile, previewImage }) => {
+const ThirdStageForm = ({
+  showPlaceholder,
+  setPreviewImage,
+  setShowPlaceholder,
+  setSelectedFile,
+  previewImage,
+  formik,
+}) => {
   const handlePhotoChange = event => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -46,19 +54,11 @@ const ThirdStageForm = ({ showPlaceholder, setPreviewImage, setShowPlaceholder, 
           ) : (
             <img src={previewImage} alt="Selected" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           )}
-          <Field
+          <FieldAvatar
             type="file"
             id="photoInput"
             name="photo"
             accept="image/*"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              opacity: 0, // Сховати стандартний input
-            }}
             onChange={event => {
               handlePhotoChange(event);
               setSelectedFile(event.currentTarget.files[0]);
@@ -70,8 +70,11 @@ const ThirdStageForm = ({ showPlaceholder, setPreviewImage, setShowPlaceholder, 
         <TextSpan>Comments</TextSpan>
         <InputFieldTextArea
           as={TextArea} // Використовуємо наші стилі для textarea
+          id="comment"
           name="comment" // Вказуємо ім'я поля, яке буде використовуватись в Formik
           placeholder="Type of pet"
+          value={formik.values.comment}
+          onChange={formik.handleChange}
         />
       </div>
     </>

@@ -7,7 +7,6 @@ import MediumbgRetina from '../../images/x2/bg/bgMedium.png';
 import Largebg from '../../images/x1/bg/bgLagre.png';
 import LargebgRetina from '../../images/x2/bg/bgLarge.png';
 
-
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -40,7 +39,7 @@ export const Title = styled.h1`
 
   @media screen and (min-width: 1280px) {
     text-align: left;
-    margin-left: calc((100% - 1246px)/2);
+    margin-left: calc((100% - 1246px) / 2);
     margin-top: 188px;
     width: 501px;
     font-weight: 800;
@@ -48,22 +47,46 @@ export const Title = styled.h1`
   }
 `;
 
+export const BoxPicture = styled.div`
+  position: relative;
+  width: 100%;
+
+  @media screen and (min-width: 1280px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-25%, -100%);
+  }
+`;
+
 export const Picture = styled.picture`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  top: -75px;
+  right: 50%;
+  transform: translate(50%, 0);
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   @media screen and (min-width: 768px) {
+    top: -85px;
     margin-top: 27px;
     margin-left: auto;
     margin-right: auto;
   }
 
   @media screen and (min-width: 1280px) {
-    position: absolute;
-    bottom: 20px;
-    ${'' /* top: -293px; */}
-    right: calc((100% - 1314px)/2);
+    top: -50%;
+    right: 0;
+    transform: translate(32%, 0);
+    width: calc((100% - 300px));
   }
 `;
 

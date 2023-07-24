@@ -28,7 +28,9 @@ const SecondStageForm = ({ formik }) => {
           <FieldLabel htmlFor={name}>{label}</FieldLabel>
           <InputField
             type="text"
+            id={name}
             name={name}
+            autoComplete="off"
             placeholder={placeholder}
             value={formik.values[name]}
             onChange={formik.handleChange}

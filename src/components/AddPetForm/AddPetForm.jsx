@@ -84,6 +84,7 @@ const AddPetForm = () => {
                 {currentStage === 'second' && <SecondStageForm formik={formik} />}
                 {currentStage === 'third' && (
                   <ThirdStageForm
+                    formik={formik}
                     showPlaceholder={showPlaceholder}
                     previewImage={previewImage}
                     setPreviewImage={setPreviewImage}

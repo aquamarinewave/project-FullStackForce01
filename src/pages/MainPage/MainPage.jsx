@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Title, BackgroundImage, Wrapper, Picture } from './MainPage.styled';
+import { Title, BackgroundImage, Wrapper, Picture, BoxPicture } from './MainPage.styled';
 
 import PetsLargeDef from '../../images/x1/homePage/PetsLarge.png';
 import PetsLarge from '../../images/x1/homePage/PetsLarge.webp';
@@ -15,14 +15,16 @@ const MainPage = () => {
   return (
     <>
       <Wrapper>
-      <BackgroundImage>
-        <Title>Take good care of your small pets</Title>
-        <Picture className="about__img">
-          <source media="(min-width: 1280px)" srcSet={`${PetsLarge} 1x, ${PetsLargeX2} 2x`} type="image/webp" />
-          <source media="(min-width: 768px)" srcSet={`${PetsMedium} 1x, ${PetsMediumX2} 2x`} type="image/webp" />
-          <source media="(max-width: 767px)" srcSet={`${PetsSmall} 1x, ${PetsSmallX2} 2x`} type="image/webp" />
-          <img src={PetsLargeDef} alt="Pictures small pets" />
-        </Picture>
+        <BackgroundImage>
+          <Title>Take good care of your small pets</Title>
+          <BoxPicture>
+            <Picture className="about__img">
+              <source media="(min-width: 1280px)" srcSet={`${PetsLarge} 1x, ${PetsLargeX2} 2x`} type="image/webp" />
+              <source media="(min-width: 768px)" srcSet={`${PetsMedium} 1x, ${PetsMediumX2} 2x`} type="image/webp" />
+              <source media="(max-width: 767px)" srcSet={`${PetsSmall} 1x, ${PetsSmallX2} 2x`} type="image/webp" />
+              <img src={PetsLargeDef} alt="Pictures small pets" />
+            </Picture>
+          </BoxPicture>
         </BackgroundImage>
       </Wrapper>
     </>
