@@ -16,11 +16,11 @@ export const Nav = styled.nav`
 const handleColorText = color => {
   switch (color) {
     case 'login':
-      return '#fef9f9';
+      return 'var(--bg-color)';
     case 'register':
       return 'var(--accent-color)';
     case 'logout':
-      return '#fef9f9';
+      return 'var(--bg-color)';
     case 'name':
       return 'var(--accent-color)';
     default:
@@ -51,7 +51,6 @@ export const ButtonText = styled.p`
     font-family: Manrope;
     font-size: 16px;
     font-style: normal;
-
     line-height: normal;
     letter-spacing: 0.64px;
     ${'' /* padding-right: 8px; */}
@@ -67,7 +66,7 @@ export const ButtonText = styled.p`
 `;
 
 export const UserButton = styled.button`
-  background: #ffffff;
+  background: var(--main-light-color);
   border-radius: 20px;
   border: transparent;
   justify-content: center;
@@ -99,24 +98,23 @@ export const UserButton = styled.button`
 
 export const BurgerButton = styled.button`
   cursor: pointer;
-  color: white;
+  color: var(--main-light-color);
   border: transparent;
-  background: white;
+  background: var(--main-light-color);
   display: flex;
   align-items: center;
   padding: 0;
 `;
 
 export const IconLogout = styled.svg`
-  stroke: #fef9f9;
-
+  stroke: var(--bg-color);
   &:hover {
     ${'' /* fill: green; */}
   }
 `;
 
 export const IconUser = styled.svg`
-  stroke: #ffc107;
+  stroke: var(--accent-color);
 
   &:hover {
     ${'' /* fill: green; */}
@@ -124,7 +122,7 @@ export const IconUser = styled.svg`
 `;
 
 export const IconBurger = styled.svg`
-  stroke: #ffc107;
+  stroke: stroke: var(--accent-color);
 
   &:hover {
     ${'' /* fill: green; */}
