@@ -1,20 +1,29 @@
 import styled from 'styled-components';
 
+export const PetDataContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 40px;
+
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    gap: 24px;
+    margin-top: 0;
+  }
+`;
+
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 `;
 
-export const PetDataContainer = styled.div`
-  display: flex;
-
-  flex-direction: column;
-  padding-top: 40px;
-`;
-
 export const Title = styled.h2`
-  margin-bottom: 31px;
   color: var(--main-color);
   font-family: Manrope;
   font-size: 20px;

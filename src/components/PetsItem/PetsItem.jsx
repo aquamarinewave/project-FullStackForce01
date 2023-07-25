@@ -5,7 +5,7 @@
 
 import sprite from '../../images/icons.svg';
 import { DeleteButton, Description, IconTrash, PetCard, PetDesc, PetFoto, Subtitle } from './PetsItem.styled';
-import defaultImage from '../../images/petPhoto/pet-photo-small.jpg';
+import defaultImage from '../../images/x1/petphoto/pet-photo-small.jpg';
 
 const PetItem = () =>
   //   {
