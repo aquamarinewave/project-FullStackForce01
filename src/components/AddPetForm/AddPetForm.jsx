@@ -14,7 +14,7 @@ import FirstStageForm from './FirstStageForm/FirstStageForm';
 import SecondStageForm from './SecondStageForm/SecondStageForm';
 import ThirdStageForm from './ThirdStageForm/ThirdStageForm';
 import FormPetButton from './FormPetButton/FormPetButton';
-import { addNoticeThunk, addPetThunk } from 'redux/Pets/operations';
+import { addNoticeThunk, addPetThunk } from 'redux/pets/operations';
 
 const AddPetForm = () => {
   const dispatch = useDispatch();
