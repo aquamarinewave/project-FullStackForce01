@@ -130,3 +130,7 @@ export const ApproveBtn = styled.button`
 export const BtnText = styled.span`
   margin-right: 8px;
 `;
+
+export const TrashIcon = styled.svg`
+  stroke: #fef9f9;
+`;

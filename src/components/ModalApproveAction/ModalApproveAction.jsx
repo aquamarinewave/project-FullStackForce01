@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import sprite from '../../images/icons.svg';
 import Icon from 'utils/Icon/Icon';
 import {
   ApproveBtn,
@@ -9,6 +10,7 @@ import {
   CloseIcon,
   Container,
   Content,
+  TrashIcon,
 } from './ModalApproveAction.styled';
 
 const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
@@ -49,7 +51,10 @@ const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
         <BtnContainer>
           <CancelBtn onClick={() => onRequestClose()}>Cancel</CancelBtn>
           <ApproveBtn onClick={onApprove}>
-            <BtnText>Yes</BtnText> {<Icon name="trash-2" color="#fef9f9" size="24" />}
+            <BtnText>Yes</BtnText>
+            <TrashIcon width={24} height={24}>
+              <use href={`${sprite}#icon-trash-2`}></use>
+            </TrashIcon>
           </ApproveBtn>
         </BtnContainer>
       </Container>
