@@ -8,7 +8,7 @@ const NoticesPageContainer = styled.div`
   width: 100%;
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   display: flex;
   font-size: 24px;
   width: 246px;
