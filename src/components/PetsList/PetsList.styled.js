@@ -4,16 +4,12 @@ export const UserPetsList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
-  gap: 2px;
-`;
+  gap: 20px;
 
-export const Title = styled.h1`
-  margin-bottom: 31px;
-  color: var(--main-color);
-  font-family: Manrope;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: 24px;
+  }
 `;
-// Manrope - Medium;20px
