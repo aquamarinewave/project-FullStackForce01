@@ -1,3 +1,5 @@
+import { FieldLabel } from '../SecondStageForm/SecondStageForm.styled';
+
 const { Field } = require('formik');
 const { RadioButton } = require('./FirstStageForm.styled');
 
@@ -20,13 +22,13 @@ const options = [
   },
 ];
 
-const FirstStageForm = ({ formik }) => {
+const FirstStageForm = ({ formik, handleOptionChange, currentRadioButton }) => {
   return (
     <>
       {options.map(({ value, label }) => (
-        <RadioButton key={value} checked={formik.values.option === value}>
-          <Field type="radio" name="option" value={value} onChange={formik.handleChange} />
-          <span>{label}</span>
+        <RadioButton key={value} checked={currentRadioButton === value}>
+          <FieldLabel htmlFor={`option_${value}`}>{label}</FieldLabel>
+          <Field type="radio" name="category" id={`option_${value}`} value={value} onChange={handleOptionChange} />
         </RadioButton>
       ))}
     </>
