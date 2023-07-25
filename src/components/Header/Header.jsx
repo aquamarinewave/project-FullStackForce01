@@ -13,8 +13,6 @@ import AuthNav from 'components/AuthNav/AuthNav';
 // const isAuth = () => {
 // };
 
-// const isTabletOrMobile = window.screen.width < 1279;
-
 const Header = () => {
   return (
     <MainHeader>

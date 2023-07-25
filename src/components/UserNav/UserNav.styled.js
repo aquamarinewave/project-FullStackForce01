@@ -8,6 +8,7 @@ export const Nav = styled.nav`
   }
   @media screen and (min-width: 1280px) {
     display: flex;
+    align-items: center;
     ${'' /* margin-left: 80px; */}
   }
 `;
