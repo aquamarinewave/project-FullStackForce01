@@ -11,6 +11,7 @@ export const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
 `;
 
 export const ModalWrapper = styled.div`
@@ -21,7 +22,6 @@ export const ModalWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
-  z-index: 10;
   border-radius: 40px;
 `;
 
@@ -66,7 +66,34 @@ export const ModalContent = styled.div`
   } 
   
   .modal-img {
+    position: relative;
+    width: 262px;
+    height: 298px;
+  }
+
+  .modal-avatar {
+    width: 262px;
+    height: 298px;
     border-radius: 0px 0px 40px 40px;
+  }
+
+  .modal-category {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    width: 126px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--lightblue);
+    color: #111;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;  
   }
 
   .modal-comments {
