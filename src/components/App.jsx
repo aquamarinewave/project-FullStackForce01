@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/operations';
+import AuthRouters from './AuthForm/AuthRouters';
 
 const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -27,8 +28,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route element={<AuthRouters.RegisterPublicRouter/>}>
+            <Route path="/register" element={<RegisterPage />} />
+          </Route>
+          <Route element={<AuthRouters.LoginPublicRouter/>}>
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
           <Route path="/user" element={<UserPage />} />
           <Route path="/add-pet" element={<AddPetPage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />

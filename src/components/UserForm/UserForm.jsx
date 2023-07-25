@@ -1,7 +1,8 @@
 import { Formik, Form } from 'formik';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { userSelector } from '../../redux/auth/authSelector';
+// import {userSelector } from '../../redux/auth/authSelector';
+import authSelector from 'redux/auth/authSelector';
 
 import {
   ProfileInfo,
@@ -19,7 +20,7 @@ import avatarDefault from '../../images/profilephotos/avatar-default.png';
 import sprite from '../../images/icons.svg';
 
 const UserForm = () => {
-  const user = useSelector(userSelector);
+  const user = useSelector(authSelector.userSelector);
   const initialValues = {
     avatarURL: user?.avatarURL || { avatarDefault },
     name: user?.name || 'Enter your name',
