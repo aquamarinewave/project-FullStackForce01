@@ -1,13 +1,30 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav, ButtonText, UserButton, BurgerButton, IconLogout, IconUser, IconBurger } from './UserNav.styled';
 import Logout from 'components/Logout/Logout.styled';
 import sprite from '../../images/icons.svg';
 
-const isDesktopOrTablet = window.screen.width > 768;
-const isTabletOrMobile = window.screen.width < 1279;
-const isMobile = window.screen.width < 768;
 
 const UserNav = () => {
+
+  const [isTabletOrMobile, setIsTabletOrMobile] = useState(window.innerWidth < 1280);
+  const [isDesktopOrTablet, setIsDesktopOrTablet] = useState(window.innerWidth > 769);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTabletOrMobile(window.innerWidth < 1280);
+      setIsDesktopOrTablet(window.innerWidth > 769);
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
   return (
     <Nav>
       <Logout type="button">

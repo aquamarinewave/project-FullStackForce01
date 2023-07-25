@@ -84,7 +84,6 @@ export const MButtonText = styled.p`
     font-family: Manrope;
     font-size: 16px;
     font-style: normal;
-
     line-height: normal;
     letter-spacing: 0.64px;
     ${'' /* padding-right: 8px; */}
@@ -102,6 +101,7 @@ export const MButtonText = styled.p`
 export const RegisterButton = styled.button`
   display: none;
   border-radius: 40px;
+  background: var(--main-light-color);
   border: 2px solid var(--accent-color);
   justify-content: center;
   align-items: center;
@@ -131,16 +131,16 @@ export const RegisterButton = styled.button`
 
 export const BurgerButton = styled.button`
   cursor: pointer;
-  color: white;
+  color: var(--main-light-color);
   border: transparent;
-  background: white;
+  background: var(--main-light-color);
   display: flex;
   align-items: center;
   padding: 0;
 `;
 
 export const IconPawPrint = styled.svg`
-  fill: #ffffff;
+  fill: var(--main-light-color);
 
   &:hover {
     ${'' /* fill: green; */}

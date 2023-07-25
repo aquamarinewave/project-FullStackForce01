@@ -5,18 +5,23 @@
 
 import { Link } from 'react-router-dom';
 import PetsList from '../PetsList/PetsList';
-import Icon from 'utils/Icon/Icon';
-import { AddPetButton, PetDataContainer } from './PetsData.styled';
+import sprite from '../../images/icons.svg';
+import { AddPetButton, PetDataContainer, Title, TitleContainer, IconPlusSmall } from './PetsData.styled';
 
 const PetData = () => {
   return (
     <PetDataContainer>
-      <Link to="AddPetPage">
-        <AddPetButton>
-          Add Pet
-          <Icon name="plus-small" color="white" size={24} />
-        </AddPetButton>
-      </Link>
+      <TitleContainer>
+        <Title>My pets:</Title>
+        <Link to="AddPetPage">
+          <AddPetButton>
+            Add Pet
+            <IconPlusSmall width={24} height={24}>
+              <use href={`${sprite}#icon-plus-small`}></use>
+            </IconPlusSmall>
+          </AddPetButton>
+        </Link>
+      </TitleContainer>
 
       <PetsList />
     </PetDataContainer>

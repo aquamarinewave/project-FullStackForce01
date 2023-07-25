@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import {
   Nav,
   MButtonText,
@@ -11,9 +12,22 @@ import {
 import sprite from '../../images/icons.svg';
 // import Button from 'components/Button/Button';
 
-const isTabletOrMobile = window.screen.width < 1279;
-
 const AuthNav = () => {
+
+   const [isTabletOrMobile, setIsTabletOrMobile] = useState(window.innerWidth < 1280);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTabletOrMobile(window.innerWidth < 1280);
+    };
+        
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <Nav>
       <NavLink to="/login">

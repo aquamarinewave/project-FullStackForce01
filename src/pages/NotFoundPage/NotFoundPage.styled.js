@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Smallbg from '../../images/x1/bg/bgSmall.png';
-import SmallbgRetina from '../../images/x2/bg/bgSmall.png';
-import Mediumbg from '../../images/x1/bg/bgMedium.png';
-import MediumbgRetina from '../../images/x2/bg/bgMedium.png';
-import Largebg from '../../images/x1/bg/bgLagre.png';
-import LargebgRetina from '../../images/x2/bg/bgLarge.png';
+import Smallbg from '../../images/x1/bg/bg-small.png';
+import SmallbgRetina from '../../images/x2/bg/bg-small.png';
+import Mediumbg from '../../images/x1/bg/bg-medium.png';
+import MediumbgRetina from '../../images/x2/bg/bg-medium.png';
+import Largebg from '../../images/x1/bg/bg-lagre.png';
+import LargebgRetina from '../../images/x2/bg/bg-large.png';
+
+export const IconPawPrint = styled.svg`
+  fill: #ffffff;
+`;
 
 export const Wrapper = styled.div`
   display: flex;

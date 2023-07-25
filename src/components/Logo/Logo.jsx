@@ -1,9 +1,9 @@
-import Largepng from '../../images/x1/logo/LogoDefault.png';
-import Large from '../../images/x1/logo/LogoDefault.webp';
-import LargeRetina from '../../images/x2/logo/LogoDefault.webp';
-import Smallpng from '../../images/x1/logo/LogoSmall.png';
-import Small from '../../images/x1/logo/LogoSmall.webp';
-import SmallRetina from '../../images/x2/logo/LogoSmall.webp';
+import Largepng from '../../images/x1/logo/logo-default.png';
+import Large from '../../images/x1/logo/logo-default.webp';
+import LargeRetina from '../../images/x2/logo/logo-default.webp';
+import Smallpng from '../../images/x1/logo/logo-small.png';
+import Small from '../../images/x1/logo/logo-default.webp';
+import SmallRetina from '../../images/x2/logo/logo-default.webp';
 
 import { NavLink } from 'react-router-dom';
 import { MainLogo } from './Logo.styled';
