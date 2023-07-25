@@ -40,6 +40,7 @@
 :root {
   --bg-color: #fef9f9;
   --main-color: #111111;
+  --main-light-color: #fffffff;
   --accent-color: #ffc107;
   --container-bg: #fdf7f2;
   --success-color: #00c3ad;
