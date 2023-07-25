@@ -1,7 +1,6 @@
 import { Formik, Form } from 'formik';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-// import {userSelector } from '../../redux/auth/authSelector';
+import { useSelector, useDispatch } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 
 import {
@@ -15,9 +14,13 @@ import {
   WrapperCard,
   WrapperField,
   IconEdit,
+  IconLogOut,
+  LogOutBtn,
+  LogOutBtnText,
 } from './UserForm.styled';
 import avatarDefault from '../../images/profilephotos/avatar-default.png';
 import sprite from '../../images/icons.svg';
+import authOperations from 'redux/auth/operations';
 
 const UserForm = () => {
   const user = useSelector(authSelector.userSelector);
@@ -29,6 +32,9 @@ const UserForm = () => {
     birthday: user?.birthday || '01.01.2000',
     city: user?.city || 'Kiev',
   };
+
+  const dispatch = useDispatch();
+  const onLogout = () => dispatch(authOperations.logoutUser());
 
   return (
     <>
@@ -45,7 +51,6 @@ const UserForm = () => {
                 </EditButton>
                 <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
               </AvatarWrapper>
-
               <WrapperField>
                 <Label htmlFor="name"> Name:</Label>
 
@@ -59,17 +64,21 @@ const UserForm = () => {
                 <Label htmlFor="date"> Birthday:</Label>
                 <ProfileField type="numder" name="birthday" placeholder={initialValues.birthday} readOnly={true} />
               </WrapperField>
-
               <WrapperField>
                 <Label htmlFor="phone"> Phone:</Label>
 
                 <ProfileField placeholder={initialValues.phone} type="phone" name="phone" readOnly={true} />
               </WrapperField>
-
               <WrapperField>
                 <Label htmlFor="city"> City:</Label>
                 <ProfileField type="text" name="city" placeholder={initialValues.city} readOnly={true} />
               </WrapperField>
+              <LogOutBtn onClick={onLogout}>
+                <IconLogOut width={24} height={24}>
+                  <use href={`${sprite}#icon-logout`}></use>
+                </IconLogOut>
+                <LogOutBtnText>Log Out</LogOutBtnText>
+              </LogOutBtn>
             </Form>
           </Formik>
         </ProfileInfo>
