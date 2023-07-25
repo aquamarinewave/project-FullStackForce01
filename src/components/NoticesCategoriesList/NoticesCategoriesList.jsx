@@ -1,6 +1,6 @@
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { useState, useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchByCategory } from '../../services/api/noticesFetch';
 
 const NoticesCategoriesList = () => {

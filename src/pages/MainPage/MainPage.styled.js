@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-import Smallbg from '../../images/x1/bg/bgSmall.png';
-import SmallbgRetina from '../../images/x2/bg/bgSmall.png';
-import Mediumbg from '../../images/x1/bg/bgMedium.png';
-import MediumbgRetina from '../../images/x2/bg/bgMedium.png';
-import Largebg from '../../images/x1/bg/bgLagre.png';
-import LargebgRetina from '../../images/x2/bg/bgLarge.png';
-
+import Smallbg from '../../images/x1/bg/bg-small.png';
+import SmallbgRetina from '../../images/x2/bg/bg-small.png';
+import Mediumbg from '../../images/x1/bg/bg-medium.png';
+import MediumbgRetina from '../../images/x2/bg/bg-medium.png';
+import Largebg from '../../images/x1/bg/bg-lagre.png';
+import LargebgRetina from '../../images/x2/bg/bg-large.png';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -40,7 +39,7 @@ export const Title = styled.h1`
 
   @media screen and (min-width: 1280px) {
     text-align: left;
-    margin-left: calc((100% - 1246px)/2);
+    margin-left: calc((100% - 1246px) / 2);
     margin-top: 188px;
     width: 501px;
     font-weight: 800;

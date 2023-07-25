@@ -1,7 +1,7 @@
 // import { useEffect, useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import PetItem from '../PetsItem/PetsItem';
-import { Title, UserPetsList } from './PetsList.styled';
+import { UserPetsList } from './PetsList.styled';
 
 const PetsList = () => {
   //   const [pet, setPet] = useState([]);
@@ -16,12 +16,8 @@ const PetsList = () => {
   //   }, [petId]);
   return (
     <>
-      <Title>My pets:</Title>
-
       <UserPetsList>
-        <li>
-          <PetItem />
-        </li>
+        <PetItem />
       </UserPetsList>
     </>
   );

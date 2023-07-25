@@ -1,12 +1,20 @@
-import { PageHeader, BackgroundImage, LinkBtn, Wrapper, ImageError, BtnText } from './NotFoundPage.styled';
-import Smallpng from '../../images/x1/page404/404Small.png';
-import Small from '../../images/x1/page404/404Small.webp';
-import SmallRetina from '../../images/x2/page404/404Small.webp';
-import Medium from '../../images/x1/page404/404Medium.webp';
-import MediumRetina from '../../images/x2/page404/404Medium.webp';
-import Large from '../../images/x1/page404/404Large.webp';
-import LargeRetina from '../../images/x2/page404/404Large.png';
-import Icon from '../../utils/Icon/Icon'; // Path to your icons.svg
+import {
+  PageHeader,
+  BackgroundImage,
+  LinkBtn,
+  Wrapper,
+  ImageError,
+  BtnText,
+  IconPawPrint,
+} from './NotFoundPage.styled';
+import Smallpng from '../../images/x1/page404/404-small.png';
+import Small from '../../images/x1/page404/404-small.webp';
+import SmallRetina from '../../images/x2/page404/404-small.webp';
+import Medium from '../../images/x1/page404/404-medium.webp';
+import MediumRetina from '../../images/x2/page404/404-medium.webp';
+import Large from '../../images/x1/page404/404-large.webp';
+import LargeRetina from '../../images/x2/page404/404-large.png';
+import sprite from '../../images/icons.svg';
 
 const NotFoundPage = () => {
   return (
@@ -39,7 +47,10 @@ const NotFoundPage = () => {
         </ImageError>
 
         <LinkBtn to="/">
-          <BtnText>To main page</BtnText> <Icon name="pawprint-1" color="#FFFFFF" size={24} />
+          <BtnText>To main page</BtnText>
+          <IconPawPrint width={24} height={24}>
+            <use href={`${sprite}#icon-pawprint-1`}></use>
+          </IconPawPrint>
         </LinkBtn>
       </BackgroundImage>
     </Wrapper>
