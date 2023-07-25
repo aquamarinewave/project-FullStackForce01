@@ -2,11 +2,11 @@ import {
   PageHeader,
   BackgroundImage,
   LinkBtn,
-  Wrapper,
   ImageError,
   BtnText,
   IconPawPrint,
   LinkWrapper,
+  Wrapper,
 } from './NotFoundPage.styled';
 import Smallpng from '../../images/x1/page404/404-small.png';
 import Small from '../../images/x1/page404/404-small.webp';

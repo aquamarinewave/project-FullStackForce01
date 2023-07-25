@@ -14,10 +14,11 @@ export const Wrapper = styled.div`
 `;
 
 export const BackgroundImage = styled.div`
+  position: relative;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
-  height: 1000px;
+  background-size: cover;
   background-image: url(${Smallbg});
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
     background-image: url(${SmallbgRetina});
@@ -53,7 +54,8 @@ export const PageHeader = styled.h2`
 `;
 
 export const ImageError = styled.picture`
-  display: block;
+  display: flex;
+  justify-content: center;
   margin-bottom: 60px;
   @media screen and (min-width: 768px) {
     margin-bottom: 70px;
