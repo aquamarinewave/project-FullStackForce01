@@ -1,4 +1,3 @@
-import { Field } from 'formik';
 import {
   BoxPetAvatar,
   ContainerAvatar,
