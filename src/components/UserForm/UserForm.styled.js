@@ -107,7 +107,8 @@ export const LogOutBtn = styled.button`
 `;
 
 export const IconLogOut = styled.svg`
-  fill: #54adff;
+  stroke: #54adff;
+  margin-right: 12px;
 `;
 
 export const LogOutBtnText = styled.span`
