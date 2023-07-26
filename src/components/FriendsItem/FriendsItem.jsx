@@ -1,10 +1,23 @@
 import React from 'react';
 
-import { FriendsItemThumb, Title, Logo, InfoItemFriend, InfoBlock, Info, InfoTitle, InfoLink } from './FriendsItem.styled';
+import {
+  FriendsItemThumb,
+  Title,
+  LogoDiv,
+  Logo,
+  InfoItemFriend,
+  InfoBlock,
+  EmptyBlock,
+  EmptyBlockAddress,
+  Info,
+  InfoTitle,
+  InfoLink,
+  InfoLinkAddress,
+  InfoLinkAddressDiv,
+} from './FriendsItem.styled';
 
 const FriendsItem = ({ responseByFriends }) => {
-
-const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = responseByFriends;
+  const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = responseByFriends;
 
   return (
     <div>
@@ -14,31 +27,37 @@ const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = re
         </Title>
 
         <InfoItemFriend>
-          <Logo src={imageUrl} alt="Logo friend"></Logo>
+          <LogoDiv>
+            <Logo src={imageUrl} alt="Logo friend"></Logo>
+          </LogoDiv>
 
           <InfoBlock>
             <Info>
               <InfoTitle>Time:</InfoTitle>
-              <button type="button">{workDays[0]}</button>
+              {/* <button type="button">{workDays[0]}</button> */}
             </Info>
 
             <Info>
               <InfoTitle>Address:</InfoTitle>
-              <InfoLink href={addressUrl} target="_blank" rel="noopener noreferrer">
-                if (!{address}) ? ""
-              </InfoLink>
+              {!address ? (
+                <EmptyBlockAddress></EmptyBlockAddress>
+              ) : (
+                <InfoLinkAddressDiv>
+                  <InfoLinkAddress href={addressUrl} target="_blank" rel="noopener noreferrer">
+                    {address}
+                  </InfoLinkAddress>
+                </InfoLinkAddressDiv>
+              )}
             </Info>
 
             <Info>
               <InfoTitle>Email:</InfoTitle>
-              {!email ? "" : <InfoLink href={`mailto:${email}`}> {email} </InfoLink>}
-
-              {/* <InfoLink href={`mailto:${email}`}> {!email ? '' : email} </InfoLink> */}
+              {!email ? <EmptyBlock></EmptyBlock> : <InfoLink href={`mailto:${email}`}> {email} </InfoLink>}
             </Info>
 
             <Info>
               <InfoTitle>Phone:</InfoTitle>
-              <InfoLink href={`tel:${phone}`}>{phone}</InfoLink>
+              {!phone ? <EmptyBlock></EmptyBlock> : <InfoLink href={`tel:${phone}`}> {phone} </InfoLink>}
             </Info>
           </InfoBlock>
         </InfoItemFriend>

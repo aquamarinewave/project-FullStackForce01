@@ -7,7 +7,7 @@ const Wrapper = styled.ul`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 28px;
+    gap: 32px;
     ${'' /* width: 700px; */}
   }
 

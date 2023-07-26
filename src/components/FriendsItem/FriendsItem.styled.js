@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const FriendsItemThumb = styled.div`
   position: relative;
   width: 280px;
+  height: auto;
   ${'' /* height: 239px; */}
   border-radius: 40px;
   padding: 16px;
@@ -12,14 +13,15 @@ const FriendsItemThumb = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 336px;
-    height: 275px;
+    ${'' /* height: 275px; */}
     padding: 12px;
     margin: 0;
   }
 
   @media screen and (min-width: 1280px) {
+    padding: 16px;
     width: 395px;
-    height: auto;
+    ${'' /* height: auto; */}
   }
 `;
 
@@ -31,36 +33,84 @@ const Title = styled.a`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-margin-bottom: 16px;
-`;
-
-const Logo = styled.img`
-  width: 100px;
-  object-fit: contain;
+  margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
-    width: 124px;
+    height: 54px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 146px;
-    height: 104px;
+    height: 54px;
   }
 `;
 
 const InfoItemFriend = styled.div`
   display: flex;
   gap: 12px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 20px;
+  }
 `;
+
+const LogoDiv = styled.div`
+  @media screen and (min-width: 768px) {
+    width: 124px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    width: 146px;
+  }
+`;
+
+const Logo = styled.img`
+  width: 100%;
+  object-fit: contain;
+
+  @media screen and (min-width: 768px) {
+    ${'' /* width: 124px; */}
+    ${'' /* height: 54px; */}
+  }
+
+  @media screen and (min-width: 1280px) {
+    ${'' /* display: inline-block; */}
+    width: 146px;
+    ${'' /* height: 104px; */}
+  }
+`;
+
+
 
 const InfoBlock = styled.div`
-display:flex;
-flex-direction: column;
-gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
 
-const Info = styled.div`
+const EmptyBlock = styled.div`
+  @media screen and (min-width: 768px) {
+    height: 19px;
+    width: 173px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 22px;
+    width: 197px;
+  }
 `;
+
+const EmptyBlockAddress = styled.div`
+  @media screen and (min-width: 768px) {
+    height: 56px;
+    width: 173px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    height: 44px;
+    width: 197px;
+  }
+`;
+
+const Info = styled.div``;
 
 const InfoTitle = styled.p`
   font-size: 12px;
@@ -88,8 +138,45 @@ const InfoLink = styled.a`
   }
 
   @media screen and (min-width: 1280px) {
+    display: block;
     font-size: 16px;
+    width: 197px;
   }
 `;
 
-export { FriendsItemThumb, Title, Logo, InfoItemFriend, InfoBlock, Info, InfoTitle, InfoLink };
+const InfoLinkAddress = styled.a`
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 56px;
+    width: 197px;
+  }
+`;
+const InfoLinkAddressDiv = styled.div`
+  @media screen and (min-width: 768px) {
+    height: 56px;
+    width: 173px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    height: 56px;
+    width: 197px;
+  }
+`;
+
+export {
+  FriendsItemThumb,
+  Title,
+  LogoDiv,
+  Logo,
+  InfoItemFriend,
+  InfoBlock,
+  EmptyBlock,
+  EmptyBlockAddress,
+  Info,
+  InfoTitle,
+  InfoLink,
+  InfoLinkAddress,
+  InfoLinkAddressDiv,
+};
