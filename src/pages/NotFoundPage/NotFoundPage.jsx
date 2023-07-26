@@ -2,10 +2,11 @@ import {
   PageHeader,
   BackgroundImage,
   LinkBtn,
-  Wrapper,
   ImageError,
   BtnText,
   IconPawPrint,
+  LinkWrapper,
+  Wrapper,
 } from './NotFoundPage.styled';
 import Smallpng from '../../images/x1/page404/404-small.png';
 import Small from '../../images/x1/page404/404-small.webp';
@@ -45,13 +46,14 @@ const NotFoundPage = () => {
           />
           <img src={Smallpng} alt="error-404" />
         </ImageError>
-
-        <LinkBtn to="/">
-          <BtnText>To main page</BtnText>
-          <IconPawPrint width={24} height={24}>
-            <use href={`${sprite}#icon-pawprint-1`}></use>
-          </IconPawPrint>
-        </LinkBtn>
+        <LinkWrapper>
+          <LinkBtn to="/">
+            <BtnText>To main page</BtnText>
+            <IconPawPrint width={24} height={24}>
+              <use href={`${sprite}#icon-pawprint-1`}></use>
+            </IconPawPrint>
+          </LinkBtn>
+        </LinkWrapper>
       </BackgroundImage>
     </Wrapper>
   );

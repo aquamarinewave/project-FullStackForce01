@@ -1,4 +1,4 @@
-const BASE_URL = ' https://fullstackforce.onrender.com/api/notices/';
+const BASE_URL = 'https://fullstackforce.onrender.com/api/notices/';
 
 export function fetchModalDetail(id) {
 

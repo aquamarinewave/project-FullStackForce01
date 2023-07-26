@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import Largepng from '../../images/x1/logo/logo-default.png';
 import Large from '../../images/x1/logo/logo-default.webp';
 import LargeRetina from '../../images/x2/logo/logo-default.webp';
@@ -5,15 +8,28 @@ import Smallpng from '../../images/x1/logo/logo-small.png';
 import Small from '../../images/x1/logo/logo-default.webp';
 import SmallRetina from '../../images/x2/logo/logo-default.webp';
 
-import { NavLink } from 'react-router-dom';
+
 import { MainLogo } from './Logo.styled';
 
-const isDesktopOrTablet = window.screen.width > 768;
-const isMobile = window.screen.width < 768;
+const Logo = ({toggleMenu}) => {
+  const [isDesktopOrTablet, setIsDesktopOrTablet] = useState(window.innerWidth > 769);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-const Logo = () => {
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktopOrTablet(window.innerWidth > 769);
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <NavLink to="/">
+    <NavLink to="/" onClick={() => toggleMenu()}>
       {isDesktopOrTablet && (
         <picture>
           <source

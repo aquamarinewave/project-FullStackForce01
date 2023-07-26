@@ -5,16 +5,15 @@ import { ModalNotice } from '../ModalNotice/ModalNotice';
 import { CategoriesContainer, CategoriesName, NoticesItemThumb, DiscriptionList } from './NoticeCategoryItem.styled';
 
 const NoticeCategoryItem = ({ responseByCategory }) => {
-  // const [showModal, setShowModal] = useState(false);
-  const [setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [idCard, setIdCard] = useState('');
 
   const { _id, comments, title, birthday, category, location, name, owner, sex, type, avatarURL } = responseByCategory;
-
-  console.log('birthday:', birthday);
   // const { title, category, avatarURL } = responseByCategory;
 
   const openModal = () => {
     setShowModal(showModal => !showModal);
+    setIdCard(_id);
   };
 
   const givenDate = new Date(birthday);
@@ -48,7 +47,7 @@ const NoticeCategoryItem = ({ responseByCategory }) => {
       <button type="button" onClick={openModal}>
         Learn more
       </button>
-      {/* <ModalNotice showModal={showModal} setShowModal={setShowModal} /> */}
+      <ModalNotice showModal={showModal} setShowModal={setShowModal} idCard={idCard} />
     </div>
   );
 };
