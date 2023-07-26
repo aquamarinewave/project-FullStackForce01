@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/operations';
-import AuthRouters from './AuthForm/AuthRouters';
+import PrivateRoute from './PrivateRoute';
+import RestrictedRoute from './RestrictedRoute';
 
 const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -28,13 +29,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
-          <Route element={<AuthRouters.RegisterPublicRouter/>}>
-            <Route path="/register" element={<RegisterPage />} />
-          </Route>
-          <Route element={<AuthRouters.LoginPublicRouter/>}>
-            <Route path="/login" element={<LoginPage />} />
-          </Route>
-          <Route path="/user" element={<UserPage />} />
+          <Route path="/register" element={<RestrictedRoute redirectTo="/user" component={<RegisterPage />} />} />
+          <Route path="/login" element={<RestrictedRoute redirectTo="/notices" component={<LoginPage />} />} />
+          <Route path="/user" element={<PrivateRoute redirectTo="/notices" component={<UserPage />} />} />
           <Route path="/add-pet" element={<AddPetPage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />
           <Route path="/notices" element={<Navigate to="/notices/sell" />} />
