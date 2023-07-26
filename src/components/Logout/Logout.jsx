@@ -28,7 +28,7 @@ const Logout = ({ isMobile }) => {
         </IconLogout>
       </Button>
       {isModalOpen && (
-        <Modal isOpen={isModalOpen} toggleModal={toggleModal} onApprove={onLogout}>
+        <Modal isOpen={isModalOpen} toggleModal={toggleModal} onApprove={onLogout} onRequestClose={toggleModal}>
             Already leaving?
         </Modal>
       )}
