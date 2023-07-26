@@ -1,5 +1,7 @@
 import { Formik, Form } from 'formik';
 import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import authSelector from 'redux/auth/authSelector';
 
 import {
   ProfileInfo,
@@ -12,17 +14,34 @@ import {
   WrapperCard,
   WrapperField,
   IconEdit,
+  IconLogOut,
+  LogOutBtn,
+  LogOutBtnText,
 } from './UserForm.styled';
 import avatarDefault from '../../images/profilephotos/avatar-default.png';
 import sprite from '../../images/icons.svg';
+import authOperations from 'redux/auth/operations';
 
 const UserForm = () => {
+  const user = useSelector(authSelector.userSelector);
+  const initialValues = {
+    avatarURL: user?.avatarURL || { avatarDefault },
+    name: user?.name || 'Enter your name',
+    email: user?.email || 'example@mail.com',
+    phone: user?.phone || '+380000000000',
+    birthday: user?.birthday || '01.01.2000',
+    city: user?.city || 'Kiev',
+  };
+
+  const dispatch = useDispatch();
+  const onLogout = () => dispatch(authOperations.logoutUser());
+
   return (
     <>
       <WrapperCard>
         <ProfileTitle>My information:</ProfileTitle>
         <ProfileInfo>
-          <Formik>
+          <Formik initialValues={initialValues}>
             <Form>
               <AvatarWrapper>
                 <EditButton>
@@ -30,33 +49,36 @@ const UserForm = () => {
                     <use href={`${sprite}#icon-edit-2`}></use>
                   </IconEdit>
                 </EditButton>
-                <ImgAvatar src={avatarDefault} alt="avatar" />
+                <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
               </AvatarWrapper>
-
               <WrapperField>
-                <Label htmlFor="text"> Name:</Label>
+                <Label htmlFor="name"> Name:</Label>
 
-                <ProfileField type="text" name="text" placeholder="Enter your name" readOnly={true} />
+                <ProfileField type="text" name="name" placeholder={initialValues.name} readOnly={true} />
               </WrapperField>
               <WrapperField>
                 <Label htmlFor="email"> Email:</Label>
-                <ProfileField type="email" name="email" placeholder="example@mail.com" readOnly={true} />
+                <ProfileField type="email" name="email" placeholder={initialValues.email} readOnly={true} />
               </WrapperField>
               <WrapperField>
                 <Label htmlFor="date"> Birthday:</Label>
-                <ProfileField type="numder" name="birthday" placeholder="01.01.2000" readOnly={true} />
+                <ProfileField type="numder" name="birthday" placeholder={initialValues.birthday} readOnly={true} />
               </WrapperField>
-
               <WrapperField>
                 <Label htmlFor="phone"> Phone:</Label>
 
-                <ProfileField placeholder="+380000000000" type="phone" name="phone" readOnly={true} />
+                <ProfileField placeholder={initialValues.phone} type="phone" name="phone" readOnly={true} />
               </WrapperField>
-
               <WrapperField>
-                <Label htmlFor="email"> City:</Label>
-                <ProfileField type="email" name="email" placeholder="Kyiv" readOnly={true} />
+                <Label htmlFor="city"> City:</Label>
+                <ProfileField type="text" name="city" placeholder={initialValues.city} readOnly={true} />
               </WrapperField>
+              <LogOutBtn onClick={onLogout}>
+                <IconLogOut width={24} height={24}>
+                  <use href={`${sprite}#icon-logout`}></use>
+                </IconLogOut>
+                <LogOutBtnText>Log Out</LogOutBtnText>
+              </LogOutBtn>
             </Form>
           </Formik>
         </ProfileInfo>

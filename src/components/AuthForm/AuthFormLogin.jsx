@@ -39,7 +39,6 @@ const AuthFormLogin = props => {
   const handleSubmit = (values, { resetForm }) => {
     const { email, password } = values;
     dispatch(authOperations.loginUser({ email, password }));
-    alert('Oppps');
     resetForm();
   };
 

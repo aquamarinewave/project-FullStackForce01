@@ -83,12 +83,13 @@ const AuthFormRegister = props => {
               <AuthShowPassword type="button" onClick={() => setIsShowPassword(!isShowPassword)}>
                 {isShowPassword ? (
                   <AuthIconShowPassword width={24} height={24}>
-                    <use href={`${sprite}#icon-eye-closed`}></use>
-                  </AuthIconShowPassword>
+                  <use href={`${sprite}#icon-eye-open`}></use>
+                </AuthIconShowPassword>
                 ) : (
                   <AuthIconShowPassword width={24} height={24}>
-                    <use href={`${sprite}#icon-eye-open`}></use>
+                    <use href={`${sprite}#icon-eye-closed`}></use>
                   </AuthIconShowPassword>
+                  
                 )}
               </AuthShowPassword>
 
@@ -106,12 +107,12 @@ const AuthFormRegister = props => {
               <AuthShowConfirmPassword type="button" onClick={() => setIsShowConfirmPassword(!isShowConfirmPassword)}>
                 {isShowConfirmPassword ? (
                   <AuthIconShowPassword width={24} height={24}>
-                    <use href={`${sprite}#icon-eye-closed`}></use>
-                  </AuthIconShowPassword>
+                  <use href={`${sprite}#icon-eye-open`}></use>
+                </AuthIconShowPassword>
                 ) : (
                   <AuthIconShowPassword width={24} height={24}>
-                    <use href={`${sprite}#icon-eye-open`}></use>
-                  </AuthIconShowPassword>
+                  <use href={`${sprite}#icon-eye-closed`}></use>
+                </AuthIconShowPassword>
                 )}
               </AuthShowConfirmPassword>
 

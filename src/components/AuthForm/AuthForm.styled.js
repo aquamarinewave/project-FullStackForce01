@@ -116,7 +116,7 @@ export const AuthShowPassword = styled.button`
   left: 80%;
   @media screen and (min-width: 768px) {
     top: 45px;
-  left: 90%;
+    left: 90%;
   }
   @media screen and (min-width: 1280px) {
   }
@@ -130,7 +130,7 @@ export const AuthShowConfirmPassword = styled.button`
   left: 80%;
   @media screen and (min-width: 768px) {
     top: 45px;
-  left: 90%;
+    left: 90%;
   }
   @media screen and (min-width: 1280px) {
   }
