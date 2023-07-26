@@ -6,8 +6,7 @@ import {
 import Logo from 'components/Logo/Logo';
 import Nav from 'components/Nav/Nav';
 import AuthNav from 'components/AuthNav/AuthNav';
-// import UserNav from 'components/UserNav/UserNav';
-//testing mobile menu
+// import UserNav from 'components/UserNav/UserNav'
 import MobileMenu from '../MobileMenu/MobileMenu';
 
 // const isAuth = () => {
