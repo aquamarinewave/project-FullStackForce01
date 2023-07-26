@@ -11,7 +11,7 @@ export const Button = styled.button`
 
    display: ${props => (props.isMobile ? 'flex' : 'none')};
 
-  display: none;
+  ${'' /* display: none; */}
 
   @media screen and (min-width: 768px) {
     height: 44px;
