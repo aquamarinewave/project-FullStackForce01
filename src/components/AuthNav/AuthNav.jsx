@@ -12,15 +12,14 @@ import {
 import sprite from '../../images/icons.svg';
 // import Button from 'components/Button/Button';
 
-const AuthNav = () => {
-
-   const [isTabletOrMobile, setIsTabletOrMobile] = useState(window.innerWidth < 1280);
+const AuthNav = ({ toggleMenu }) => {
+  const [isTabletOrMobile, setIsTabletOrMobile] = useState(window.innerWidth < 1280);
 
   useEffect(() => {
     const handleResize = () => {
       setIsTabletOrMobile(window.innerWidth < 1280);
     };
-        
+
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -48,7 +47,7 @@ const AuthNav = () => {
         </RegisterButton>
       </NavLink>
       {isTabletOrMobile && (
-        <BurgerButton type="button">
+        <BurgerButton type="button" onClick={() => toggleMenu()}>
           <IconBurger width={24} height={24}>
             <use href={`${sprite}#icon-menu-hamburger`}></use>
           </IconBurger>
