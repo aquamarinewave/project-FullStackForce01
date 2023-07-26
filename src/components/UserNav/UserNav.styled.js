@@ -4,12 +4,12 @@ export const Nav = styled.nav`
   display: flex;
 
   @media screen and (min-width: 768px) {
-    display: flex;
   }
   @media screen and (min-width: 1280px) {
-    display: flex;
+    right: 0;
     align-items: center;
-    ${'' /* margin-left: 80px; */}
+    margin-left: 80px;
+
   }
 `;
 
@@ -122,9 +122,19 @@ export const IconUser = styled.svg`
 `;
 
 export const IconBurger = styled.svg`
-  stroke: stroke: var(--accent-color);
+  stroke: #ffc107;
 
   &:hover {
     ${'' /* fill: green; */}
+  }
+`;
+
+export const Container = styled.div`
+  @media screen and (min-width: 768px) {
+  
+  }
+
+  @media screen and (min-width: 1280px) {
+
   }
 `;

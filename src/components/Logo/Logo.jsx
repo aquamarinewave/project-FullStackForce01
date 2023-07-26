@@ -29,7 +29,7 @@ const Logo = ({toggleMenu}) => {
   }, []);
 
   return (
-    <NavLink to="/" onClick={() => toggleMenu()}>
+    <NavLink to="/">
       {isDesktopOrTablet && (
         <picture>
           <source

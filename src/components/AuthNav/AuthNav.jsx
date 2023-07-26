@@ -10,9 +10,10 @@ import {
   IconBurger,
 } from './AuthNav.styled';
 import sprite from '../../images/icons.svg';
+import MobileMenu from 'components/MobileMenu/MobileMenu';
 // import Button from 'components/Button/Button';
 
-const AuthNav = ({ toggleMenu }) => {
+const AuthNav = ({ toggleMenu, menuOpen }) => {
   const [isTabletOrMobile, setIsTabletOrMobile] = useState(window.innerWidth < 1280);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const AuthNav = ({ toggleMenu }) => {
   }, []);
 
   return (
+    <>
     <Nav>
       <NavLink to="/login">
         <LoginButton type="button">
@@ -54,6 +56,8 @@ const AuthNav = ({ toggleMenu }) => {
         </BurgerButton>
       )}
     </Nav>
+     { isTabletOrMobile && <MobileMenu toggleMenu={toggleMenu} openMenu={menuOpen} /> }
+  </>
   );
 };
 
