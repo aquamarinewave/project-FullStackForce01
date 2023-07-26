@@ -20,8 +20,11 @@ import Nav from '../Nav/Nav';
 import sprite from '../../images/icons.svg';
 
 const MobileMenu = ({ openMenu, toggleMenu }) => {
-  const [isTablet, setIsTablet] = useState(window.innerWidth < 768 && window.innerWidth < 1280);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  // const [isTablet, setIsTablet] = useState(window.innerWidth < 768 && window.innerWidth < 1280);
+  // const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  const [setIsTablet] = useState(window.innerWidth < 768 && window.innerWidth < 1280);
+  const [setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const handleResize = () => {
