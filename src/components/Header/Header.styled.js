@@ -21,7 +21,9 @@ export const MainHeader = styled.header`
 `;
 
 export const Container = styled.div`
-  display: flex;
+  ${'' /* display: flex;
+  align-items: center;
+  justify-content: space-between; */}
 `;
 
 export const UserNavContainer = styled.div`

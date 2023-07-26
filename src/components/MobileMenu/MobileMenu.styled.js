@@ -98,6 +98,44 @@ export const Link = styled(NavLink)`
   }
 `;
 
+export const UserButton = styled.button`
+  background: var(--main-light-color);
+  border-radius: 20px;
+  border: transparent;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 8px;
+  padding: 0;
+
+  @media screen and (min-width: 768px) {
+    ${
+      '' /* max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px; */
+    }
+
+    height: 40px;
+    ${'' /* margin-top: 24px; */}
+    display: flex;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 1280px) {
+    height: 44px;
+    width: 113px;
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const IconUser = styled.svg`
+  stroke: var(--accent-color);
+
+  &:hover {
+    ${'' /* fill: green; */}
+  }
+`;
 export const CloseButton = styled.button`
   cursor: pointer;
   color: var(--main-light-color);

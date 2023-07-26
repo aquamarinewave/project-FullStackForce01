@@ -1,21 +1,36 @@
+import { useSelector } from 'react-redux';
+import authSelector from 'redux/auth/authSelector';
 import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Test, CloseButton, ButtonText, TopMenu, IconCross, LoginButton, IconPawPrint, RegisterButton, Container} from './MobileMenu.styled';
+import {
+  Test,
+  CloseButton,
+  ButtonText,
+  TopMenu,
+  IconCross,
+  LoginButton,
+  IconPawPrint,
+  RegisterButton,
+  Container,
+  IconUser, 
+  UserButton
+} from './MobileMenu.styled';
 import Logo from '../Logo/Logo';
 import Nav from '../Nav/Nav';
-// import Logout from 'components/Logout/Logout.styled';
+import Logout from 'components/Logout/Logout';
 import sprite from '../../images/icons.svg';
 
-const MobileMenu = ({ openMenu, toggleMenu }) => {
+const MobileMenu = ({ openMenu, toggleMenu }) => {const name = useSelector(authSelector.userNameSelector);
+  const isLogged = useSelector(authSelector.loggedInSelector);
   // eslint-disable-next-line no-unused-vars
-  const [isTablet, setIsTablet] = useState((window.innerWidth < 768) && (window.innerWidth < 1280));
+  const [isTablet, setIsTablet] = useState(window.innerWidth < 768 && window.innerWidth < 1280);
   // eslint-disable-next-line no-unused-vars
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsTablet((window.innerWidth > 769) && (window.innerWidth < 1280));
+      setIsTablet(window.innerWidth > 769 && window.innerWidth < 1280);
       setIsMobile(window.innerWidth < 768);
     };
 
@@ -24,7 +39,7 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [setIsMobile,setIsTablet]);
+  }, [setIsMobile, setIsTablet]);
 
   return createPortal(
     <Test isOpen={openMenu}>
@@ -33,18 +48,8 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
           <Logo />
         </div>
         {/* <div> */}
-          {/* {!isAuth ? ( */}
-          {/* {children} */}
-          {/* <Logout type="button">
-            <ButtonText color="logout" weight="bold" margin="8px">
-              Logout
-            </ButtonText>
-            <IconLogout width={24} height={24}>
-              <use href={`${sprite}#icon-logout`}></use>
-            </IconLogout>
-          </Logout> */}
-          {/* ) : ( */}
-          {/* <ButtonContainer> */}
+        {!isLogged ? (
+          <>
             <Container>
               <NavLink to="/login" onClick={() => toggleMenu()}>
                 <LoginButton isMobile={true} type="button">
@@ -64,17 +69,37 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
                 </RegisterButton>
               </NavLink>
             </Container>
-            {/* )} */}
             <CloseButton type="button" onClick={() => toggleMenu()}>
               <IconCross width={24} height={24}>
                 <use href={`${sprite}#icon-cross`}></use>
               </IconCross>
             </CloseButton>
-          {/* </ButtonContainer> */}
-        {/* </div> */}
+            <Nav isMobile />
+          </>
+        ) : (
+          <>
+            <Logout isMobile />
+            <CloseButton type="button" onClick={() => toggleMenu()}>
+              {isMobile && (
+                <NavLink to="/user">
+                  <UserButton>
+                    <IconUser width={24} height={24}>
+                      <use href={`${sprite}#icon-user-1`}></use>
+                    </IconUser>
+                    <ButtonText color="name" weight="usual" marginL="12px">
+                      {name}
+                    </ButtonText>
+                  </UserButton>
+                </NavLink>
+              )}
+              <IconCross width={24} height={24}>
+                <use href={`${sprite}#icon-cross`}></use>
+              </IconCross>
+            </CloseButton>
+            <Nav isMobile />
+          </>
+        )}
       </TopMenu>
-      <Nav isMobile={true} />
-      {/* </div> */}
     </Test>,
     document.querySelector('#portal-root')
   );
