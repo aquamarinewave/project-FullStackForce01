@@ -92,10 +92,10 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                       <li>{location || ""}</li>
                       <li>{sex || ""}</li>
                       <li class="modal-contact" >
-                        {email}
+                        <a href={`mailto: ${email}`}>{email}</a>
                       </li>
                       <li class="modal-contact">
-                        {phone}
+                        <a href={`tel: ${phone}`}>{phone}</a>
                       </li>
                     </ul>
                     </div>
@@ -105,7 +105,7 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                 <p class="modal-comments"><strong>Comments:</strong> {comments}</p>
 
                 <div class="modal-buttons">
-                  <a href="tel:+380971234567" class="modal-button modal-button--primary" type="button">Contact</a>
+                  <a href={`tel: ${phone}`} class="modal-button modal-button--primary" type="button">Contact</a>
 
                   <button class="modal-button modal-button--second" type="button"><span>Add to</span> <span>  
                   <IconHeart width={24} height={24}>

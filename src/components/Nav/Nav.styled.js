@@ -11,7 +11,7 @@ export const MainNav = styled.nav`
   }
   @media screen and (min-width: 1280px) {
     display: block;
-    margin-left: 80px;
+    margin-right: 80px;
   }
 `;
 

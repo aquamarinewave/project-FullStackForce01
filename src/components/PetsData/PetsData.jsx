@@ -6,7 +6,8 @@
 import { Link } from 'react-router-dom';
 import PetsList from '../PetsList/PetsList';
 import sprite from '../../images/icons.svg';
-import { AddPetButton, PetDataContainer, Title, TitleContainer, IconPlusSmall } from './PetsData.styled';
+import AddPetButton from '../AddPetButton/AddPetButton';
+import { PetDataContainer, Title, TitleContainer, IconPlusSmall } from './PetsData.styled';
 
 const PetData = () => {
   return (

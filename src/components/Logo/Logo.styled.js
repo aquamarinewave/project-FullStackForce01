@@ -7,7 +7,7 @@ export const MainLogo = styled.img`
   }
 
   @media screen and (min-width: 1280px) {
-    margin-right: 80px;
+    ${'' /* margin-right: 80px; */}
   }
 `;
 
