@@ -1,8 +1,8 @@
 import { MainNav, Link } from "./Nav.styled"
 
-const Nav = () => {
+const Nav = ({isMobile}) => {
   return (
-      <MainNav>
+      <MainNav isMobile={isMobile}>
         <Link to="/news">News</Link>
         <Link to="/notices">Find Pet</Link>
         <Link to="/friends">Our Friends</Link>
