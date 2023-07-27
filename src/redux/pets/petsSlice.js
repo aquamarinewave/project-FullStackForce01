@@ -5,13 +5,14 @@ import { addNoticeThunk, addPetThunk } from './operations';
 const listPets = {
   pet: [],
   isLoading: false,
+  error: null,
 };
 
 const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleFulfilledAddContacts = (state, action) => {
+const handleFulfilledAddPet = (state, action) => {
   state.pet.push(action.payload);
 };
 
@@ -26,10 +27,10 @@ export const petsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(addPetThunk.pending, handlePending)
-      .addCase(addPetThunk.fulfilled, handleFulfilledAddContacts)
+      .addCase(addPetThunk.fulfilled, handleFulfilledAddPet)
       .addCase(addPetThunk.rejected, handleRejected)
       .addCase(addNoticeThunk.pending, handlePending)
-      .addCase(addNoticeThunk.fulfilled, handleFulfilledAddContacts)
+      .addCase(addNoticeThunk.fulfilled, handleFulfilledAddPet)
       .addCase(addNoticeThunk.rejected, handleRejected);
   },
 });

@@ -23,6 +23,7 @@ const AddPetForm = () => {
   const [selectedFile, setSelectedFile] = useState('');
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [previewImage, setPreviewImage] = useState('');
+  const [selectedGender, setSelectedGender] = useState('');
 
   const titleColorText = color => {
     switch (color) {
@@ -70,13 +71,17 @@ const AddPetForm = () => {
         name: '',
         birthday: '',
         type: '',
+        sex: selectedGender,
         comments: '',
+        location: '',
+        price: '',
       }}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         const formData = {
           ...values,
           avatar: selectedFile,
         };
+        // console.log('formData111:', formData);
         if (currentRadioButton === 'your_pet') {
           dispatch(addPetThunk(formData));
           setSubmitting(false);
@@ -92,6 +97,10 @@ const AddPetForm = () => {
       {formik => {
         const handleOptionChange = event => {
           setCurrentRadioButton(event.target.value);
+          formik.handleChange(event);
+        };
+        const handleSexChange = event => {
+          setSelectedGender(event.target.value);
           formik.handleChange(event);
         };
         return (
@@ -122,6 +131,9 @@ const AddPetForm = () => {
                 )}
                 {currentStage === 'third' && (
                   <ThirdStageForm
+                    selectedGender={selectedGender}
+                    handleSexChange={handleSexChange}
+                    // handleOptionChange={handleOptionChange}
                     currentRadioButton={currentRadioButton}
                     formik={formik}
                     showPlaceholder={showPlaceholder}
