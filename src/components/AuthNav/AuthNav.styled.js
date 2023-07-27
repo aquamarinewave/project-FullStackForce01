@@ -95,6 +95,9 @@ export const BurgerButton = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
 `;
 
 export const IconPawPrint = styled.svg`

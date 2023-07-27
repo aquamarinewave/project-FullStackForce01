@@ -6,11 +6,11 @@ import MobileMenu from 'components/MobileMenu/MobileMenu';
 
 const AuthNav = ({ toggleMenu, menuOpen }) => {
   const [width] = useResize();
-  
+
   return (
     <>
       <Nav>
-        <LoginButton to="/login">
+        <LoginButton to="/login" >
           <ButtonText color="login" margin="8px" weight="bold">
             Log IN
           </ButtonText>

@@ -32,19 +32,12 @@ export const Test = styled.div`
 `;
 
 export const Menu = styled.div`
-${'' /* padding-top: 76px; */}
-  ${
-    '' /* display: flex;
-  display: block; */
-  }
   min-height: 100vh; 
   width: 100%;
   display: ${props => (props.isOpen ? 'inline' : 'none')};
   z-index: 15;
 
   @media screen and (min-width: 768px) {
-    ${'' /* display: fixed; */}
-    ${'' /* margin-top: 26px; */}
     display: ${props => (props.isOpen ? 'block' : 'none')};
     z-index: 15;
     position: absolute;
@@ -54,12 +47,6 @@ ${'' /* padding-top: 76px; */}
 
   @media screen and (min-width: 1280px) {
     display: none;
-  }
-
-  ${
-    '' /* width: 500px;
-    height: 200px;
-  } */
   }
 `;
 
@@ -98,7 +85,7 @@ export const Link = styled(NavLink)`
   }
 `;
 
-export const UserButton = styled.button`
+export const UserButton = styled(NavLink)`
   background: var(--main-light-color);
   border-radius: 20px;
   border: transparent;
@@ -109,14 +96,7 @@ export const UserButton = styled.button`
   padding: 0;
 
   @media screen and (min-width: 768px) {
-    ${
-      '' /* max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px; */
-    }
-
     height: 40px;
-    ${'' /* margin-top: 24px; */}
     display: flex;
     align-items: center;
   }
@@ -218,7 +198,7 @@ stroke: var(--accent-color);
   }
 `;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid var(--accent-color);
   background: var(--accent-color);
@@ -249,7 +229,7 @@ export const LoginButton = styled.button`
   }
 `;
 
-export const RegisterButton = styled.button`
+export const RegisterButton = styled(NavLink)`
   display: ${props => (props.isMobile ? 'flex' : 'none')};
   border-radius: 40px;
   background: var(--main-light-color);
