@@ -3,17 +3,19 @@ import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 import { NavLink } from 'react-router-dom';
 import {
-  Nav, ButtonText, UserButton, BurgerButton,
+  Nav,
+  ButtonText,
+  UserButton,
+  BurgerButton,
   // IconLogout,
-  IconUser, IconBurger,
+  IconUser,
+  IconBurger,
   // Container
 } from './UserNav.styled';
 import Logout from 'components/Logout/Logout';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 import sprite from '../../images/icons.svg';
-import Modal from 'components/ModalApproveAction/ModalApproveAction';
-
-
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 const UserNav = ({ toggleMenu, menuOpen }) => {
   const name = useSelector(authSelector.userNameSelector);
@@ -40,19 +42,19 @@ const UserNav = ({ toggleMenu, menuOpen }) => {
     <>
       <Nav>
         {/* <Container> */}
-        <Logout onClick={()=><Modal/>} />
-          {isDesktopOrTablet && (
-            <NavLink to="/user">
-              <UserButton>
-                <IconUser width={24} height={24}>
-                  <use href={`${sprite}#icon-user-1`}></use>
-                </IconUser>
-                <ButtonText color="name" weight="usual" marginL="12px">
-                  {name}
-                </ButtonText>
-              </UserButton>
-            </NavLink>
-          )}
+        <Logout onClick={() => <ModalApproveAction />} />
+        {isDesktopOrTablet && (
+          <NavLink to="/user">
+            <UserButton>
+              <IconUser width={24} height={24}>
+                <use href={`${sprite}#icon-user-1`}></use>
+              </IconUser>
+              <ButtonText color="name" weight="usual" marginL="12px">
+                {name}
+              </ButtonText>
+            </UserButton>
+          </NavLink>
+        )}
         {/* </Container> */}
         {isMobile && (
           <UserButton>

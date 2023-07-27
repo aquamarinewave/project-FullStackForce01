@@ -14,7 +14,7 @@ import {
   BtnIcon,
 } from './ModalApproveAction.styled';
 
-const Modal = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, children }) => {
+const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, children }) => {
   const modalRef = useRef();
   const iconPath = sprite + '#' + btnIconName;
   const portalRoot = document.getElementById('modal-root');
@@ -70,4 +70,4 @@ const Modal = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, c
     : null;
 };
 
-export default Modal;
+export default ModalApproveAction;
