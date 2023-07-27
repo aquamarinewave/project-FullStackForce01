@@ -23,7 +23,7 @@
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M26.667 20l-10.667-10.667-10.667 10.667"></path>
 </symbol>
 <symbol id="icon-clock" viewBox="0 0 32 32">
-<path fill="none"  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M16.33 9.6v6.4l3.84 3.84M27.85 16c0 6.362-5.158 11.52-11.52 11.52s-11.52-5.158-11.52-11.52v0c0-6.362 5.158-11.52 11.52-11.52s11.52 5.158 11.52 11.52v0z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M16.33 9.6v6.4l3.84 3.84M27.85 16c0 6.362-5.158 11.52-11.52 11.52s-11.52-5.158-11.52-11.52v0c0-6.362 5.158-11.52 11.52-11.52s11.52 5.158 11.52 11.52v0z"></path>
 </symbol>
 <symbol id="icon-cross" viewBox="0 0 32 32">
 <path  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M25.333 6.667l-18.667 18.667M6.667 6.667l18.667 18.667"></path>
@@ -42,7 +42,7 @@
 <path fill="none"  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M16 20c2.209 0 4-1.791 4-4s-1.791-4-4-4v0c-2.209 0-4 1.791-4 4s1.791 4 4 4v0z"></path>
 </symbol>
 <symbol id="icon-female" viewBox="0 0 32 32">
-<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M16.33 17.28c3.535 0 6.4-2.865 6.4-6.4s-2.865-6.4-6.4-6.4v0c-3.535 0-6.4 2.865-6.4 6.4s2.865 6.4 6.4 6.4v0zM16.33 17.28v10.24M12.49 23.68h7.68"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M16.33 17.28c3.535 0 6.4-2.865 6.4-6.4s-2.865-6.4-6.4-6.4v0c-3.535 0-6.4 2.865-6.4 6.4s2.865 6.4 6.4 6.4v0zM16.33 17.28v10.24M12.49 23.68h7.68"></path>
 </symbol>
 <symbol id="icon-filters-2" viewBox="0 0 32 32">
 <path fill="none"  stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M18.667 6.667c0-1.473-1.194-2.667-2.667-2.667s-2.667 1.194-2.667 2.667v0M18.667 6.667c0 1.473-1.194 2.667-2.667 2.667s-2.667-1.194-2.667-2.667v0M18.667 6.667h8M13.333 6.667h-8M21.333 16c0 1.473 1.194 2.667 2.667 2.667s2.667-1.194 2.667-2.667v0c0-1.473-1.194-2.667-2.667-2.667s-2.667 1.194-2.667 2.667v0zM21.333 16h-16M10.667 25.333c0-1.473-1.194-2.667-2.667-2.667s-2.667 1.194-2.667 2.667v0c0 1.473 1.194 2.667 2.667 2.667s2.667-1.194 2.667-2.667v0zM10.667 25.333h16"></path>
@@ -51,17 +51,17 @@
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M6.090 5.76l6.4 10.24v7.68l7.68 3.84v-11.52l6.4-10.24h-20.48z"></path>
 </symbol>
 <symbol id="icon-heart" viewBox="0 0 32 32">
-<path fill="none"  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M5.775 16.063l10.227 10.604 10.225-10.604c1.098-1.148 1.773-2.707 1.773-4.424 0-0.007 0-0.014-0-0.021v0.001c0-3.471-2.713-6.285-6.061-6.285-1.685 0.005-3.204 0.71-4.283 1.838l-0.002 0.002-1.653 1.717-1.653-1.717c-1.082-1.13-2.601-1.835-4.284-1.84h-0.001c-3.347 0-6.061 2.813-6.061 6.285 0 1.667 0.639 3.267 1.775 4.444z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M5.775 16.063l10.227 10.604 10.225-10.604c1.098-1.148 1.773-2.707 1.773-4.424 0-0.007 0-0.014-0-0.021v0.001c0-3.471-2.713-6.285-6.061-6.285-1.685 0.005-3.204 0.71-4.283 1.838l-0.002 0.002-1.653 1.717-1.653-1.717c-1.082-1.13-2.601-1.835-4.284-1.84h-0.001c-3.347 0-6.061 2.813-6.061 6.285 0 1.667 0.639 3.267 1.775 4.444z"></path>
 </symbol>
 <symbol id="icon-location-1" viewBox="0 0 32 32">
-<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M26.57 14.72c0 5.655-4.585 10.24-10.24 12.8-5.655-2.56-10.24-7.145-10.24-12.8s4.585-10.24 10.24-10.24 10.24 4.585 10.24 10.24v0z"></path>
-<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M20.17 14.72c0 2.121-1.719 3.84-3.84 3.84s-3.84-1.719-3.84-3.84v0c0-2.121 1.719-3.84 3.84-3.84s3.84 1.719 3.84 3.84v0z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M26.57 14.72c0 5.655-4.585 10.24-10.24 12.8-5.655-2.56-10.24-7.145-10.24-12.8s4.585-10.24 10.24-10.24 10.24 4.585 10.24 10.24v0z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M20.17 14.72c0 2.121-1.719 3.84-3.84 3.84s-3.84-1.719-3.84-3.84v0c0-2.121 1.719-3.84 3.84-3.84s3.84 1.719 3.84 3.84v0z"></path>
 </symbol>
 <symbol id="icon-logout" viewBox="0 0 32 32">
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M18.667 5.333h5.333c1.473 0 2.667 1.194 2.667 2.667v0 16c0 1.473-1.194 2.667-2.667 2.667v0h-5.333M4 16h16M4 16l5.333-5.333M4 16l5.333 5.333"></path>
 </symbol>
 <symbol id="icon-male" viewBox="0 0 32 32">
-<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M16.33 14.72c-3.535 0-6.4 2.865-6.4 6.4s2.865 6.4 6.4 6.4v0c3.535 0 6.4-2.865 6.4-6.4s-2.865-6.4-6.4-6.4v0zM16.33 14.72v-10.24M16.33 4.48l5.12 5.12M16.33 4.48l-5.12 5.12"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.92" d="M16.33 14.72c-3.535 0-6.4 2.865-6.4 6.4s2.865 6.4 6.4 6.4v0c3.535 0 6.4-2.865 6.4-6.4s-2.865-6.4-6.4-6.4v0zM16.33 14.72v-10.24M16.33 4.48l5.12 5.12M16.33 4.48l-5.12 5.12"></path>
 </symbol>
 <symbol id="icon-menu-hamburger" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M5.333 9.333h21.333M5.333 16h21.333M5.333 22.667h21.333"></path>
