@@ -10,7 +10,7 @@ const NoticesCategoriesList = () => {
   console.log('resByCategory:', resByCategory);
   const { categoryName } = useParams();
   const isLogged = useSelector(authSelector.loggedInSelector);
-  console.log('isLogged:', isLogged);
+  console.log('isLogged:', useSelector(authSelector.loggedInSelector));
 
   useEffect(() => {
     if (!categoryName) return;
@@ -42,7 +42,7 @@ const NoticesCategoriesList = () => {
     return () => {
       controller.abort();
     };
-  }, [categoryName]);
+  }, [categoryName, isLogged]);
 
   return (
     <div>
