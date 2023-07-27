@@ -1,24 +1,12 @@
-import { useEffect, useState } from 'react';
 import { Nav, ButtonText, LoginButton, RegisterButton, BurgerButton, IconPawPrint, IconBurger } from './AuthNav.styled';
+import useResize from 'hooks/useResize';
 import sprite from '../../images/icons.svg';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 // import Button from 'components/Button/Button';
 
 const AuthNav = ({ toggleMenu, menuOpen }) => {
-  const [isTabletOrMobile, setIsTabletOrMobile] = useState(window.innerWidth < 1280);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsTabletOrMobile(window.innerWidth < 1280);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+  const [width] = useResize();
+  
   return (
     <>
       <Nav>
@@ -35,7 +23,7 @@ const AuthNav = ({ toggleMenu, menuOpen }) => {
             Registration
           </ButtonText>
         </RegisterButton>
-        {isTabletOrMobile && (
+        {width < 1280 && (
           <BurgerButton type="button" onClick={() => toggleMenu()}>
             <IconBurger width={24} height={24}>
               <use href={`${sprite}#icon-menu-hamburger`}></use>
@@ -43,7 +31,7 @@ const AuthNav = ({ toggleMenu, menuOpen }) => {
           </BurgerButton>
         )}
       </Nav>
-      {isTabletOrMobile && <MobileMenu toggleMenu={toggleMenu} openMenu={menuOpen} />}
+      {width < 1280 && <MobileMenu toggleMenu={toggleMenu} openMenu={menuOpen} />}
     </>
   );
 };

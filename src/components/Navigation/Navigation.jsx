@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-// import { Container } from './Navigation.styled';
 import Nav from '../Nav/Nav';
 import authSelector from 'redux/auth/authSelector';
 import AuthNav from '../AuthNav/AuthNav';
@@ -10,14 +9,12 @@ const Navigation = ({toggleMenu, openMenu}) => {
 
   return (
     <>
-      {/* <Container> */}
         <Nav />
         {isLogged ? (
           <UserNav toggleMenu={toggleMenu} menuOpen={openMenu} />
         ) : (
           <AuthNav toggleMenu={toggleMenu} menuOpen={openMenu} />
         )}
-      {/* </Container> */}
     </>
   );
 };

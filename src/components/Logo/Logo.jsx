@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Largepng from '../../images/x1/logo/logo-default.png';
@@ -8,29 +7,17 @@ import Smallpng from '../../images/x1/logo/logo-small.png';
 import Small from '../../images/x1/logo/logo-default.webp';
 import SmallRetina from '../../images/x2/logo/logo-default.webp';
 
-
 import { MainLogo } from './Logo.styled';
 
+import useResize from 'hooks/useResize';
+
+
 const Logo = () => {
-  const [isDesktopOrTablet, setIsDesktopOrTablet] = useState(window.innerWidth >= 768);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktopOrTablet(window.innerWidth >= 768);
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+  const [width] = useResize();
+  
   return (
     <NavLink to="/">
-      {isDesktopOrTablet && (
+      {width >= 768 && (
         <picture>
           <source
             media="(min-width: 768px)"
@@ -42,7 +29,7 @@ const Logo = () => {
           <MainLogo src={Largepng} alt="Logo" />
         </picture>
       )}
-      {isMobile && (
+      {width < 768 && (
         <picture>
           <source
             media="(min-width: 768px)"
