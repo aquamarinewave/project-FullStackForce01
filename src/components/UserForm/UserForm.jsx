@@ -1,7 +1,9 @@
 import { Formik, Form } from 'formik';
+import { useState } from 'react';
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
+import Modal from 'components/ModalApproveAction/ModalApproveAction';
 
 import {
   ProfileInfo,
@@ -35,20 +37,25 @@ const UserForm = () => {
 
   const dispatch = useDispatch();
   const onLogout = () => dispatch(authOperations.logoutUser());
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(prevState => !prevState);
+  };
 
   return (
     <>
       <WrapperCard>
         <ProfileTitle>My information:</ProfileTitle>
         <ProfileInfo>
+          <EditButton>
+            <IconEdit width={24} height={24}>
+              <use href={`${sprite}#icon-edit-2`}></use>
+            </IconEdit>
+          </EditButton>
           <Formik initialValues={initialValues}>
             <Form>
               <AvatarWrapper>
-                <EditButton>
-                  <IconEdit width={24} height={24}>
-                    <use href={`${sprite}#icon-edit-2`}></use>
-                  </IconEdit>
-                </EditButton>
                 <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
               </AvatarWrapper>
               <WrapperField>
@@ -73,14 +80,20 @@ const UserForm = () => {
                 <Label htmlFor="city"> City:</Label>
                 <ProfileField type="text" name="city" placeholder={initialValues.city} readOnly={true} />
               </WrapperField>
-              <LogOutBtn onClick={onLogout}>
-                <IconLogOut width={24} height={24}>
-                  <use href={`${sprite}#icon-logout`}></use>
-                </IconLogOut>
-                <LogOutBtnText>Log Out</LogOutBtnText>
-              </LogOutBtn>
             </Form>
           </Formik>
+          <LogOutBtn onClick={toggleModal}>
+            <IconLogOut width={24} height={24}>
+              <use href={`${sprite}#icon-logout`}></use>
+            </IconLogOut>
+            <LogOutBtnText>Log Out</LogOutBtnText>
+          </LogOutBtn>
+
+          {isModalOpen && (
+            <Modal isOpen={isModalOpen} toggleModal={toggleModal} onApprove={onLogout} onRequestClose={toggleModal}>
+              Already leaving?
+            </Modal>
+          )}
         </ProfileInfo>
       </WrapperCard>
     </>
