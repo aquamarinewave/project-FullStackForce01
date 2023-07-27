@@ -28,7 +28,14 @@ const FirstStageForm = ({ formik, handleOptionChange, currentRadioButton }) => {
       {options.map(({ value, label }) => (
         <RadioButton key={value} checked={currentRadioButton === value}>
           <FieldLabel htmlFor={`option_${value}`}>{label}</FieldLabel>
-          <Field type="radio" name="category" id={`option_${value}`} value={value} onChange={handleOptionChange} />
+          <Field
+            key={`option_${value}`}
+            type="radio"
+            name="category"
+            id={`option_${value}`}
+            value={value}
+            onChange={handleOptionChange}
+          />
         </RadioButton>
       ))}
     </>
