@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { BoxInputField, FieldLabel, InputField } from '../SecondStageForm/SecondStageForm.styled';
 import {
   BoxPetAvatar,
