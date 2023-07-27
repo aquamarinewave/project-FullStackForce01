@@ -2,10 +2,10 @@ import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 import { Nav, ButtonText, UserButton, BurgerButton, IconUser, IconBurger } from './UserNav.styled';
 import Logout from 'components/Logout/Logout';
-import Modal from 'components/ModalApproveAction/ModalApproveAction';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 import useResize from 'hooks/useResize';
 import sprite from '../../images/icons.svg';
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 const UserNav = ({ toggleMenu, menuOpen }) => {
   const name = useSelector(authSelector.userNameSelector);
@@ -14,7 +14,7 @@ const UserNav = ({ toggleMenu, menuOpen }) => {
   return (
     <>
       <Nav>
-        <Logout onClick={() => <Modal />} />
+        <Logout onClick={() => <ModalApproveAction />} />
         {width > 769 && (
           <UserButton to="/user">
             <IconUser width={24} height={24}>
