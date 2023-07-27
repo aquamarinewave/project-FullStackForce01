@@ -45,4 +45,8 @@ const IconSearch = styled.svg`
   fill: var(--dark-blue);
 `;
 
-export { SearchContainer, SearchForm, SearchInput, SearchIconContainer, SearchIconBtn, IconSearch };
+const IconCrossSmall = styled.svg`
+  stroke: var(--accent-color);
+`;
+
+export { SearchContainer, SearchForm, SearchInput, SearchIconContainer, SearchIconBtn, IconSearch, IconCrossSmall };

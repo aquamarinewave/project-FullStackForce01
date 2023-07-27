@@ -5,7 +5,8 @@ import {
   SearchIconContainer,
   SearchIconBtn,
   IconSearch,
-} from './NoticesSearch.styled';
+  IconCrossSmall,
+} from './Search.styled';
 import sprite from '../../images/icons.svg';
 
 const Search = () => {
@@ -18,9 +19,9 @@ const Search = () => {
             <IconSearch width={24} height={24}>
               <use href={`${sprite}#icon-search`}></use>
             </IconSearch>
-            <svg width={24} height={24}>
-              <use href={`${sprite}#icon-pawprint-1`}></use>
-            </svg>
+            <IconCrossSmall width={24} height={24}>
+              <use href={`${sprite}#icon-cross-small`}></use>
+            </IconCrossSmall>
           </SearchIconBtn>
         </SearchIconContainer>
       </SearchForm>
