@@ -17,7 +17,8 @@ import {
 } from './FriendsItem.styled';
 
 const FriendsItem = ({ responseByFriends }) => {
-  const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = responseByFriends;
+  // const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = responseByFriends;
+  const { title, url, addressUrl, imageUrl, address, phone, email } = responseByFriends;
 
   return (
     <div>
