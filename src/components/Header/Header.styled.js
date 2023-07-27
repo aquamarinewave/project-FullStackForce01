@@ -11,21 +11,10 @@ export const MainHeader = styled.header`
 
   @media screen and (min-width: 768px) {
     height: 44px;
-    margin-top: 24px;
   }
 
   @media screen and (min-width: 1280px) {
     height: 48px;
     margin-top: 20px;
   }
-`;
-
-export const Container = styled.div`
-  ${'' /* display: flex;
-  align-items: center;
-  justify-content: space-between; */}
-`;
-
-export const UserNavContainer = styled.div`
-  display: flex;
 `;

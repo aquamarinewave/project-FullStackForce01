@@ -1,63 +1,38 @@
-import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import {
-  Nav,
-  MButtonText,
-  LoginButton,
-  RegisterButton,
-  BurgerButton,
-  IconPawPrint,
-  IconBurger,
-} from './AuthNav.styled';
+import { Nav, ButtonText, LoginButton, RegisterButton, BurgerButton, IconPawPrint, IconBurger } from './AuthNav.styled';
+import useResize from 'hooks/useResize';
 import sprite from '../../images/icons.svg';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 // import Button from 'components/Button/Button';
 
 const AuthNav = ({ toggleMenu, menuOpen }) => {
-  const [isTabletOrMobile, setIsTabletOrMobile] = useState(window.innerWidth < 1280);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsTabletOrMobile(window.innerWidth < 1280);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const [width] = useResize();
 
   return (
     <>
-    <Nav>
-      <NavLink to="/login">
-        <LoginButton type="button">
-          <MButtonText color="login" margin="8px" weight="bold">
+      <Nav>
+        <LoginButton to="/login" >
+          <ButtonText color="login" margin="8px" weight="bold">
             Log IN
-          </MButtonText>
+          </ButtonText>
           <IconPawPrint width={24} height={24}>
             <use href={`${sprite}#icon-pawprint-1`}></use>
           </IconPawPrint>
         </LoginButton>
-      </NavLink>
-      <NavLink to="/register">
-        <RegisterButton type="button">
-          <MButtonText color="register" weight="semi-bold">
+        <RegisterButton to="/register">
+          <ButtonText color="register" weight="semi-bold">
             Registration
-          </MButtonText>
+          </ButtonText>
         </RegisterButton>
-      </NavLink>
-      {isTabletOrMobile && (
-        <BurgerButton type="button" onClick={() => toggleMenu()}>
-          <IconBurger width={24} height={24}>
-            <use href={`${sprite}#icon-menu-hamburger`}></use>
-          </IconBurger>
-        </BurgerButton>
-      )}
-    </Nav>
-     { isTabletOrMobile && <MobileMenu toggleMenu={toggleMenu} openMenu={menuOpen} /> }
-  </>
+        {width < 1280 && (
+          <BurgerButton type="button" onClick={() => toggleMenu()}>
+            <IconBurger width={24} height={24}>
+              <use href={`${sprite}#icon-menu-hamburger`}></use>
+            </IconBurger>
+          </BurgerButton>
+        )}
+      </Nav>
+      {width < 1280 && <MobileMenu toggleMenu={toggleMenu} openMenu={menuOpen} />}
+    </>
   );
 };
 

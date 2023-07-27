@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 import { createPortal } from 'react-dom';
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import useResize from 'hooks/useResize';
 import {
   Test,
   CloseButton,
@@ -22,23 +21,9 @@ import Logout from 'components/Logout/Logout';
 import sprite from '../../images/icons.svg';
 
 const MobileMenu = ({ openMenu, toggleMenu }) => {
+   const [width] = useResize();
   const name = useSelector(authSelector.userNameSelector);
   const isLogged = useSelector(authSelector.loggedInSelector);
-  const [isTablet, setIsTablet] = useState(window.innerWidth > 768 && window.innerWidth < 1280);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsTablet(window.innerWidth > 769 && window.innerWidth < 1280);
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [setIsMobile, setIsTablet]);
 
   return createPortal(
     <Test isOpen={openMenu}>
@@ -46,27 +31,22 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
         <div>
           <Logo />
         </div>
-        {/* <div> */}
         {!isLogged ? (
           <>
             <Container>
-              <NavLink to="/login" onClick={() => toggleMenu()}>
-                <LoginButton isMobile={true} type="button">
-                  <ButtonText color="login" margin="8px" weight="bold">
-                    Log IN
-                  </ButtonText>
-                  <IconPawPrint width={24} height={24}>
-                    <use href={`${sprite}#icon-pawprint-1`}></use>
-                  </IconPawPrint>
-                </LoginButton>
-              </NavLink>
-              <NavLink to="/register" onClick={() => toggleMenu()}>
-                <RegisterButton type="button" isMobile={true}>
-                  <ButtonText color="register" weight="semi-bold">
-                    Registration
-                  </ButtonText>
-                </RegisterButton>
-              </NavLink>
+              <LoginButton isMobile={true} to="/login" onClick={() => toggleMenu()}>
+                <ButtonText color="login" margin="8px" weight="bold">
+                  Log IN
+                </ButtonText>
+                <IconPawPrint width={24} height={24}>
+                  <use href={`${sprite}#icon-pawprint-1`}></use>
+                </IconPawPrint>
+              </LoginButton>
+              <RegisterButton isMobile={true} to="/register" onClick={() => toggleMenu()}>
+                <ButtonText color="register" weight="semi-bold">
+                  Registration
+                </ButtonText>
+              </RegisterButton>
             </Container>
             <CloseButton type="button" onClick={() => toggleMenu()}>
               <IconCross width={24} height={24}>
@@ -77,12 +57,10 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
           </>
         ) : (
           <>
-            {isTablet && <Logout isMobile />}
-
-            {isMobile && (
+            {width > 768 && width < 1280 && <Logout isMobile />}
+            {width < 768 && (
               <>
-                <NavLink to="/user">
-                  <UserButton>
+                  <UserButton to="/user">
                     <IconUser width={24} height={24}>
                       <use href={`${sprite}#icon-user-1`}></use>
                     </IconUser>
@@ -90,7 +68,6 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
                       {name}
                     </ButtonText>
                   </UserButton>
-                </NavLink>
                 <Logout isMobile />
               </>
             )}

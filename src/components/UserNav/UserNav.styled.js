@@ -1,15 +1,12 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
   display: flex;
-
-  @media screen and (min-width: 768px) {
-  }
   @media screen and (min-width: 1280px) {
     right: 0;
     align-items: center;
     margin-left: 80px;
-
   }
 `;
 
@@ -53,19 +50,10 @@ export const ButtonText = styled.p`
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.64px;
-    ${'' /* padding-right: 8px; */}
-  }
-  @media screen and (min-width: 1280px) {
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.64px;
-    ${'' /* padding-right: 8px; */}
   }
 `;
 
-export const UserButton = styled.button`
+export const UserButton = styled(NavLink)`
   background: var(--main-light-color);
   border-radius: 20px;
   border: transparent;
@@ -76,14 +64,7 @@ export const UserButton = styled.button`
   padding: 0;
 
   @media screen and (min-width: 768px) {
-    ${
-      '' /* max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px; */
-    }
-
     height: 40px;
-    ${'' /* margin-top: 24px; */}
     display: flex;
     align-items: center;
   }
@@ -91,8 +72,6 @@ export const UserButton = styled.button`
   @media screen and (min-width: 1280px) {
     height: 44px;
     width: 113px;
-    display: flex;
-    align-items: center;
   }
 `;
 
@@ -126,15 +105,5 @@ export const IconBurger = styled.svg`
 
   &:hover {
     ${'' /* fill: green; */}
-  }
-`;
-
-export const Container = styled.div`
-  @media screen and (min-width: 768px) {
-  
-  }
-
-  @media screen and (min-width: 1280px) {
-
   }
 `;
