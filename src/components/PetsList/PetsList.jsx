@@ -1,23 +1,32 @@
-// import { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import PetItem from '../PetsItem/PetsItem';
 import { UserPetsList } from './PetsList.styled';
+import { fetchUserPet } from 'services/api/petsFetch';
 
 const PetsList = () => {
-  //   const [pet, setPet] = useState([]);
-  //   const { petId } = useParams();
+  const [pets, setPet] = useState([]);
+  console.log(pets);
+  const { petId } = useParams();
 
-  //   useEffect(() => {
-  //     const getPet = async () => {
-  //       const result = await getUserPet(petId);
-  //       setPet([...result]);
-  //     };
-  //     getPet();
-  //   }, [petId]);
+  useEffect(() => {
+    if (!petId) return;
+
+    const getUserPet = async () => {
+      const result = await fetchUserPet(petId);
+      setPet([...result]);
+    };
+    getUserPet();
+  }, [petId]);
+
   return (
     <>
       <UserPetsList>
-        <PetItem />
+        {pets.map(pet => (
+          <li key={pet.id}>
+            <PetItem pets={pets} />
+          </li>
+        ))}
       </UserPetsList>
     </>
   );
