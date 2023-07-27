@@ -1,12 +1,16 @@
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchByCategory } from '../../services/api/noticesFetch';
+import { useSelector } from 'react-redux';
+import authSelector from 'redux/auth/authSelector';
+import { fetchByCategory, fetchByCategoryAuth } from '../../services/api/noticesFetch';
 
 const NoticesCategoriesList = () => {
   const [resByCategory, setResByCategory] = useState();
   console.log('resByCategory:', resByCategory);
   const { categoryName } = useParams();
+  const isLogged = useSelector(authSelector.loggedInSelector);
+  console.log('isLogged:', useSelector(authSelector.loggedInSelector));
 
   useEffect(() => {
     if (!categoryName) return;
@@ -15,6 +19,12 @@ const NoticesCategoriesList = () => {
 
     async function fetchDataByCategory() {
       try {
+        if (isLogged && categoryName === 'own' && categoryName === 'favorite') {
+          const response = await fetchByCategoryAuth(categoryName, controller);
+          response.data.map(({ notices }) => {
+            return setResByCategory(notices);
+          });
+        }
         const response = await fetchByCategory(categoryName, controller);
 
         // if (response.data) return setResByCategory(null);
@@ -22,7 +32,9 @@ const NoticesCategoriesList = () => {
         response.data.map(({ notices }) => {
           return setResByCategory(notices);
         });
-      } catch (error) {}
+      } catch (e) {
+        console.log(e.message);
+      }
     }
 
     fetchDataByCategory();
@@ -30,7 +42,7 @@ const NoticesCategoriesList = () => {
     return () => {
       controller.abort();
     };
-  }, [categoryName]);
+  }, [categoryName, isLogged]);
 
   return (
     <div>

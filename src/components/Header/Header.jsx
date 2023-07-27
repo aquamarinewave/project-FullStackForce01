@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  MainHeader,
-  // Container
-} from './Header.styled';
+import { MainHeader } from './Header.styled';
 import Navigation from 'components/Navigation/Navigation';
 import Logo from 'components/Logo/Logo';
 
@@ -15,10 +12,8 @@ const Header = () => {
 
   return (
     <MainHeader>
-      {/* <Container> */}
-        <Logo toggleMenu={toggleMenu} />
-        <Navigation toggleMenu={toggleMenu} openMenu={menuOpen} />
-      {/* </Container> */}
+      <Logo toggleMenu={toggleMenu} />
+      <Navigation toggleMenu={toggleMenu} openMenu={menuOpen} />
     </MainHeader>
   );
 };
