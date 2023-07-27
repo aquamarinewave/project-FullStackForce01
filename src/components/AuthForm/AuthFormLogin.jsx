@@ -13,6 +13,9 @@ import {
   AuthLoginButton,
   AuthShowPassword,
   AuthIconShowPassword,
+  AuthIconsValidation,
+  AuthIconFailed,
+  AuthIconCheck,
 } from './AuthForm.styled';
 
 import authOperations from '../../redux/auth/operations';
@@ -32,6 +35,9 @@ const userLoginSchema = object({
 
 const initialValues = { name: '', email: '', password: '', confirmPassword: '' };
 
+
+
+
 const AuthFormLogin = props => {
   const dispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -46,31 +52,103 @@ const AuthFormLogin = props => {
     <ContainerAuth>
       <AuthTitle>Login</AuthTitle>
       <Formik initialValues={initialValues} validationSchema={userLoginSchema} onSubmit={handleSubmit}>
-        {({ errors }) => (
+        {({ errors, touched, handleChange, handleBlur, values, isValid, isSubmitting }) => (
           <AuthForm>
-            <AuthField border={errors.email && '1px solid red'} type="email" name="email" placeholder="Email" />
-            <ErrorMessage name="email" render={message => <ErrorText>{message}</ErrorText>} />
             <AuthFieldWrap>
               <AuthField
-                border={errors.password && '1px solid red'}
+                {...props}
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+                valid={touched.email && !errors.email}
+                error={touched.email && errors.email}
+              />
+
+              {errors.email && touched.email && (
+                <AuthIconsValidation>
+                  <AuthIconFailed width={24} height={24}>
+                    <use href={`${sprite}#icon-cross-small`}></use>
+                  </AuthIconFailed>
+                </AuthIconsValidation>
+              )}
+              {!errors.email && touched.email && (
+                <AuthIconsValidation>
+                  <AuthIconCheck width={24} height={24}>
+                    <use href={`${sprite}#icon-check`}></use>
+                  </AuthIconCheck>
+                </AuthIconsValidation>
+              )}
+
+              {errors.email && touched.email && (
+                <ErrorMessage name="email" render={message => <ErrorText>{message}</ErrorText>} />
+              )}
+            </AuthFieldWrap>
+
+            <AuthFieldWrap>
+              <AuthField
                 type={isShowPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+                valid={touched.password && !errors.password}
+                error={touched.password && errors.password}
               />
-              <AuthShowPassword type="button" onClick={() => setIsShowPassword(!isShowPassword)}>
-                {isShowPassword ? (
-                  <AuthIconShowPassword width={24} height={24}>
+
+              {errors.password && touched.password && (
+                <AuthIconsValidation>
+                  <AuthIconFailed width={24} height={24}>
+                    <use href={`${sprite}#icon-cross-small`}></use>
+                  </AuthIconFailed>
+                </AuthIconsValidation>
+              )}
+              {!errors.password && touched.password && (
+                <AuthIconsValidation>
+                  <AuthIconCheck width={24} height={24}>
+                    <use href={`${sprite}#icon-check`}></use>
+                  </AuthIconCheck>
+                </AuthIconsValidation>
+              )}
+
+              {isShowPassword ? (
+                <AuthShowPassword
+                  type="button"
+                  onClick={() => setIsShowPassword(!isShowPassword)}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                  valid={touched.password && !errors.password}
+                  error={touched.password && errors.password}
+                >
+                  <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
                     <use href={`${sprite}#icon-eye-closed`}></use>
                   </AuthIconShowPassword>
-                ) : (
-                  <AuthIconShowPassword width={24} height={24}>
+                </AuthShowPassword>
+              ) : (
+                <AuthShowPassword
+                  type="button"
+                  onClick={() => setIsShowPassword(!isShowPassword)}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                  valid={touched.password && !errors.password}
+                  error={touched.password && errors.password}
+                >
+                  <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
                     <use href={`${sprite}#icon-eye-open`}></use>
                   </AuthIconShowPassword>
-                )}
-              </AuthShowPassword>
+                </AuthShowPassword>
+              )}
+              <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
             </AuthFieldWrap>
-            <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
-            <AuthLoginButton type="submit">Login</AuthLoginButton>
+
+            <AuthLoginButton disabled={!isValid || isSubmitting} type="submit">
+              Login
+            </AuthLoginButton>
             <AuthLinkToLogin>
               Don't have an account? <AuthLinkLogin to="/register">Registration</AuthLinkLogin>
             </AuthLinkToLogin>
