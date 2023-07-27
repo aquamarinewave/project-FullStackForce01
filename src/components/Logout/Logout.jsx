@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import authOperations from 'redux/auth/operations';
 import { Button, ButtonText, IconLogout } from 'components/Logout/Logout.styled';
 import sprite from '../../images/icons.svg';
-import Modal from 'components/ModalApproveAction/ModalApproveAction';
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 const Logout = ({ isMobile, isBlue, isGrey }) => {
   const dispatch = useDispatch();
@@ -25,9 +25,16 @@ const Logout = ({ isMobile, isBlue, isGrey }) => {
         </IconLogout>
       </Button>
       {isModalOpen && (
-        <Modal isOpen={isModalOpen} toggleModal={toggleModal} onApprove={onLogout} onRequestClose={toggleModal}>
+        <ModalApproveAction
+          isOpen={isModalOpen}
+          toggleModal={toggleModal}
+          onApprove={onLogout}
+          onRequestClose={toggleModal}
+          btnIconColor={'#fef9f9'}
+          btnIconName={'icon-logout'}
+        >
           Already leaving?
-        </Modal>
+        </ModalApproveAction>
       )}
     </>
   );
