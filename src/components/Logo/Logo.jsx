@@ -11,13 +11,13 @@ import SmallRetina from '../../images/x2/logo/logo-default.webp';
 
 import { MainLogo } from './Logo.styled';
 
-const Logo = ({toggleMenu}) => {
-  const [isDesktopOrTablet, setIsDesktopOrTablet] = useState(window.innerWidth > 769);
+const Logo = () => {
+  const [isDesktopOrTablet, setIsDesktopOrTablet] = useState(window.innerWidth >= 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktopOrTablet(window.innerWidth > 769);
+      setIsDesktopOrTablet(window.innerWidth >= 768);
       setIsMobile(window.innerWidth < 768);
     };
 

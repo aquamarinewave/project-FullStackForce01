@@ -5,64 +5,33 @@ export const Button = styled.button`
   background: var(--dark-blue);
   border: 2px solid var(--dark-blue);
   cursor: pointer;
- // not for mobile menu
-    ${'' /* display:none; */}
-  }
-
-   display: ${props => (props.isMobile ? 'flex' : 'none')};
-
-  ${'' /* display: none; */}
+  display: ${props => (props.isMobile ? 'flex' : 'none')};
 
   @media screen and (min-width: 768px) {
     height: 44px;
     height: 40px;
     width: 135px;
     justify-content: center;
-    ${'' /* margin-top: 24px; */}
-    //mobile
-   ${'' /* display: flex; */}
-    align-items: center; 
-    
- display: ${props => (props.isMobile ? 'flex' : 'none')};
-   // not for mobile menu
-    ${'' /* display:none; */}
+    align-items: center;
+
+    display: ${props => (props.isMobile ? 'flex' : 'none')};
   }
 
   @media screen and (min-width: 1280px) {
-    height: 40px;
-    width: 135px;
-    ${'' /* margin-top: 20px; */}
-    ${'' /* padding-top: 4px; */}
-    padding-right:20px;
+    padding-right: 20px;
     padding-left: 20px;
     display: flex;
-    justify-content: center;
+
     margin-right: 20px;
-    align-items: center;
-     ${'' /* display: ${props => (props.isMobile ? 'flex' : 'none')}; */}
   }
 `;
 
 export const IconLogout = styled.svg`
-  stroke: var(--bg-color);
+  stroke: ${props => (props.isBlue ? 'var(--dark-blue)' : 'var(--bg-color)')};
   &:hover {
     ${'' /* fill: green; */}
   }
 `;
-const handleColorText = color => {
-  switch (color) {
-    case 'login':
-      return 'var(--bg-color)';
-    case 'register':
-      return 'var(--accent-color)';
-    case 'logout':
-      return 'var(--bg-color)';
-    case 'name':
-      return 'var(--accent-color)';
-    default:
-      return 'var(--main-color)';
-  }
-};
 
 const handleWeightText = weight => {
   switch (weight) {
@@ -80,7 +49,7 @@ const handleWeightText = weight => {
 export const ButtonText = styled.p`
   margin-right: ${props => props.margin || '0px'};
   margin-left: ${props => props.marginL || '0px'};
-  color: ${({ color }) => handleColorText(color)};
+  color: ${props => (props.isGrey ? '#888888' : 'var(--bg-color)')};
   font-weight: ${({ weight }) => handleWeightText(weight)};
 
   @media screen and (min-width: 768px) {
@@ -89,14 +58,5 @@ export const ButtonText = styled.p`
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.64px;
-    ${'' /* padding-right: 8px; */}
-  }
-  @media screen and (min-width: 1280px) {
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.64px;
-    ${'' /* padding-right: 8px; */}
   }
 `;
