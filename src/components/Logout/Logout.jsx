@@ -5,7 +5,7 @@ import { Button, ButtonText, IconLogout } from 'components/Logout/Logout.styled'
 import sprite from '../../images/icons.svg';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
-const Logout = ({ isMobile }) => {
+const Logout = ({ isMobile, isBlue, isGrey }) => {
   const dispatch = useDispatch();
   const onLogout = () => dispatch(authOperations.logoutUser());
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,15 +16,11 @@ const Logout = ({ isMobile }) => {
 
   return (
     <>
-      <Button
-        onClick={toggleModal}
-        //   onClick={onLogout}
-        isMobile={isMobile}
-      >
-        <ButtonText color="logout" weight="bold" margin="8px">
+      <Button onClick={toggleModal} isMobile={isMobile}>
+        <ButtonText color="logout" weight="bold" margin="8px" isGrey={isGrey}>
           Logout
         </ButtonText>
-        <IconLogout width={24} height={24}>
+        <IconLogout width={24} height={24} isBlue={isBlue}>
           <use href={`${sprite}#icon-logout`}></use>
         </IconLogout>
       </Button>

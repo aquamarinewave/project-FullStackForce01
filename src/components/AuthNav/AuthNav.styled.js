@@ -1,20 +1,12 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
-  ${
-    '' /* position: relative;
-  top:0;
-  right: 0; */
-  }
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid var(--accent-color);
   background: var(--accent-color);
@@ -26,21 +18,8 @@ export const LoginButton = styled.button`
     width: 165px;
     padding-right: 20px;
     padding-left: 20px;
-    ${'' /* margin-top: 24px; */}
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    height: 40px;
-    width: 165px;
-    ${'' /* margin-top: 20px; */}
-    ${'' /* padding-top: 4px; */}
-    padding-right:20px;
-    padding-left: 20px;
-    display: flex;
     justify-content: center;
     margin-right: 20px;
   }
@@ -74,7 +53,7 @@ const handleWeightText = weight => {
   }
 };
 
-export const MButtonText = styled.p`
+export const ButtonText = styled.p`
   margin-right: ${props => props.margin || '0px'};
   margin-left: ${props => props.marginL || '0px'};
   color: ${({ color }) => handleColorText(color)};
@@ -86,19 +65,11 @@ export const MButtonText = styled.p`
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.64px;
-    ${'' /* padding-right: 8px; */}
-  }
-  @media screen and (min-width: 1280px) {
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.64px;
-    ${'' /* padding-right: 8px; */}
+ 
   }
 `;
 
-export const RegisterButton = styled.button`
+export const RegisterButton = styled(NavLink)`
   display: none;
   border-radius: 40px;
   background: var(--main-light-color);
@@ -108,20 +79,7 @@ export const RegisterButton = styled.button`
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    ${
-      '' /* max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px; */
-    }
-    margin-right: 24px;
-    height: 40px;
-    width: 142px;
-    ${'' /* margin-top: 24px; */}
-    display: flex;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 1280px) {
+   margin-right: 24px;
     height: 40px;
     width: 142px;
     display: flex;
@@ -137,6 +95,9 @@ export const BurgerButton = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
 `;
 
 export const IconPawPrint = styled.svg`

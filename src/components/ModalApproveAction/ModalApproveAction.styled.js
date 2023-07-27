@@ -7,7 +7,6 @@ export const Backdrop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 100%;
   height: 100%;
 
@@ -15,6 +14,7 @@ export const Backdrop = styled.div`
 
   z-index: 9999;
 `;
+
 export const Container = styled.div`
   position: absolute;
   top: 50%;
