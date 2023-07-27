@@ -1,4 +1,3 @@
-import Icon from 'utils/Icon/Icon';
 import {
   SearchContainer,
   SearchForm,
@@ -17,7 +16,7 @@ const Search = () => {
         <SearchIconContainer>
           <SearchIconBtn type="button">
             <IconSearch width={24} height={24}>
-              <use href={`${sprite}#icon-pawprint-1`}></use>
+              <use href={`${sprite}#icon-search`}></use>
             </IconSearch>
             <svg width={24} height={24}>
               <use href={`${sprite}#icon-pawprint-1`}></use>
