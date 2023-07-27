@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 import { Nav, ButtonText, UserButton, BurgerButton, IconUser, IconBurger } from './UserNav.styled';
 import Logout from 'components/Logout/Logout';
-import Modal from 'components/ModalApproveAction/ModalApproveAction';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 import useResize from 'hooks/useResize';
 import sprite from '../../images/icons.svg';
