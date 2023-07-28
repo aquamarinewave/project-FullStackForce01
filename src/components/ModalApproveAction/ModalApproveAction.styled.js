@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 
 export const Backdrop = styled.div`
-  position: relative;
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(97, 97, 97, 0.6);
-  backdrop-filter: blur(4px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 9999;
 `;
 
 export const Container = styled.div`
@@ -18,7 +24,7 @@ export const Container = styled.div`
 
   padding: 60px 0;
   border-radius: 20px;
-  background-color: #fff;
+  background-color: var(--main-light-color);
 
   transform: translate(-50%, -50%);
   @media screen and (min-width: 768px) {
@@ -131,6 +137,7 @@ export const BtnText = styled.span`
   margin-right: 8px;
 `;
 
-export const TrashIcon = styled.svg`
-  stroke: #fef9f9;
+export const BtnIcon = styled.svg`
+  stroke: ${({ color }) => color};
+  fill: ${({ color }) => color};
 `;

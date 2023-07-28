@@ -1,13 +1,23 @@
+// import { useState } from 'react';
+import { BoxInputField, FieldLabel, InputField } from '../SecondStageForm/SecondStageForm.styled';
 import {
   BoxPetAvatar,
+  BoxRadioButtonSex,
   ContainerAvatar,
   FieldAvatar,
+  IconSex,
   InputFieldTextArea,
   ParagraphPetAvatar,
+  RadioButtonSex,
   ShowPlaceholderAvatar,
   TextArea,
   TextSpan,
 } from './ThirdStageForm.styled';
+// import { RadioButton } from '../FirstStageForm/FirstStageForm.styled';
+import { Field } from 'formik';
+import Icon from 'utils/Icon/Icon';
+
+import sprite from '../../../images/icons.svg';
 
 const ThirdStageForm = ({
   showPlaceholder,
@@ -17,6 +27,8 @@ const ThirdStageForm = ({
   previewImage,
   formik,
   currentRadioButton,
+  selectedGender,
+  handleSexChange,
 }) => {
   // const handlePhotoChange = event => {
   //   const file = event.currentTarget.files[0];
@@ -35,12 +47,31 @@ const ThirdStageForm = ({
   //   }
   // };
 
+  const colorIcon = checked => {
+    switch (checked) {
+      case 'male':
+        return '#fef9f9';
+      case 'female':
+        return '#888';
+      default:
+        return 'var(--dark-blue)';
+    }
+  };
+  const colorIconFemale = checked => {
+    switch (checked) {
+      case 'female':
+        return '#fef9f9';
+      case 'male':
+        return '#888';
+      default:
+        return 'var(--fail-color)';
+    }
+  };
+
   const handlePhotoChange = event => {
     const file = event.currentTarget.files[0];
     if (file) {
-      const formData = new FormData();
-      formData.append('avatar', file);
-      setSelectedFile(formData);
+      setSelectedFile(file);
       setPreviewImage(URL.createObjectURL(file));
       setShowPlaceholder(false);
     } else {
@@ -50,47 +81,111 @@ const ThirdStageForm = ({
     }
   };
 
-  if (currentRadioButton === 'your_pet') {
-    return (
-      <>
-        <ContainerAvatar>
-          <ParagraphPetAvatar>Load the pet’s image:</ParagraphPetAvatar>
-          <BoxPetAvatar
-            onClick={() => {
-              // Коли клікаємо на контейнер, активуємо вікно вибору файлів
-              if (!showPlaceholder) return;
-              const fileInput = document.getElementById('photoInput');
-              if (fileInput) {
-                fileInput.click();
-              }
-            }}
-          >
-            {showPlaceholder ? (
-              <ShowPlaceholderAvatar>Заглушка</ShowPlaceholderAvatar>
-            ) : (
-              <img src={previewImage} alt="Selected" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            )}
-            <FieldAvatar type="file" id="photoInput" name="avatar" accept="image/*" onChange={handlePhotoChange} />
-          </BoxPetAvatar>
-        </ContainerAvatar>
-        <div>
-          <TextSpan>Comments</TextSpan>
-          <InputFieldTextArea
-            as={TextArea} // Використовуємо наші стилі для textarea
-            id="comments"
-            name="comments" // Вказуємо ім'я поля, яке буде використовуватись в Formik
-            placeholder="Type of pet"
-            value={formik.values.comments}
+  const optionsSex = [
+    {
+      value: 'female',
+      label: 'Female',
+    },
+    {
+      value: 'male',
+      label: 'Male',
+    },
+  ];
+
+  return (
+    <>
+      {currentRadioButton !== 'your_pet' && (
+        <>
+          {' '}
+          <ParagraphPetAvatar>The sex</ParagraphPetAvatar>
+          <BoxRadioButtonSex>
+            {optionsSex.map(({ value, label }) => (
+              <RadioButtonSex key={value} checked={selectedGender === value}>
+                <IconSex
+                  className={value === 'male' ? 'male-icon' : 'female-icon'}
+                  colorIcon={colorIcon(selectedGender)}
+                  colorIconFemale={colorIconFemale(selectedGender)}
+                >
+                  <use href={`${sprite}#icon-${value}`}></use>
+                </IconSex>
+                {label}
+                <Field
+                  key={`opt${value}`}
+                  type="radio"
+                  name={`sex`}
+                  id={`opt${value}`}
+                  value={value}
+                  onChange={handleSexChange}
+                />
+              </RadioButtonSex>
+            ))}
+          </BoxRadioButtonSex>
+        </>
+      )}
+      <ContainerAvatar>
+        <ParagraphPetAvatar>Load the pet’s image:</ParagraphPetAvatar>
+        <BoxPetAvatar>
+          {showPlaceholder ? (
+            <ShowPlaceholderAvatar>
+              <Icon name="plus" color="var(--dark-blue)" size={30} />
+            </ShowPlaceholderAvatar>
+          ) : (
+            <img src={previewImage} alt="Selected" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          )}
+          <FieldAvatar type="file" id="photoInput" name="avatar" accept="image/*" onChange={handlePhotoChange} />
+        </BoxPetAvatar>
+      </ContainerAvatar>
+      {currentRadioButton !== 'your_pet' && (
+        <BoxInputField key="location">
+          <FieldLabel htmlFor="location">Location</FieldLabel>
+          <InputField
+            type="text"
+            id="location"
+            name="location"
+            autoComplete="off"
+            placeholder="Type of location"
+            value={formik.values.location}
             onChange={formik.handleChange}
-            // onChange={event => {
-            //   handlePhotoChange(event);
-            //   setSelectedFile(event.currentTarget.files[0]);
-            // }}
+            // onKeyPress={name === 'birthday' ? handleNumericInput : null}
+            // inputMode={name === 'birthday' ? 'numeric' : 'text'}
+            // maxLength={10}
+            // pattern={pattern}
           />
-        </div>
-      </>
-    );
-  }
+          {/* {formik.touched[name] && formik.errors[name] && <div style={{ color: 'red' }}>{formik.errors[name]}</div>} */}
+        </BoxInputField>
+      )}
+      {currentRadioButton === 'sell' && (
+        <BoxInputField key="price">
+          <FieldLabel htmlFor="price">Price</FieldLabel>
+          <InputField
+            type="text"
+            id="price"
+            name="price"
+            autoComplete="off"
+            placeholder="Type of price"
+            value={formik.values.price}
+            onChange={formik.handleChange}
+          />
+          {/* {formik.touched[name] && formik.errors[name] && <div style={{ color: 'red' }}>{formik.errors[name]}</div>} */}
+        </BoxInputField>
+      )}
+      <div>
+        <TextSpan>Comments</TextSpan>
+        <InputFieldTextArea
+          as={TextArea} // Використовуємо наші стилі для textarea
+          id="comments"
+          name="comments" // Вказуємо ім'я поля, яке буде використовуватись в Formik
+          placeholder="Type of pet"
+          value={formik.values.comments}
+          onChange={formik.handleChange}
+          // onChange={event => {
+          //   handlePhotoChange(event);
+          //   setSelectedFile(event.currentTarget.files[0]);
+          // }}
+        />
+      </div>
+    </>
+  );
 };
 
 export default ThirdStageForm;

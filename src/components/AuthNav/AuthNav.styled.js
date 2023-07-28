@@ -1,48 +1,37 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
   display: flex;
+  flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
   align-items: center;
-  ${
-    '' /* position: relative;
-  top:0;
-  right: 0; */
-  }
+  margin-bottom: ${props => (props.isMobile ? '40px' : '')};
+
   @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1280px) {
+    flex-direction: row;
+    margin-bottom: 0px;
+    display: flex;
   }
 `;
 
-export const LoginButton = styled.button`
+export const LoginButton = styled(NavLink)`
   border-radius: 40px;
   border: 2px solid var(--accent-color);
   background: var(--accent-color);
   cursor: pointer;
-  display: none;
-
+  display: ${props => (props.isMobile ? 'flex' : 'none')};
+  height: 40px;
+  width: 165px;
+  padding-right: 20px;
+  padding-left: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-right: ${props => (props.isMobile ? '' : '20px')};
+  margin-bottom: ${props => (props.isMobile ? '12px' : '')};
   @media screen and (min-width: 768px) {
-    height: 40px;
-    width: 165px;
-    padding-right: 20px;
-    padding-left: 20px;
-    ${'' /* margin-top: 24px; */}
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: 0px;
     margin-right: 20px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    height: 40px;
-    width: 165px;
-    ${'' /* margin-top: 20px; */}
-    ${'' /* padding-top: 4px; */}
-    padding-right:20px;
-    padding-left: 20px;
     display: flex;
-    justify-content: center;
-    margin-right: 20px;
   }
 `;
 
@@ -74,7 +63,7 @@ const handleWeightText = weight => {
   }
 };
 
-export const MButtonText = styled.p`
+export const ButtonText = styled.p`
   margin-right: ${props => props.margin || '0px'};
   margin-left: ${props => props.marginL || '0px'};
   color: ${({ color }) => handleColorText(color)};
@@ -86,57 +75,40 @@ export const MButtonText = styled.p`
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.64px;
-    ${'' /* padding-right: 8px; */}
-  }
-  @media screen and (min-width: 1280px) {
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.64px;
-    ${'' /* padding-right: 8px; */}
+ 
   }
 `;
 
-export const RegisterButton = styled.button`
-  display: none;
+export const RegisterButton = styled(NavLink)`
+  display: ${props => (props.isMobile ? 'flex' : 'none')};
   border-radius: 40px;
-  background: var(--main-light-color);
+  background: transparent;
   border: 2px solid var(--accent-color);
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-right: ${props => (props.isMobile ? '' : '24px')};
+  height: 40px;
+  ${'' /* width: 142px; */}
+  width: ${props => (props.isMobile ? '165px' : '142px')};
+  
 
   @media screen and (min-width: 768px) {
-    ${
-      '' /* max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px; */
-    }
-    margin-right: 24px;
-    height: 40px;
-    width: 142px;
-    ${'' /* margin-top: 24px; */}
     display: flex;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 1280px) {
-    height: 40px;
-    width: 142px;
-    display: flex;
-    align-items: center;
   }
 `;
 
 export const BurgerButton = styled.button`
   cursor: pointer;
-  color: var(--main-light-color);
   border: transparent;
-  background: var(--main-light-color);
+  background: transparent;
   display: flex;
   align-items: center;
   padding: 0;
+  display: ${props => (props.isMobile ? 'none' : 'flex')};
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
 `;
 
 export const IconPawPrint = styled.svg`

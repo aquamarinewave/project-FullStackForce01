@@ -58,3 +58,44 @@ export const TextArea = styled.textarea`
   border-radius: 20px;
   resize: vertical;
 `;
+
+export const IconSex = styled.svg`
+  width: 24px;
+  height: 24px;
+  fill: none;
+
+  &.male-icon {
+    stroke: ${props => (props.colorIcon === 'male' ? `#fef9f9` : props.colorIcon)};
+  }
+  &.female-icon {
+    stroke: ${props => (props.colorIconFemale === 'female' ? '#fef9f9' : props.colorIconFemale)};
+  }
+`;
+
+export const RadioButtonSex = styled.label`
+  display: flex;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.56px;
+  border-radius: 40px;
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: ${props => (props.checked ? 'var(--dark-blue)' : null)};
+  color: ${props => (props.checked ? '#fef9f9' : '#888')};
+  cursor: pointer;
+  width: fit-content;
+
+  input {
+    display: none;
+  }
+
+  input:checked {
+    color: #fef9f9;
+  }
+`;
+
+export const BoxRadioButtonSex = styled.div`
+  display: flex;
+`;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import {
@@ -15,6 +15,7 @@ import SecondStageForm from './SecondStageForm/SecondStageForm';
 import ThirdStageForm from './ThirdStageForm/ThirdStageForm';
 import FormPetButton from './FormPetButton/FormPetButton';
 import { addNoticeThunk, addPetThunk } from 'redux/pets/operations';
+import { useNavigate } from 'react-router-dom';
 
 const AddPetForm = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,15 @@ const AddPetForm = () => {
   const [selectedFile, setSelectedFile] = useState('');
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [previewImage, setPreviewImage] = useState('');
+  const [selectedGender, setSelectedGender] = useState('');
+  const navigate = useNavigate();
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  useEffect(() => {
+    if (submitSuccess) {
+      navigate('/user');
+    }
+  }, [submitSuccess, navigate]);
 
   const titleColorText = color => {
     switch (color) {
@@ -38,8 +48,10 @@ const AddPetForm = () => {
     switch (title) {
       case 'sell':
         return 'Add pet for sale';
-      case 'lost_or_found':
+      case 'lost-found':
         return 'Add lost pet';
+      case 'for-free':
+        return 'Add a pet in good hands';
       default:
         return 'Add pet';
     }
@@ -58,6 +70,8 @@ const AddPetForm = () => {
       setCurrentStage('first');
     } else if (currentStage === 'third') {
       setCurrentStage('second');
+    } else {
+      navigate('/user');
     }
   };
 
@@ -70,7 +84,10 @@ const AddPetForm = () => {
         name: '',
         birthday: '',
         type: '',
+        sex: selectedGender,
         comments: '',
+        location: '',
+        price: '',
       }}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         const formData = {
@@ -78,20 +95,25 @@ const AddPetForm = () => {
           avatar: selectedFile,
         };
         if (currentRadioButton === 'your_pet') {
-          dispatch(addPetThunk(formData));
-          setSubmitting(false);
-          resetForm();
+          dispatch(addPetThunk(formData))
+            .then(() => setSubmitSuccess(true))
+            .catch(error => console.log('Error submitting form:', error));
+        } else {
+          dispatch(addNoticeThunk(formData))
+            .then(() => setSubmitSuccess(true))
+            .catch(error => console.log('Error submitting form:', error));
         }
-        if (currentRadioButton !== 'your_pet') {
-          dispatch(addNoticeThunk(formData));
-          setSubmitting(false);
-          resetForm();
-        }
+        setSubmitting(false);
+        resetForm();
       }}
     >
       {formik => {
         const handleOptionChange = event => {
           setCurrentRadioButton(event.target.value);
+          formik.handleChange(event);
+        };
+        const handleSexChange = event => {
+          setSelectedGender(event.target.value);
           formik.handleChange(event);
         };
         return (
@@ -122,6 +144,8 @@ const AddPetForm = () => {
                 )}
                 {currentStage === 'third' && (
                   <ThirdStageForm
+                    selectedGender={selectedGender}
+                    handleSexChange={handleSexChange}
                     currentRadioButton={currentRadioButton}
                     formik={formik}
                     showPlaceholder={showPlaceholder}

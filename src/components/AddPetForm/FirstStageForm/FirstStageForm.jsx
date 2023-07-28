@@ -13,22 +13,29 @@ const options = [
     label: 'sell',
   },
   {
-    value: 'lost_or_found',
+    value: 'lost-found',
     label: 'lost/found',
   },
   {
-    value: 'in_good_hands',
+    value: 'for-free',
     label: 'in good hands',
   },
 ];
-
-const FirstStageForm = ({ formik, handleOptionChange, currentRadioButton }) => {
+// lost-found, for-free
+const FirstStageForm = ({ handleOptionChange, currentRadioButton }) => {
   return (
     <>
       {options.map(({ value, label }) => (
         <RadioButton key={value} checked={currentRadioButton === value}>
           <FieldLabel htmlFor={`option_${value}`}>{label}</FieldLabel>
-          <Field type="radio" name="category" id={`option_${value}`} value={value} onChange={handleOptionChange} />
+          <Field
+            key={`option_${value}`}
+            type="radio"
+            name="category"
+            id={`option_${value}`}
+            value={value}
+            onChange={handleOptionChange}
+          />
         </RadioButton>
       ))}
     </>

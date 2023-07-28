@@ -3,14 +3,17 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
-import { fetchByCategory, fetchByCategoryOwn, fetchByCategoryFavorite } from '../../services/api/noticesFetch';
+import { fetchByCategory, fetchByCategoryOwn } from '../../services/api/noticesFetch';
+import fetchGetFavorites from '../ModalNotice/fetchGetFavorites';
 
 const NoticesCategoriesList = () => {
-  const [resByCategory, setResByCategory] = useState();
+  const [resByCategory, setResByCategory] = useState([]);
   console.log('resByCategory:', resByCategory);
   const { categoryName } = useParams();
   const isLogged = useSelector(authSelector.loggedInSelector);
-  console.log('isLogged:', isLogged);
+  console.log('isLogged:', useSelector(authSelector.loggedInSelector));
+
+  console.log(categoryName);
 
   useEffect(() => {
     if (!categoryName) return;
@@ -27,12 +30,19 @@ const NoticesCategoriesList = () => {
           return;
         }
 
+        // if (isLogged && categoryName === 'favorite') {
+        //   const response = await fetchByCategoryFavorite(categoryName, controller);
+        //   response.data.map(({ favorites }) => {
+        //     return setResByCategory(favorites);
+        //   });
+        //   return;
+
         if (isLogged && categoryName === 'favorite') {
-          const response = await fetchByCategoryFavorite(categoryName, controller);
-          response.data.map(({ favorites }) => {
-            return setResByCategory(favorites);
-          });
-          return;
+          fetchGetFavorites()
+            .then(data => {
+              data.map(({ favorites }) => setResByCategory(favorites));
+            })
+            .catch(error => console.log(error));
         }
 
         const response = await fetchByCategory(categoryName, controller);

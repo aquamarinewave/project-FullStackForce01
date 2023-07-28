@@ -1,6 +1,6 @@
 const BASE_URL = 'https://fullstackforce.onrender.com/api/notices/';
 
-export function fetchModalDetail(id) {
+function fetchModalDetail(id) {
 
   return fetch((`${BASE_URL}${id}`)).then(response => {
     if (!response.ok) {
@@ -9,3 +9,5 @@ export function fetchModalDetail(id) {
     return response.json();
   })
 }
+export default fetchModalDetail;
+

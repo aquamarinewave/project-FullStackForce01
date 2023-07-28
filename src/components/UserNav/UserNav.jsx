@@ -1,69 +1,47 @@
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Nav, ButtonText, UserButton, BurgerButton, IconLogout, IconUser, IconBurger } from './UserNav.styled';
-import Logout from 'components/Logout/Logout.styled';
+import { useWindowWidth } from '@react-hook/window-size';
+import { useSelector } from 'react-redux';
+import authSelector from 'redux/auth/authSelector';
+import { Nav, ButtonText, UserButton, BurgerButton, IconUser, IconBurger } from './UserNav.styled';
+import Logout from 'components/Logout/Logout';
+import MobileMenu from 'components/MobileMenu/MobileMenu';
 import sprite from '../../images/icons.svg';
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
+const UserNav = ({ toggleMenu, menuOpen }) => {
+  const width = useWindowWidth();
+  const name = useSelector(authSelector.userNameSelector);
 
-const UserNav = () => {
-
-  const [isTabletOrMobile, setIsTabletOrMobile] = useState(window.innerWidth < 1280);
-  const [isDesktopOrTablet, setIsDesktopOrTablet] = useState(window.innerWidth > 769);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsTabletOrMobile(window.innerWidth < 1280);
-      setIsDesktopOrTablet(window.innerWidth > 769);
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-  
   return (
-    <Nav>
-      <Logout type="button">
-        <ButtonText color="logout" weight="bold" margin="8px">
-          Logout
-        </ButtonText>
-        <IconLogout width={24} height={24}>
-          <use href={`${sprite}#icon-logout`}></use>
-        </IconLogout>
-      </Logout>
-      {isDesktopOrTablet && (
-        <NavLink to="/user">
-          <UserButton>
+    <>
+      <Nav>
+        <Logout onClick={() => <ModalApproveAction />} />
+        {width >= 768 && (
+          <UserButton to="/user">
             <IconUser width={24} height={24}>
               <use href={`${sprite}#icon-user-1`}></use>
             </IconUser>
             <ButtonText color="name" weight="usual" marginL="12px">
-              Name
+              {name}
             </ButtonText>
           </UserButton>
-        </NavLink>
-      )}
-      {isMobile && (
-        <UserButton>
-          <NavLink to="/user">
+        )}
+        {width < 768 && (
+          <UserButton to="/user">
             <IconUser width={24} height={24}>
               <use href={`${sprite}#icon-user-1`}></use>
             </IconUser>
-          </NavLink>
-        </UserButton>
-      )}
-      {isTabletOrMobile && (
-        <BurgerButton type="button">
-          <IconBurger width={24} height={24}>
-            <use href={`${sprite}#icon-menu-hamburger`}></use>
-          </IconBurger>
-        </BurgerButton>
-      )}
-    </Nav>
+          </UserButton>
+        )}
+        {width < 1280 && (
+          <BurgerButton type="button" onClick={() => toggleMenu()}>
+            <IconBurger width={24} height={24}>
+              <use href={`${sprite}#icon-menu-hamburger`}></use>
+            </IconBurger>
+          </BurgerButton>
+        )}
+      </Nav>
+      {width < 1280 && <MobileMenu toggleMenu={toggleMenu} isOpen={menuOpen} openMenu={menuOpen} />}
+    </>
   );
 };
 

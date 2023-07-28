@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const PetCard = styled.div`
+  position: relative;
   width: 280px;
 
   border-radius: 4px;
@@ -53,9 +54,7 @@ export const PetFoto = styled.img`
   }
 `;
 
-export const PetDesc = styled.ul`
-  position: relative;
-`;
+export const PetDesc = styled.ul``;
 
 export const Description = styled.li`
   color: #000;
@@ -99,8 +98,8 @@ export const Subtitle = styled.span`
 
 export const DeleteButton = styled.button`
   position: absolute;
-  top: -12px;
-  right: -12px;
+  top: 12px;
+  right: 12px;
   padding: 0;
   width: 40px;
   height: 40px;

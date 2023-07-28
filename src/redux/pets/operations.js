@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
   try {
-    const { name, avatar, birthday, comments } = formData;
+    const { name, avatar, birthday, type, comments } = formData;
 
     // Створюємо об'єкт FormData та додаємо у нього файли та решту полів
     const data = new FormData();
@@ -11,27 +11,41 @@ export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thu
     data.append('birthday', birthday);
     data.append('comments', comments);
     data.append('avatar', avatar);
+    data.append('type', type);
 
-    console.log('data:', data);
-    const response = await axios.post('/pets', { name, birthday, comments });
+    const response = await axios.post('/pets', data);
 
-    console.log('response:', response.data);
+    console.log('response111:', response.data);
     return response.data;
   } catch (e) {
-    console.log('err:', e.message);
+    console.log('err111:', e.message);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
 
 export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
-  console.log('formData:', formData);
   try {
-    const response = await axios.post('/notice', { formData });
-    console.log('response:', response);
+    const { category, name, avatar, birthday, type, price, sex, location, comments } = formData;
+
+    const data = new FormData();
+    data.append('category', category);
+    data.append('name', name);
+    data.append('birthday', birthday);
+    data.append('comments', comments);
+    data.append('avatar', avatar);
+    data.append('type', type);
+    data.append('sex', sex);
+    data.append('location', location);
+    if (category === 'sell') {
+      data.append('price', price);
+    }
+
+    const response = await axios.post('/notices', data);
+    console.log('response111:', response);
     // toast.success('New contact successfully added.');
     return response.data;
   } catch (e) {
-    console.log('e:', e.message);
+    console.log('e111:', e.message);
     // toast.error(e.message);
     return thunkAPI.rejectWithValue(e.message);
   }

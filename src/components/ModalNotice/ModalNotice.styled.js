@@ -62,7 +62,11 @@ export const ModalContent = styled.div`
 
   .modal-contact {
     color: var(--accent-color);
-    font-weight: 500;  
+    font-weight: 500;
+    
+    a {
+      border-bottom: 1px solid var(--accent-color); 
+    }
   } 
   
   .modal-img {
@@ -175,7 +179,8 @@ export const CloseModalButton = styled.button`
 
 export const IconHeart = styled.svg`
   stroke: #ffffff;
-
+  fill: transparent;
+  
   &:hover {
     stroke: var(--dark-blue);
   }
