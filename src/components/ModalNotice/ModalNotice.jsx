@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {Background , ModalWrapper, ModalContent, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
 import fetchModalDetail from '../ModalNotice/fetchModalDetail';
 import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
+import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
 import sprite from '../../images/icons.svg';
 import authSelector from '../../redux/auth/authSelector';
 import { useSelector } from 'react-redux';
@@ -9,16 +10,37 @@ import { useSelector } from 'react-redux';
 export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
   const [valueModalInfo, setValueModalInfo] = useState({});
   const [userModalInfo, setUserModalInfo] = useState({});
+  const [isSelected, setIsSelected] = useState(false);
+
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
+  // useEffect(() => {
+  //   fetchModalDetail(idCard)
+  //     .then((data) => {
+  //       return [setValueModalInfo({...data.notice}), setUserModalInfo({...data.user})];
+  //       ;
+  //     })
+  //     .catch(error => console.log(error))
+  // }, [idCard]);
+
   useEffect(() => {
-    fetchModalDetail(idCard)
-      .then((data) => {
-        return [setValueModalInfo({...data.notice}), setUserModalInfo({...data.user})];
-        ;
-      })
-      .catch(error => console.log(error))
-  }, [idCard]);
+    async function fetchModalDetailPet() {
+      try {
+        const data = await fetchModalDetail(idCard);
+        setValueModalInfo({...data.notice});
+        setUserModalInfo({...data.user});
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchModalDetailPet();
+    
+    const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
+    if (savedSelectedState !== null) {
+      setIsSelected(JSON.parse(savedSelectedState));
+    }
+
+  }, [idCard])
 
   const modalRef = useRef();
 
@@ -46,10 +68,22 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
     [keyPress]
   );
 
+  const updateLocalStorage = () => {
+    localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
+  };
+
+
   const handleAddToFavorite = () => {
     if(isLoggedIn) {
-      console.log();
-      fetchAddToFavorite(idCard, valueModalInfo);
+
+      if(isSelected) {
+        fetchDeleteToFavorite(idCard)
+        setIsSelected(!isSelected);
+      } else {
+        fetchAddToFavorite(idCard, valueModalInfo);
+        setIsSelected(!isSelected);
+      }
+
     } else {
       console.log('LogOUT');
     }
@@ -58,6 +92,8 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
   const {name, birthday, type, sex, location, comments, avatarURL, category} = valueModalInfo;
 
   const {email, phone} = userModalInfo;
+
+  useEffect(updateLocalStorage, [isSelected]);
 
   return (
     <>
@@ -120,7 +156,7 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                 <div class="modal-buttons">
                   <a href={`tel: ${phone}`} class="modal-button modal-button--primary" type="button">Contact</a>
 
-                  <button class="modal-button modal-button--second" type="button" onClick={handleAddToFavorite}><span>Add to</span> <span>  
+                  <button class={`modal-button modal-button--second ${isSelected ? 'selected' : ''}` } type="button" onClick={handleAddToFavorite}><span>Add to</span> <span>  
                   <IconHeart width={24} height={24}>
                     <use href={`${sprite}#icon-heart`}></use>
                   </IconHeart>
