@@ -1,11 +1,15 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {Background , ModalWrapper, ModalContent, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
-import {fetchModalDetail} from '../ModalNotice/fetchModalDetail';
+import fetchModalDetail from '../ModalNotice/fetchModalDetail';
+import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
 import sprite from '../../images/icons.svg';
+import authSelector from '../../redux/auth/authSelector';
+import { useSelector } from 'react-redux';
 
 export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
   const [valueModalInfo, setValueModalInfo] = useState({});
   const [userModalInfo, setUserModalInfo] = useState({});
+  const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
   useEffect(() => {
     fetchModalDetail(idCard)
@@ -41,6 +45,15 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
     },
     [keyPress]
   );
+
+  const handleAddToFavorite = () => {
+    if(isLoggedIn) {
+      console.log();
+      fetchAddToFavorite(idCard, valueModalInfo);
+    } else {
+      console.log('LogOUT');
+    }
+  };
 
   const {name, birthday, type, sex, location, comments, avatarURL, category} = valueModalInfo;
 
@@ -86,16 +99,16 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                     </ul>
 
                     <ul class="modal-info-item">
-                      <li>{name || ""}</li>
-                      <li>{birthday || ""}</li>
-                      <li>{type || ""}</li>
-                      <li>{location || ""}</li>
-                      <li>{sex || ""}</li>
+                      <li>{name || " "}</li>
+                      <li>{birthday || " "}</li>
+                      <li>{type || " "}</li>
+                      <li>{location || " "}</li>
+                      <li>{sex || " "}</li>
                       <li class="modal-contact" >
-                        <a href={`mailto: ${email}`}>{email}</a>
+                        <a href={`mailto: ${email}`}>{email || " "}</a>
                       </li>
                       <li class="modal-contact">
-                        <a href={`tel: ${phone}`}>{phone}</a>
+                        <a href={`tel: ${phone}`}>{phone || "+380 (XXX) (XXXXXXXX)"}</a>
                       </li>
                     </ul>
                     </div>
@@ -107,7 +120,7 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                 <div class="modal-buttons">
                   <a href={`tel: ${phone}`} class="modal-button modal-button--primary" type="button">Contact</a>
 
-                  <button class="modal-button modal-button--second" type="button"><span>Add to</span> <span>  
+                  <button class="modal-button modal-button--second" type="button" onClick={handleAddToFavorite}><span>Add to</span> <span>  
                   <IconHeart width={24} height={24}>
                     <use href={`${sprite}#icon-heart`}></use>
                   </IconHeart>
