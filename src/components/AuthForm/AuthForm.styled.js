@@ -1,6 +1,7 @@
-import { Form, Field } from 'formik';
+import { Form } from 'formik';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import AuthFormStyledHelpers from './AuthFormStyledHelpers';
 
 export const ErrorText = styled.p`
   color: var(--fail-color);
@@ -63,13 +64,13 @@ export const AuthForm = styled(Form)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
-export const AuthField = styled(Field)`
+export const AuthFieldWrap = styled.div`
+  position: relative;
+`;
+
+export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
   display: flex;
   width: 256px;
   padding: 12px 16px;
@@ -77,7 +78,6 @@ export const AuthField = styled(Field)`
   gap: 10px;
   border-radius: 40px;
   border: 1px solid var(--dark-blue);
-  color: #888;
   font-family: Manrope;
   font-size: 16px;
   font-style: normal;
@@ -85,54 +85,123 @@ export const AuthField = styled(Field)`
   line-height: 150%;
   letter-spacing: 0.64px;
   margin-top: 32px;
-  &:focus {
-    margin-top: ${({ margin }) => margin || '14px'};
+  &:focus,
+  &:active {
+    border: 1px solid var(--dark-blue);
+    outline: none;
   }
-  /* margin-top: ${({ margin }) => margin || '14px'}; */
+
+  ${({ valid }) =>
+    valid &&
+    css`
+      border: 1px solid green;
+
+      &:focus,
+      &:active {
+        border: 1px solid green;
+      }
+    `}
+
+  ${({ error }) =>
+    error &&
+    css`
+      border: 1px solid red;
+      outline: none;
+
+      &:focus,
+      &:active {
+        border: 1px solid red;
+        outline: none;
+        color: ;
+      }
+    `}
 
   @media screen and (min-width: 768px) {
     width: 458px;
-    &:focus {
-      margin-top: ${({ margin }) => margin || '32px'};
-    }
-  }
-  @media screen and (min-width: 1280px) {
   }
 `;
 
-export const AuthFieldWrap = styled.div`
-  position: relative;
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1280px) {
-  }
-`;
-
-export const AuthShowPassword = styled.button`
+export const AuthShowPassword = styled(AuthFormStyledHelpers.FilteredPropsButtonShowPassword)`
   background-color: inherit;
   border: none;
   position: absolute;
   top: 45px;
   left: 80%;
   @media screen and (min-width: 768px) {
-    top: 45px;
     left: 90%;
   }
-  @media screen and (min-width: 1280px) {
-  }
+  ${({ error }) =>
+    error &&
+    css`
+      left: 70%;
+      @media screen and (min-width: 768px) {
+        left: 80%;
+      }
+    `}
+  ${({ valid }) =>
+    valid &&
+    css`
+      left: 70%;
+      @media screen and (min-width: 768px) {
+        left: 80%;
+      }
+    `}
 `;
 
-export const AuthShowConfirmPassword = styled.button`
+export const AuthShowConfirmPassword = styled(AuthFormStyledHelpers.FilteredPropsButtonShowConfirmPassword)`
   background-color: inherit;
   border: none;
   position: absolute;
   top: 45px;
   left: 80%;
   @media screen and (min-width: 768px) {
-    top: 45px;
     left: 90%;
   }
-  @media screen and (min-width: 1280px) {
+
+  ${({ error }) =>
+    error &&
+    css`
+      left: 70%;
+      @media screen and (min-width: 768px) {
+        left: 80%;
+      }
+    `}
+  ${({ valid }) =>
+    valid &&
+    css`
+      left: 70%;
+      @media screen and (min-width: 768px) {
+        left: 80%;
+      }
+    `}
+`;
+
+export const AuthIconShowPassword = styled(AuthFormStyledHelpers.FilteredPropsIconShowPassword)`
+  stroke: var(--dark-blue);
+  ${({ valid }) =>
+    valid &&
+    css`
+      stroke: #888888;
+    `}
+`;
+
+export const AuthIconFailed = styled.svg`
+  stroke: var(--fail-color);
+`;
+
+export const AuthIconCheck = styled.svg`
+  stroke: green;
+`;
+
+export const AuthIconsValidation = styled.button`
+  background-color: inherit;
+  border: none;
+  position: absolute;
+  top: 45px;
+  left: 85%;
+
+  @media screen and (min-width: 768px) {
+    left: 90%;
   }
 `;
 
@@ -156,6 +225,17 @@ export const AuthRegisterButton = styled.button`
   line-height: normal;
   letter-spacing: 0.8px;
   margin-top: 40px;
+  &:disabled {
+    cursor: pointer;
+    background-color: rgb(163, 168, 173);
+    box-shadow: none;
+    color: rgb(255, 255, 255) !important;
+
+    &:hover,
+    &:focus {
+      cursor: not-allowed;
+    }
+  }
   @media screen and (min-width: 768px) {
     width: 458px;
     margin-top: 52px;
@@ -184,10 +264,18 @@ export const AuthLoginButton = styled.button`
   line-height: normal;
   letter-spacing: 0.8px;
   margin-top: 110px;
+  &:disabled {
+    cursor: pointer;
+    background-color: rgb(163, 168, 173);
+    box-shadow: none;
+    color: rgb(255, 255, 255) !important;
+    &:hover,
+    &:focus {
+      cursor: not-allowed;
+    }
+  }
   @media screen and (min-width: 768px) {
     width: 458px;
-  }
-  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -221,17 +309,5 @@ export const AuthLinkLogin = styled(Link)`
   line-height: normal;
   letter-spacing: 0.48px;
   text-decoration-line: underline;
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
-export const AuthIconShowPassword = styled.svg`
-  stroke: var(--dark-blue);
-
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1280px) {
-  }
-`;
