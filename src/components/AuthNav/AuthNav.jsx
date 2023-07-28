@@ -5,7 +5,7 @@ import MobileMenu from 'components/MobileMenu/MobileMenu';
 // import Button from 'components/Button/Button';
 
 const AuthNav = ({ toggleMenu, menuOpen, isMobile }) => {
- const width = useWindowWidth();
+  const width = useWindowWidth();
 
   return (
     <>
@@ -18,13 +18,13 @@ const AuthNav = ({ toggleMenu, menuOpen, isMobile }) => {
             <use href={`${sprite}#icon-pawprint-1`}></use>
           </IconPawPrint>
         </LoginButton>
-      <RegisterButton isMobile={isMobile} to="/register" vonClick={() => toggleMenu()}>
+        <RegisterButton isMobile={isMobile} to="/register" vonClick={() => toggleMenu()}>
           <ButtonText color="register" weight="semi-bold">
             Registration
           </ButtonText>
         </RegisterButton>
         {width < 1280 && (
-          <BurgerButton isMobile={isMobile}  type="button" onClick={() => toggleMenu()}>
+          <BurgerButton isMobile={isMobile} type="button" onClick={() => toggleMenu()}>
             <IconBurger width={24} height={24}>
               <use href={`${sprite}#icon-menu-hamburger`}></use>
             </IconBurger>

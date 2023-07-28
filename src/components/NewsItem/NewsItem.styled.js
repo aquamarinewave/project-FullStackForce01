@@ -1,11 +1,10 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NewsItemWrapper = styled.div`
   width: 400px;
 `;
 
-export const ReadMoreBtn = styled(Link)`
+export const ReadMoreBtn = styled.a`
   width: 100px;
   padding: 3px 7px;
   cursor: pointer;

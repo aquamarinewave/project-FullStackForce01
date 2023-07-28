@@ -1,19 +1,19 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-export async function fetchByNews() {
-  const baseURL = `https://fullstackforce.onrender.com/api/news`;
-  const data = await axios.get(baseURL);
-  return data;
-}
+const baseURL = `https://fullstackforce.onrender.com/api/news`;
 
-export const fetchSearchNews = (inputName, page = 1) => {
-  const baseURL = `https://fullstackforce.onrender.com/api/`;
+// export const fetchByNews = async () => {
+//   const data = await axios.get(baseURL);
+//   return data;
+// };
 
-  return fetch(`${baseURL}news=${inputName}`).then(response => {
+export const fetchSearchNews = async (pattern = '', page = 1) => {
+  try {
+    const response = await fetch(`${baseURL}?title=${pattern}&page=${page}`);
     if (response.ok) {
-      return response.json();
+      return await response.json();
     }
-
-    return Promise.reject(new Error(`Oopps...no movies with this name - ${this.props.inputName}`));
-  });
+  } catch (error) {
+    new Error(`Oopps...no movies with this name - ${pattern}`);
+  }
 };

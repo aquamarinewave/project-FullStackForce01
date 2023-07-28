@@ -1,36 +1,20 @@
-import { useState, useEffect } from 'react';
-import { fetchByNews } from '../../services/api/newsFetch';
 import NewsItem from '../NewsItem/NewsItem';
 
-const NewsList = () => {
-  const [resByVews, setResByNews] = useState();
-
-  useEffect(() => {
-    async function fetchDataByNews() {
-      try {
-        const response = await fetchByNews();
-        console.log(response.data[0].news);
-        setResByNews(response.data[0].news);
-      } catch (error) {}
-    }
-
-    fetchDataByNews();
-  }, []);
-
+const NewsList = ({ news }) => {
   return (
     <div>
-      {resByVews && (
+      {news && news.length && (
         <ul>
-          {resByVews.map(({ _id, title, url, imageUrl, text, data }) => {
+          {news.map(({ _id, title, url, imgUrl, text, date }) => {
             return (
               <li key={_id}>
                 <NewsItem
                   responseByNews={{
                     title,
                     url,
-                    imageUrl,
+                    imgUrl,
                     text,
-                    data,
+                    date,
                   }}
                 />
               </li>

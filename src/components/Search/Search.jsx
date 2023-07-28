@@ -10,30 +10,8 @@ import {
 } from './Search.styled';
 import sprite from '../../images/icons.svg';
 
-// const Search = () => {
-//   return (
-//     <SearchContainer>
-//       <SearchForm>
-//         <SearchInput type="text" name="searchfornews" placeholder="Search" />
-//         <SearchIconContainer>
-//           <SearchIconBtn type="submit">
-//             <IconSearch width={24} height={24}>
-//               <use href={`${sprite}#icon-search`}></use>
-//             </IconSearch>
-//           </SearchIconBtn>
-//           <button type="button">
-//             <IconCrossSmall width={24} height={24}>
-//               <use href={`${sprite}#icon-cross-small`}></use>
-//             </IconCrossSmall>
-//           </button>
-//         </SearchIconContainer>
-//       </SearchForm>
-//     </SearchContainer>
-//   );
-// };
-
-const Search = ({ onSubmit }) => {
-  const [inputName, setInputName] = useState('');
+const Search = ({ pattern, onSubmit, onClear }) => {
+  const [inputName, setInputName] = useState(pattern ?? '');
 
   const hangleNameOnChange = event => {
     setInputName(event.currentTarget.value.toLowerCase());
@@ -47,6 +25,11 @@ const Search = ({ onSubmit }) => {
     }
     onSubmit(inputName);
     setInputName('');
+  };
+
+  const handleClear = () => {
+    setInputName('');
+    onClear();
   };
 
   return (
@@ -68,7 +51,7 @@ const Search = ({ onSubmit }) => {
             </IconSearch>
           </SearchIconBtn>
           {inputName.trim() !== '' && (
-            <button type="button">
+            <button type="button" onClick={handleClear}>
               <IconCrossSmall width={24} height={24}>
                 <use href={`${sprite}#icon-cross-small`}></use>
               </IconCrossSmall>
