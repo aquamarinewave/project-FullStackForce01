@@ -37,8 +37,7 @@ const Title = styled.a`
   }
 `;
 
-const Info = styled.div`
-`
+const Info = styled.div``;
 
 const InfoItemFriend = styled.div`
   display: flex;

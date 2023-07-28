@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 // import React, { useState, useEffect } from 'react';
 
 import { ModalWeek, ModalContent, ModalClose } from './WorkingHours.styled.js';
-const WorkingHours = (props) => {
+const WorkingHours = props => {
+  const { daysWorkingInWeek } = props;
 
-    const { daysWorkingInWeek } = props;
-    
-    // useEffect(() => {
-    //     const DaysAndTimeWork = [];
-    //     daysWorkingInWeek.map()
-    // }, []);
+  // useEffect(() => {
+  //   const DaysAndTimeWork = [];
+  //   daysWorkingInWeek.map();
+  // }, []);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
-    const handleButtonClick = () => {
-      console.log(daysWorkingInWeek);
+  const handleButtonClick = () => {
+    console.log(daysWorkingInWeek);
     setModalOpen(true);
   };
 
@@ -28,9 +27,7 @@ const WorkingHours = (props) => {
       {isModalOpen && (
         <ModalWeek>
           <ModalContent>
-            <ModalClose onClick={closeModal}>
-              &times;
-            </ModalClose>
+            <ModalClose onClick={closeModal}>&times;</ModalClose>
             <p>Содержимое модального окна</p>
           </ModalContent>
         </ModalWeek>

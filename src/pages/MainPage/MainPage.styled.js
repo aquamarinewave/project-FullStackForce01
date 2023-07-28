@@ -10,8 +10,11 @@ import LargebgRetina from '../../images/x2/bg/bg-large.png';
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+   @media screen and (min-width: 768px) {
+
+   }
   @media screen and (min-width: 1280px) {
-    position:relative;
+    position: relative;
   }
 `;
 
@@ -53,8 +56,14 @@ export const Picture = styled.picture`
   margin-right: auto;
 
   @media screen and (min-width: 768px) {
-    margin-left: auto;
-    margin-right: auto;
+    weight: 768px;
+    ${'' /* position: absolute;
+    left: 0;
+    top: 240px; */}
+   
+ margin-left: auto;
+    margin-right: auto; 
+    }
   }
 
   @media screen and (min-width: 1280px) {

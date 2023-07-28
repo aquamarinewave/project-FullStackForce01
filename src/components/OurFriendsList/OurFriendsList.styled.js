@@ -17,4 +17,4 @@ const Wrapper = styled.ul`
   }
 `;
 
-export {Wrapper}
+export { Wrapper };

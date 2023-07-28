@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Wrapper, Title, BackgroundImage,  Picture } from './MainPage.styled';
+import { Wrapper, Title, BackgroundImage, Picture } from './MainPage.styled';
 
 import PetsLargeDef from '../../images/x1/homepagefull/pets-large.png';
 import PetsLarge from '../../images/x1/homepagefull/pets-large.webp';
