@@ -12,11 +12,11 @@ import { MainLogo } from './Logo.styled';
 import { useWindowWidth } from '@react-hook/window-size';
 
 
-const Logo = () => {
+const Logo = ({closeMenu}) => {
 const width = useWindowWidth();
   
   return (
-    <NavLink to="/">
+    <NavLink to="/" onClick={() => closeMenu()}>
       {width >= 768 && (
         <picture>
           <source

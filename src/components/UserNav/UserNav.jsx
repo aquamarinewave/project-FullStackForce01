@@ -1,4 +1,4 @@
-import {useWindowWidth} from '@react-hook/window-size';
+import { useWindowWidth } from '@react-hook/window-size';
 import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 import { Nav, ButtonText, UserButton, BurgerButton, IconUser, IconBurger } from './UserNav.styled';
@@ -8,9 +8,9 @@ import sprite from '../../images/icons.svg';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 const UserNav = ({ toggleMenu, menuOpen }) => {
-  const width = useWindowWidth()
+  const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
-  
+
   return (
     <>
       <Nav>
@@ -40,7 +40,7 @@ const UserNav = ({ toggleMenu, menuOpen }) => {
           </BurgerButton>
         )}
       </Nav>
-      {width < 1280 && <MobileMenu toggleMenu={toggleMenu} isOpen={menuOpen}  openMenu={menuOpen} />}
+      {width < 1280 && <MobileMenu toggleMenu={toggleMenu} isOpen={menuOpen} openMenu={menuOpen} />}
     </>
   );
 };

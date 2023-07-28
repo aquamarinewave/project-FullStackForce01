@@ -77,7 +77,7 @@ export const UserButton = styled(NavLink)`
 
 export const BurgerButton = styled.button`
   cursor: pointer;
-  color: transparent ;
+  color: transparent;
   border: transparent;
   background: transparent;
   display: flex;

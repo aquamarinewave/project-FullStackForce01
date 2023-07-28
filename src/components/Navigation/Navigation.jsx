@@ -4,12 +4,12 @@ import authSelector from 'redux/auth/authSelector';
 import AuthNav from '../AuthNav/AuthNav';
 import UserNav from '../UserNav/UserNav';
 
-const Navigation = ({ toggleMenu, openMenu }) => {
+const Navigation = ({ toggleMenu, openMenu, closeMenu }) => {
   const isLogged = useSelector(authSelector.loggedInSelector);
 
   return (
     <>
-      <Nav />
+      <Nav closeMenu={closeMenu} />
       {isLogged ? (
         <UserNav toggleMenu={toggleMenu} menuOpen={openMenu} />
       ) : (

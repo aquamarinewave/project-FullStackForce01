@@ -3,19 +3,17 @@ import { useEffect } from 'react';
 import authSelector from 'redux/auth/authSelector';
 import { createPortal } from 'react-dom';
 import { useWindowWidth } from '@react-hook/window-size';
+import AuthNav from 'components/AuthNav/AuthNav';
 import {
   Menu,
   CloseButton,
   ButtonText,
   TopMenu,
   IconCross,
-  LoginButton,
-  IconPawPrint,
-  RegisterButton,
   Container,
   IconUser,
   UserButton,
-ButtonContainer
+  ButtonContainer,
 } from './MobileMenu.styled';
 import Logo from '../Logo/Logo';
 import Nav from '../Nav/Nav';
@@ -28,12 +26,12 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
   const isLogged = useSelector(authSelector.loggedInSelector);
 
   useEffect(() => {
-    if (isOpen) {
+    if ((isOpen && isLogged) || (isOpen && !isLogged)) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-  }, [isOpen]);
+  }, [isOpen, isLogged]);
 
   return isOpen
     ? createPortal(
@@ -45,26 +43,13 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
             {!isLogged ? (
               <>
                 <Container>
-                  <LoginButton to="/login" onClick={() => toggleMenu()}>
-                    <ButtonText color="login" margin="8px" weight="bold">
-                      Log IN
-                    </ButtonText>
-                    <IconPawPrint width={24} height={24}>
-                      <use href={`${sprite}#icon-pawprint-1`}></use>
-                    </IconPawPrint>
-                  </LoginButton>
-                  <RegisterButton to="/register" onClick={() => toggleMenu()}>
-                    <ButtonText color="register" weight="semi-bold">
-                      Registration
-                    </ButtonText>
-                  </RegisterButton>
+                  {width > 768 && width < 1280 && <AuthNav isMobile />}
+                  <CloseButton type="button" onClick={() => toggleMenu()}>
+                    <IconCross width={24} height={24}>
+                      <use href={`${sprite}#icon-cross`}></use>
+                    </IconCross>
+                  </CloseButton>
                 </Container>
-                <CloseButton type="button" onClick={() => toggleMenu()}>
-                  <IconCross width={24} height={24}>
-                    <use href={`${sprite}#icon-cross`}></use>
-                  </IconCross>
-                </CloseButton>
-                <Nav isMobile />
               </>
             ) : (
               <ButtonContainer>
@@ -77,7 +62,8 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
               </ButtonContainer>
             )}
           </TopMenu>
-          {width < 768 && (
+          {!isLogged && width < 768 && <AuthNav isMobile />}
+          {isLogged && width < 768 && (
             <>
               <UserButton to="/user">
                 <IconUser width={24} height={24}>
@@ -90,7 +76,7 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
             </>
           )}
           <Nav isMobile />
-          {width < 768 && <Logout isMobile />}
+          {isLogged && width < 768 && <Logout isMobile />}
         </Menu>,
         document.querySelector('#portal-root')
       )
