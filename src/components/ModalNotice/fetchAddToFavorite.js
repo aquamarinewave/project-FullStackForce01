@@ -18,6 +18,8 @@ function fetchAddToFavorite(id, data) {
   .catch(error => console.log(error));
 
 }
+
+
 export default fetchAddToFavorite;
 
 

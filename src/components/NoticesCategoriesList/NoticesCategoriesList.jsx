@@ -8,12 +8,11 @@ import fetchGetFavorites from '../ModalNotice/fetchGetFavorites';
 
 const NoticesCategoriesList = () => {
   const [resByCategory, setResByCategory] = useState([]);
+
   console.log('resByCategory:', resByCategory);
   const { categoryName } = useParams();
   const isLogged = useSelector(authSelector.loggedInSelector);
   console.log('isLogged:', useSelector(authSelector.loggedInSelector));
-
-  console.log(categoryName);
 
   useEffect(() => {
     if (!categoryName) return;
@@ -32,7 +31,7 @@ const NoticesCategoriesList = () => {
         if(isLogged && categoryName === 'favorite') {
           fetchGetFavorites()
           .then((data) => {
-            data.map(({ favorites }) => setResByCategory(favorites))
+            data.map(({ favorites }) => setResByCategory(favorites));
           })
           .catch(error => console.log(error))
         }
@@ -78,6 +77,7 @@ const NoticesCategoriesList = () => {
                       type,
                       avatarURL,
                     }}
+
                   />
                 </li>
               );
