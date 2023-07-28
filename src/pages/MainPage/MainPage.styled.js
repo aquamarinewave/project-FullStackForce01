@@ -10,9 +10,6 @@ import LargebgRetina from '../../images/x2/bg/bg-large.png';
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  @media screen and (min-width: 1280px) {
-    display: block;
-  }
 `;
 
 export const Title = styled.h1`
@@ -47,22 +44,39 @@ export const Title = styled.h1`
   }
 `;
 
+export const ImgBlock = styled.div`
+  position: relative;
+  width: 320px;
+  height: 394px;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    height: 818px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 917px;
+    height: 200px;
+  }
+`;
+
 export const Picture = styled.picture`
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 320px;
+  position: absolute;
+  left: 0;
+  top: -45px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 27px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 768px;
+    left: 0;
+    top: -90px;
   }
 
   @media screen and (min-width: 1280px) {
-    position: absolute;
-    bottom: 20px;
-    ${'' /* top: -293px; */}
-    right: calc((100% - 1314px)/2);
+    width: 917px;
+    height: 851px;
+    margin-top: 0px;
+    left: 202px;
+    top: -510px;
   }
 `;
 
