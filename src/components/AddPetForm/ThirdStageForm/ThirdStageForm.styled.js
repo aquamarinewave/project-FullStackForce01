@@ -59,6 +59,19 @@ export const TextArea = styled.textarea`
   resize: vertical;
 `;
 
+export const IconSex = styled.svg`
+  width: 24px;
+  height: 24px;
+  fill: none;
+
+  &.male-icon {
+    stroke: ${props => (props.colorIcon === 'male' ? `#fef9f9` : props.colorIcon)};
+  }
+  &.female-icon {
+    stroke: ${props => (props.colorIconFemale === 'female' ? '#fef9f9' : props.colorIconFemale)};
+  }
+`;
+
 export const RadioButtonSex = styled.label`
   display: flex;
   font-size: 14px;
@@ -78,22 +91,11 @@ export const RadioButtonSex = styled.label`
     display: none;
   }
 
-  input:checked + span {
+  input:checked {
     color: #fef9f9;
   }
 `;
 
-export const IconSex = styled.svg`
-  /* stroke: var(--bg-color); */
-
-  &:hover {
-    ${'' /* fill: green; */}
-  }
-`;
 export const BoxRadioButtonSex = styled.div`
   display: flex;
-
-  &:hover {
-    ${'' /* fill: green; */}
-  }
 `;
