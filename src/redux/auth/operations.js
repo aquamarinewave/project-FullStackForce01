@@ -18,7 +18,8 @@ const registrationUser = createAsyncThunk('auth/register', async (registerData, 
     token.set(response.data.token);
     return response.data;
   } catch (error) {
-    return thunkApi.rejectWithValue(error.message);
+    alert(error.response.data.message);
+    return thunkApi.rejectWithValue(error.response.data.message)
   }
 });
 
@@ -28,7 +29,9 @@ const loginUser = createAsyncThunk('auth/login', async (loginData, thunkApi) => 
     token.set(response.data.token);
     return response.data;
   } catch (error) {
-    return thunkApi.rejectWithValue(error.message);
+   
+    alert(error.response.data.message);
+    return thunkApi.rejectWithValue(error.response.data.message)
   }
 });
 
