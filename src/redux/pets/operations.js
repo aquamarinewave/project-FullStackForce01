@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
-  console.log('formData:', formData);
   try {
     const { name, avatar, birthday, type, comments } = formData;
 
@@ -16,16 +15,15 @@ export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thu
 
     const response = await axios.post('/pets', data);
 
-    // console.log('response:', response.data);
+    console.log('response111:', response.data);
     return response.data;
   } catch (e) {
-    console.log('err:', e.message);
+    console.log('err111:', e.message);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
 
 export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
-  console.log('formData2:', formData);
   try {
     const { category, name, avatar, birthday, type, price, sex, location, comments } = formData;
 
@@ -38,16 +36,16 @@ export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData
     data.append('type', type);
     data.append('sex', sex);
     data.append('location', location);
-    data.append('price', price);
-    // }
+    if (category === 'sell') {
+      data.append('price', price);
+    }
 
-    console.log('data:', data);
     const response = await axios.post('/notices', data);
-    console.log('response:', response);
+    console.log('response111:', response);
     // toast.success('New contact successfully added.');
     return response.data;
   } catch (e) {
-    console.log('e:', e.message);
+    console.log('e111:', e.message);
     // toast.error(e.message);
     return thunkAPI.rejectWithValue(e.message);
   }
