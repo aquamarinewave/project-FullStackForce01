@@ -9,14 +9,14 @@ import SmallRetina from '../../images/x2/logo/logo-default.webp';
 
 import { MainLogo } from './Logo.styled';
 
-import useResize from 'hooks/useResize';
+import { useWindowWidth } from '@react-hook/window-size';
 
 
-const Logo = () => {
-  const [width] = useResize();
+const Logo = ({closeMenu}) => {
+const width = useWindowWidth();
   
   return (
-    <NavLink to="/">
+    <NavLink to="/" onClick={() => closeMenu()}>
       {width >= 768 && (
         <picture>
           <source

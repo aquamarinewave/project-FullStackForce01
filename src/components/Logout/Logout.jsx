@@ -30,7 +30,7 @@ const Logout = ({ isMobile, isBlue, isGrey }) => {
           toggleModal={toggleModal}
           onApprove={onLogout}
           onRequestClose={toggleModal}
-          btnIconColor={'#fef9f9'}
+          btnIconColor={'var(--bg-color)'}
           btnIconName={'icon-logout'}
         >
           Already leaving?

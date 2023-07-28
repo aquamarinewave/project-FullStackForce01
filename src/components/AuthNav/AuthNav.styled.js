@@ -3,7 +3,15 @@ import styled from 'styled-components';
 
 export const Nav = styled.nav`
   display: flex;
+  flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
   align-items: center;
+  margin-bottom: ${props => (props.isMobile ? '40px' : '')};
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    margin-bottom: 0px;
+    display: flex;
+  }
 `;
 
 export const LoginButton = styled(NavLink)`
@@ -11,17 +19,19 @@ export const LoginButton = styled(NavLink)`
   border: 2px solid var(--accent-color);
   background: var(--accent-color);
   cursor: pointer;
-  display: none;
-
+  display: ${props => (props.isMobile ? 'flex' : 'none')};
+  height: 40px;
+  width: 165px;
+  padding-right: 20px;
+  padding-left: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-right: ${props => (props.isMobile ? '' : '20px')};
+  margin-bottom: ${props => (props.isMobile ? '12px' : '')};
   @media screen and (min-width: 768px) {
-    height: 40px;
-    width: 165px;
-    padding-right: 20px;
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: 0px;
     margin-right: 20px;
+    display: flex;
   }
 `;
 
@@ -70,31 +80,32 @@ export const ButtonText = styled.p`
 `;
 
 export const RegisterButton = styled(NavLink)`
-  display: none;
+  display: ${props => (props.isMobile ? 'flex' : 'none')};
   border-radius: 40px;
-  background: var(--main-light-color);
+  background: transparent;
   border: 2px solid var(--accent-color);
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-right: ${props => (props.isMobile ? '' : '24px')};
+  height: 40px;
+  ${'' /* width: 142px; */}
+  width: ${props => (props.isMobile ? '165px' : '142px')};
+  
 
   @media screen and (min-width: 768px) {
-   margin-right: 24px;
-    height: 40px;
-    width: 142px;
     display: flex;
-    align-items: center;
   }
 `;
 
 export const BurgerButton = styled.button`
   cursor: pointer;
-  color: var(--main-light-color);
   border: transparent;
-  background: var(--main-light-color);
+  background: transparent;
   display: flex;
   align-items: center;
   padding: 0;
+  display: ${props => (props.isMobile ? 'none' : 'flex')};
   @media screen and (min-width: 1280px) {
     display: none;
   }
