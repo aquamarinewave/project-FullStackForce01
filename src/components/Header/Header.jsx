@@ -10,10 +10,14 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <MainHeader>
-      <Logo toggleMenu={toggleMenu} />
-      <Navigation toggleMenu={toggleMenu} openMenu={menuOpen} />
+      <Logo closeMenu={closeMenu} />
+      <Navigation toggleMenu={toggleMenu} openMenu={menuOpen} closeMenu={closeMenu} />
     </MainHeader>
   );
 };

@@ -54,7 +54,7 @@ export const ButtonText = styled.p`
 `;
 
 export const UserButton = styled(NavLink)`
-  background: var(--main-light-color);
+  background: transparent;
   border-radius: 20px;
   border: transparent;
   justify-content: center;
@@ -77,9 +77,9 @@ export const UserButton = styled(NavLink)`
 
 export const BurgerButton = styled.button`
   cursor: pointer;
-  color: var(--main-light-color);
+  color: transparent;
   border: transparent;
-  background: var(--main-light-color);
+  background: transparent;
   display: flex;
   align-items: center;
   padding: 0;

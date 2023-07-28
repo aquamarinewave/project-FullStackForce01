@@ -5,6 +5,7 @@ export const MainNav = styled.nav`
   display: ${props => (props.isMobile ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
+  ${'' /* margin-bottom: 159px; */}
 
   @media screen and (min-width: 768px) {
     display: ${props => (props.isMobile ? 'flex' : 'none')};
