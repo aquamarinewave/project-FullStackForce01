@@ -75,7 +75,6 @@ export const ButtonText = styled.p`
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.64px;
- 
   }
 `;
 
@@ -91,7 +90,6 @@ export const RegisterButton = styled(NavLink)`
   height: 40px;
   ${'' /* width: 142px; */}
   width: ${props => (props.isMobile ? '165px' : '142px')};
-  
 
   @media screen and (min-width: 768px) {
     display: flex;
