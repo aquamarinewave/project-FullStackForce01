@@ -1,11 +1,11 @@
 import { Nav, ButtonText, LoginButton, RegisterButton, BurgerButton, IconPawPrint, IconBurger } from './AuthNav.styled';
-import useResize from 'hooks/useResize';
+import { useWindowWidth } from '@react-hook/window-size';
 import sprite from '../../images/icons.svg';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 // import Button from 'components/Button/Button';
 
 const AuthNav = ({ toggleMenu, menuOpen }) => {
-  const [width] = useResize();
+ const width = useWindowWidth();
 
   return (
     <>
@@ -31,7 +31,7 @@ const AuthNav = ({ toggleMenu, menuOpen }) => {
           </BurgerButton>
         )}
       </Nav>
-      {width < 1280 && <MobileMenu toggleMenu={toggleMenu} openMenu={menuOpen} />}
+      {width < 1280 && <MobileMenu toggleMenu={toggleMenu} isOpen={menuOpen} openMenu={menuOpen} />}
     </>
   );
 };

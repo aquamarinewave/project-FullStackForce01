@@ -72,7 +72,7 @@ export const ButtonText = styled.p`
 export const RegisterButton = styled(NavLink)`
   display: none;
   border-radius: 40px;
-  background: var(--main-light-color);
+  background: transparent;
   border: 2px solid var(--accent-color);
   justify-content: center;
   align-items: center;
@@ -89,9 +89,8 @@ export const RegisterButton = styled(NavLink)`
 
 export const BurgerButton = styled.button`
   cursor: pointer;
-  color: var(--main-light-color);
   border: transparent;
-  background: var(--main-light-color);
+  background: transparent;
   display: flex;
   align-items: center;
   padding: 0;

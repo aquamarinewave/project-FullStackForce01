@@ -86,7 +86,7 @@ export const Link = styled(NavLink)`
 `;
 
 export const UserButton = styled(NavLink)`
-  background: var(--main-light-color);
+  background: transparent;
   border-radius: 20px;
   border: transparent;
   justify-content: center;
@@ -118,9 +118,8 @@ export const IconUser = styled.svg`
 `;
 export const CloseButton = styled.button`
   cursor: pointer;
-  color: var(--main-light-color);
   border: transparent;
-  background: var(--main-light-color);
+  background: transparent;
   display: flex;
   align-items: center;
   padding: 0;
@@ -232,7 +231,7 @@ export const LoginButton = styled(NavLink)`
 export const RegisterButton = styled(NavLink)`
   display: ${props => (props.isMobile ? 'flex' : 'none')};
   border-radius: 40px;
-  background: var(--main-light-color);
+  background: transparent;
   border: 2px solid var(--accent-color);
   justify-content: center;
   align-items: center;

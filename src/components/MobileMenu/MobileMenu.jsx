@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import authSelector from 'redux/auth/authSelector';
 import { createPortal } from 'react-dom';
-import useResize from 'hooks/useResize';
+import { useWindowWidth } from '@react-hook/window-size';
 import {
   Test,
   CloseButton,
@@ -20,12 +21,20 @@ import Nav from '../Nav/Nav';
 import Logout from 'components/Logout/Logout';
 import sprite from '../../images/icons.svg';
 
-const MobileMenu = ({ openMenu, toggleMenu }) => {
-   const [width] = useResize();
+const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
+const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
   const isLogged = useSelector(authSelector.loggedInSelector);
 
-  return createPortal(
+   useEffect(() => {
+     if (isOpen) {
+       document.body.style.overflow = 'hidden';
+     } else {
+      document.body.style.overflow = 'auto';
+     }
+   }, [isOpen]);
+  
+  return isOpen ? createPortal(
     <Test isOpen={openMenu}>
       <TopMenu>
         <div>
@@ -34,7 +43,7 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
         {!isLogged ? (
           <>
             <Container>
-              <LoginButton isMobile={true} to="/login" onClick={() => toggleMenu()}>
+              <LoginButton  to="/login" onClick={() => toggleMenu()}>
                 <ButtonText color="login" margin="8px" weight="bold">
                   Log IN
                 </ButtonText>
@@ -42,7 +51,7 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
                   <use href={`${sprite}#icon-pawprint-1`}></use>
                 </IconPawPrint>
               </LoginButton>
-              <RegisterButton isMobile={true} to="/register" onClick={() => toggleMenu()}>
+              <RegisterButton  to="/register" onClick={() => toggleMenu()}>
                 <ButtonText color="register" weight="semi-bold">
                   Registration
                 </ButtonText>
@@ -82,7 +91,7 @@ const MobileMenu = ({ openMenu, toggleMenu }) => {
       </TopMenu>
     </Test>,
     document.querySelector('#portal-root')
-  );
+  ):null;
 };
 
 export default MobileMenu;
