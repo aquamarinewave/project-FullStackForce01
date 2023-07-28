@@ -6,14 +6,23 @@ export const Button = styled.button`
   border: 2px solid var(--dark-blue);
   cursor: pointer;
   display: ${props => (props.isMobile ? 'flex' : 'none')};
+  height: 40px;
+  width: 135px;
+  justify-content: center;
+  align-items: center;
+  position: ${props => (props.isMobile ? 'absolute' : '')};
+  bottom: ${props => (props.isMobile ? '0' : '')};
+  left: ${props => (props.isMobile ? '0' : '')};
+  margin-left: ${props => (props.isMobile ? '20px' : '')};
+  margin-bottom: ${props => (props.isMobile ? '20px' : '')};
 
   @media screen and (min-width: 768px) {
+    position: ${props => (props.isMobile ? 'relative' : '')};
+    bottom: ${props => (props.isMobile ? '' : '')};
+    left: ${props => (props.isMobile ? '' : '')};
+    margin-left: ${props => (props.isMobile ? '0px' : '')};
+    margin-bottom: ${props => (props.isMobile ? '0px' : '')};
     height: 44px;
-    height: 40px;
-    width: 135px;
-    justify-content: center;
-    align-items: center;
-
     display: ${props => (props.isMobile ? 'flex' : 'none')};
   }
 

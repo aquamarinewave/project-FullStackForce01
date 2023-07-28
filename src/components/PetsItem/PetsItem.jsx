@@ -4,13 +4,14 @@
 //  відкриває модальне вікно  ModalApproveAction
 
 import { useState } from 'react';
-import Modal from 'components/ModalApproveAction/ModalApproveAction';
-
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import sprite from '../../images/icons.svg';
 import { DeleteButton, Description, IconTrash, PetCard, PetDesc, PetFoto, Subtitle } from './PetsItem.styled';
-// import defaultImage from '../../images/x1/petphoto/pet-photo-small.jpg';
+import defaultImage from '../../images/x1/petphoto/pet-photo-small.jpg';
 
-const PetItem = ({ _id, avatarUR, name, birth, type, comments }) => {
+const PetItem = ({ pet }) => {
+  const { _id, avatarURL, name, birthday, type, comments } = pet;
+
   const [showModal, setShowModal] = useState(false);
   const [idPet, setIdPet] = useState('');
 
@@ -21,16 +22,16 @@ const PetItem = ({ _id, avatarUR, name, birth, type, comments }) => {
 
   return (
     <PetCard>
-      <PetFoto src={avatarUR} alt={type} />
+      <PetFoto src={avatarURL ?? defaultImage} alt={type} />
       <PetDesc>
         <Description>
           <Subtitle>Name: {name}</Subtitle>
         </Description>
         <Description>
-          <Subtitle>Date of birth: {birth}</Subtitle>
+          <Subtitle>Date of birth: {birthday}</Subtitle>
         </Description>
         <Description>
-          <Subtitle>Type: {type}</Subtitle>Basenji
+          <Subtitle>Type: {type}</Subtitle>
         </Description>
         <Description>
           <Subtitle> Comments: {comments}</Subtitle>
@@ -41,9 +42,9 @@ const PetItem = ({ _id, avatarUR, name, birth, type, comments }) => {
             <use href={`${sprite}#icon-trash-2`}></use>
           </IconTrash>
         </DeleteButton>
-        <Modal showModal={showModal} setShowModal={setShowModal} idCard={idPet}>
+        <ModalApproveAction showModal={showModal} setShowModal={setShowModal} idCard={idPet}>
           Already leaving?
-        </Modal>
+        </ModalApproveAction>
       </PetDesc>
     </PetCard>
   );

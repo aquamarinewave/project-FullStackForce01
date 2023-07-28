@@ -14,6 +14,7 @@ const Title = styled.h1`
   font-size: 24px;
   line-height: normal;
   text-align: center;
+  margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;

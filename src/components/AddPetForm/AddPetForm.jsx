@@ -48,8 +48,10 @@ const AddPetForm = () => {
     switch (title) {
       case 'sell':
         return 'Add pet for sale';
-      case 'lost_or_found':
+      case 'lost-found':
         return 'Add lost pet';
+      case 'for-free':
+        return 'Add a pet in good hands';
       default:
         return 'Add pet';
     }
@@ -64,22 +66,14 @@ const AddPetForm = () => {
   };
 
   const handleCancelStage = () => {
-    // if (currentStage === 'second') {
-    //   setCurrentStage('first');
-    // } else if (currentStage === 'third') {
-    //   setCurrentStage('second');
-    // }
     if (currentStage === 'second') {
       setCurrentStage('first');
     } else if (currentStage === 'third') {
       setCurrentStage('second');
     } else {
-      // Якщо назва кнопки "Cancel", перенаправте на /user
       navigate('/user');
     }
   };
-
-  // const history = useHistory();
 
   return (
     <Formik

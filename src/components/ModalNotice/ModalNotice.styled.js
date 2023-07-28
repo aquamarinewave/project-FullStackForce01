@@ -127,7 +127,8 @@ export const ModalContent = styled.div`
     font-family: inherit;
     font-weight: 700;  
     line-height: normal;
-    letter-spacing: 0.64px; 
+    letter-spacing: 0.64px;
+    
   }
 
   .modal-button--primary {
@@ -147,15 +148,18 @@ export const ModalContent = styled.div`
     background: var(--dark-blue);
     border: none;
     color: #fff;
+
+    &.selected {
+      background: var(--lightblue);
+      color: var(--dark-blue);
+  
+      svg {
+        stroke: var(--dark-blue);
+        fill: var(--dark-blue);
+      }
+    }
   }
 
-  .modal-button--second:hover {
-    background: var(--lightblue);
-    color: var(--dark-blue);
-
-    svg {
-      stroke: var(--dark-blue);
-    }
   }
 
   span {
@@ -179,10 +183,8 @@ export const CloseModalButton = styled.button`
 
 export const IconHeart = styled.svg`
   stroke: #ffffff;
-
-  &:hover {
-    stroke: var(--dark-blue);
-  }
+  fill: transparent;
+  
 `;
 
 

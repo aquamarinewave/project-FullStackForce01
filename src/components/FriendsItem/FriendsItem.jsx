@@ -1,4 +1,5 @@
 import React from 'react';
+import WorkingHours from '../WorkingHours/WorkingHours';
 
 import {
   FriendsItemThumb,
@@ -17,8 +18,8 @@ import {
 } from './FriendsItem.styled';
 
 const FriendsItem = ({ responseByFriends }) => {
-  // const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = responseByFriends;
-  const { title, url, addressUrl, imageUrl, address, phone, email } = responseByFriends;
+  const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = responseByFriends;
+  // const { title, url, addressUrl, imageUrl, address, phone, email } = responseByFriends;
 
   return (
     <div>
@@ -35,7 +36,7 @@ const FriendsItem = ({ responseByFriends }) => {
           <InfoBlock>
             <Info>
               <InfoTitle>Time:</InfoTitle>
-              {/* <button type="button">{workDays[0]}</button> */}
+              <WorkingHours daysWorkingInWeek={workDays}></WorkingHours>
             </Info>
 
             <Info>
