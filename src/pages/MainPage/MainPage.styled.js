@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   @media screen and (min-width: 1280px) {
-    display: block;
+    position:relative;
   }
 `;
 
@@ -53,16 +53,18 @@ export const Picture = styled.picture`
   margin-right: auto;
 
   @media screen and (min-width: 768px) {
-    margin-top: 27px;
     margin-left: auto;
     margin-right: auto;
   }
 
   @media screen and (min-width: 1280px) {
+    width: 917px;
+    height: 851px;
     position: absolute;
-    bottom: 20px;
-    ${'' /* top: -293px; */}
-    right: calc((100% - 1314px)/2);
+    margin-top: 0px;
+    left: 275px;
+    top: -60px;
+    right: calc((100% - 1314px) / 2);
   }
 `;
 
