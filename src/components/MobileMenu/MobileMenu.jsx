@@ -15,7 +15,6 @@ import {
   Container,
   IconUser,
   UserButton,
-  BottomMenu,
 ButtonContainer
 } from './MobileMenu.styled';
 import Logo from '../Logo/Logo';
@@ -78,7 +77,6 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
               </ButtonContainer>
             )}
           </TopMenu>
-          {/* <BottomMenu> */}
           {width < 768 && (
             <>
               <UserButton to="/user">
@@ -93,7 +91,6 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
           )}
           <Nav isMobile />
           {width < 768 && <Logout isMobile />}
-          {/* </BottomMenu> */}
         </Menu>,
         document.querySelector('#portal-root')
       )

@@ -272,8 +272,3 @@ align-items: flex-end;  */}
 @media screen and (min-width: 768px) {
   display: flex;}
 `;
-export const BottomMenu = styled.div`
-  display: flex;
-  @media screen and (min-width: 768px) {
-  }
-`;
