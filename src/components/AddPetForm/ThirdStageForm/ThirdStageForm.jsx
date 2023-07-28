@@ -29,7 +29,6 @@ const ThirdStageForm = ({
   currentRadioButton,
   selectedGender,
   handleSexChange,
-  // handleOptionChange,
 }) => {
   // const handlePhotoChange = event => {
   //   const file = event.currentTarget.files[0];
@@ -48,6 +47,27 @@ const ThirdStageForm = ({
   //   }
   // };
 
+  const colorIcon = checked => {
+    switch (checked) {
+      case 'male':
+        return '#fef9f9';
+      case 'female':
+        return '#888';
+      default:
+        return 'var(--dark-blue)';
+    }
+  };
+  const colorIconFemale = checked => {
+    switch (checked) {
+      case 'female':
+        return '#fef9f9';
+      case 'male':
+        return '#888';
+      default:
+        return 'var(--fail-color)';
+    }
+  };
+
   const handlePhotoChange = event => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -60,8 +80,6 @@ const ThirdStageForm = ({
       setSelectedFile(null);
     }
   };
-
-  // const [selectedGender, setSelectedGender] = useState('');
 
   const optionsSex = [
     {
@@ -82,13 +100,15 @@ const ThirdStageForm = ({
           <ParagraphPetAvatar>The sex</ParagraphPetAvatar>
           <BoxRadioButtonSex>
             {optionsSex.map(({ value, label }) => (
-              // <div key={value}>
               <RadioButtonSex key={value} checked={selectedGender === value}>
-                <IconSex stroke={value === 'male' ? 'var(--dark-blue)' : 'var(--fail-color)'} width={24} height={24}>
+                <IconSex
+                  className={value === 'male' ? 'male-icon' : 'female-icon'}
+                  colorIcon={colorIcon(selectedGender)}
+                  colorIconFemale={colorIconFemale(selectedGender)}
+                >
                   <use href={`${sprite}#icon-${value}`}></use>
                 </IconSex>
                 {label}
-                {/* <FieldLabel htmlFor={`opt${value}`}>{label}</FieldLabel> */}
                 <Field
                   key={`opt${value}`}
                   type="radio"
@@ -98,7 +118,6 @@ const ThirdStageForm = ({
                   onChange={handleSexChange}
                 />
               </RadioButtonSex>
-              // </div>
             ))}
           </BoxRadioButtonSex>
         </>
@@ -146,10 +165,6 @@ const ThirdStageForm = ({
             placeholder="Type of price"
             value={formik.values.price}
             onChange={formik.handleChange}
-            // onKeyPress={name === 'birthday' ? handleNumericInput : null}
-            // inputMode={name === 'birthday' ? 'numeric' : 'text'}
-            // maxLength={10}
-            // pattern={pattern}
           />
           {/* {formik.touched[name] && formik.errors[name] && <div style={{ color: 'red' }}>{formik.errors[name]}</div>} */}
         </BoxInputField>
