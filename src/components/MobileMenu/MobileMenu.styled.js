@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 
-export const Test = styled.div`
+export const Menu = styled.div`
   position: fixed;
   z-index: 100;
   display: block;
@@ -13,8 +13,8 @@ export const Test = styled.div`
   width: 100%;
   height: 100vh;
   padding: 20px;
-
-  overflow-y: hidden;
+${'' /* 
+  overflow-y: hidden; */}
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -28,25 +28,6 @@ export const Test = styled.div`
   @media screen and (min-width: 1280px) {
     width: 1280px;
     padding: 20px 16px;
-  }
-`;
-
-export const Menu = styled.div`
-  min-height: 100vh; 
-  width: 100%;
-  display: ${props => (props.isOpen ? 'inline' : 'none')};
-  z-index: 15;
-
-  @media screen and (min-width: 768px) {
-    display: ${props => (props.isOpen ? 'block' : 'none')};
-    z-index: 15;
-    position: absolute;
-   bottom: 0;
-    background: var(--container-bg);
-  }
-
-  @media screen and (min-width: 1280px) {
-    display: none;
   }
 `;
 
@@ -92,20 +73,22 @@ export const UserButton = styled(NavLink)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-right: 8px;
-  padding: 0;
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px; 
+  margin-bottom: 84px;
+  display: flex;
+ 
 
   @media screen and (min-width: 768px) {
     height: 40px;
-    display: flex;
-    align-items: center;
   }
 
   @media screen and (min-width: 1280px) {
     height: 44px;
     width: 113px;
-    display: flex;
-    align-items: center;
+   
   }
 `;
 
@@ -123,7 +106,12 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 24px;
+  }
 `;
+
 const handleColorText = color => {
   switch (color) {
     case 'login':
@@ -183,7 +171,6 @@ export const IconLogout = styled.svg`
 `;
 
 export const IconCross = styled.svg`
-margin-bottom: 38px;
 stroke: var(--accent-color);
 
   &:hover {
@@ -278,9 +265,15 @@ export const Container = styled.div`
 
 export const ButtonContainer = styled.div`
 display:flex;
-flex-direction: column-reverse;
-align-items: flex-end; 
+align-items: center;
+${'' /* flex-direction: column-reverse;
+align-items: flex-end;  */}
 
 @media screen and (min-width: 768px) {
   display: flex;}
+`;
+export const BottomMenu = styled.div`
+  display: flex;
+  @media screen and (min-width: 768px) {
+  }
 `;
