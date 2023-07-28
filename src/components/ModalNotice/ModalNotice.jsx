@@ -93,7 +93,7 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
 
   const {email, phone} = userModalInfo;
 
-  useEffect(updateLocalStorage, [isSelected]);
+  useEffect(updateLocalStorage, [isSelected, idCard]);
 
   return (
     <>
@@ -101,16 +101,16 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <ModalWrapper showModal={showModal}>
               <ModalContent>
-                <div class='modal-info'>
-                  <div class="modal-img">
-                    <img class="modal-avatar" src={avatarURL} alt={name} />
-                    <p class="modal-category">{category}</p>
+                <div className='modal-info'>
+                  <div className="modal-img">
+                    <img className="modal-avatar" src={avatarURL} alt={name} />
+                    <p className="modal-category">{category}</p>
                   </div>
                   
                   <div>
-                    <h2 class="modal-header">Сute dog looking for a home</h2>
-                    <div class="modal-info-list">
-                    <ul class="modal-info-item modal-info-item--name">
+                    <h2 className="modal-header">Сute dog looking for a home</h2>
+                    <div className="modal-info-list">
+                    <ul className="modal-info-item modal-info-item--name">
                       <li>
                         Name:
                       </li>
@@ -134,16 +134,16 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                       </li>
                     </ul>
 
-                    <ul class="modal-info-item">
+                    <ul className="modal-info-item">
                       <li>{name || " "}</li>
                       <li>{birthday || " "}</li>
                       <li>{type || " "}</li>
                       <li>{location || " "}</li>
                       <li>{sex || " "}</li>
-                      <li class="modal-contact" >
+                      <li className="modal-contact" >
                         <a href={`mailto: ${email}`}>{email || " "}</a>
                       </li>
-                      <li class="modal-contact">
+                      <li className="modal-contact">
                         <a href={`tel: ${phone}`}>{phone || "+380 (XXX) (XXXXXXXX)"}</a>
                       </li>
                     </ul>
@@ -151,12 +151,12 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                   </div>
                 </div>
 
-                <p class="modal-comments"><strong>Comments:</strong> {comments}</p>
+                <p className="modal-comments"><strong>Comments:</strong> {comments}</p>
 
-                <div class="modal-buttons">
-                  <a href={`tel: ${phone}`} class="modal-button modal-button--primary" type="button">Contact</a>
+                <div className="modal-buttons">
+                  <a href={`tel: ${phone}`} className="modal-button modal-button--primary" type="button">Contact</a>
 
-                  <button class={`modal-button modal-button--second ${isSelected ? 'selected' : ''}` } type="button" onClick={handleAddToFavorite}><span>Add to</span> <span>  
+                  <button className={`modal-button modal-button--second ${isSelected ? 'selected' : ''}` } type="button" onClick={handleAddToFavorite}><span>Add to</span> <span>  
                   <IconHeart width={24} height={24}>
                     <use href={`${sprite}#icon-heart`}></use>
                   </IconHeart>
