@@ -52,10 +52,6 @@ const IconConatiner = styled.div`
 const IconSvg = styled.svg`
   fill: var(--lightblue);
   stroke: var(--dark-blue);
-  /* &:hover,
-  :focus {
-    fill: var(--dark-blue);
-  } */
 `;
 
 const FavoriteBtnContainer = styled.div`
