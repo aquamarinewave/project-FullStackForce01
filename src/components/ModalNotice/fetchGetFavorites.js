@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+let controller = new AbortController();
+
 const BASE_URL = 'https://fullstackforce.onrender.com/api/notices/favorites';
 
 const options = {
   method: "GET",
+  signal: controller.signal,
   headers: {
     "Content-Type": "application/json; charset=UTF-8",
     "Authorization": `${axios.defaults.headers.common.Authorization}`
@@ -20,3 +23,4 @@ function fetchGetFavorites() {
   })
 }
 export default fetchGetFavorites;
+
