@@ -179,7 +179,8 @@ export const CloseModalButton = styled.button`
 
 export const IconHeart = styled.svg`
   stroke: #ffffff;
-
+  fill: transparent;
+  
   &:hover {
     stroke: var(--dark-blue);
   }
