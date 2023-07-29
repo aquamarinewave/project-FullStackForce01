@@ -25,7 +25,7 @@ export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thu
 
 export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
   try {
-    const { category, name, avatar, birthday, type, price, sex, location, comments } = formData;
+    const { category, name, avatar, birthday, type, price, sex, location, comments, title } = formData;
 
     const data = new FormData();
     data.append('category', category);
@@ -38,6 +38,9 @@ export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData
     data.append('location', location);
     if (category === 'sell') {
       data.append('price', price);
+    }
+    if (category !== 'your pet') {
+      data.append('title', title);
     }
 
     const response = await axios.post('/notices', data);
