@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 
-import { addNoticeThunk, addPetThunk } from 'redux/pets/operations';
+import authOperations from 'redux/pets/operations';
+// import authOperations from '../auth/operations';
 
 import FirstStageForm from './FirstStageForm/FirstStageForm';
 import SecondStageForm from './SecondStageForm/SecondStageForm';
@@ -99,9 +100,9 @@ const AddPetForm = () => {
 
     try {
       if (currentRadioButton === 'your_pet') {
-        await dispatch(addPetThunk(formData));
+        await dispatch(authOperations.addPetThunk(formData));
       } else {
-        await dispatch(addNoticeThunk(formData));
+        await dispatch(authOperations.addNoticeThunk(formData));
       }
 
       setSubmitSuccess(true); // Перенаправлення лише у разі успішного запиту

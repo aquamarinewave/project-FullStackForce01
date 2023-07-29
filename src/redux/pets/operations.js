@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
+const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
   try {
     const { name, avatar, birthday, type, comments } = formData;
 
@@ -23,7 +23,7 @@ export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thu
   }
 });
 
-export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
+const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
   try {
     const { category, name, avatar, birthday, type, price, sex, location, comments, title } = formData;
 
@@ -53,3 +53,10 @@ export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+const petsOperations = {
+  addPetThunk,
+  addNoticeThunk,
+};
+
+export default petsOperations;
