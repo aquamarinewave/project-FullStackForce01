@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+let controller = new AbortController();
+
 const BASE_URL = 'https://fullstackforce.onrender.com/api/notices/';
 
 const options = {
   method: "DELETE",
+  signal: controller.signal,
   headers: {
     "Content-Type": "application/json",
     "Authorization": `${axios.defaults.headers.common.Authorization}`
