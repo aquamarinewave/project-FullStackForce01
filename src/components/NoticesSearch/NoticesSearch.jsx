@@ -1,5 +1,12 @@
-import Icon from 'utils/Icon/Icon';
-import { SearchContainer, SearchForm, SearchInput, SearchIconContainer, SearchIconBtn } from './NoticesSearch.styled';
+import {
+  SearchContainer,
+  SearchForm,
+  SearchInput,
+  SearchIconContainer,
+  SearchIconBtn,
+  IconSvg,
+} from './NoticesSearch.styled';
+import sprite from '../../images/icons.svg';
 
 const NoticesSearch = () => {
   return (
@@ -8,7 +15,9 @@ const NoticesSearch = () => {
         <SearchInput type="text" name="searchforpet" placeholder="Search" />
         <SearchIconContainer>
           <SearchIconBtn type="button">
-            <Icon name="search" color="var(--dark-blue)" size={17} />
+            <IconSvg width={24} height={24}>
+              <use href={`${sprite}#icon-search`}></use>
+            </IconSvg>
           </SearchIconBtn>
         </SearchIconContainer>
       </SearchForm>

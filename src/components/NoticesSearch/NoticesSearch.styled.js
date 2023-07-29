@@ -41,4 +41,8 @@ const SearchIconBtn = styled.button`
   background-color: white;
 `;
 
-export { SearchContainer, SearchForm, SearchInput, SearchIconContainer, SearchIconBtn };
+const IconSvg = styled.svg`
+  fill: var(--dark-blue);
+`;
+
+export { SearchContainer, SearchForm, SearchInput, SearchIconContainer, SearchIconBtn, IconSvg };
