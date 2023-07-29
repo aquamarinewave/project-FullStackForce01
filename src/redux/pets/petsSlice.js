@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { addNoticeThunk, addPetThunk } from './operations';
+import authOperations from '../auth/operations';
 
 const listPets = {
-  pet: [],
+  pets: [],
   isLoading: false,
   error: null,
 };
@@ -13,12 +14,20 @@ const handlePending = state => {
 };
 
 const handleFulfilledAddPet = (state, action) => {
-  state.pet.push(action.payload);
+  state.pets.push(action.payload);
+  state.isLoading = false;
+  state.error = null;
 };
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+};
+
+const handleFulfilledLogOut = state => {
+  state.pets = [];
+  state.error = null;
+  state.isLoading = false;
 };
 
 export const petsSlice = createSlice({
@@ -31,7 +40,8 @@ export const petsSlice = createSlice({
       .addCase(addPetThunk.rejected, handleRejected)
       .addCase(addNoticeThunk.pending, handlePending)
       .addCase(addNoticeThunk.fulfilled, handleFulfilledAddPet)
-      .addCase(addNoticeThunk.rejected, handleRejected);
+      .addCase(addNoticeThunk.rejected, handleRejected)
+      .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut);
   },
 });
 
