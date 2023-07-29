@@ -1,31 +1,22 @@
 import { Formik, Form } from 'formik';
-import { useState } from 'react';
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import * as yup from 'yup';
+// import { useEffect } from 'react';
 import authSelector from 'redux/auth/authSelector';
-import Modal from 'components/ModalApproveAction/ModalApproveAction';
+import avatarDefault from 'images/profilephotos/avatar-default.png';
+import { useSelector, useDispatch } from 'react-redux';
+import { AvatarWrapper, ImgAvatar, WrapperField, Label, ProfileField } from '../UserData/UserData.styled';
+import { SubmitBtn, Container, ErrorMassege } from './UserForm.styled';
+import { updateUser } from 'redux/auth/operations';
 
-import {
-  ProfileInfo,
-  Label,
-  AvatarWrapper,
-  ProfileTitle,
-  EditButton,
-  ImgAvatar,
-  ProfileField,
-  WrapperCard,
-  WrapperField,
-  IconEdit,
-  IconLogOut,
-  LogOutBtn,
-  LogOutBtnText,
-} from './UserForm.styled';
-import avatarDefault from '../../images/profilephotos/avatar-default.png';
-import sprite from '../../images/icons.svg';
-import authOperations from 'redux/auth/operations';
+import toast from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
-const UserForm = () => {
+export const UserForm = ({ toggleModal }) => {
   const user = useSelector(authSelector.userSelector);
+
+  const dispatch = useDispatch();
+
   const initialValues = {
     avatarURL: user?.avatarURL || { avatarDefault },
     name: user?.name || 'Enter your name',
@@ -35,69 +26,101 @@ const UserForm = () => {
     city: user?.city || 'Kiev',
   };
 
-  const dispatch = useDispatch();
-  const onLogout = () => dispatch(authOperations.logoutUser());
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleFormSubmit = async (values, { resetForm }) => {
+    const formData = new FormData();
+    try {
+      // if (avatarUrl) {
+      //   formData.append('avatarUrl', avatarUrl);
+      // }
+      if (initialValues.name !== values.name && values.name) {
+        formData.append('name', values.name);
+      }
+      if (initialValues.email !== values.email && values.email) {
+        formData.append('email', values.email);
+      }
+      if (initialValues.phone !== values.phone) {
+        formData.append('phone', values.phone);
+      }
+      if (initialValues.city !== values.city) formData.append('city', values.city);
+      for (const value of formData.values()) {
+        console.log(value);
+      }
+      const res = await dispatch(updateUser(formData));
+      console.log(res);
+      toggleModal();
 
-  const toggleModal = () => {
-    setIsModalOpen(prevState => !prevState);
+      if (res.data.status === '200') {
+        toast.success('Profile  updated');
+      } else {
+        toast.success('Profile successfully updated');
+      }
+      resetForm();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
+  const shema = yup.object().shape({
+    name: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your name'),
+    email: yup.string().email('Incorrect email').required('Email is required'),
+    phone: yup
+      .string()
+      .matches(/^\+?3?8?(0\d{9})$/, 'Phone format: +380000000000')
+      .max(13, 'Phone format: +380000000000')
+      .min(13, 'Phone format: +380000000000'),
+    city: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your city'),
+  });
+
   return (
-    <>
-      <WrapperCard>
-        <ProfileTitle>My information:</ProfileTitle>
-        <ProfileInfo>
-          <EditButton>
-            <IconEdit width={24} height={24}>
-              <use href={`${sprite}#icon-edit-2`}></use>
-            </IconEdit>
-          </EditButton>
-          <Formik initialValues={initialValues}>
-            <Form>
-              <AvatarWrapper>
-                <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
-              </AvatarWrapper>
+    <div>
+      <Formik initialValues={initialValues} dirty validationSchema={shema} onSubmit={handleFormSubmit}>
+        {({ dirty, errors, touched, values }) => (
+          <Form>
+            <AvatarWrapper>
+              <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
+            </AvatarWrapper>
+            <Container>
               <WrapperField>
                 <Label htmlFor="name"> Name:</Label>
 
-                <ProfileField type="text" name="name" placeholder={initialValues.name} readOnly={true} />
+                <ProfileField type="text" name="name" placeholder={initialValues.name} />
               </WrapperField>
-              <WrapperField>
-                <Label htmlFor="email"> Email:</Label>
-                <ProfileField type="email" name="email" placeholder={initialValues.email} readOnly={true} />
-              </WrapperField>
-              <WrapperField>
-                <Label htmlFor="date"> Birthday:</Label>
-                <ProfileField type="numder" name="birthday" placeholder={initialValues.birthday} readOnly={true} />
-              </WrapperField>
-              <WrapperField>
-                <Label htmlFor="phone"> Phone:</Label>
+              {errors.name && touched.name ? (
+                <ErrorMassege>{errors.name}</ErrorMassege>
+              ) : !errors.name && touched.name && values.name !== user?.name ? (
+                <ErrorMassege>Great</ErrorMassege>
+              ) : (
+                ''
+              )}
+            </Container>
 
-                <ProfileField placeholder={initialValues.phone} type="phone" name="phone" readOnly={true} />
-              </WrapperField>
-              <WrapperField>
-                <Label htmlFor="city"> City:</Label>
-                <ProfileField type="text" name="city" placeholder={initialValues.city} readOnly={true} />
-              </WrapperField>
-            </Form>
-          </Formik>
-          <LogOutBtn onClick={toggleModal}>
-            <IconLogOut width={24} height={24}>
-              <use href={`${sprite}#icon-logout`}></use>
-            </IconLogOut>
-            <LogOutBtnText>Log Out</LogOutBtnText>
-          </LogOutBtn>
+            <WrapperField>
+              <Label htmlFor="email"> Email:</Label>
+              <ProfileField type="email" name="email" placeholder={initialValues.email} />
+            </WrapperField>
 
-          {isModalOpen && (
-            <Modal isOpen={isModalOpen} toggleModal={toggleModal} onApprove={onLogout} onRequestClose={toggleModal}>
-              Already leaving?
-            </Modal>
-          )}
-        </ProfileInfo>
-      </WrapperCard>
-    </>
+            <WrapperField>
+              <Label htmlFor="date"> Birthday:</Label>
+              <ProfileField type="numder" name="birthday" placeholder={initialValues.birthday} />
+            </WrapperField>
+
+            <WrapperField>
+              <Label htmlFor="phone"> Phone:</Label>
+              <ProfileField placeholder={initialValues.phone} type="phone" name="phone" />
+            </WrapperField>
+
+            <WrapperField>
+              <Label htmlFor="city"> City:</Label>
+              <ProfileField type="text" name="city" placeholder={initialValues.city} />
+            </WrapperField>
+
+            <SubmitBtn type="submit" disabled={!dirty}>
+              Save
+            </SubmitBtn>
+          </Form>
+        )}
+      </Formik>
+      <Toaster />
+    </div>
   );
 };
-
-export default UserForm;
