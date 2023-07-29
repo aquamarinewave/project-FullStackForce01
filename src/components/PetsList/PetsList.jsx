@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import PetItem from '../PetsItem/PetsItem';
-import { UserPetsList } from './PetsList.styled';
+import { InfoCard, Title, Text, UserPetsList } from './PetsList.styled';
 import { fetchUserPet } from 'services/api/petsFetch';
 
 const PetsList = () => {
@@ -17,7 +17,7 @@ const PetsList = () => {
 
   return (
     <>
-      {pets && (
+      {pets.length !== 0 ? (
         <UserPetsList>
           {pets.map(pet => (
             <li key={pet._id}>
@@ -25,6 +25,11 @@ const PetsList = () => {
             </li>
           ))}
         </UserPetsList>
+      ) : (
+        <InfoCard>
+          <Title>Here will be your pets</Title>
+          <Text>To add, press the button AddPet</Text>
+        </InfoCard>
       )}
     </>
   );

@@ -50,3 +50,20 @@ export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+//=========================================//
+
+const deletePet = createAsyncThunk('pets/deletePet', async (_id, thunkApi) => {
+  try {
+    // await axios.delete(`pets/${_id}`);
+    const response = await axios.delete(`pets/${_id}`);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
+
+const petsOperations = { deletePet };
+
+export default petsOperations;
