@@ -1,24 +1,4 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-
-export const LinkFormButton = styled(NavLink)`
-  border-radius: 40px;
-  border: 2px solid var(--accent-color);
-  /* background: var(--accent-color);
-  cursor: pointer;
-  display: none;
-
-  @media screen and (min-width: 768px) {
-    height: 40px;
-    width: 165px;
-    padding-right: 20px;
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-  }  */
-`;
 
 export const IconFormButton = styled.svg`
   fill: var(--bg-color);
