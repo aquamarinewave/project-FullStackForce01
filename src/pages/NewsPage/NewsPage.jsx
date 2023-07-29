@@ -15,7 +15,7 @@ const NewsPage = () => {
   const fetchNews = useCallback(async () => {
     setStatus('pending');
     try {
-      const pattern = text && text.length > 3 ? text : '';
+      const pattern = text && text.length > 0 ? text : '';
       const data = await fetchSearchNews(pattern);
       if (data.length === 0) {
         setStatus('rejected');
