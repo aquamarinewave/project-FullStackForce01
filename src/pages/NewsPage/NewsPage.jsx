@@ -4,8 +4,13 @@ import { fetchSearchNews } from '../../services/api/newsFetch';
 import NewsList from '../../components/NewsList/NewsList';
 import Search from '../../components/Search/Search';
 import { PageHeader } from './NewsPage.styled';
+import { useSelector } from 'react-redux';
+import newsSelector from 'redux/news/newsSelector';
 
 const NewsPage = () => {
+  const newsData = useSelector(newsSelector.selectNews);
+  console.log(newsData);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const text = searchParams.get('query');
   const [news, setNews] = useState([]);

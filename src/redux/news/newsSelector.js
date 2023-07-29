@@ -1,4 +1,4 @@
-export const selectNews = state => state.news.news;
+const selectNews = state => state.news;
 const selectNewsError = state => state.news.error;
 
 const newsSelector = {
