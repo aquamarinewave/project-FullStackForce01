@@ -174,6 +174,6 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
       
     {isModalOpenAttention ? (<ModalAttention onClose={closeModalAttention}/>) : null}
     </>
-
+    
   );
 };

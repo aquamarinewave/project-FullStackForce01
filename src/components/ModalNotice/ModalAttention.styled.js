@@ -36,5 +36,7 @@ export const ModalText = styled.p`
 
 
 export const ModalAuth = styled.div`
-  display: block ruby;
+position: absolute;
+left: 50%;
+transform: translate(-50%) scale(1);
 `;

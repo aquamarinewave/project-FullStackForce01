@@ -2,7 +2,7 @@ import React, { useEffect} from 'react';
 import { Background, CloseModalButton, IconCross } from './ModalNotice.styled';
 import { ModalWrapper, ModalHeader, ModalText, ModalAuth } from './ModalAttention.styled';
 import sprite from '../../images/icons.svg';
-import  AuthNav  from '../AuthNav/AuthNav';
+import  AuthButtonsModal  from './AuthButtonsModal';
 
 const ModalAttention = ({onClose}) => {
 
@@ -32,7 +32,7 @@ const ModalAttention = ({onClose}) => {
           <ModalHeader>Attention</ModalHeader>
           <ModalText>We would like to remind you that certain functionality is available only to authorized users.If you have an account, please log in with your credentials. If you do not already have an account, you must register to access these features.</ModalText>
           <ModalAuth>
-              <AuthNav />
+              <AuthButtonsModal />
           </ModalAuth>
           <CloseModalButton 
             aria-label='Close modal'
