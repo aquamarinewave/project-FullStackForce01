@@ -20,11 +20,9 @@ const Search = ({ pattern, onSubmit, onClear }) => {
   const handleSubmit = event => {
     event.preventDefault();
     if (inputName.trim() === '') {
-      alert('Type something in search input');
       return;
     }
     onSubmit(inputName);
-    setInputName('');
   };
 
   const handleClear = () => {
