@@ -37,6 +37,7 @@ const DiscriptionItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 4px;
   width: 80px;
   border-radius: 16px;
