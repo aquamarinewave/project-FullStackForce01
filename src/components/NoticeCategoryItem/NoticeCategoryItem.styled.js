@@ -37,6 +37,7 @@ const DiscriptionItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 4px;
   width: 80px;
   border-radius: 16px;
@@ -52,10 +53,6 @@ const IconConatiner = styled.div`
 const IconSvg = styled.svg`
   fill: var(--lightblue);
   stroke: var(--dark-blue);
-  /* &:hover,
-  :focus {
-    fill: var(--dark-blue);
-  } */
 `;
 
 const FavoriteBtnContainer = styled.div`

@@ -1,58 +1,78 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { fetchSearchNews } from '../../services/api/newsFetch';
 import NewsList from '../../components/NewsList/NewsList';
 import Search from '../../components/Search/Search';
 import { PageHeader } from './NewsPage.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import newsSelector from 'redux/news/newsSelector';
+import newsOperations from '../../redux/news/operations';
+
+const statusList = {
+  REJECTED: 1,
+  RESOLVED: 2,
+  PENDING: 3,
+  IDLE: 4,
+};
 
 const NewsPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const text = searchParams.get('query');
-  const [news, setNews] = useState([]);
+  const dispatch = useDispatch();
+  const newsStore = useSelector(newsSelector.selectNews);
+  const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
+  const [status, setStatus] = useState(IDLE);
 
-  const [error, setError] = useState(null);
-  const [status, setStatus] = useState('idle');
-  const fetchNews = useCallback(async () => {
-    setStatus('pending');
-    try {
-      const pattern = text && text.length > 0 ? text : '';
-      const data = await fetchSearchNews(pattern);
-      if (data.length === 0) {
-        setStatus('rejected');
-      } else {
-        const { news } = data[0];
-        if (news.length) {
-          setNews(news.sort((a, b) => new Date(b.date) - new Date(a.date)));
-        }
-        setStatus('resolved');
-      }
-    } catch (error) {
-      setError(error);
-      setStatus('rejected');
+  const switchStatus = useCallback(async () => {
+    if (newsStore.error || newsStore.items.length === 0) {
+      setStatus(REJECTED);
+    } else {
+      setStatus(RESOLVED);
     }
-  }, [text]);
+  }, [newsStore.items, newsStore.error, setStatus, REJECTED, RESOLVED]);
 
   useEffect(() => {
-    fetchNews();
-  }, [fetchNews]);
+    switchStatus();
+  }, [switchStatus]);
 
-  const haldleFormSubmit = query => {
-    const nextParams = query !== '' ? { query } : {};
-    setSearchParams(nextParams);
-  };
+  useEffect(() => {
+    setStatus(PENDING);
+
+    dispatch(newsOperations.fetchNews({ pattern: '', page: 1 }));
+  }, [dispatch, setStatus, PENDING]);
+
+  const showResults = useCallback(
+    status => {
+      switch (status) {
+        case IDLE:
+          return <div>Please, type something to the search</div>;
+        case PENDING:
+          return <div>Loading....</div>;
+        case REJECTED:
+          return <div>Oopps...no news with this text.{newsStore.error && <div>{newsStore.error}</div>}</div>;
+        case RESOLVED:
+          return <NewsList news={newsStore.items} />;
+        default:
+          return <></>;
+      }
+    },
+    [newsStore.items, newsStore.error, IDLE, PENDING, REJECTED, RESOLVED]
+  );
+
+  const haldleFormSubmit = useCallback(
+    query => {
+      dispatch(newsOperations.fetchNews({ pattern: query, page: 1 }));
+      dispatch(newsOperations.setPattern(query));
+    },
+    [dispatch]
+  );
 
   const clearSearch = () => {
-    setSearchParams({});
+    dispatch(newsOperations.fetchNews({ pattern: '', page: 1 }));
+    dispatch(newsOperations.setPattern(''));
   };
 
   return (
     <div>
       <PageHeader>News</PageHeader>
-      <Search pattern={text} onSubmit={haldleFormSubmit} onClear={clearSearch} />
-      {status === 'idle' && <div>Please, type something to the search</div>}
-      {status === 'pending' && <div>Loading....</div>}
-      {status === 'rejected' && <div>Oopps...no news with this text.{!error && <div>{error}</div>}</div>}
-      {status === 'resolved' && <NewsList news={news} />}
+      <Search pattern={newsStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
+      {showResults(status)}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
-import { fetchByCategory, fetchByCategoryAuth } from '../../services/api/noticesFetch';
+import { fetchByCategory, fetchByCategoryOwn } from '../../services/api/noticesFetch';
 import fetchGetFavorites from '../ModalNotice/fetchGetFavorites';
 
 const NoticesCategoriesList = () => {
@@ -21,21 +21,29 @@ const NoticesCategoriesList = () => {
 
     async function fetchDataByCategory() {
       try {
-        if (isLogged && categoryName === 'own' && categoryName === 'favorite') {
-          const response = await fetchByCategoryAuth(categoryName, controller);
+        if (isLogged && categoryName === 'own') {
+          const response = await fetchByCategoryOwn(categoryName, controller);
           response.data.map(({ notices }) => {
             return setResByCategory(notices);
           });
+          return;
         }
 
-        if(isLogged && categoryName === 'favorite') {
+        // if (isLogged && categoryName === 'favorite') {
+        //   const response = await fetchByCategoryFavorite(categoryName, controller);
+        //   response.data.map(({ favorites }) => {
+        //     return setResByCategory(favorites);
+        //   });
+        //   return;
+
+        if (isLogged && categoryName === 'favorite') {
           fetchGetFavorites()
-          .then((data) => {
-            data.map(({ favorites }) => setResByCategory(favorites));
-          })
-          .catch(error => console.log(error))
+            .then(data => {
+              data.map(({ favorites }) => setResByCategory(favorites));
+            })
+            .catch(error => console.log(error));
         }
-
+        
         const response = await fetchByCategory(categoryName, controller);
 
         // if (response.data) return setResByCategory(null);
@@ -77,7 +85,6 @@ const NoticesCategoriesList = () => {
                       type,
                       avatarURL,
                     }}
-
                   />
                 </li>
               );
