@@ -52,7 +52,7 @@ const NoticeCategoryItem = ({ responseByCategory }) => {
             </IconConatiner>
             {location}
           </DiscriptionItem>
-          {yearsDiff === 1 ? (
+          {yearsDiff === 1 || yearsDiff === 0 ? (
             <DiscriptionItem>
               <IconConatiner>
                 <IconSvg width={24} height={24}>
