@@ -7,14 +7,14 @@ import MobileMenu from 'components/MobileMenu/MobileMenu';
 import sprite from '../../images/icons.svg';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
-const UserNav = ({ toggleMenu, menuOpen }) => {
+const UserNav = ({ toggleMenu, menuOpen, closeMenu }) => {
   const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
 
   return (
     <>
       <Nav>
-        <Logout onClick={() => <ModalApproveAction />} />
+        <Logout isRequest spacing closeMenu={closeMenu} onClick={() => <ModalApproveAction />} />
         {width >= 768 && (
           <UserButton to="/user">
             <IconUser width={24} height={24}>

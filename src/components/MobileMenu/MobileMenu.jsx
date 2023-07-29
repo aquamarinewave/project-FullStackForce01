@@ -20,22 +20,24 @@ import Nav from '../Nav/Nav';
 import Logout from 'components/Logout/Logout';
 import sprite from '../../images/icons.svg';
 
-const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
+
+const MobileMenu = ({ toggleMenu, isOpen }) => {
   const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
   const isLogged = useSelector(authSelector.loggedInSelector);
 
   useEffect(() => {
-    if ((isOpen && isLogged) || (isOpen && !isLogged)) {
+    if (isOpen) {
       document.body.style.overflow = 'hidden';
-    } else {
+    } 
+    else {
       document.body.style.overflow = 'auto';
     }
-  }, [isOpen, isLogged]);
+  }, [isOpen]);
 
   return isOpen
     ? createPortal(
-        <Menu isOpen={openMenu}>
+        <Menu isOpen={isOpen}>
           <TopMenu>
             <div>
               <Logo />
@@ -53,7 +55,7 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
               </>
             ) : (
               <ButtonContainer>
-                {width > 768 && width < 1280 && <Logout isMobile />}
+                {width >= 768 && width < 1280 && <Logout isMobile isRequest spacing />}
                 <CloseButton type="button" onClick={() => toggleMenu()}>
                   <IconCross width={24} height={24}>
                     <use href={`${sprite}#icon-cross`}></use>
@@ -65,7 +67,7 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
           {!isLogged && width < 768 && <AuthNav isMobile />}
           {isLogged && width < 768 && (
             <>
-              <UserButton to="/user">
+              <UserButton to="/user" onClick={() => toggleMenu()}>
                 <IconUser width={24} height={24}>
                   <use href={`${sprite}#icon-user-1`}></use>
                 </IconUser>
@@ -76,7 +78,7 @@ const MobileMenu = ({ openMenu, toggleMenu, isOpen }) => {
             </>
           )}
           <Nav isMobile />
-          {isLogged && width < 768 && <Logout isMobile />}
+          {isLogged && width < 768 && <Logout isMobile isRequest spacing />}
         </Menu>,
         document.querySelector('#portal-root')
       )

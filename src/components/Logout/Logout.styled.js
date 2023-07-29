@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import handleFunctions from 'utils/handleText';
 
 export const Button = styled.button`
   border-radius: 40px;
@@ -15,6 +16,10 @@ export const Button = styled.button`
   left: ${props => (props.isMobile ? '0' : '')};
   margin-left: ${props => (props.isMobile ? '20px' : '')};
   margin-bottom: ${props => (props.isMobile ? '20px' : '')};
+  &:hover {
+    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    border: transparent;
+  }
 
   @media screen and (min-width: 768px) {
     position: ${props => (props.isMobile ? 'relative' : '')};
@@ -30,7 +35,6 @@ export const Button = styled.button`
     padding-right: 20px;
     padding-left: 20px;
     display: flex;
-
     margin-right: 20px;
   }
 `;
@@ -42,30 +46,22 @@ export const IconLogout = styled.svg`
   }
 `;
 
-const handleWeightText = weight => {
-  switch (weight) {
-    case 'usual':
-      return '500';
-    case 'semi-bold':
-      return '600';
-    case 'bold':
-      return '700';
-    default:
-      return '500';
-  }
-};
-
-export const ButtonText = styled.p`
+export const ButtonText = styled.p
+  .withConfig({
+    shouldForwardProp: prop => !['spacing', 'isRequest'].includes(prop),
+  })
+  .attrs({})`
+  font-size: ${props => (props.isRequest ? '24px' : '16px')};
   margin-right: ${props => props.margin || '0px'};
   margin-left: ${props => props.marginL || '0px'};
-  color: ${props => (props.isGrey ? '#888888' : 'var(--bg-color)')};
-  font-weight: ${({ weight }) => handleWeightText(weight)};
-
+  color: ${({ color }) => handleFunctions.handleColorText(color)};
+  font-weight: ${({ weight }) => handleFunctions.handleWeightText(weight)};
+  letter-spacing: ${props => (props.spacing ? '0.96px' : '0.64px')};
+  font-style: normal;
+  line-height: normal;
+  font-family: Manrope;
   @media screen and (min-width: 768px) {
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.64px;
+    font-size: ${props => (props.isRequest ? '36px' : '16px')};
+    letter-spacing: ${props => (props.spacing ? '1.44px' : '0.64px')};
   }
 `;
