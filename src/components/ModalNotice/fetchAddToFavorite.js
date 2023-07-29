@@ -1,10 +1,13 @@
 import axios from 'axios';
 
+let controller = new AbortController();
+
 const BASE_URL = 'https://fullstackforce.onrender.com/api/notices/';
 
 function fetchAddToFavorite(id, data) {
   const options = {
     method: "PATCH",
+    signal: controller.signal,
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json; charset=UTF-8",

@@ -35,7 +35,7 @@ const NoticesCategoriesList = () => {
           })
           .catch(error => console.log(error))
         }
-
+        
         const response = await fetchByCategory(categoryName, controller);
 
         // if (response.data) return setResByCategory(null);

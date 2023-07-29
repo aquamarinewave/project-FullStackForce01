@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+let controller = new AbortController();
+
 const BASE_URL = 'https://fullstackforce.onrender.com/api/notices/';
 
 // function fetchModalDetail(id) {
@@ -13,7 +15,9 @@ const BASE_URL = 'https://fullstackforce.onrender.com/api/notices/';
 // }
 
 async function fetchModalDetail(id) {
-    const response = await axios.get(`${BASE_URL}${id}`);
+    const response = await axios.get((`${BASE_URL}${id}`), {
+        signal: controller.signal
+    });
     return response.data;
 }
 
