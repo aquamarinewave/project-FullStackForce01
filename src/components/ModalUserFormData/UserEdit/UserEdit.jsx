@@ -20,7 +20,7 @@ export const ModalUserEdit = () => {
       </EditButton>
       {isModalOpen && (
         <ModalUser isOpen={isModalOpen} toggleModal={toggleModal} onRequestClose={toggleModal}>
-          <UserForm />
+          <UserForm toggleModal={toggleModal} />
         </ModalUser>
       )}
     </>
