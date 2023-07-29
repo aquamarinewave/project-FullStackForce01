@@ -4,13 +4,13 @@ import sprite from '../../images/icons.svg';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 // import Button from 'components/Button/Button';
 
-const AuthNav = ({ toggleMenu, menuOpen, isMobile }) => {
-  const width = useWindowWidth();
+const AuthNav = ({ toggleMenu, menuOpen, isMobile, closeMenu}) => {
+ const width = useWindowWidth();
 
   return (
     <>
       <Nav isMobile={isMobile}>
-        <LoginButton isMobile={isMobile} to="/login" onClick={() => toggleMenu()}>
+        <LoginButton isMobile={isMobile} to="/login" onClick={() => closeMenu()}>
           <ButtonText color="login" margin="8px" weight="bold">
             Log IN
           </ButtonText>
@@ -18,7 +18,7 @@ const AuthNav = ({ toggleMenu, menuOpen, isMobile }) => {
             <use href={`${sprite}#icon-pawprint-1`}></use>
           </IconPawPrint>
         </LoginButton>
-        <RegisterButton isMobile={isMobile} to="/register" vonClick={() => toggleMenu()}>
+        <RegisterButton isMobile={isMobile} to="/register" onClick={() => closeMenu()}>
           <ButtonText color="register" weight="semi-bold">
             Registration
           </ButtonText>

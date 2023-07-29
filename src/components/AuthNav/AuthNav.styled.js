@@ -14,7 +14,10 @@ export const Nav = styled.nav`
   }
 `;
 
-export const LoginButton = styled(NavLink)`
+export const LoginButton = styled(NavLink).withConfig({
+  shouldForwardProp: (prop) =>
+      !['isMobile'].includes(prop),
+}).attrs({})`
   border-radius: 40px;
   border: 2px solid var(--accent-color);
   background: var(--accent-color);
@@ -78,7 +81,10 @@ export const ButtonText = styled.p`
   }
 `;
 
-export const RegisterButton = styled(NavLink)`
+export const RegisterButton = styled(NavLink).withConfig({
+  shouldForwardProp: (prop) =>
+      !['isMobile'].includes(prop),
+}).attrs({})`
   display: ${props => (props.isMobile ? 'flex' : 'none')};
   border-radius: 40px;
   background: transparent;
@@ -96,7 +102,10 @@ export const RegisterButton = styled(NavLink)`
   }
 `;
 
-export const BurgerButton = styled.button`
+export const BurgerButton = styled.button.withConfig({
+  shouldForwardProp: (prop) =>
+      !['isMobile'].includes(prop),
+}).attrs({})`
   cursor: pointer;
   border: transparent;
   background: transparent;
