@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import handleFunctions from 'utils/handleText';
 
 export const Nav = styled.nav`
   display: flex;
@@ -10,14 +11,14 @@ export const Nav = styled.nav`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     margin-bottom: 0px;
-    display: flex;
   }
 `;
 
-export const LoginButton = styled(NavLink).withConfig({
-  shouldForwardProp: (prop) =>
-      !['isMobile'].includes(prop),
-}).attrs({})`
+export const LoginButton = styled(NavLink)
+  .withConfig({
+    shouldForwardProp: prop => !['isMobile'].includes(prop),
+  })
+  .attrs({})`
   border-radius: 40px;
   border: 2px solid var(--accent-color);
   background: var(--accent-color);
@@ -31,6 +32,13 @@ export const LoginButton = styled(NavLink).withConfig({
   justify-content: center;
   margin-right: ${props => (props.isMobile ? '' : '20px')};
   margin-bottom: ${props => (props.isMobile ? '12px' : '')};
+  transition: all ease-in-out 0.2s;
+  color: ${({ color }) => handleFunctions.handleColorText(color)};
+  &:hover {
+    background: var(--main-light-color);
+    color: ${({ hovercolor }) => handleFunctions.handleHoverText(hovercolor)};
+    fill: ${({ hovercolor }) => handleFunctions.handleHoverText(hovercolor)};
+  }
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;
     margin-right: 20px;
@@ -38,53 +46,22 @@ export const LoginButton = styled(NavLink).withConfig({
   }
 `;
 
-const handleColorText = color => {
-  switch (color) {
-    case 'login':
-      return '#fef9f9';
-    case 'register':
-      return 'var(--accent-color)';
-    case 'logout':
-      return '#fef9f9';
-    case 'name':
-      return 'var(--accent-color)';
-    default:
-      return 'var(--main-color)';
-  }
-};
-
-const handleWeightText = weight => {
-  switch (weight) {
-    case 'usual':
-      return '500';
-    case 'semi-bold':
-      return '600';
-    case 'bold':
-      return '700';
-    default:
-      return '500';
-  }
-};
-
 export const ButtonText = styled.p`
   margin-right: ${props => props.margin || '0px'};
   margin-left: ${props => props.marginL || '0px'};
-  color: ${({ color }) => handleColorText(color)};
-  font-weight: ${({ weight }) => handleWeightText(weight)};
-
-  @media screen and (min-width: 768px) {
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.64px;
-  }
+  font-weight: ${({ weight }) => handleFunctions.handleWeightText(weight)};
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.64px;
 `;
 
-export const RegisterButton = styled(NavLink).withConfig({
-  shouldForwardProp: (prop) =>
-      !['isMobile'].includes(prop),
-}).attrs({})`
+export const RegisterButton = styled(NavLink)
+  .withConfig({
+    shouldForwardProp: prop => !['isMobile'].includes(prop),
+  })
+  .attrs({})`
   display: ${props => (props.isMobile ? 'flex' : 'none')};
   border-radius: 40px;
   background: transparent;
@@ -94,18 +71,23 @@ export const RegisterButton = styled(NavLink).withConfig({
   cursor: pointer;
   margin-right: ${props => (props.isMobile ? '' : '24px')};
   height: 40px;
-  ${'' /* width: 142px; */}
   width: ${props => (props.isMobile ? '165px' : '142px')};
-
+  color: ${({ color }) => handleFunctions.handleColorText(color)};
+  transition: all ease-in-out 0.2s;
+  &:hover {
+    background: var(--accent-color);
+    color: ${({ hovercolor }) => handleFunctions.handleHoverText(hovercolor)};
+  }
   @media screen and (min-width: 768px) {
     display: flex;
   }
 `;
 
-export const BurgerButton = styled.button.withConfig({
-  shouldForwardProp: (prop) =>
-      !['isMobile'].includes(prop),
-}).attrs({})`
+export const BurgerButton = styled.button
+  .withConfig({
+    shouldForwardProp: prop => !['isMobile'].includes(prop),
+  })
+  .attrs({})`
   cursor: pointer;
   border: transparent;
   background: transparent;
@@ -113,23 +95,26 @@ export const BurgerButton = styled.button.withConfig({
   align-items: center;
   padding: 0;
   display: ${props => (props.isMobile ? 'none' : 'flex')};
+   transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.5);
+  }
+   &:focus {
+    transform: scale(1.5);
+  }
   @media screen and (min-width: 1280px) {
     display: none;
   }
 `;
 
 export const IconPawPrint = styled.svg`
-  fill: var(--main-light-color);
-
-  &:hover {
-    ${'' /* fill: green; */}
-  }
+fill: currentColor;
 `;
 
 export const IconBurger = styled.svg`
-  stroke: #ffc107;
+  stroke: var(--accent-color);
 
   &:hover {
-    ${'' /* fill: green; */}
+    stroke: ${({ hovercolor }) => handleFunctions.handleHoverText(hovercolor)};
   }
 `;

@@ -22,7 +22,11 @@ export const Link = styled(NavLink)`
   font-weight: 500;
   line-height: normal;
   letter-spacing: 1.28px;
+  transition: all ease-in-out 0.2s;
   &:active {
+    color: var(--accent-color);
+  }
+  &:hover {
     color: var(--accent-color);
   }
   margin-bottom: 20px;
