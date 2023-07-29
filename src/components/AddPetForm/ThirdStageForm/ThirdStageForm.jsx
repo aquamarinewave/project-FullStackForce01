@@ -1,4 +1,8 @@
-// import { useState } from 'react';
+import { Field } from 'formik';
+
+import Icon from 'utils/Icon/Icon';
+import sprite from '../../../images/icons.svg';
+
 import { BoxInputField, FieldLabel, InputField } from '../SecondStageForm/SecondStageForm.styled';
 import {
   BoxPetAvatar,
@@ -13,11 +17,39 @@ import {
   TextArea,
   TextSpan,
 } from './ThirdStageForm.styled';
-// import { RadioButton } from '../FirstStageForm/FirstStageForm.styled';
-import { Field } from 'formik';
-import Icon from 'utils/Icon/Icon';
 
-import sprite from '../../../images/icons.svg';
+const optionsSex = [
+  {
+    value: 'female',
+    label: 'Female',
+  },
+  {
+    value: 'male',
+    label: 'Male',
+  },
+];
+
+const colorIcon = checked => {
+  switch (checked) {
+    case 'male':
+      return '#fef9f9';
+    case 'female':
+      return '#888';
+    default:
+      return 'var(--dark-blue)';
+  }
+};
+
+const colorIconFemale = checked => {
+  switch (checked) {
+    case 'female':
+      return '#fef9f9';
+    case 'male':
+      return '#888';
+    default:
+      return 'var(--fail-color)';
+  }
+};
 
 const ThirdStageForm = ({
   showPlaceholder,
@@ -30,44 +62,6 @@ const ThirdStageForm = ({
   selectedGender,
   handleSexChange,
 }) => {
-  // const handlePhotoChange = event => {
-  //   const file = event.currentTarget.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setPreviewImage(reader.result);
-  //     };
-  //     reader.readAsDataURL(file);
-  //     setShowPlaceholder(false);
-  //     setSelectedFile(file);
-  //   } else {
-  //     setShowPlaceholder(true);
-  //     setPreviewImage('');
-  //     setSelectedFile(null);
-  //   }
-  // };
-
-  const colorIcon = checked => {
-    switch (checked) {
-      case 'male':
-        return '#fef9f9';
-      case 'female':
-        return '#888';
-      default:
-        return 'var(--dark-blue)';
-    }
-  };
-  const colorIconFemale = checked => {
-    switch (checked) {
-      case 'female':
-        return '#fef9f9';
-      case 'male':
-        return '#888';
-      default:
-        return 'var(--fail-color)';
-    }
-  };
-
   const handlePhotoChange = event => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -80,17 +74,6 @@ const ThirdStageForm = ({
       setSelectedFile(null);
     }
   };
-
-  const optionsSex = [
-    {
-      value: 'female',
-      label: 'Female',
-    },
-    {
-      value: 'male',
-      label: 'Male',
-    },
-  ];
 
   return (
     <>
@@ -146,10 +129,6 @@ const ThirdStageForm = ({
             placeholder="Type of location"
             value={formik.values.location}
             onChange={formik.handleChange}
-            // onKeyPress={name === 'birthday' ? handleNumericInput : null}
-            // inputMode={name === 'birthday' ? 'numeric' : 'text'}
-            // maxLength={10}
-            // pattern={pattern}
           />
           {/* {formik.touched[name] && formik.errors[name] && <div style={{ color: 'red' }}>{formik.errors[name]}</div>} */}
         </BoxInputField>
@@ -174,14 +153,10 @@ const ThirdStageForm = ({
         <InputFieldTextArea
           as={TextArea} // Використовуємо наші стилі для textarea
           id="comments"
-          name="comments" // Вказуємо ім'я поля, яке буде використовуватись в Formik
+          name="comments"
           placeholder="Type of pet"
           value={formik.values.comments}
           onChange={formik.handleChange}
-          // onChange={event => {
-          //   handlePhotoChange(event);
-          //   setSelectedFile(event.currentTarget.files[0]);
-          // }}
         />
       </div>
     </>

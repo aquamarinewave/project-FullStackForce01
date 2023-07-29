@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainPage />} />
           <Route path="/register" element={<RestrictedRoute redirectTo="/user" component={<RegisterPage />} />} />
-          <Route path="/login" element={<RestrictedRoute redirectTo="/notices" component={<LoginPage />} />} />
+          <Route path="/login" element={<RestrictedRoute redirectTo="/user" component={<LoginPage />} />} />
           <Route path="/user" element={<PrivateRoute redirectTo="/notices" component={<UserPage />} />} />
           <Route path="/add-pet" element={<AddPetPage />} />
           <Route path="/notices/:categoryName" element={<NoticesPage />} />

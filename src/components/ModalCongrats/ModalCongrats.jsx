@@ -1,19 +1,21 @@
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { useEffect, useRef } from 'react';
-
 import sprite from '../../images/icons.svg';
-
+import Icon from 'utils/Icon/Icon';
 import {
-  GoToProfileButton,
-  IconPawPrint,
-  ModalCongratsBackdrop,
-  ModalContent,
-  CloseButton,
-  IconCrossSmall,
+  ApproveBtnModalCongrats,
+  BackdropModalCongrats,
+  BtnContainerModalCongrats,
+  BtnTextModalCongrats,
+  CloseIconModalCongrats,
+  ContainerModalCongrats,
+  ContentModalCongrats,
+  BtnIcon,
 } from './ModalCongrats.styled';
 
-const ModalCongrats = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, children }) => {
+const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, children }) => {
   const modalRef = useRef();
+  const portalRoot = document.getElementById('modal-root');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleKeyDown = event => {
     if (event.key === 'Escape') {
@@ -43,28 +45,26 @@ const ModalCongrats = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIcon
 
   return isOpen
     ? ReactDOM.createPortal(
-        <ModalCongratsBackdrop ref={modalRef} onClick={handleBackdropClick}>
-          <ModalContent>
-            <CloseButton onClick={() => onRequestClose()}>
-              <IconCrossSmall width={24} height={24}>
-                <use href={`${sprite}#icon-plus-small`}></use>
-              </IconCrossSmall>
-            </CloseButton>
-            {/* <div>{children}</div> */}
+        <BackdropModalCongrats ref={modalRef} onClick={handleBackdropClick}>
+          <ContainerModalCongrats>
+            <CloseIconModalCongrats onClick={() => onRequestClose()}>
+              <Icon name="cross" size="24" color="var(--dark-blue)" />
+            </CloseIconModalCongrats>
 
-            <h3>Congrats!</h3>
-            <p>Youre registration is success</p>
-            <GoToProfileButton>
-              GIconPawPrinto to profile
-              <IconPawPrint width={24} height={24}>
-                <use href={`${sprite}#icon-plus-small`}></use>
-              </IconPawPrint>
-            </GoToProfileButton>
-          </ModalContent>
-        </ModalCongratsBackdrop>,
-        document.getElementById('portal-root')
+            <ContentModalCongrats>{children}</ContentModalCongrats>
+            <BtnContainerModalCongrats>
+              <ApproveBtnModalCongrats onClick={onApprove}>
+                <BtnTextModalCongrats>Go to profile</BtnTextModalCongrats>
+                <BtnIcon width={24} height={24} fill="white">
+                  <use href={`${sprite}#icon-pawprint-1`}></use>
+                </BtnIcon>
+              </ApproveBtnModalCongrats>
+            </BtnContainerModalCongrats>
+          </ContainerModalCongrats>
+        </BackdropModalCongrats>,
+        portalRoot
       )
     : null;
 };
 
-export default ModalCongrats;
+export default ModalApproveAction;

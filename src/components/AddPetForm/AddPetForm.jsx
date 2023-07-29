@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Formik } from 'formik';
+
+import { addNoticeThunk, addPetThunk } from 'redux/pets/operations';
+
+import FirstStageForm from './FirstStageForm/FirstStageForm';
+import SecondStageForm from './SecondStageForm/SecondStageForm';
+import ThirdStageForm from './ThirdStageForm/ThirdStageForm';
+import FormPetButton from './FormPetButton/FormPetButton';
+
 import {
   Form,
   TitleAddPetForm,
@@ -10,52 +19,59 @@ import {
   BoxTitle,
   BoxFieldsForm,
 } from './AddPetForm.styled';
-import FirstStageForm from './FirstStageForm/FirstStageForm';
-import SecondStageForm from './SecondStageForm/SecondStageForm';
-import ThirdStageForm from './ThirdStageForm/ThirdStageForm';
-import FormPetButton from './FormPetButton/FormPetButton';
-import { addNoticeThunk, addPetThunk } from 'redux/pets/operations';
-import { useNavigate } from 'react-router-dom';
+
+const titleColorText = step => {
+  switch (step) {
+    case 'second':
+      return 'var(--dark-blue)';
+    case 'third':
+      return 'var(--success-color)';
+    default:
+      return '#888';
+  }
+};
+const titleText = category => {
+  switch (category) {
+    case 'sell':
+      return 'Add pet for sale';
+    case 'lost-found':
+      return 'Add lost pet';
+    case 'for-free':
+      return 'Add a pet in good hands';
+    default:
+      return 'Add pet';
+  }
+};
 
 const AddPetForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [currentStage, setCurrentStage] = useState('first');
   const [currentRadioButton, setCurrentRadioButton] = useState('your_pet');
   const [selectedFile, setSelectedFile] = useState('');
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [previewImage, setPreviewImage] = useState('');
   const [selectedGender, setSelectedGender] = useState('');
-  const navigate = useNavigate();
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const initialValues = {
+    title: '',
+    category: currentRadioButton,
+    avatar: selectedFile,
+    name: '',
+    birthday: '',
+    type: '',
+    sex: selectedGender,
+    comments: '',
+    location: '',
+    price: '',
+  };
 
   useEffect(() => {
     if (submitSuccess) {
-      navigate('/user');
+      navigate(-1);
     }
   }, [submitSuccess, navigate]);
-
-  const titleColorText = color => {
-    switch (color) {
-      case 'second':
-        return 'var(--dark-blue)';
-      case 'third':
-        return 'var(--success-color)';
-      default:
-        return '#888';
-    }
-  };
-  const titleText = title => {
-    switch (title) {
-      case 'sell':
-        return 'Add pet for sale';
-      case 'lost-found':
-        return 'Add lost pet';
-      case 'for-free':
-        return 'Add a pet in good hands';
-      default:
-        return 'Add pet';
-    }
-  };
 
   const handleNextStage = () => {
     if (currentStage === 'first') {
@@ -71,42 +87,35 @@ const AddPetForm = () => {
     } else if (currentStage === 'third') {
       setCurrentStage('second');
     } else {
-      navigate('/user');
+      navigate(-1);
     }
   };
 
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const formData = {
+      ...values,
+      avatar: selectedFile,
+    };
+
+    try {
+      if (currentRadioButton === 'your_pet') {
+        await dispatch(addPetThunk(formData));
+      } else {
+        await dispatch(addNoticeThunk(formData));
+      }
+
+      setSubmitSuccess(true); // Перенаправлення лише у разі успішного запиту
+    } catch (error) {
+      console.log('Error submitting form:', error);
+      // Тут можна виконати додаткові дії або показати повідомлення про помилку
+    }
+
+    setSubmitting(false);
+    resetForm();
+  };
+
   return (
-    <Formik
-      initialValues={{
-        title: '',
-        category: currentRadioButton,
-        avatar: selectedFile,
-        name: '',
-        birthday: '',
-        type: '',
-        sex: selectedGender,
-        comments: '',
-        location: '',
-        price: '',
-      }}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        const formData = {
-          ...values,
-          avatar: selectedFile,
-        };
-        if (currentRadioButton === 'your_pet') {
-          dispatch(addPetThunk(formData))
-            .then(() => setSubmitSuccess(true))
-            .catch(error => console.log('Error submitting form:', error));
-        } else {
-          dispatch(addNoticeThunk(formData))
-            .then(() => setSubmitSuccess(true))
-            .catch(error => console.log('Error submitting form:', error));
-        }
-        setSubmitting(false);
-        resetForm();
-      }}
-    >
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {formik => {
         const handleOptionChange = event => {
           setCurrentRadioButton(event.target.value);
@@ -133,11 +142,7 @@ const AddPetForm = () => {
               </BoxTitle>
               <BoxFieldsForm>
                 {currentStage === 'first' && (
-                  <FirstStageForm
-                    currentRadioButton={currentRadioButton}
-                    handleOptionChange={handleOptionChange}
-                    formik={formik}
-                  />
+                  <FirstStageForm currentRadioButton={currentRadioButton} handleOptionChange={handleOptionChange} />
                 )}
                 {currentStage === 'second' && (
                   <SecondStageForm currentRadioButton={currentRadioButton} formik={formik} />

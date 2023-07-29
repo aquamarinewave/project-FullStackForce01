@@ -2,7 +2,7 @@ import FriendsItem from 'components/FriendsItem/FriendsItem.jsx';
 import { useState, useEffect } from 'react';
 import { fetchByFriends } from '../../services/api/friendsFetch.js';
 
-import {Wrapper} from './OurFriendsList.styled.js'
+import { Wrapper } from './OurFriendsList.styled.js';
 
 const OurFriendsList = () => {
   const [resByFriends, setResByFriends] = useState();
@@ -17,7 +17,6 @@ const OurFriendsList = () => {
     }
 
     fetchDataByFriends();
-
   }, []);
 
   return (

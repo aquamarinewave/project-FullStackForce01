@@ -8,12 +8,11 @@ import fetchGetFavorites from '../ModalNotice/fetchGetFavorites';
 
 const NoticesCategoriesList = () => {
   const [resByCategory, setResByCategory] = useState([]);
+
   console.log('resByCategory:', resByCategory);
   const { categoryName } = useParams();
   const isLogged = useSelector(authSelector.loggedInSelector);
   console.log('isLogged:', useSelector(authSelector.loggedInSelector));
-
-  console.log(categoryName);
 
   useEffect(() => {
     if (!categoryName) return;
