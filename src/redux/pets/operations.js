@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
+const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
   try {
     const { name, avatar, birthday, type, comments } = formData;
 
@@ -23,9 +23,9 @@ export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thu
   }
 });
 
-export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
+const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
   try {
-    const { category, name, avatar, birthday, type, price, sex, location, comments } = formData;
+    const { category, name, avatar, birthday, type, price, sex, location, comments, title } = formData;
 
     const data = new FormData();
     data.append('category', category);
@@ -39,6 +39,9 @@ export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData
     if (category === 'sell') {
       data.append('price', price);
     }
+    if (category !== 'your pet') {
+      data.append('title', title);
+    }
 
     const response = await axios.post('/notices', data);
     console.log('response111:', response);
@@ -50,3 +53,10 @@ export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+const petsOperations = {
+  addPetThunk,
+  addNoticeThunk,
+};
+
+export default petsOperations;

@@ -39,6 +39,15 @@ const SearchIconBtn = styled.button`
   width: 100%;
   height: 100%;
   background-color: white;
+  cursor: pointer;
 `;
 
-export { SearchContainer, SearchForm, SearchInput, SearchIconContainer, SearchIconBtn };
+const IconSvg = styled.svg`
+  fill: var(--dark-blue);
+`;
+
+const IconCrossSmall = styled.svg`
+  stroke: var(--accent-color);
+`;
+
+export { SearchContainer, SearchForm, SearchInput, SearchIconContainer, SearchIconBtn, IconSvg, IconCrossSmall };

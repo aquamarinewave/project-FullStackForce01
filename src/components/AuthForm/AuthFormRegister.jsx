@@ -1,6 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, ref } from 'yup';
-import { useDispatch } from 'react-redux';
 import {
   ErrorText,
   ContainerAuth,
@@ -18,10 +17,13 @@ import {
   AuthIconsValidation,
   AuthIconCheck,
 } from './AuthForm.styled';
+import { TitleModalCongrats, TextModalCongrats } from 'components/ModalCongrats/ModalCongrats.styled';
 
 import authOperations from '../../redux/auth/operations';
 import { useState } from 'react';
 import sprite from '../../images/icons.svg';
+import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
+import { useDispatch } from 'react-redux';
 
 const userRegisterSchema = object({
   name: string().required().min(2, 'Your name is too short.').max(16, 'Your name is too long.'),
@@ -44,20 +46,29 @@ const AuthFormRegister = props => {
   const dispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = (values, { resetForm }) => {
-    const { name, email, password } = values;
+  const toggleModal = values => {
+    setIsModalOpen(prevState => !prevState);
+    setEmail(values.email);
+    setName(values.name);
+    setPassword(values.password);
+  };
+
+  const handleSubmitRegister = () => {
     dispatch(authOperations.registrationUser({ name, email, password }));
-    resetForm();
   };
 
   return (
     <ContainerAuth>
       <AuthTitle>Registration</AuthTitle>
-      <Formik initialValues={initialValues} validationSchema={userRegisterSchema} onSubmit={handleSubmit}>
-        {({ errors, touched, handleChange, handleBlur, values, isSubmitting, isValid }) => {
+      <Formik initialValues={initialValues} validationSchema={userRegisterSchema} onSubmit={toggleModal}>
+        {({ errors, touched, handleChange, handleBlur, values, isSubmitting, isValid, handleSubmit }) => {
           return (
-            <AuthForm>
+            <AuthForm onSubmit={handleSubmit}>
               <AuthFieldWrap>
                 <AuthField
                   {...props}
@@ -240,6 +251,17 @@ const AuthFormRegister = props => {
           );
         }}
       </Formik>
+      {isModalOpen && (
+        <ModalCongrats
+          isOpen={isModalOpen}
+          toggleModal={toggleModal}
+          onApprove={handleSubmitRegister}
+          onRequestClose={toggleModal}
+        >
+          <TitleModalCongrats>Congrats!</TitleModalCongrats>
+          <TextModalCongrats>Your registration is success</TextModalCongrats>
+        </ModalCongrats>
+      )}
     </ContainerAuth>
   );
 };

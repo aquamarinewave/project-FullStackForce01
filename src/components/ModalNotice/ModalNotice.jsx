@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import {Background , ModalWrapper, ModalContent, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
+import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvatar, ModalCategory, ModalHeader, ModalInfoList, ModalInfoItem, ModalContact, ModalComments, ModalButtons, ModalPhone, ModalButtonAdd, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
+import ModalAttention from './ModalAttention';
 import fetchModalDetail from '../ModalNotice/fetchModalDetail';
 import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
 import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
@@ -11,6 +12,7 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
   const [valueModalInfo, setValueModalInfo] = useState({});
   const [userModalInfo, setUserModalInfo] = useState({});
   const [isSelected, setIsSelected] = useState(false);
+  const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
@@ -34,15 +36,22 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
       }
     }
     fetchModalDetailPet();
-    
+
     const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
+
     if (savedSelectedState !== null) {
       setIsSelected(JSON.parse(savedSelectedState));
+    } else {
+      setIsSelected(false);
     }
 
-  }, [idCard])
+  }, [idCard, isLoggedIn])
 
   const modalRef = useRef();
+
+  const closeModalAttention = () => {
+    setIsModalOpenAttention(!isModalOpenAttention)
+  }
 
   const closeModal = e => {
     if (modalRef.current === e.target) {
@@ -85,7 +94,8 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
       }
 
     } else {
-      console.log('LogOUT');
+      setShowModal(false);
+      setIsModalOpenAttention(true);
     }
   };
 
@@ -101,67 +111,54 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <ModalWrapper showModal={showModal}>
               <ModalContent>
-                <div className='modal-info'>
-                  <div className="modal-img">
-                    <img className="modal-avatar" src={avatarURL} alt={name} />
-                    <p className="modal-category">{category}</p>
-                  </div>
+                <ModalInfo>
+                  <ModalImg>
+                    <ModalAvatar src={avatarURL} alt={name} />
+                    <ModalCategory>{category}</ModalCategory>
+                  </ModalImg>
                   
                   <div>
-                    <h2 className="modal-header">Сute dog looking for a home</h2>
-                    <div className="modal-info-list">
-                    <ul className="modal-info-item modal-info-item--name">
-                      <li>
-                        Name:
-                      </li>
-                      <li>
-                        Birthday:
-                      </li>
-                      <li>
-                        Type:
-                      </li>
-                      <li>
-                        Place:
-                      </li>
-                      <li>
-                        The sex:
-                      </li>
-                      <li>
-                        Email:
-                      </li>
-                      <li>
-                        Phone:
-                      </li>
-                    </ul>
+                    <ModalHeader>Сute dog looking for a home</ModalHeader>
+                    <ModalInfoList>
+                    <ModalInfoItem>
+                      <li><strong>Name:</strong></li>
+                      <li><strong>Birthday:</strong></li>
+                      <li><strong>Type:</strong></li>
+                      <li><strong>Place:</strong></li>
+                      <li><strong>The sex:</strong></li>
+                      <li><strong>Email:</strong></li>
+                      <li><strong>Phone:</strong></li>
+                    </ModalInfoItem>
 
-                    <ul className="modal-info-item">
-                      <li>{name || " "}</li>
-                      <li>{birthday || " "}</li>
-                      <li>{type || " "}</li>
-                      <li>{location || " "}</li>
-                      <li>{sex || " "}</li>
-                      <li className="modal-contact" >
-                        <a href={`mailto: ${email}`}>{email || " "}</a>
-                      </li>
-                      <li className="modal-contact">
+                    <ModalInfoItem>
+                      <li>{name || "empty"}</li>
+                      <li>{birthday || "empty"}</li>
+                      <li>{type || "empty"}</li>
+                      <li>{location || "empty"}</li>
+                      <li>{sex || "empty"}</li>
+                      <ModalContact>
+                        <a href={`mailto: ${email}`}>{email || "email@gamil.com"}</a>
+                      </ModalContact>
+                      <ModalContact>
                         <a href={`tel: ${phone}`}>{phone || "+380 (XXX) (XXXXXXXX)"}</a>
-                      </li>
-                    </ul>
-                    </div>
+                      </ModalContact>
+                    </ModalInfoItem>
+                    </ModalInfoList>
                   </div>
-                </div>
+                </ModalInfo>
 
-                <p className="modal-comments"><strong>Comments:</strong> {comments}</p>
+                <ModalComments><strong>Comments:</strong> {comments}</ModalComments>
 
-                <div className="modal-buttons">
-                  <a href={`tel: ${phone}`} className="modal-button modal-button--primary" type="button">Contact</a>
+                <ModalButtons>
+                  <ModalPhone href={`tel: ${phone}`}>Contact</ModalPhone>
 
-                  <button className={`modal-button modal-button--second ${isSelected ? 'selected' : ''}` } type="button" onClick={handleAddToFavorite}><span>Add to</span> <span>  
-                  <IconHeart width={24} height={24}>
+                  <ModalButtonAdd onClick={handleAddToFavorite} isSelected = {isSelected} isLoggedIn = {isLoggedIn}><span>{isSelected && isLoggedIn? "Delete" : "Add"}</span> <span>  
+                  <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
                     <use href={`${sprite}#icon-heart`}></use>
                   </IconHeart>
-                  </span></button>
-                </div>
+                  </span></ModalButtonAdd>
+
+                </ModalButtons>
               </ModalContent>
               <CloseModalButton
                 aria-label='Close modal'
@@ -174,6 +171,9 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
           </ModalWrapper>          
         </Background>
       ) : null}
+      
+    {isModalOpenAttention ? (<ModalAttention onClose={closeModalAttention}/>) : null}
     </>
+    
   );
 };

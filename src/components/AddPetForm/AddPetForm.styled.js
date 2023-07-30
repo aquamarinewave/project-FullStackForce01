@@ -9,6 +9,16 @@ export const NextStageForm = styled.h3`
   line-height: normal;
   width: 80px;
   color: ${props => (props.current === 'first' ? 'var(--dark-blue)' : `var(--success-color)`)};
+  @media screen and (min-width: 768px) {
+    width: 120px;
+    /* min-height: 542px; */
+  }
+
+  @media screen and (min-width: 1280px) {
+    /* width: 280px; */
+    /* min-height: 542px; */
+    /* margin-top: 20px; */
+  }
   &:after {
     content: '';
     position: absolute;
@@ -18,6 +28,16 @@ export const NextStageForm = styled.h3`
     height: 8px;
     top: 25px;
     left: 0;
+    @media screen and (min-width: 768px) {
+      width: 120px;
+      /* min-height: 542px; */
+    }
+
+    @media screen and (min-width: 1280px) {
+      /* width: 280px; */
+      /* min-height: 542px; */
+      /* margin-top: 20px; */
+    }
   }
   &:nth-child(2) {
     color: ${props => props.title};
@@ -44,6 +64,17 @@ export const Form = styled(FormikForm)`
   background-color: #fff;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
+  @media screen and (min-width: 768px) {
+    width: 458px;
+    min-height: 542px;
+    padding: 32px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    /* width: 280px; */
+    /* min-height: 542px; */
+    /* margin-top: 20px; */
+  }
 `;
 
 export const BoxTitle = styled.div`
@@ -66,8 +97,17 @@ export const TitleAddPetForm = styled.h2`
 
 export const BoxStageForm = styled.div`
   display: flex;
-  gap: 11px;
+  gap: 12px;
   color: red;
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    /* width: 280px; */
+    /* min-height: 542px; */
+    /* margin-top: 20px; */
+  }
 `;
 
 export const BoxFieldsForm = styled.div`
@@ -80,4 +120,17 @@ export const BoxButton = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px 0;
+  margin-top: 24px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    /* width: 458px;
+    min-height: 542px; */
+  }
+
+  @media screen and (min-width: 1280px) {
+    /* width: 280px; */
+    /* min-height: 542px; */
+    /* margin-top: 20px; */
+  }
 `;

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import handleFunctions from 'utils/handleText';
 
 export const Nav = styled.nav`
   display: flex;
@@ -10,47 +11,16 @@ export const Nav = styled.nav`
   }
 `;
 
-const handleColorText = color => {
-  switch (color) {
-    case 'login':
-      return 'var(--bg-color)';
-    case 'register':
-      return 'var(--accent-color)';
-    case 'logout':
-      return 'var(--bg-color)';
-    case 'name':
-      return 'var(--accent-color)';
-    default:
-      return 'var(--main-color)';
-  }
-};
-
-const handleWeightText = weight => {
-  switch (weight) {
-    case 'usual':
-      return '500';
-    case 'semi-bold':
-      return '600';
-    case 'bold':
-      return '700';
-    default:
-      return '500';
-  }
-};
-
 export const ButtonText = styled.p`
   margin-right: ${props => props.margin || '0px'};
   margin-left: ${props => props.marginL || '0px'};
-  color: ${({ color }) => handleColorText(color)};
-  font-weight: ${({ weight }) => handleWeightText(weight)};
-
-  @media screen and (min-width: 768px) {
-    font-family: Manrope;
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.64px;
-  }
+  color: ${({ color }) => handleFunctions.handleColorText(color)};
+  font-weight: ${({ weight }) => handleFunctions.handleWeightText(weight)};
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.64px;
 `;
 
 export const UserButton = styled(NavLink)`
@@ -62,11 +32,11 @@ export const UserButton = styled(NavLink)`
   cursor: pointer;
   margin-right: 8px;
   padding: 0;
-
-  @media screen and (min-width: 768px) {
-    height: 40px;
-    display: flex;
-    align-items: center;
+  height: 40px;
+  display: flex;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.2);
   }
 
   @media screen and (min-width: 1280px) {
@@ -83,6 +53,10 @@ export const BurgerButton = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.5);
+  }
 `;
 
 export const IconLogout = styled.svg`

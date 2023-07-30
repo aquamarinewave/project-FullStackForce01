@@ -19,7 +19,7 @@ const registrationUser = createAsyncThunk('auth/register', async (registerData, 
     return response.data;
   } catch (error) {
     alert(error.response.data.message);
-    return thunkApi.rejectWithValue(error.response.data.message)
+    return thunkApi.rejectWithValue(error.response.data.message);
   }
 });
 
@@ -29,9 +29,8 @@ const loginUser = createAsyncThunk('auth/login', async (loginData, thunkApi) => 
     token.set(response.data.token);
     return response.data;
   } catch (error) {
-   
     alert(error.response.data.message);
-    return thunkApi.rejectWithValue(error.response.data.message)
+    return thunkApi.rejectWithValue(error.response.data.message);
   }
 });
 
@@ -60,11 +59,28 @@ const refreshCurrentUser = createAsyncThunk('auth/current', async (_, thunkAPI) 
   }
 });
 
+export const updateUser = createAsyncThunk('auth/profile', async (userData, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedToken = state.auth.token;
+
+  if (persistedToken === null) {
+    return thunkAPI.rejectWithValue('Unable to update user');
+  }
+  token.set(persistedToken);
+  try {
+    const res = await axios.patch('/users', userData);
+    return res.data.user;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 const authOperations = {
   registrationUser,
   loginUser,
   logoutUser,
   refreshCurrentUser,
+  updateUser,
 };
 
 export default authOperations;

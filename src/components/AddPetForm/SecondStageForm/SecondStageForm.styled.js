@@ -1,5 +1,5 @@
-import { Field } from 'formik';
 import styled from 'styled-components';
+import { Field } from 'formik';
 
 export const BoxInputField = styled.div`
   display: flex;
@@ -23,8 +23,6 @@ export const InputField = styled(Field)`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  /* line-height: 150%; */
-  /* letter-spacing: 0.56px; */
   border: 1px solid var(--dark-blue);
   border-radius: 40px;
 

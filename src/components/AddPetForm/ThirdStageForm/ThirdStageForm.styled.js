@@ -49,6 +49,7 @@ export const FieldAvatar = styled(Field)`
   width: 100%;
   height: 100%;
   opacity: 0;
+  cursor: pointer;
 `;
 
 export const TextArea = styled.textarea`
@@ -89,10 +90,6 @@ export const RadioButtonSex = styled.label`
 
   input {
     display: none;
-  }
-
-  input:checked {
-    color: #fef9f9;
   }
 `;
 

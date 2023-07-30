@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addNoticeThunk, addPetThunk } from './operations';
+import petsOperations from './operations';
+import authOperations from '../auth/operations';
 
 const listPets = {
-  pet: [],
+  pets: [],
   isLoading: false,
   error: null,
 };
@@ -13,7 +14,9 @@ const handlePending = state => {
 };
 
 const handleFulfilledAddPet = (state, action) => {
-  state.pet.push(action.payload);
+  state.pets.push(action.payload);
+  state.isLoading = false;
+  state.error = null;
 };
 
 const handleRejected = (state, action) => {
@@ -21,17 +24,24 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
+const handleFulfilledLogOut = state => {
+  state.pets = [];
+  state.error = null;
+  state.isLoading = false;
+};
+
 export const petsSlice = createSlice({
   name: 'pets',
   initialState: listPets,
   extraReducers: builder => {
     builder
-      .addCase(addPetThunk.pending, handlePending)
-      .addCase(addPetThunk.fulfilled, handleFulfilledAddPet)
-      .addCase(addPetThunk.rejected, handleRejected)
-      .addCase(addNoticeThunk.pending, handlePending)
-      .addCase(addNoticeThunk.fulfilled, handleFulfilledAddPet)
-      .addCase(addNoticeThunk.rejected, handleRejected);
+      .addCase(petsOperations.addPetThunk.pending, handlePending)
+      .addCase(petsOperations.addPetThunk.fulfilled, handleFulfilledAddPet)
+      .addCase(petsOperations.addPetThunk.rejected, handleRejected)
+      .addCase(petsOperations.addNoticeThunk.pending, handlePending)
+      .addCase(petsOperations.addNoticeThunk.fulfilled, handleFulfilledAddPet)
+      .addCase(petsOperations.addNoticeThunk.rejected, handleRejected)
+      .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut);
   },
 });
 
