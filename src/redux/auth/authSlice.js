@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   error: null,
+  userModal: false,
 };
 
 const authSlice = createSlice({
@@ -33,6 +34,10 @@ const authSlice = createSlice({
     },
     [authOperations.refreshCurrentUser.fulfilled](state, action) {
       state.user = action.payload.user;
+      state.isLoggedIn = true;
+    },
+    [authOperations.updateUser.fulfilled](state, action) {
+      state.user = action.payload;
       state.isLoggedIn = true;
     },
   },

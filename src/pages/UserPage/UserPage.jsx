@@ -7,16 +7,18 @@
 // import Logout from '../../components/Logout/Logout';
 
 import PetsData from '../../components/PetsData/PetsData';
-import { UserPageContainer } from './UserPage.styled';
-import UserForm from '../../components/UserForm/UserForm';
+import { UserPageContainer, UserCard } from './UserPage.styled';
+// import { LogoutBtn } from 'components/Logout/LogoutBtn/LogoutBtn';
+import UserData from 'components/UserData/UserData';
+import Logout from 'components/Logout/Logout';
 
 const UserPage = () => {
   return (
     <UserPageContainer>
-      <UserForm />
-      {/* <UserData />
-
-      <Logout /> */}
+      <UserCard>
+        <UserData />
+        <Logout isReversed isGrey marginL="12px" isDisplay isMarginT isRequest/>
+      </UserCard>
 
       <PetsData />
     </UserPageContainer>

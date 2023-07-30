@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addNoticeThunk, addPetThunk } from './operations';
+import petsOperations from './operations';
 import authOperations from '../auth/operations';
 
 const listPets = {
@@ -36,12 +36,12 @@ export const petsSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(addPetThunk.pending, handlePending)
-      .addCase(addPetThunk.fulfilled, handleFulfilledAddPet)
-      .addCase(addPetThunk.rejected, handleRejected)
-      .addCase(addNoticeThunk.pending, handlePending)
-      .addCase(addNoticeThunk.fulfilled, handleFulfilledAddPet)
-      .addCase(addNoticeThunk.rejected, handleRejected)
+      .addCase(petsOperations.addPetThunk.pending, handlePending)
+      .addCase(petsOperations.addPetThunk.fulfilled, handleFulfilledAddPet)
+      .addCase(petsOperations.addPetThunk.rejected, handleRejected)
+      .addCase(petsOperations.addNoticeThunk.pending, handlePending)
+      .addCase(petsOperations.addNoticeThunk.fulfilled, handleFulfilledAddPet)
+      .addCase(petsOperations.addNoticeThunk.rejected, handleRejected)
       .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut);
   },
 });

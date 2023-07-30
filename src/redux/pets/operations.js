@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
+const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
   try {
     const { name, avatar, birthday, type, comments } = formData;
 
@@ -23,7 +23,7 @@ export const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thu
   }
 });
 
-export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
+const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunkAPI) => {
   try {
     const { category, name, avatar, birthday, type, price, sex, location, comments, title } = formData;
 
@@ -53,20 +53,3 @@ export const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData
     return thunkAPI.rejectWithValue(e.message);
   }
 });
-
-//=========================================//
-
-const deletePet = createAsyncThunk('pets/deletePet', async (_id, thunkApi) => {
-  try {
-    // await axios.delete(`pets/${_id}`);
-    const response = await axios.delete(`pets/${_id}`);
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    return thunkApi.rejectWithValue(error.message);
-  }
-});
-
-const petsOperations = { deletePet };
-
-export default petsOperations;

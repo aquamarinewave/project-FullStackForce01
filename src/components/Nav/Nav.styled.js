@@ -5,7 +5,6 @@ export const MainNav = styled.nav`
   display: ${props => (props.isMobile ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
-  ${'' /* margin-bottom: 159px; */}
 
   @media screen and (min-width: 768px) {
     display: ${props => (props.isMobile ? 'flex' : 'none')};
@@ -22,7 +21,11 @@ export const Link = styled(NavLink)`
   font-weight: 500;
   line-height: normal;
   letter-spacing: 1.28px;
-  &:active {
+  transition: all ease-in-out 0.2s;
+  &.active {
+    color: var(--accent-color);
+  }
+  &:hover {
     color: var(--accent-color);
   }
   margin-bottom: 20px;

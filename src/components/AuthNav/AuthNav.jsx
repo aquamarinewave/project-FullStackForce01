@@ -4,24 +4,36 @@ import sprite from '../../images/icons.svg';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 // import Button from 'components/Button/Button';
 
-const AuthNav = ({ toggleMenu, menuOpen, isMobile }) => {
-  const width = useWindowWidth();
+const AuthNav = ({ toggleMenu, menuOpen, isMobile, closeMenu}) => {
+ const width = useWindowWidth();
 
   return (
     <>
       <Nav isMobile={isMobile}>
-        <LoginButton isMobile={isMobile} to="/login" onClick={() => toggleMenu()}>
-          <ButtonText color="login" margin="8px" weight="bold">
+        <LoginButton
+          activeClassName="active"
+          color="login"
+          hovercolor="register"
+          isMobile={isMobile}
+          to="/login"
+          onClick={() => closeMenu()}
+        >
+          <ButtonText margin="8px" weight="bold">
             Log IN
           </ButtonText>
           <IconPawPrint width={24} height={24}>
             <use href={`${sprite}#icon-pawprint-1`}></use>
           </IconPawPrint>
         </LoginButton>
-        <RegisterButton isMobile={isMobile} to="/register" vonClick={() => toggleMenu()}>
-          <ButtonText color="register" weight="semi-bold">
-            Registration
-          </ButtonText>
+        <RegisterButton
+          activeClassName="active"
+          color="register"
+          hovercolor="login"
+          isMobile={isMobile}
+          to="/register"
+          onClick={() => closeMenu()}
+        >
+          <ButtonText weight="semi-bold">Registration</ButtonText>
         </RegisterButton>
         {width < 1280 && (
           <BurgerButton isMobile={isMobile} type="button" onClick={() => toggleMenu()}>
