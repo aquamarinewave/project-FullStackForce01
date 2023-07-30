@@ -11,7 +11,6 @@ const OurFriendsList = () => {
     async function fetchDataByFriends() {
       try {
         const response = await fetchByFriends();
-        console.log(response.data[0].friends);
         setResByFriends(response.data[0].friends);
       } catch (error) {}
     }
