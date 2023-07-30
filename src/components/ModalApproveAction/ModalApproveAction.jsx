@@ -14,7 +14,7 @@ import {
   BtnIcon,
 } from './ModalApproveAction.styled';
 
-const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, children }) => {
+const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, children, isLogout }) => {
   const modalRef = useRef();
   const iconPath = sprite + '#' + btnIconName;
   const portalRoot = document.getElementById('modal-root');
@@ -48,7 +48,7 @@ const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, bt
   return isOpen
     ? ReactDOM.createPortal(
         <Backdrop ref={modalRef} onClick={handleBackdropClick}>
-          <Container>
+          <Container isLogout={isLogout}>
             <CloseIcon onClick={() => onRequestClose()}>
               <Icon name="cross" size="24" color="var(--dark-blue)" />
             </CloseIcon>

@@ -11,7 +11,7 @@ const Navigation = ({ toggleMenu, openMenu, closeMenu }) => {
     <>
       <Nav closeMenu={closeMenu} />
       {isLogged ? (
-        <UserNav closeMenu={closeMenu}  toggleMenu={toggleMenu} menuOpen={openMenu} />
+        <UserNav closeMenu={closeMenu} toggleMenu={toggleMenu} menuOpen={openMenu} />
       ) : (
         <AuthNav closeMenu={closeMenu} toggleMenu={toggleMenu} menuOpen={openMenu} />
       )}

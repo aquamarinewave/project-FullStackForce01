@@ -61,23 +61,12 @@ export const BurgerButton = styled.button`
 
 export const IconLogout = styled.svg`
   stroke: var(--bg-color);
-  &:hover {
-    ${'' /* fill: green; */}
-  }
 `;
 
 export const IconUser = styled.svg`
   stroke: var(--accent-color);
-
-  &:hover {
-    ${'' /* fill: green; */}
-  }
 `;
 
 export const IconBurger = styled.svg`
   stroke: #ffc107;
-
-  &:hover {
-    ${'' /* fill: green; */}
-  }
 `;

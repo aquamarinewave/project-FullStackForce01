@@ -15,7 +15,11 @@ export const MainNav = styled.nav`
   }
 `;
 
-export const Link = styled(NavLink)`
+export const Link = styled(NavLink)
+  .withConfig({
+    shouldForwardProp: prop => !['activeclassname'].includes(prop),
+  })
+  .attrs({})`
   font-size: 32px;
   font-style: normal;
   font-weight: 500;

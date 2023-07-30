@@ -54,11 +54,8 @@ export const UserButton = styled(NavLink)`
 
 export const IconUser = styled.svg`
   stroke: var(--accent-color);
-
-  &:hover {
-    ${'' /* fill: green; */}
-  }
 `;
+
 export const CloseButton = styled.button`
   cursor: pointer;
   border: transparent;
@@ -103,17 +100,10 @@ export const TopMenu = styled.div`
 
 export const IconLogout = styled.svg`
   stroke: var(--bg-color);
-  &:hover {
-    ${'' /* fill: green; */}
-  }
 `;
 
 export const IconCross = styled.svg`
   stroke: var(--accent-color);
-
-  &:hover {
-    ${'' /* fill: green; */}
-  }
 `;
 
 export const Container = styled.div`
