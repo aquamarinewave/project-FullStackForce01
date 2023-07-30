@@ -19,17 +19,14 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
 
-  min-width: 280px;
+  width: 395px;
+  height: 520px;
 
-  padding: 60px 0;
+  padding: 20px 0 21px;
   border-radius: 20px;
   background-color: #fff;
 
   transform: translate(-50%, -50%);
-  @media screen and (min-width: 768px) {
-    min-width: 608px;
-    border-radius: 40px;
-  }
 `;
 
 export const CloseIcon = styled.div`

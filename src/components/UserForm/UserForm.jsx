@@ -1,12 +1,12 @@
 import { Formik, Form } from 'formik';
 import * as React from 'react';
 import * as yup from 'yup';
-// import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import authSelector from 'redux/auth/authSelector';
 import avatarDefault from 'images/profilephotos/avatar-default.png';
 import { useSelector, useDispatch } from 'react-redux';
-import { AvatarWrapper, ImgAvatar, WrapperField, Label, ProfileField } from '../UserData/UserData.styled';
-import { SubmitBtn, Container, ErrorMassege } from './UserForm.styled';
+import { AvatarWrapper, ImgAvatar, WrapperField, Label, ProfileField, ImgWrapper } from '../UserData/UserData.styled';
+import { SubmitBtn, Container, ErrorMassege, InputWrapper, EditText, EditButton } from './UserForm.styled';
 import { updateUser } from 'redux/auth/operations';
 
 import toast from 'react-hot-toast';
@@ -14,8 +14,33 @@ import { Toaster } from 'react-hot-toast';
 
 export const UserForm = ({ toggleModal }) => {
   const user = useSelector(authSelector.userSelector);
-
+  const [avatarUrl, setavatarUrl] = useState('');
+  const [newAvatar, setnewAvatar] = useState('');
+  const [isUpdateForm, setIsUpdateForm] = useState(false);
   const dispatch = useDispatch();
+
+  function peviewFile(file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      setnewAvatar(reader.result);
+      console.log(newAvatar);
+    };
+  }
+
+  useEffect(() => {
+    if (newAvatar) {
+      setIsUpdateForm(true);
+    }
+  }, [newAvatar]);
+
+  const handleChange = e => {
+    const file = e.target.files[0];
+    setavatarUrl(file);
+
+    peviewFile(file);
+  };
 
   const initialValues = {
     avatarURL: user?.avatarURL || { avatarDefault },
@@ -29,9 +54,9 @@ export const UserForm = ({ toggleModal }) => {
   const handleFormSubmit = async (values, { resetForm }) => {
     const formData = new FormData();
     try {
-      // if (avatarUrl) {
-      //   formData.append('avatarUrl', avatarUrl);
-      // }
+      if (avatarUrl) {
+        formData.append('avatar', avatarUrl);
+      }
       if (initialValues.name !== values.name && values.name) {
         formData.append('name', values.name);
       }
@@ -55,9 +80,7 @@ export const UserForm = ({ toggleModal }) => {
         toast.success('Profile successfully updated');
       }
       resetForm();
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   };
 
   const shema = yup.object().shape({
@@ -77,7 +100,24 @@ export const UserForm = ({ toggleModal }) => {
         {({ dirty, errors, touched, values }) => (
           <Form>
             <AvatarWrapper>
-              <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
+              {newAvatar ? (
+                <ImgWrapper>
+                  <ImgAvatar src={newAvatar} alt="avatar" />
+                </ImgWrapper>
+              ) : (
+                <ImgWrapper>
+                  <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
+                </ImgWrapper>
+              )}
+              <EditButton>
+                <InputWrapper
+                  type="file"
+                  id="fileInput"
+                  onChange={e => handleChange(e)}
+                  accept="image/png, image/jpeg, image/jpg, image/jfif"
+                />
+                <EditText>Edit photo</EditText>
+              </EditButton>
             </AvatarWrapper>
             <Container>
               <WrapperField>
@@ -113,10 +153,13 @@ export const UserForm = ({ toggleModal }) => {
               <Label htmlFor="city"> City:</Label>
               <ProfileField type="text" name="city" placeholder={initialValues.city} />
             </WrapperField>
-
-            <SubmitBtn type="submit" disabled={!dirty}>
-              Save
-            </SubmitBtn>
+            {isUpdateForm ? (
+              <SubmitBtn type="submit">Save</SubmitBtn>
+            ) : (
+              <SubmitBtn type="submit" disabled={!dirty}>
+                Save
+              </SubmitBtn>
+            )}
           </Form>
         )}
       </Formik>

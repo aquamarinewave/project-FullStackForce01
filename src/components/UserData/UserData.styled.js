@@ -70,9 +70,27 @@ export const WrapperField = styled.div`
 `;
 
 export const ImgAvatar = styled.img`
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 40px;
+  object-fit: cover;
 `;
 
 export const AvatarWrapper = styled.div`
-  margin-bottom: 63px;
+  margin-bottom: 26px;
+`;
+
+export const ImgWrapper = styled.div`
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 182px;
+  height: 182px;
+  background: transparent;
+  border-radius: 40px;
+  margin: 0 auto;
+  margin-bottom: 15px;
 `;

@@ -20,25 +20,55 @@ export const SubmitBtn = styled.button`
   :disabled {
     opacity: 0.4;
   }
+  margin-left: 116px;
 `;
 
 export const Container = styled.div`
-  height: 45px;
-  position: relative;
+  /* height: 45px;
+  position: relative; */
 `;
 
 export const ErrorMassege = styled.div`
-  position: absolute;
+  /* position: absolute;
   bottom: 3px;
   left: 15px;
   font-size: 10px;
   line-height: 1.16;
   top: 30px;
-  right: 230px;
+  right: 230px; */
+`;
 
-  /* @media screen and (min-width: 768px) {
-    font-size: 12px;
-    bottom: 0;
-    position: absolute;
-  } */
+export const EditButton = styled.label`
+  position: relative;
+  display: inline-block;
+`;
+
+export const EditText = styled.span`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  font-size: 14px;
+  vertical-align: middle;
+  color: rgb(255 255 255);
+  text-align: center;
+  border-radius: 4px;
+  background-color: #419152;
+  line-height: 22px;
+  height: 40px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  transition: background-color 0.2s;
+`;
+
+export const InputWrapper = styled.input`
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
 `;
