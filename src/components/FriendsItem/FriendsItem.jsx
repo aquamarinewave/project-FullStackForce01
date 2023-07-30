@@ -19,7 +19,6 @@ import {
 
 const FriendsItem = ({ responseByFriends }) => {
   const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = responseByFriends;
-  // const { title, url, addressUrl, imageUrl, address, phone, email } = responseByFriends;
 
   return (
     <div>
@@ -34,10 +33,8 @@ const FriendsItem = ({ responseByFriends }) => {
           </LogoDiv>
 
           <InfoBlock>
-            <Info>
-              <InfoTitle>Time:</InfoTitle>
+
               <WorkingHours daysWorkingInWeek={workDays}></WorkingHours>
-            </Info>
 
             <Info>
               <InfoTitle>Address:</InfoTitle>

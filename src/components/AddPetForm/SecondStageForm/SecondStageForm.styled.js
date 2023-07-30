@@ -1,10 +1,24 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
 
+export const ContainerInputField = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 36px;
+
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
+`;
 export const BoxInputField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  @media screen and (min-width: 768px) {
+    gap: 8px;
+  }
 `;
 
 export const FieldLabel = styled.label`
@@ -13,6 +27,10 @@ export const FieldLabel = styled.label`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const InputField = styled(Field)`
@@ -26,11 +44,21 @@ export const InputField = styled(Field)`
   border: 1px solid var(--dark-blue);
   border-radius: 40px;
 
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    padding: 12px 16px;
+    height: 48px;
+  }
+
   &::placeholder {
     color: #888;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
+
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+    }
   }
   &:hover {
     border: 1px solid var(--accent-color);

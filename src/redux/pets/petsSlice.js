@@ -29,6 +29,19 @@ const handleFulfilledLogOut = state => {
   state.error = null;
   state.isLoading = false;
 };
+//==============================//
+
+const handleFulfilledPetFetch = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  state.pets = action.payload;
+};
+
+const handleFulfilledDelete = (state, action) => {
+  const index = state.pets.findIndex(pet => pet.id !== action.payload.id);
+  state.pets.splice(index, 1);
+};
+//=================================//
 
 export const petsSlice = createSlice({
   name: 'pets',
@@ -41,7 +54,14 @@ export const petsSlice = createSlice({
       .addCase(petsOperations.addNoticeThunk.pending, handlePending)
       .addCase(petsOperations.addNoticeThunk.fulfilled, handleFulfilledAddPet)
       .addCase(petsOperations.addNoticeThunk.rejected, handleRejected)
-      .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut);
+      .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut)
+
+      .addCase(petsOperations.fetchUserPet.pending, handlePending)
+      .addCase(petsOperations.fetchUserPet.fulfilled, handleFulfilledPetFetch)
+      .addCase(petsOperations.fetchUserPet.rejected, handleRejected)
+      .addCase(petsOperations.deleteUserPet.pending, handlePending)
+      .addCase(petsOperations.deleteUserPet.fulfilled, handleFulfilledDelete)
+      .addCase(petsOperations.deleteUserPet.rejected, handleRejected);
   },
 });
 

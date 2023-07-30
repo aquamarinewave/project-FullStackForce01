@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 import authOperations from 'redux/auth/operations';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
     </Suspense>
   );
 };

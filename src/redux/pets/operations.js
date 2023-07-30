@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) => {
   try {
     const { name, avatar, birthday, type, comments } = formData;
 
-    // Створюємо об'єкт FormData та додаємо у нього файли та решту полів
     const data = new FormData();
     data.append('name', name);
     data.append('birthday', birthday);
@@ -15,10 +15,10 @@ const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) 
 
     const response = await axios.post('/pets', data);
 
-    console.log('response111:', response.data);
+    toast.success('Pet successfully added!');
     return response.data;
   } catch (e) {
-    console.log('err111:', e.message);
+    toast.error(e.message);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
@@ -44,19 +44,41 @@ const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunk
     }
 
     const response = await axios.post('/notices', data);
-    console.log('response111:', response);
-    // toast.success('New contact successfully added.');
+    toast.success('New ad successfully added!');
     return response.data;
   } catch (e) {
-    console.log('e111:', e.message);
-    // toast.error(e.message);
+    toast.error(e.message);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+//=============================//
+
+const fetchUserPet = createAsyncThunk('pets/fetchUserPets', async (_, thunkAPI) => {
+  try {
+    const response = await axios.get(`/pets`);
+    console.log('responsePet:', response);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+const deleteUserPet = createAsyncThunk('pets/deleteUserPet', async (_id, thunkApi) => {
+  try {
+    const response = await axios.delete(`pets/${_id}`);
+    console.log('response:', response);
+    return response.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
+//=============================//
 
 const petsOperations = {
   addPetThunk,
   addNoticeThunk,
+  deleteUserPet,
+  fetchUserPet,
 };
 
 export default petsOperations;

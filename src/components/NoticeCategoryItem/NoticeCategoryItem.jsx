@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
 import {
   CategoriesContainer,
@@ -15,9 +15,44 @@ import {
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 
+import authSelector from '../../redux/auth/authSelector';
+import { useSelector } from 'react-redux';
+import fetchModalDetail from '../ModalNotice/fetchModalDetail';
+import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
+import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
+
 const NoticeCategoryItem = ({ notices }) => {
   const [showModal, setShowModal] = useState(false);
   const [idCard, setIdCard] = useState('');
+  const [valueModalInfo, setValueModalInfo] = useState({});
+  const [userModalInfo, setUserModalInfo] = useState({});
+  const [isSelected, setIsSelected] = useState(false);
+  const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
+
+  const isLoggedIn = useSelector(authSelector.loggedInSelector);
+
+  useEffect(() => {
+    async function fetchModalDetailPet() {
+      try {
+        const data = await fetchModalDetail(idCard);
+        console.log({...data.notice})
+        setValueModalInfo({...data.notice});
+        setUserModalInfo({...data.user});
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchModalDetailPet();
+
+    const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
+
+    if (savedSelectedState !== null) {
+      setIsSelected(JSON.parse(savedSelectedState));
+    } else {
+      setIsSelected(false);
+    }
+
+  }, [idCard, isLoggedIn]);
 
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
 
@@ -31,6 +66,29 @@ const NoticeCategoryItem = ({ notices }) => {
   const timeDiff = currentDate - givenDate;
   const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25;
   const yearsDiff = Math.floor(timeDiff / millisecondsPerYear);
+
+  const updateLocalStorage = () => {
+    localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
+  };
+
+  useEffect(updateLocalStorage, [isSelected, idCard]);
+
+  const handleAddToFavorite = () => {
+    if(isLoggedIn) {
+
+      if(isSelected) {
+        fetchDeleteToFavorite(idCard)
+        setIsSelected(!isSelected);
+      } else {
+        fetchAddToFavorite(idCard, valueModalInfo);
+        setIsSelected(!isSelected);
+      }
+
+    } else {
+      setShowModal(false);
+      setIsModalOpenAttention(true);
+    }
+  };
 
   return (
     <div>
@@ -81,8 +139,8 @@ const NoticeCategoryItem = ({ notices }) => {
           </DiscriptionItem>
         </DiscriptionList>
         <FavoriteBtnContainer>
-          <AddToFavoriteBtn type="button">
-            <IconSvg width={24} height={24}>
+          <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
+            <IconSvg width={24} height={24}  isSelected = {isSelected}>
               <use href={`${sprite}#icon-heart`}></use>
             </IconSvg>
           </AddToFavoriteBtn>
@@ -98,7 +156,16 @@ const NoticeCategoryItem = ({ notices }) => {
       <button type="button" onClick={openModal}>
         Learn more
       </button>
-      <ModalNotice showModal={showModal} setShowModal={setShowModal} idCard={idCard} />
+      <ModalNotice 
+      showModal={showModal} 
+      setShowModal={setShowModal} 
+      isModalOpenAttention={isModalOpenAttention}
+      setIsModalOpenAttention = {setIsModalOpenAttention}
+      valueModalInfo = {valueModalInfo}
+      userModalInfo = {userModalInfo}
+      handleAddToFavorite = {handleAddToFavorite}
+      isSelected = {isSelected}
+      isLoggedIn = {isLoggedIn} />
     </div>
   );
 };

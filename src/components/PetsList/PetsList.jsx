@@ -1,23 +1,33 @@
-import { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import PetItem from '../PetsItem/PetsItem';
-import { UserPetsList } from './PetsList.styled';
-import { fetchUserPet } from 'services/api/petsFetch';
+import { Title, Text, UserPetsList, InfoCard } from './PetsList.styled';
+
+import petsOperations from 'redux/pets/operations';
+import petsSelector from 'redux/pets/selectors';
 
 const PetsList = () => {
-  const [pets, setPet] = useState([]);
+  const pets = useSelector(petsSelector.selectPets);
+  const dispatch = useDispatch();
+
+  // const [pets, setPet] = useState([]);
+  // const pets = useSelector(userPetsSelector.selectUserPets);
 
   useEffect(() => {
-    const getUserPet = async () => {
-      const result = await fetchUserPet();
-      setPet([...result]);
-    };
-    getUserPet();
-  }, []);
+    dispatch(petsOperations.fetchUserPet());
+    // const getUserPet = async () => {
+    //   const result = await fetchUserPet();
+    //   console.log('result:', result);
+    //   setPet([...result]);
+    // };
+    // getUserPet();
+  }, [dispatch]);
+  console.log(pets);
 
   return (
     <>
-      {pets && (
+      {pets.length !== 0 ? (
         <UserPetsList>
           {pets.map(pet => (
             <li key={pet._id}>
@@ -25,6 +35,11 @@ const PetsList = () => {
             </li>
           ))}
         </UserPetsList>
+      ) : (
+        <InfoCard>
+          <Title>Here will be your pets</Title>
+          <Text>To add, press the button AddPet</Text>
+        </InfoCard>
       )}
     </>
   );

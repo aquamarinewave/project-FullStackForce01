@@ -1,8 +1,8 @@
-import { Nav, ButtonText, LoginButton, RegisterButton,IconPawPrint} from '../AuthNav/AuthNav.styled';
+import { Nav, ButtonText, LoginButton, RegisterButton, IconPawPrint} from './AuthButtonsModal.styled';
 import sprite from '../../images/icons.svg';
 
 
-const AuthButtonsModal = ({ toggleMenu, menuOpen}) => {
+const AuthButtonsModal = ({ toggleMenu}) => {
   return (
     <>
       <Nav>
