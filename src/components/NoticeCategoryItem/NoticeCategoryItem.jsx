@@ -7,6 +7,7 @@ import {
   DiscriptionList,
   DiscriptionItem,
   IconSvg,
+  IconHeart,
   IconConatiner,
   AddToFavoriteBtn,
   FavoriteBtnContainer,
@@ -22,10 +23,9 @@ import sprite from '../../images/icons.svg';
 
 import authSelector from '../../redux/auth/authSelector';
 import { useSelector } from 'react-redux';
-import {fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite} from '../../services/api/modalNotice';
+import { fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite } from '../../services/api/modalNotice';
 
 const NoticeCategoryItem = ({ notices }) => {
-
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
 
   const [showModal, setShowModal] = useState(false);
@@ -37,7 +37,6 @@ const NoticeCategoryItem = ({ notices }) => {
     return initialValue || false;
   });
   const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
-
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
@@ -53,7 +52,6 @@ const NoticeCategoryItem = ({ notices }) => {
       }
     }
     fetchModalDetailPet();
-
   }, [_id]);
 
   const openModal = () => {
@@ -66,10 +64,9 @@ const NoticeCategoryItem = ({ notices }) => {
   const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25;
   const yearsDiff = Math.floor(timeDiff / millisecondsPerYear);
 
-  
   const closeModalAttention = () => {
-    setIsModalOpenAttention(!isModalOpenAttention)
-  }
+    setIsModalOpenAttention(!isModalOpenAttention);
+  };
 
   const handleAddToFavorite = () => {
     if (isLoggedIn) {
@@ -138,9 +135,9 @@ const NoticeCategoryItem = ({ notices }) => {
         </DiscriptionList>
         <FavoriteBtnContainer>
           <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-            <IconSvg width={24} height={24} isSelected={isSelected}>
+            <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn ={isLoggedIn}>
               <use href={`${sprite}#icon-heart`}></use>
-            </IconSvg>
+            </IconHeart>
           </AddToFavoriteBtn>
         </FavoriteBtnContainer>
         <AddPet to="/add-pet">
@@ -166,7 +163,7 @@ const NoticeCategoryItem = ({ notices }) => {
         handleAddToFavorite={handleAddToFavorite}
         isSelected={isSelected}
         isLoggedIn={isLoggedIn}
-        closeModalAttention = {closeModalAttention}
+        closeModalAttention={closeModalAttention}
       />
     </>
   );

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-// const stylesBtnActive = {
-//   lightblue: "var(--lightblue)",
-//   darkblue: "var(--dark-blue)",
-// };
+const heartActive = {
+  lightblue: "var(--lightblue)",
+  darkblue: "var(--dark-blue)",
+};
 
 const NoticesItemThumb = styled.div`
   position: relative;
@@ -69,6 +69,11 @@ const IconConatiner = styled.div`
 
 const IconSvg = styled.svg`
   fill: var(--lightblue);
+  stroke: var(--dark-blue);
+`;
+
+const IconHeart = styled.svg`
+  fill:${(props) => (props.isSelected && props.isLoggedIn ? heartActive.darkblue : heartActive.lightblue)};
   stroke: var(--dark-blue);
 `;
 
@@ -175,6 +180,7 @@ export {
   DiscriptionItem,
   TextContainer,
   IconSvg,
+  IconHeart,
   IconConatiner,
   FavoriteBtnContainer,
   AddToFavoriteBtn,
