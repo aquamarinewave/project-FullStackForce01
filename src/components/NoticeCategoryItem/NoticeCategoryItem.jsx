@@ -19,11 +19,11 @@ import {
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 
-const NoticeCategoryItem = ({ responseByCategory }) => {
+const NoticeCategoryItem = ({ notices }) => {
   const [showModal, setShowModal] = useState(false);
   const [idCard, setIdCard] = useState('');
 
-  const { _id, title, birthday, category, location, sex, avatarURL } = responseByCategory;
+  const { _id, title, birthday, category, location, sex, avatarURL } = notices;
 
   const openModal = () => {
     setShowModal(showModal => !showModal);

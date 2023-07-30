@@ -13,7 +13,7 @@ export async function fetchByCategoryOwn(category, controller) {
 }
 
 export async function fetchByCategoryFavorite(category, controller) {
-  const baseURL = `https://fullstackforce.onrender.com/api/notices/favorites?category=${category}`;
+  const baseURL = `https://fullstackforce.onrender.com/api/notices/favorites`;
   const data = await axios.get(baseURL, { signal: controller.signal });
   return data;
 }

@@ -28,17 +28,22 @@ const SearchIconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
   width: 24px;
   height: 24px;
   bottom: 31px;
-  right: 16px;
+  right: 28px;
 `;
 
 const SearchIconBtn = styled.button`
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
 `;
 
