@@ -22,12 +22,20 @@ export const Container = styled.div`
 
   min-width: 280px;
 
-  padding: 60px 0;
   border-radius: 20px;
   background-color: var(--main-light-color);
 
+  padding-top: 60px;
+  padding-right: 0px;
+  padding-bottom: ${props => (props.isLogout ? '60px' : '60px')};
+  padding-left: 0px;
+
   transform: translate(-50%, -50%);
   @media screen and (min-width: 768px) {
+    padding-top: 60px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: ${props => (props.isLogout ? '109px' : '60px')};
     min-width: 608px;
     border-radius: 40px;
   }

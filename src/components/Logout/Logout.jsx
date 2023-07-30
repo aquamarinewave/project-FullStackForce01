@@ -5,18 +5,41 @@ import { Button, ButtonText, IconLogout, ModalText } from 'components/Logout/Log
 import sprite from '../../images/icons.svg';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
-const Logout = ({ isMobile, isBlue, isRequest, spacing, isReversed, isWhite, isBorder, isGrey, isBold, margin, marginL, isDisplay, isMarginT}) => {
+const Logout = ({
+  isMobile,
+  isBlue,
+  isRequest,
+  spacing,
+  isReversed,
+  isWhite,
+  isBorder,
+  isGrey,
+  isBold,
+  margin,
+  marginL,
+  isDisplay,
+  isMarginT,
+  isLogout,
+}) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const onLogout = () => dispatch(authOperations.logoutUser());
-  
+
   const toggleModal = () => {
     setIsModalOpen(prevState => !prevState);
   };
 
   return (
     <>
-      <Button onClick={toggleModal} isMobile={isMobile} isReversed={isReversed} isBlue={isBlue} isBorder={isBorder} isDisplay={isDisplay} isMarginT={isMarginT}>
+      <Button
+        onClick={toggleModal}
+        isMobile={isMobile}
+        isReversed={isReversed}
+        isBlue={isBlue}
+        isBorder={isBorder}
+        isDisplay={isDisplay}
+        isMarginT={isMarginT}
+      >
         <ButtonText isBold={isBold} isGrey={isGrey} margin={margin} marginL={marginL}>
           Logout
         </ButtonText>
@@ -31,8 +54,9 @@ const Logout = ({ isMobile, isBlue, isRequest, spacing, isReversed, isWhite, isB
           onRequestClose={toggleModal}
           btnIconColor={'var(--bg-color)'}
           btnIconName={'icon-logout'}
+          isLogout
         >
-          <ModalText weight="500" isRequest={isRequest} spacing={spacing}>
+          <ModalText weight="500" isRequest={isRequest} spacing={spacing} isLogout={isLogout}>
             Already leaving?
           </ModalText>
         </ModalApproveAction>

@@ -17,7 +17,7 @@ const UserPage = () => {
     <UserPageContainer>
       <UserCard>
         <UserData />
-        <Logout isReversed isGrey marginL="12px" isDisplay isMarginT isRequest/>
+        <Logout isLogout isReversed isGrey marginL="12px" isDisplay isMarginT isRequest/>
       </UserCard>
 
       <PetsData />

@@ -14,7 +14,18 @@ const UserNav = ({ toggleMenu, menuOpen, closeMenu }) => {
   return (
     <>
       <Nav>
-        <Logout isRequest spacing isBlue isWhite isBorder margin="8px" isBold closeMenu={closeMenu} onClick={() => <ModalApproveAction />} />
+        <Logout
+          isLogout
+          isRequest
+          spacing
+          isBlue
+          isWhite
+          isBorder
+          margin="8px"
+          isBold
+          closeMenu={closeMenu}
+          onClick={() => <ModalApproveAction />}
+        />
         {width >= 768 && (
           <UserButton to="/user">
             <IconUser width={24} height={24}>

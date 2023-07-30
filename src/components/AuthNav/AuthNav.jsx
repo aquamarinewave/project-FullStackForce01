@@ -2,16 +2,15 @@ import { Nav, ButtonText, LoginButton, RegisterButton, BurgerButton, IconPawPrin
 import { useWindowWidth } from '@react-hook/window-size';
 import sprite from '../../images/icons.svg';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
-// import Button from 'components/Button/Button';
 
-const AuthNav = ({ toggleMenu, menuOpen, isMobile, closeMenu}) => {
- const width = useWindowWidth();
+const AuthNav = ({ toggleMenu, menuOpen, isMobile, closeMenu }) => {
+  const width = useWindowWidth();
 
   return (
     <>
       <Nav isMobile={isMobile}>
         <LoginButton
-          activeClassName="active"
+          activeclassname="active"
           color="login"
           hovercolor="register"
           isMobile={isMobile}
@@ -26,7 +25,7 @@ const AuthNav = ({ toggleMenu, menuOpen, isMobile, closeMenu}) => {
           </IconPawPrint>
         </LoginButton>
         <RegisterButton
-          activeClassName="active"
+          activeclassname="active"
           color="register"
           hovercolor="login"
           isMobile={isMobile}
@@ -36,7 +35,7 @@ const AuthNav = ({ toggleMenu, menuOpen, isMobile, closeMenu}) => {
           <ButtonText weight="semi-bold">Registration</ButtonText>
         </RegisterButton>
         {width < 1280 && (
-          <BurgerButton isMobile={isMobile} type="button" onClick={() => toggleMenu()}>
+          <BurgerButton isMobile={isMobile} type="button" onClick={() => toggleMenu()} aria-label="Open menu button">
             <IconBurger width={24} height={24}>
               <use href={`${sprite}#icon-menu-hamburger`}></use>
             </IconBurger>

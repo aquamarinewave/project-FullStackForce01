@@ -79,7 +79,7 @@ export const RegisterButton = styled(NavLink)
   width: ${props => (props.isMobile ? '165px' : '142px')};
   color: ${({ color }) => handleFunctions.handleColorText(color)};
   transition: all ease-in-out 0.2s;
- &.active{
+  &.active{
     background: #888888;
     opacity: 0.7;
     pointer-events: none; 
@@ -106,11 +106,11 @@ export const BurgerButton = styled.button
   align-items: center;
   padding: 0;
   display: ${props => (props.isMobile ? 'none' : 'flex')};
-   transition: transform 0.2s;
+  transition: transform 0.2s;
   &:hover {
     transform: scale(1.5);
   }
-   &:focus {
+  &:focus {
     transform: scale(1.5);
   }
   @media screen and (min-width: 1280px) {
@@ -119,7 +119,7 @@ export const BurgerButton = styled.button
 `;
 
 export const IconPawPrint = styled.svg`
-fill: currentColor;
+  fill: currentColor;
 `;
 
 export const IconBurger = styled.svg`

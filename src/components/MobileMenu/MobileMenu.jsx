@@ -20,7 +20,6 @@ import Nav from '../Nav/Nav';
 import Logout from 'components/Logout/Logout';
 import sprite from '../../images/icons.svg';
 
-
 const MobileMenu = ({ toggleMenu, isOpen }) => {
   const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
@@ -29,8 +28,7 @@ const MobileMenu = ({ toggleMenu, isOpen }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-    } 
-    else {
+    } else {
       document.body.style.overflow = 'auto';
     }
   }, [isOpen]);
@@ -56,7 +54,7 @@ const MobileMenu = ({ toggleMenu, isOpen }) => {
             ) : (
               <ButtonContainer>
                 {width >= 768 && width < 1280 && (
-                  <Logout margin="8px" isBorder isBold isWhite isBlue isMobile isRequest spacing isDisplay/>
+                  <Logout margin="8px" isLogout isBorder isBold isWhite isBlue isMobile isRequest spacing isDisplay />
                 )}
                 <CloseButton type="button" onClick={() => toggleMenu()}>
                   <IconCross width={24} height={24}>
@@ -80,7 +78,9 @@ const MobileMenu = ({ toggleMenu, isOpen }) => {
             </>
           )}
           <Nav isMobile />
-          {isLogged && width < 768 && <Logout margin="8px" isBold isBorder isBlue isWhite isMobile isRequest spacing isDisplay/>}
+          {isLogged && width < 768 && (
+            <Logout isLogout margin="8px" isBold isBorder isBlue isWhite isMobile isRequest spacing isDisplay />
+          )}
         </Menu>,
         document.querySelector('#portal-root')
       )

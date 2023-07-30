@@ -6,7 +6,6 @@ export const Button = styled.button`
   background: ${props => (props.isBlue ? 'var(--dark-blue)' : 'transparent')};
   border: ${props => (props.isBorder ? '2px solid var(--dark-blue)' : 'none')};
   cursor: pointer;
-  ${'' /* display: ${props => (props.isMobile ? 'flex' : 'none')}; */}
   display: ${props => (props.isDisplay ? 'flex' : 'none')};
   height: 40px;
   width: 135px;
@@ -46,23 +45,19 @@ export const Button = styled.button`
 `;
 
 export const IconLogout = styled.svg`
-${'' /* stroke: currentColor; */}
-  stroke: ${props => (props.isWhite ? 'var(--bg-color)':'var(--dark-blue)')};
-  &:hover {
-    ${'' /* fill: green; */}
-  }
+  stroke: ${props => (props.isWhite ? 'var(--bg-color)' : 'var(--dark-blue)')};
 `;
 
 export const ButtonText = styled.p
   .withConfig({
-    shouldForwardProp: prop => !['spacing', 'isRequest'].includes(prop),
+    shouldForwardProp: prop => !['spacing', 'isRequest', 'isBold', 'isGrey', 'marginL', 'isRequest'].includes(prop),
   })
   .attrs({})`
   font-size: ${props => (props.isRequest ? '24px' : '16px')};
   margin-right: ${props => props.margin || '0px'};
   margin-left: ${props => props.marginL || '0px'};
-   color: ${props => (props.isGrey ? '#888888' : 'var(--bg-color)')};
- font-weight: ${props => (props.isBold ? '700' : '500')};
+  color: ${props => (props.isGrey ? '#888888' : 'var(--bg-color)')};
+  font-weight: ${props => (props.isBold ? '700' : '500')};
   letter-spacing: ${props => (props.spacing ? '0.96px' : '0.64px')};
   font-style: normal;
   line-height: normal;
@@ -72,7 +67,11 @@ export const ButtonText = styled.p
     letter-spacing: ${props => (props.spacing ? '1.44px' : '0.64px')};
   }
 `;
-export const ModalText = styled.p`
+export const ModalText = styled.p
+  .withConfig({
+    shouldForwardProp: prop => !['spacing', 'marginL', 'isLogout', 'isRequest'].includes(prop),
+  })
+  .attrs({})`
   font-size: ${props => (props.isRequest ? '24px' : '16px')};
   margin-right: ${props => props.margin || '0px'};
   margin-left: ${props => props.marginL || '0px'};
@@ -82,8 +81,10 @@ export const ModalText = styled.p`
   font-style: normal;
   line-height: normal;
   font-family: Manrope;
+  margin-top: ${props => (props.isLogout ? '41px' : '')};
   @media screen and (min-width: 768px) {
     font-size: ${props => (props.isRequest ? '36px' : '16px')};
     letter-spacing: ${props => (props.spacing ? '1.44px' : '0.64px')};
+    margin-top: ${props => (props.isLogout ? '60px' : '')};
   }
 `;
