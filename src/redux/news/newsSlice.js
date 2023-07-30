@@ -20,19 +20,11 @@ const newsSlice = createSlice({
     },
     [newsOperations.setPattern.fulfilled](state, action) {
       state.error = null;
-      state.pattern = action.payload.pattern;
-      console.log('setPattern', action.payload);
+      state.pattern = action.payload;
     },
     [newsOperations.setCurrentPage.fulfilled](state, action) {
       state.error = null;
       state.currentPage = action.payload;
-      console.log('setCurrentPage', action.payload);
-    },
-    [newsOperations.setTotalPages.fulfilled](state, action) {
-      state.error = null;
-      console.log('setTotalPages', action.payload);
-
-      state.totalPages = action.payload.totalPages;
     },
   },
 });

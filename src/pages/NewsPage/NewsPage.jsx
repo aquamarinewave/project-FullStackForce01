@@ -5,7 +5,7 @@ import { PageHeader } from './NewsPage.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import newsSelector from 'redux/news/newsSelector';
 import newsOperations from '../../redux/news/operations';
-import { Pagination } from '@mui/material';
+import Pagination from '../../components/Pagination/Pagination';
 
 const statusList = {
   REJECTED: 1,
@@ -71,33 +71,36 @@ const NewsPage = () => {
     dispatch(newsOperations.setPattern(''));
   };
 
-  const handleSwitchPage = (_, currentPage) => {
-    const pattern = newsStore.pattern;
-    dispatch(newsOperations.fetchNews({ pattern, currentPage, perPage }));
-    // console.log(currentPage);
-    dispatch(newsOperations.setCurrentPage(currentPage));
-  };
-
-  const showPagination = useCallback(
-    currentPage => {
-      // console.log(currentPage);
-      // console.log(newsStore.currentPage);
-
-      if (!newsStore.totalPages) {
-        return <></>;
-      }
-
-      return <Pagination count={newsStore.totalPages} variant="outlined" onChange={handleSwitchPage} />;
+  const handleSwitchPage = useCallback(
+    (_, currentPage) => {
+      const pattern = newsStore.pattern;
+      dispatch(newsOperations.fetchNews({ pattern, currentPage, perPage }));
+      dispatch(newsOperations.setCurrentPage(currentPage));
     },
-    [newsStore.totalPages, newsStore.currentPage, handleSwitchPage]
+    [dispatch, newsStore.pattern, perPage]
   );
+
+  const showPagination = useCallback(() => {
+    if (!newsStore.totalPages) {
+      return <></>;
+    }
+
+    return (
+      <Pagination
+        page={newsStore.currentPage}
+        count={newsStore.totalPages}
+        variant="outlined"
+        onChange={handleSwitchPage}
+      />
+    );
+  }, [newsStore.totalPages, newsStore.currentPage, handleSwitchPage]);
 
   return (
     <div>
       <PageHeader>News</PageHeader>
       <Search pattern={newsStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
-      {/* {showResults(status)} */}
-      {showPagination(newsStore.currentPage)}
+      {showResults(status)}
+      {showPagination()}
     </div>
   );
 };

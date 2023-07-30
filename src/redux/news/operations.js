@@ -28,19 +28,10 @@ const setCurrentPage = createAsyncThunk('news/currentPage', async (currentPage, 
   }
 });
 
-const setTotalPages = createAsyncThunk('news/totalPages', async (totalPages, thunkAPI) => {
-  try {
-    return totalPages;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
 const newsOperations = {
   fetchNews,
   setPattern,
   setCurrentPage,
-  setTotalPages,
 };
 
 export default newsOperations;

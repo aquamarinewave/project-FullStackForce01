@@ -25,15 +25,15 @@ const noticesSlice = createSlice({
     },
     [noticesOperations.setPattern.fulfilled](state, action) {
       state.error = null;
-      state.pattern = action.payload.pattern;
+      state.pattern = action.payload;
     },
     [noticesOperations.setCategoryId.fulfilled](state, action) {
       state.error = null;
-      state.categoryId = action.payload.categoryId;
+      state.categoryId = action.payload;
     },
     [noticesOperations.setPage.fulfilled](state, action) {
       state.error = null;
-      state.page = action.payload.page;
+      state.page = action.payload;
     },
   },
 });

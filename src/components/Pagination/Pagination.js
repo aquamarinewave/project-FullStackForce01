@@ -1,11 +1,8 @@
-// import React, { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
+import React from 'react';
+import { Pagination as MuiPagination } from '@mui/material';
 
-// const Pagination = () => {
+const Pagination = ({ page, count, onChange }) => {
+  return <MuiPagination page={page} count={count} variant="outlined" onChange={onChange} />;
+};
 
-//   return (
-// <></>
-//   );
-// };
-
-// export default Pagination;
+export default Pagination;
