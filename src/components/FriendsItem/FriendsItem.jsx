@@ -36,7 +36,11 @@ const FriendsItem = ({ responseByFriends }) => {
           <InfoBlock>
             <Info>
               <InfoTitle>Time:</InfoTitle>
-              <WorkingHours daysWorkingInWeek={workDays}></WorkingHours>
+              {!workDays ? (
+                <EmptyBlock></EmptyBlock>
+              ) : (
+                <WorkingHours daysWorkingInWeek={workDays}></WorkingHours>
+              )}              
             </Info>
 
             <Info>

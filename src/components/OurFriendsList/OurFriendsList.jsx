@@ -21,7 +21,6 @@ const OurFriendsList = () => {
 
   return (
     <div>
-      {/* <h3>Our friends</h3> */}
       {resByFriends && (
         <Wrapper>
           {resByFriends.map(({ _id, title, url, addressUrl, imageUrl, address, workDays, phone, email }) => {
