@@ -10,15 +10,23 @@ const AuthNav = ({ toggleMenu, menuOpen, isMobile, closeMenu}) => {
   return (
     <>
       <Nav isMobile={isMobile}>
-        <LoginButton color="login" hovercolor="register" isMobile={isMobile} to="/login" onClick={() => closeMenu()}>
+        <LoginButton
+          activeClassName="active"
+          color="login"
+          hovercolor="register"
+          isMobile={isMobile}
+          to="/login"
+          onClick={() => closeMenu()}
+        >
           <ButtonText margin="8px" weight="bold">
             Log IN
           </ButtonText>
-          <IconPawPrint  width={24} height={24}>
+          <IconPawPrint width={24} height={24}>
             <use href={`${sprite}#icon-pawprint-1`}></use>
           </IconPawPrint>
         </LoginButton>
         <RegisterButton
+          activeClassName="active"
           color="register"
           hovercolor="login"
           isMobile={isMobile}
