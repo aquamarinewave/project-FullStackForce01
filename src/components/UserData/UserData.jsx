@@ -12,6 +12,7 @@ import {
   ProfileField,
   WrapperCard,
   WrapperField,
+  ImgWrapper,
 } from './UserData.styled';
 import avatarDefault from '../../images/profilephotos/avatar-default.png';
 import ModalCongrats from '../ModalCongrats/ModalCongrats';
@@ -53,7 +54,9 @@ const UserData = () => {
           <Formik initialValues={initialValues} enableReinitialize>
             <Form>
               <AvatarWrapper>
-                <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
+                <ImgWrapper>
+                  <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
+                </ImgWrapper>
               </AvatarWrapper>
               <WrapperField>
                 <Label htmlFor="name"> Name:</Label>
