@@ -63,12 +63,15 @@ export const UserForm = ({ toggleModal }) => {
       if (initialValues.email !== values.email && values.email) {
         formData.append('email', values.email);
       }
+      if (initialValues.birthday !== values.birthday && values.birthday) {
+        formData.append('birthday', values.birthday);
+      }
       if (initialValues.phone !== values.phone) {
         formData.append('phone', values.phone);
       }
       if (initialValues.city !== values.city) formData.append('city', values.city);
       for (const value of formData.values()) {
-        console.log(value);
+        console.log('value city', value);
       }
       const res = await dispatch(updateUser(formData));
       console.log(res);
@@ -92,6 +95,7 @@ export const UserForm = ({ toggleModal }) => {
       .max(13, 'Phone format: +380000000000')
       .min(13, 'Phone format: +380000000000'),
     city: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your city'),
+    birthday: yup.date().nullable(),
   });
 
   return (
@@ -141,12 +145,12 @@ export const UserForm = ({ toggleModal }) => {
 
             <WrapperField>
               <Label htmlFor="date"> Birthday:</Label>
-              <ProfileField type="numder" name="birthday" placeholder={initialValues.birthday} />
+              <ProfileField type="date" name="birthday" />
             </WrapperField>
 
             <WrapperField>
               <Label htmlFor="phone"> Phone:</Label>
-              <ProfileField placeholder={initialValues.phone} type="phone" name="phone" />
+              <ProfileField placeholder={initialValues.phone} type="phone" name="phone" format="dd/mm/yyyy" />
             </WrapperField>
 
             <WrapperField>
