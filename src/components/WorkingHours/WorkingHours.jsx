@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { ModalWeek, ModalContent, ModalClose } from './WorkingHours.styled.js';
+import {
+  ModalContent,
+  InfoTitle,
+  InfoLink,
+  EmptyBlock,
+  WorkingTimeToday,
+  TableDayWeek,
+  TableDayTime,
+} from './WorkingHours.styled.js';
+
 const WorkingHours = props => {
   const { daysWorkingInWeek } = props;
+  const [currentDay, setCurrentDay] = useState('');
 
-  // useEffect(() => {
-  //   const DaysAndTimeWork = [];
-  //   daysWorkingInWeek.map();
-  // }, []);
+  const DayIsSunday = 6;
+
+  const daysOfWeek = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+
+  useEffect(() => {
+    const getDayOfWeek = () => {
+      const currentDate = new Date();
+      const dayOfWeek = currentDate.getDay();
+      setCurrentDay(dayOfWeek);
+    };
+
+    getDayOfWeek();
+  }, []);
 
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleButtonClick = () => {
-    console.log(daysWorkingInWeek);
     setModalOpen(true);
   };
 
@@ -21,16 +38,51 @@ const WorkingHours = props => {
     setModalOpen(false);
   };
 
+  const renderModalWindow = () => {
+    const renderedItems = [];
+
+    for (let i = 0; i < daysOfWeek.length; i++) {
+      renderedItems.push(
+        <li key={i}>
+          <TableDayWeek>{daysOfWeek[i]}</TableDayWeek>
+          {!daysWorkingInWeek[i].isOpen ? (
+            <TableDayTime>Closed</TableDayTime>
+          ) : (
+            <TableDayTime>{daysWorkingInWeek[i].from + '-' + daysWorkingInWeek[i].to}</TableDayTime>
+          )}
+        </li>
+      );
+    }
+    return renderedItems;
+  };
+
   return (
     <div>
-      <button onClick={handleButtonClick}>Открыть модальное окно</button>
+      <WorkingTimeToday onClick={handleButtonClick}>    
+        
+        <InfoTitle>Time:</InfoTitle>
+        {(!daysWorkingInWeek || daysWorkingInWeek.length === 0) ?
+          (<EmptyBlock></EmptyBlock>) : (
+        currentDay === 0 && daysWorkingInWeek[DayIsSunday]) ? (
+          daysWorkingInWeek[DayIsSunday].isOpen ? (
+            <InfoLink>
+              {daysWorkingInWeek[DayIsSunday].from} - {daysWorkingInWeek[DayIsSunday].to}
+            </InfoLink>
+          ) : (
+            <InfoLink>closed today</InfoLink>
+          )
+        ):(
+          <InfoLink>
+            {daysWorkingInWeek[DayIsSunday - 1].from} - {daysWorkingInWeek[DayIsSunday - 1].to}
+          </InfoLink>
+          )}
+        
+        </WorkingTimeToday>
+
       {isModalOpen && (
-        <ModalWeek>
-          <ModalContent>
-            <ModalClose onClick={closeModal}>&times;</ModalClose>
-            <p>Содержимое модального окна</p>
-          </ModalContent>
-        </ModalWeek>
+        <ModalContent onClick={closeModal}>
+          <ul>{renderModalWindow()}</ul>
+        </ModalContent>
       )}
     </div>
   );
