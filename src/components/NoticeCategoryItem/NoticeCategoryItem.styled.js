@@ -72,6 +72,11 @@ const IconSvg = styled.svg`
   stroke: var(--dark-blue);
 `;
 
+const IconHeart = styled.svg`
+  fill: var(--lightblue);
+  stroke: var(--dark-blue);
+`;
+
 const FavoriteBtnContainer = styled.div`
   position: absolute;
   display: flex;
@@ -175,6 +180,7 @@ export {
   DiscriptionItem,
   TextContainer,
   IconSvg,
+  IconHeart,
   IconConatiner,
   FavoriteBtnContainer,
   AddToFavoriteBtn,
