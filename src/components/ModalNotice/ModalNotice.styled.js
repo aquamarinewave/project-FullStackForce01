@@ -264,7 +264,7 @@ export const CloseModalButton = styled.button`
 `;
 
 export const IconHeart = styled.svg`
-  stroke: ${(props) => (props.isSelected && props.isLoggedIn? stylesBtnActive.darkblue : stylesBtnActive.white)};
+  stroke: ${(props) => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : stylesBtnActive.white)};
   fill: ${(props) => (props.isSelected && props.isLoggedIn? stylesBtnActive.darkblue : "transparent")};
 
 `;
