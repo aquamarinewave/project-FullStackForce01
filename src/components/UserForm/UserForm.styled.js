@@ -72,3 +72,36 @@ export const InputWrapper = styled.input`
   width: 0;
   height: 0;
 `;
+
+export const ApproveContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const BtnDecline = styled.button`
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  padding: 4px;
+  background-color: transparent;
+`;
+
+export const IconCrossSmall = styled.svg`
+  stroke: var(--fail-color);
+`;
+
+export const BtnConfirm = styled.button`
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  padding: 4px;
+  margin-right: 10px;
+  background-color: transparent;
+`;
+
+export const IconCheck = styled.svg`
+  stroke: var(--dark-blue);
+`;
+
+export const ApproveText = styled.div``;
