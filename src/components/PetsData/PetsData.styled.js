@@ -25,13 +25,22 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.h2`
   color: var(--main-color);
-  font-family: Manrope;
+
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
 `;
-// Manrope - Medium;20px
 
 // export const AddPetButton = styled.button`
 //   border-radius: 40px;
@@ -61,6 +70,6 @@ export const Title = styled.h2`
 //   }
 // `;
 
-export const IconPlusSmall = styled.svg`
-  stroke: currentColor;
-`;
+// export const IconPlusSmall = styled.svg`
+//   stroke: currentColor;
+// `;

@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const PetCard = styled.div`
-  position: relative;
   width: 280px;
 
   border-radius: 4px;
-  padding: 20px;
+  padding: 20px 20px 40px 20px;
   margin: 0 auto;
   border-radius: 20px;
   background: #fff;
@@ -16,6 +15,7 @@ export const PetCard = styled.div`
     display: flex;
     width: 703px;
     height: 256px;
+    padding: 20px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -54,11 +54,16 @@ export const PetFoto = styled.img`
   }
 `;
 
-export const PetDesc = styled.ul``;
+export const PetDesc = styled.ul`
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
 
 export const Description = styled.li`
   color: #000;
-
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -66,16 +71,12 @@ export const Description = styled.li`
   /* line-height: 22px; */
   letter-spacing: 0.56px;
 
-  &:not(:last-child) {
-    margin-bottom: 12px;
-  }
+  margin-bottom: 12px;
 
   @media screen and (min-width: 768px) {
     color: var(--main-color);
 
-    &:not(:last-child) {
-      margin-bottom: 16px;
-    }
+    margin-bottom: 16px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -98,8 +99,8 @@ export const Subtitle = styled.span`
 
 export const DeleteButton = styled.button`
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: -12px;
+  right: -12px;
   padding: 0;
   width: 40px;
   height: 40px;
@@ -119,4 +120,53 @@ export const DeleteButton = styled.button`
 
 export const IconTrash = styled.svg`
   stroke: currentColor;
+`;
+
+export const InfoTitle = styled.h3`
+  color: var(--main-color);
+
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.96px;
+
+  margin-bottom: 14px;
+
+  @media screen and (min-width: 768px) {
+    color: #000;
+    font-size: 28px;
+    letter-spacing: -0.28px;
+
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const InfoDesc = styled.p`
+  width: 240px;
+
+  color: var(--main-color);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.14px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    width: 393px;
+    color: #000;
+
+    font-size: 16px;
+    letter-spacing: -0.16px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;

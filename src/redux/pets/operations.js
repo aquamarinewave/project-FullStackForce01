@@ -51,10 +51,34 @@ const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunk
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+//=============================//
+
+const fetchUserPet = createAsyncThunk('pets/fetchUserPets', async (_, thunkAPI) => {
+  try {
+    const response = await axios.get(`/pets`);
+    console.log('responsePet:', response);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+const deleteUserPet = createAsyncThunk('pets/deleteUserPet', async (_id, thunkApi) => {
+  try {
+    const response = await axios.delete(`pets/${_id}`);
+    console.log('response:', response);
+    return response.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
+//=============================//
 
 const petsOperations = {
   addPetThunk,
   addNoticeThunk,
+  deleteUserPet,
+  fetchUserPet,
 };
 
 export default petsOperations;
