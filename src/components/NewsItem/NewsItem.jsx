@@ -1,4 +1,14 @@
-import { ReadMoreBtn, NewsItemWrapper } from './NewsItem.styled';
+import {
+  ReadMoreBtn,
+  NewsItemWrapper,
+  Img,
+  ImgWrapper,
+  Title,
+  ContentContainer,
+  BottomContainer,
+  Description,
+  DateD,
+} from './NewsItem.styled';
 
 const formatDate = date => {
   const formatedDate = new Date(date);
@@ -12,13 +22,19 @@ const NewsItem = ({ responseByNews }) => {
   const { title, url, imgUrl, text, date } = responseByNews;
   return (
     <NewsItemWrapper>
-      {imgUrl && <img src={imgUrl} alt={title} />}
-      <h3>{title} </h3>
-      <p>{text}</p>
-      <div>{formatDate(date)}</div>
-      <ReadMoreBtn href={url} target="_blank" rel="noopener noreferrer">
-        Read more
-      </ReadMoreBtn>
+      {imgUrl && (
+        <ImgWrapper>
+          <Img src={imgUrl} alt={title} />
+        </ImgWrapper>
+      )}
+      <ContentContainer>
+        <Title>{title} </Title>
+        <Description>{text}</Description>
+        <DateD>{formatDate(date)}</DateD>
+        <ReadMoreBtn href={url} target="_blank" rel="noopener noreferrer">
+          Read more
+        </ReadMoreBtn>
+      </ContentContainer>
     </NewsItemWrapper>
   );
 };
