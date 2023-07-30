@@ -225,6 +225,10 @@ export const AuthRegisterButton = styled.button`
   line-height: normal;
   letter-spacing: 0.8px;
   margin-top: 40px;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
   &:disabled {
     cursor: pointer;
     background-color: rgb(163, 168, 173);
@@ -264,15 +268,9 @@ export const AuthLoginButton = styled.button`
   line-height: normal;
   letter-spacing: 0.8px;
   margin-top: 110px;
-  &:disabled {
+  &:hover,
+  &:focus {
     cursor: pointer;
-    background-color: rgb(163, 168, 173);
-    box-shadow: none;
-    color: rgb(255, 255, 255) !important;
-    &:hover,
-    &:focus {
-      cursor: not-allowed;
-    }
   }
   @media screen and (min-width: 768px) {
     width: 458px;
@@ -310,4 +308,3 @@ export const AuthLinkLogin = styled(Link)`
   letter-spacing: 0.48px;
   text-decoration-line: underline;
 `;
-

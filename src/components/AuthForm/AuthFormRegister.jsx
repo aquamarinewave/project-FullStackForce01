@@ -17,12 +17,10 @@ import {
   AuthIconsValidation,
   AuthIconCheck,
 } from './AuthForm.styled';
-import { TitleModalCongrats, TextModalCongrats } from 'components/ModalCongrats/ModalCongrats.styled';
 
 import authOperations from '../../redux/auth/operations';
 import { useState } from 'react';
 import sprite from '../../images/icons.svg';
-import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
 import { useDispatch } from 'react-redux';
 
 const userRegisterSchema = object({
@@ -42,30 +40,24 @@ const userRegisterSchema = object({
 
 const initialValues = { name: '', email: '', password: '', confirmPassword: '' };
 
+
 const AuthFormRegister = props => {
   const dispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+ 
 
-  const toggleModal = values => {
-    setIsModalOpen(prevState => !prevState);
-    setEmail(values.email);
-    setName(values.name);
-    setPassword(values.password);
-  };
-
-  const handleSubmitRegister = () => {
+  const handleSubmitRegister = ({ name, email, password}) => {
     dispatch(authOperations.registrationUser({ name, email, password }));
   };
 
   return (
     <ContainerAuth>
       <AuthTitle>Registration</AuthTitle>
-      <Formik initialValues={initialValues} validationSchema={userRegisterSchema} onSubmit={toggleModal}>
+      <Formik initialValues={initialValues} validationSchema={userRegisterSchema} 
+      // onSubmit={toggleModal}
+      onSubmit={handleSubmitRegister}
+      >
         {({ errors, touched, handleChange, handleBlur, values, isSubmitting, isValid, handleSubmit }) => {
           return (
             <AuthForm onSubmit={handleSubmit}>
@@ -241,7 +233,8 @@ const AuthFormRegister = props => {
 
                 <ErrorMessage name="confirmPassword" render={message => <ErrorText>{message}</ErrorText>} />
               </AuthFieldWrap>
-              <AuthRegisterButton disabled={!isValid || isSubmitting} type="submit">
+              <AuthRegisterButton 
+              type="submit">
                 Registration
               </AuthRegisterButton>
               <AuthLinkToLogin>
@@ -251,17 +244,6 @@ const AuthFormRegister = props => {
           );
         }}
       </Formik>
-      {isModalOpen && (
-        <ModalCongrats
-          isOpen={isModalOpen}
-          toggleModal={toggleModal}
-          onApprove={handleSubmitRegister}
-          onRequestClose={toggleModal}
-        >
-          <TitleModalCongrats>Congrats!</TitleModalCongrats>
-          <TextModalCongrats>Your registration is success</TextModalCongrats>
-        </ModalCongrats>
-      )}
     </ContainerAuth>
   );
 };

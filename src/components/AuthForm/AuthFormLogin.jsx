@@ -22,6 +22,7 @@ import authOperations from '../../redux/auth/operations';
 import { useState } from 'react';
 import sprite from '../../images/icons.svg';
 import authSelector from 'redux/auth/authSelector';
+import {Toaster} from 'react-hot-toast';
 
 const userLoginSchema = object({
   email: string().required().email('Please enter a valid email'),
@@ -153,7 +154,9 @@ const AuthFormLogin = props => {
             <AuthLinkToLogin>
               Don't have an account? <AuthLinkLogin to="/register">Registration</AuthLinkLogin>
             </AuthLinkToLogin>
+            <Toaster />
           </AuthForm>
+         
         )}
       </Formik>
     </ContainerAuth>
