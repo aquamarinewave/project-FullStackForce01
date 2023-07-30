@@ -21,37 +21,54 @@ export const Background = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-  width: 681px;
-  height: 540px;
+  width: 280px;
   background: var(--main-light-color);
-  color: #000;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  border-radius: 20px;
   position: relative;
-  border-radius: 40px;
+
+  @media screen and (min-width: 768px) {
+    width: 681px;
+    border-radius: 40px;
+  }
+
 `;
 
 export const ModalContent = styled.div`
-  padding: 32px;
-  width: 681px;
+  padding: 44px 12px 16px 12px;
 
   span {
     display: flex;
   }
-
+  
+  @media screen and (min-width: 768px) {
+    padding: 32px 32px 24px 32px;
+  }
 
 `;
 
 export const ModalInfo = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 24px;
-  margin-bottom: 28px; 
+  margin-bottom: 12px; 
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    margin-bottom: 28px;
+  }
 `;
 
 export const ModalImg = styled.div`
   position: relative;
   width: 262px;
   height: 298px;
+  left: 50%;
+  transform: translate(-50%) scale(1);
+
+  @media screen and (min-width: 768px) {
+    left:0;
+    transform: translate(0) scale(1);
+  }
 `;
 
 export const ModalAvatar = styled.img`
@@ -81,23 +98,56 @@ export const ModalCategory = styled.p`
 
 export const ModalHeader = styled.h2`
   color: #000;
-  font-size: 28px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: -0.28px; 
-  margin-bottom: 20px; 
+  letter-spacing: -0.24px;
+  margin-bottom: 20px;
+  
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+    letter-spacing: -0.28px;
+  }
 `;
 
 export const ModalInfoList = styled.div`
   display: flex;
-  gap: 51px;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    gap: 51px;
+  }
 `;
 
-export const ModalInfoItem = styled.ul`
+export const ModalInfoItemName = styled.ul`
   display: flex;
   flex-direction: column;
+  vertical-align: middle;
   gap: 8px;
+  font-size: 14px;
+  font-style: normal;
+  line-height: normal;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+`;
+
+export const ModalInfoItemValue = styled.ul`
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: normal;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    gap: 8px;
+  }
 `;
 
 export const ModalContact = styled.li`
@@ -111,24 +161,37 @@ export const ModalContact = styled.li`
 
 export const ModalComments = styled.p`
   color: var(--main-color);
+  font-size: 14px;
   font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0.64px;
-  margin-bottom: 70px   
+  line-height: normal;
+  letter-spacing: 0.56px;
+  margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.64px;
+    margin-bottom: 70px; 
+  }
 `;
-;
 
 export const ModalButtons = styled.div`
   display: flex;
-  flex-direction: row-reverse;
-  gap: 17px; 
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    justify-content: end;
+    gap: 17px;
+  }
 `;
 
 
 export const ModalPhone = styled.a`
   display: flex;
-  gap: 6px;
-  width: 129px;
+  width: 256px;
   padding: 8px 20px;
   justify-content: center;
   align-items: center;
@@ -146,12 +209,16 @@ export const ModalPhone = styled.a`
     background: var(--dark-blue, linear-gradient(315deg, #419EF1 0%, #9BD0FF 100%)); 
     color: var(--main-light-color);
   }
+
+  @media screen and (min-width: 768px) {
+    width: 129px;
+  }
 `
 
 export const ModalButtonAdd = styled.button`
   display: flex;
   gap: 6px;
-  width: 129px;
+  width: 256px;
   padding: 8px 20px;
   justify-content: center;
   align-items: center;
@@ -164,19 +231,28 @@ export const ModalButtonAdd = styled.button`
   font-family: inherit;
   font-weight: 700;  
   line-height: normal;
-  letter-spacing: 0.64px;  
+  letter-spacing: 0.64px;
+  
+  @media screen and (min-width: 768px) {
+    width: 129px;
+  }
 `
 
 export const CloseModalButton = styled.button`
   border: transparent;
   background: transparent;
   position: absolute;
-  top: 23px;
-  right: 26px;
-  width: 32px;
-  height: 32px;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   z-index: 10;
+
+  @media screen and (min-width: 768px) {
+    top: 23px;
+    right: 26px;
+  }
 `;
 
 export const IconHeart = styled.svg`

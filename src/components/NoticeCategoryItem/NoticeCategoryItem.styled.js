@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+// const stylesBtnActive = {
+//   lightblue: "var(--lightblue)",
+//   darkblue: "var(--dark-blue)",
+// };
+
 const NoticesItemThumb = styled.div`
   position: relative;
 `;
