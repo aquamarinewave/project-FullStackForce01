@@ -1,13 +1,15 @@
 const selectNews = state => state.news;
 const selectPattern = state => state.pattern;
-const selectPage = state => state.page;
+const selectCurrentPage = state => state.currentPage;
 const selectNewsError = state => state.news.error;
+const selectTotalPages = state => state.totalPages;
 
 const newsSelector = {
   selectNews,
   selectPattern,
-  selectPage,
+  selectCurrentPage,
   selectNewsError,
+  selectTotalPages,
 };
 
 export default newsSelector;
