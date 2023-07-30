@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Formik, Form } from 'formik';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
@@ -13,9 +14,27 @@ import {
   WrapperField,
 } from './UserData.styled';
 import avatarDefault from '../../images/profilephotos/avatar-default.png';
+import ModalCongrats from '../ModalCongrats/ModalCongrats';
+import { TitleModalCongrats, TextModalCongrats } from 'components/ModalCongrats/ModalCongrats.styled';
+
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const UserData = () => {
+  const newUser = useSelector(authSelector.newUserSelector);
   const user = useSelector(authSelector.userSelector);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (newUser === true) {
+      setIsModalOpen(true);
+    }
+  }, []);
+
+  const toggleModal = () => {
+    setIsModalOpen(prevState => !prevState);
+  };
+
   const initialValues = {
     avatarURL: user?.avatarURL || { avatarDefault },
     name: user?.name || 'Enter your name',
@@ -61,6 +80,17 @@ const UserData = () => {
             </Form>
           </Formik>
         </div>
+        {isModalOpen && (
+          <ModalCongrats
+            isOpen={isModalOpen}
+            toggleModal={toggleModal}
+            onApprove={toggleModal}
+            onRequestClose={toggleModal}
+          >
+            <TitleModalCongrats>Congrats!</TitleModalCongrats>
+            <TextModalCongrats>Your registration is success</TextModalCongrats>
+          </ModalCongrats>
+        )}
       </WrapperCard>
     </>
   );
