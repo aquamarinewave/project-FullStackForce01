@@ -5,7 +5,6 @@ import {
   ImgWrapper,
   Title,
   ContentContainer,
-  BottomContainer,
   Description,
   DateD,
 } from './NewsItem.styled';
