@@ -12,6 +12,11 @@ import {
   FavoriteBtnContainer,
   AddPet,
   IconPlusSmall,
+  Img,
+  TextContainer,
+  Title,
+  LearnMoreBtn,
+  ContentContainer,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 
@@ -35,11 +40,11 @@ const NoticeCategoryItem = ({ notices }) => {
     async function fetchModalDetailPet() {
       try {
         const data = await fetchModalDetail(idCard);
-        console.log({...data.notice})
-        setValueModalInfo({...data.notice});
-        setUserModalInfo({...data.user});
+        console.log({ ...data.notice });
+        setValueModalInfo({ ...data.notice });
+        setUserModalInfo({ ...data.user });
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
     fetchModalDetailPet();
@@ -51,7 +56,6 @@ const NoticeCategoryItem = ({ notices }) => {
     } else {
       setIsSelected(false);
     }
-
   }, [idCard, isLoggedIn]);
 
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
@@ -74,16 +78,14 @@ const NoticeCategoryItem = ({ notices }) => {
   useEffect(updateLocalStorage, [isSelected, idCard]);
 
   const handleAddToFavorite = () => {
-    if(isLoggedIn) {
-
-      if(isSelected) {
-        fetchDeleteToFavorite(idCard)
+    if (isLoggedIn) {
+      if (isSelected) {
+        fetchDeleteToFavorite(idCard);
         setIsSelected(!isSelected);
       } else {
         fetchAddToFavorite(idCard, valueModalInfo);
         setIsSelected(!isSelected);
       }
-
     } else {
       setShowModal(false);
       setIsModalOpenAttention(true);
@@ -91,9 +93,9 @@ const NoticeCategoryItem = ({ notices }) => {
   };
 
   return (
-    <div>
+    <>
       <NoticesItemThumb>
-        <img src={avatarURL} alt="pets avatar" width={280} height={290} />
+        <Img src={avatarURL} alt="pets avatar" width={280} height={290} />
         <CategoriesContainer>
           {category !== 'for-free' ? (
             <CategoriesName>{category}</CategoriesName>
@@ -108,7 +110,7 @@ const NoticeCategoryItem = ({ notices }) => {
                 <use href={`${sprite}#icon-location-1`}></use>
               </IconSvg>
             </IconConatiner>
-            {location}
+            <TextContainer>{location}</TextContainer>
           </DiscriptionItem>
           {yearsDiff === 1 || yearsDiff === 0 ? (
             <DiscriptionItem>
@@ -117,7 +119,7 @@ const NoticeCategoryItem = ({ notices }) => {
                   <use href={`${sprite}#icon-clock`}></use>
                 </IconSvg>
               </IconConatiner>
-              {`${yearsDiff} year`}
+              <TextContainer>{`${yearsDiff} year`}</TextContainer>
             </DiscriptionItem>
           ) : (
             <DiscriptionItem>
@@ -126,7 +128,7 @@ const NoticeCategoryItem = ({ notices }) => {
                   <use href={`${sprite}#icon-clock`}></use>
                 </IconSvg>
               </IconConatiner>
-              {`${yearsDiff} years`}
+              <TextContainer>{`${yearsDiff} years`}</TextContainer>
             </DiscriptionItem>
           )}
           <DiscriptionItem>
@@ -135,12 +137,12 @@ const NoticeCategoryItem = ({ notices }) => {
                 {sex === 'male' ? <use href={`${sprite}#icon-male`}></use> : <use href={`${sprite}#icon-female`}></use>}
               </IconSvg>
             </IconConatiner>
-            {sex}
+            <TextContainer>{sex}</TextContainer>
           </DiscriptionItem>
         </DiscriptionList>
         <FavoriteBtnContainer>
           <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-            <IconSvg width={24} height={24}  isSelected = {isSelected}>
+            <IconSvg width={24} height={24} isSelected={isSelected}>
               <use href={`${sprite}#icon-heart`}></use>
             </IconSvg>
           </AddToFavoriteBtn>
@@ -152,21 +154,24 @@ const NoticeCategoryItem = ({ notices }) => {
           Add Pet
         </AddPet>
       </NoticesItemThumb>
-      <h3>{title}</h3>
-      <button type="button" onClick={openModal}>
-        Learn more
-      </button>
-      <ModalNotice 
-      showModal={showModal} 
-      setShowModal={setShowModal} 
-      isModalOpenAttention={isModalOpenAttention}
-      setIsModalOpenAttention = {setIsModalOpenAttention}
-      valueModalInfo = {valueModalInfo}
-      userModalInfo = {userModalInfo}
-      handleAddToFavorite = {handleAddToFavorite}
-      isSelected = {isSelected}
-      isLoggedIn = {isLoggedIn} />
-    </div>
+      <ContentContainer>
+        <Title>{title}</Title>
+        <LearnMoreBtn type="button" onClick={openModal}>
+          Learn more
+        </LearnMoreBtn>
+      </ContentContainer>
+      <ModalNotice
+        showModal={showModal}
+        setShowModal={setShowModal}
+        isModalOpenAttention={isModalOpenAttention}
+        setIsModalOpenAttention={setIsModalOpenAttention}
+        valueModalInfo={valueModalInfo}
+        userModalInfo={userModalInfo}
+        handleAddToFavorite={handleAddToFavorite}
+        isSelected={isSelected}
+        isLoggedIn={isLoggedIn}
+      />
+    </>
   );
 };
 
