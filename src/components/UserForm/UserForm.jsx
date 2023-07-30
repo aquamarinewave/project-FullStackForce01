@@ -5,16 +5,7 @@ import { useState, useEffect } from 'react';
 import authSelector from 'redux/auth/authSelector';
 import avatarDefault from 'images/profilephotos/avatar-default.png';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  AvatarWrapper,
-  ImgAvatar,
-  WrapperField,
-  Label,
-  ProfileField,
-  ImgWrapper,
-  BtnConfirm,
-  BtnDecline,
-} from '../UserData/UserData.styled';
+import { AvatarWrapper, ImgAvatar, WrapperField, Label, ProfileField, ImgWrapper } from '../UserData/UserData.styled';
 import {
   SubmitBtn,
   Container,
@@ -24,6 +15,10 @@ import {
   EditButton,
   IconCrossSmall,
   IconCheck,
+  BtnConfirm,
+  BtnDecline,
+  ApproveText,
+  ApproveContainer,
 } from './UserForm.styled';
 import { updateUser } from 'redux/auth/operations';
 
@@ -136,18 +131,17 @@ export const UserForm = ({ toggleModal }) => {
                 </ImgWrapper>
               )}
               {editAvatar ? (
-                <div>
+                <ApproveContainer>
                   <BtnConfirm
                     onClick={() => {
                       setEditAvatar(false);
                     }}
                   >
-                    Comfirm
                     <IconCheck width={24} height={24}>
                       <use href={`${sprite}#icon-check`}></use>
                     </IconCheck>
                   </BtnConfirm>
-
+                  <ApproveText>Confirm</ApproveText>
                   <BtnDecline
                     onClick={() => {
                       setAvatarUrl(user?.avatarURL || { avatarDefault });
@@ -155,12 +149,11 @@ export const UserForm = ({ toggleModal }) => {
                       setEditAvatar(false);
                     }}
                   >
-                    Decliene
                     <IconCrossSmall width={24} height={24}>
                       <use href={`${sprite}#icon-cross-small`}></use>
                     </IconCrossSmall>
                   </BtnDecline>
-                </div>
+                </ApproveContainer>
               ) : (
                 <EditButton>
                   <InputWrapper
