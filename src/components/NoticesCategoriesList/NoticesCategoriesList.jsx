@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 import { fetchByCategory, fetchByCategoryOwn } from '../../services/api/noticesFetch';
 import fetchGetFavorites from '../ModalNotice/fetchGetFavorites';
+import { Item, List } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
   const [resByCategory, setResByCategory] = useState([]);
@@ -43,7 +44,7 @@ const NoticesCategoriesList = () => {
             })
             .catch(error => console.log(error));
         }
-        
+
         const response = await fetchByCategory(categoryName, controller);
 
         // if (response.data) return setResByCategory(null);
@@ -66,11 +67,11 @@ const NoticesCategoriesList = () => {
   return (
     <div>
       {resByCategory && (
-        <ul>
+        <List>
           {resByCategory.map(
             ({ _id, comments, title, birthday, category, location, name, owner, sex, type, avatarURL }) => {
               return (
-                <li key={_id}>
+                <Item key={_id}>
                   <NoticeCategoryItem
                     responseByCategory={{
                       _id,
@@ -86,11 +87,11 @@ const NoticesCategoriesList = () => {
                       avatarURL,
                     }}
                   />
-                </li>
+                </Item>
               );
             }
           )}
-        </ul>
+        </List>
       )}
     </div>
   );

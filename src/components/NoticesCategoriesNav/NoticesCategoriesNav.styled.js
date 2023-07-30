@@ -5,8 +5,8 @@ const CategoriesNavContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  width: 170px;
-  padding-bottom: 24px;
+  width: 200px;
+  margin-bottom: 24px;
 `;
 
 const CategoriesLink = styled(NavLink)`

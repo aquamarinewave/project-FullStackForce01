@@ -12,6 +12,10 @@ import {
   FavoriteBtnContainer,
   AddPet,
   IconPlusSmall,
+  TextContainer,
+  Title,
+  LearnMoreBtn,
+  ContentContainer,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 
@@ -33,7 +37,7 @@ const NoticeCategoryItem = ({ responseByCategory }) => {
   const yearsDiff = Math.floor(timeDiff / millisecondsPerYear);
 
   return (
-    <div>
+    <>
       <NoticesItemThumb>
         <img src={avatarURL} alt="pets avatar" width={280} height={290} />
         <CategoriesContainer>
@@ -50,7 +54,7 @@ const NoticeCategoryItem = ({ responseByCategory }) => {
                 <use href={`${sprite}#icon-location-1`}></use>
               </IconSvg>
             </IconConatiner>
-            {location}
+            <TextContainer>{location}</TextContainer>
           </DiscriptionItem>
           {yearsDiff === 1 || yearsDiff === 0 ? (
             <DiscriptionItem>
@@ -68,7 +72,7 @@ const NoticeCategoryItem = ({ responseByCategory }) => {
                   <use href={`${sprite}#icon-clock`}></use>
                 </IconSvg>
               </IconConatiner>
-              {`${yearsDiff} years`}
+              <TextContainer>{`${yearsDiff} year`}</TextContainer>
             </DiscriptionItem>
           )}
           <DiscriptionItem>
@@ -77,7 +81,7 @@ const NoticeCategoryItem = ({ responseByCategory }) => {
                 {sex === 'male' ? <use href={`${sprite}#icon-male`}></use> : <use href={`${sprite}#icon-female`}></use>}
               </IconSvg>
             </IconConatiner>
-            {sex}
+            <TextContainer>{sex}</TextContainer>
           </DiscriptionItem>
         </DiscriptionList>
         <FavoriteBtnContainer>
@@ -94,12 +98,15 @@ const NoticeCategoryItem = ({ responseByCategory }) => {
           Add Pet
         </AddPet>
       </NoticesItemThumb>
-      <h3>{title}</h3>
-      <button type="button" onClick={openModal}>
-        Learn more
-      </button>
+      <ContentContainer>
+        <Title>{title}</Title>
+        <LearnMoreBtn type="button" onClick={openModal}>
+          Learn more
+        </LearnMoreBtn>
+      </ContentContainer>
+
       <ModalNotice showModal={showModal} setShowModal={setShowModal} idCard={idCard} />
-    </div>
+    </>
   );
 };
 
