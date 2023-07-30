@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
+import * as yup from 'yup';
 
 import authOperations from 'redux/pets/operations';
 
@@ -35,25 +36,45 @@ const titleText = category => {
   }
 };
 
+const getValidationSchema = file =>
+  yup.object().shape({
+    category: yup.string().oneOf(['sell', 'lost-found', 'for-free', 'your_pet']).required(),
+    name: yup.string().required().min(2).max(16),
+    birthday: yup.date().required(),
+    type: yup.string().required().min(2).max(16),
+    avatar: yup.mixed().test('required', 'Please select a file', () => !!file),
+    sex: yup.string().when('category', {
+      is: category => ['sell', 'lost-found', 'for-free'].includes(category),
+      then: () => yup.string().oneOf(['male', 'female']).required(),
+    }),
+    location: yup.string().when('category', {
+      is: category => ['sell', 'lost-found', 'for-free'].includes(category),
+      then: () => yup.string().required('Location is required'),
+    }),
+    price: yup.number().when('category', {
+      is: 'sell',
+      then: () => yup.number().required().positive().typeError('Price must be a number'),
+    }),
+    comments: yup.string().max(120),
+  });
+
 const AddPetForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [currentStage, setCurrentStage] = useState('first');
-  const [currentRadioButton, setCurrentRadioButton] = useState('your_pet');
-  const [selectedFile, setSelectedFile] = useState('');
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [previewImage, setPreviewImage] = useState('');
-  const [selectedGender, setSelectedGender] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const initialValues = {
     title: '',
-    category: currentRadioButton,
-    avatar: selectedFile,
+    category: 'your_pet',
+    avatar: '',
     name: '',
     birthday: '',
     type: '',
-    sex: selectedGender,
+    sex: '',
     comments: '',
     location: '',
     price: '',
@@ -88,9 +109,8 @@ const AddPetForm = () => {
       ...values,
       avatar: selectedFile,
     };
-
     try {
-      if (currentRadioButton === 'your_pet') {
+      if (values.category === 'your_pet') {
         await dispatch(authOperations.addPetThunk(formData));
       } else {
         await dispatch(authOperations.addNoticeThunk(formData));
@@ -107,21 +127,14 @@ const AddPetForm = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik initialValues={initialValues} validationSchema={getValidationSchema(selectedFile)} onSubmit={handleSubmit}>
       {formik => {
-        const handleOptionChange = event => {
-          setCurrentRadioButton(event.target.value);
-          formik.handleChange(event);
-        };
-        const handleSexChange = event => {
-          setSelectedGender(event.target.value);
-          formik.handleChange(event);
-        };
+        console.log(formik.errors, formik.values);
         return (
-          <Form currentStage={currentStage} currentRadioButton={currentRadioButton}>
+          <Form currentStage={currentStage} currentRadioButton={formik.values.category}>
             <div>
-              <TitleAddPetForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
-                {currentStage !== 'first' ? titleText(currentRadioButton) : 'Add pet'}{' '}
+              <TitleAddPetForm currentStage={currentStage} currentRadioButton={formik.values.category}>
+                {currentStage !== 'first' ? titleText(formik.values.category) : 'Add pet'}{' '}
               </TitleAddPetForm>
               <BoxStageForm>
                 <NextStageForm current={currentStage}>Choose option</NextStageForm>
@@ -132,16 +145,13 @@ const AddPetForm = () => {
               </BoxStageForm>
               <BoxFieldsForm>
                 {currentStage === 'first' && (
-                  <FirstStageForm currentRadioButton={currentRadioButton} handleOptionChange={handleOptionChange} />
+                  <FirstStageForm currentRadioButton={formik.values.category} formik={formik} />
                 )}
                 {currentStage === 'second' && (
-                  <SecondStageForm currentRadioButton={currentRadioButton} formik={formik} />
+                  <SecondStageForm currentRadioButton={formik.values.category} formik={formik} />
                 )}
                 {currentStage === 'third' && (
                   <ThirdStageForm
-                    selectedGender={selectedGender}
-                    handleSexChange={handleSexChange}
-                    currentRadioButton={currentRadioButton}
                     formik={formik}
                     showPlaceholder={showPlaceholder}
                     previewImage={previewImage}
