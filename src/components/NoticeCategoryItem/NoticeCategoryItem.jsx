@@ -11,8 +11,6 @@ import {
   IconConatiner,
   AddToFavoriteBtn,
   FavoriteBtnContainer,
-  AddPet,
-  IconPlusSmall,
   Img,
   TextContainer,
   Title,
@@ -140,12 +138,6 @@ const NoticeCategoryItem = ({ notices }) => {
             </IconHeart>
           </AddToFavoriteBtn>
         </FavoriteBtnContainer>
-        <AddPet to="/add-pet">
-          <IconPlusSmall width={24} height={24}>
-            <use href={`${sprite}#icon-plus`}></use>
-          </IconPlusSmall>
-          Add Pet
-        </AddPet>
       </NoticesItemThumb>
       <ContentContainer>
         <Title>{title}</Title>
