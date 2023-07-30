@@ -58,15 +58,24 @@ export const ModalAuth = styled.div`
 `;
 
 export const CloseModalButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: transparent;
   background: transparent;
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   z-index: 10;
+  border-radius: 50%;
+
+  
+  &:hover {
+    background: var(--lightblue);
+  }
 
   @media screen and (min-width: 768px) {
     top: 24px;

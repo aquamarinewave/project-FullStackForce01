@@ -7,11 +7,10 @@ import {
   DiscriptionList,
   DiscriptionItem,
   IconSvg,
+  IconHeart,
   IconConatiner,
   AddToFavoriteBtn,
   FavoriteBtnContainer,
-  AddPet,
-  IconPlusSmall,
   Img,
   TextContainer,
   Title,
@@ -22,16 +21,19 @@ import sprite from '../../images/icons.svg';
 
 import authSelector from '../../redux/auth/authSelector';
 import { useSelector } from 'react-redux';
-import fetchModalDetail from '../ModalNotice/fetchModalDetail';
-import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
-import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
+import { fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite } from '../../services/api/modalNotice';
 
 const NoticeCategoryItem = ({ notices }) => {
+  const { _id, title, birthday, category, location, sex, avatarURL } = notices;
+
   const [showModal, setShowModal] = useState(false);
-  const [idCard, setIdCard] = useState('');
   const [valueModalInfo, setValueModalInfo] = useState({});
   const [userModalInfo, setUserModalInfo] = useState({});
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setIsSelected] = useState(() => {
+    const saved = localStorage.getItem(`pet_${_id}`);
+    const initialValue = JSON.parse(saved);
+    return initialValue || false;
+  });
   const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
@@ -39,7 +41,7 @@ const NoticeCategoryItem = ({ notices }) => {
   useEffect(() => {
     async function fetchModalDetailPet() {
       try {
-        const data = await fetchModalDetail(idCard);
+        const data = await fetchModalDetail(_id);
         console.log({ ...data.notice });
         setValueModalInfo({ ...data.notice });
         setUserModalInfo({ ...data.user });
@@ -48,21 +50,10 @@ const NoticeCategoryItem = ({ notices }) => {
       }
     }
     fetchModalDetailPet();
-
-    const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
-
-    if (savedSelectedState !== null) {
-      setIsSelected(JSON.parse(savedSelectedState));
-    } else {
-      setIsSelected(false);
-    }
-  }, [idCard, isLoggedIn]);
-
-  const { _id, title, birthday, category, location, sex, avatarURL } = notices;
+  }, [_id]);
 
   const openModal = () => {
     setShowModal(showModal => !showModal);
-    setIdCard(_id);
   };
 
   const givenDate = new Date(birthday);
@@ -71,19 +62,17 @@ const NoticeCategoryItem = ({ notices }) => {
   const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25;
   const yearsDiff = Math.floor(timeDiff / millisecondsPerYear);
 
-  const updateLocalStorage = () => {
-    localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
+  const closeModalAttention = () => {
+    setIsModalOpenAttention(!isModalOpenAttention);
   };
-
-  useEffect(updateLocalStorage, [isSelected, idCard]);
 
   const handleAddToFavorite = () => {
     if (isLoggedIn) {
       if (isSelected) {
-        fetchDeleteToFavorite(idCard);
+        fetchDeleteToFavorite(_id);
         setIsSelected(!isSelected);
       } else {
-        fetchAddToFavorite(idCard, valueModalInfo);
+        fetchAddToFavorite(_id, valueModalInfo);
         setIsSelected(!isSelected);
       }
     } else {
@@ -91,6 +80,8 @@ const NoticeCategoryItem = ({ notices }) => {
       setIsModalOpenAttention(true);
     }
   };
+
+  localStorage.setItem(`pet_${_id}`, JSON.stringify(isSelected));
 
   return (
     <>
@@ -142,17 +133,11 @@ const NoticeCategoryItem = ({ notices }) => {
         </DiscriptionList>
         <FavoriteBtnContainer>
           <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-            <IconSvg width={24} height={24} isSelected={isSelected}>
+            <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn ={isLoggedIn}>
               <use href={`${sprite}#icon-heart`}></use>
-            </IconSvg>
+            </IconHeart>
           </AddToFavoriteBtn>
         </FavoriteBtnContainer>
-        <AddPet to="/add-pet">
-          <IconPlusSmall width={24} height={24}>
-            <use href={`${sprite}#icon-plus`}></use>
-          </IconPlusSmall>
-          Add Pet
-        </AddPet>
       </NoticesItemThumb>
       <ContentContainer>
         <Title>{title}</Title>
@@ -170,6 +155,7 @@ const NoticeCategoryItem = ({ notices }) => {
         handleAddToFavorite={handleAddToFavorite}
         isSelected={isSelected}
         isLoggedIn={isLoggedIn}
+        closeModalAttention={closeModalAttention}
       />
     </>
   );

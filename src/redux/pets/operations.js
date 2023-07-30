@@ -56,7 +56,7 @@ const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunk
 const fetchUserPet = createAsyncThunk('pets/fetchUserPets', async (_, thunkAPI) => {
   try {
     const response = await axios.get(`/pets`);
-    console.log('responsePet:', response);
+    console.log('responsePet.data:', response.data);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

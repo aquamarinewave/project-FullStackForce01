@@ -239,15 +239,23 @@ export const ModalButtonAdd = styled.button`
 `
 
 export const CloseModalButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: transparent;
   background: transparent;
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   z-index: 10;
+  border-radius: 50%;
+
+  &:hover {
+    background: var(--lightblue);
+  }
 
   @media screen and (min-width: 768px) {
     top: 23px;
@@ -256,7 +264,7 @@ export const CloseModalButton = styled.button`
 `;
 
 export const IconHeart = styled.svg`
-  stroke: ${(props) => (props.isSelected && props.isLoggedIn? stylesBtnActive.darkblue : stylesBtnActive.white)};
+  stroke: ${(props) => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : stylesBtnActive.white)};
   fill: ${(props) => (props.isSelected && props.isLoggedIn? stylesBtnActive.darkblue : "transparent")};
 
 `;
@@ -264,9 +272,4 @@ export const IconHeart = styled.svg`
 
 export const IconCross = styled.svg`
   stroke: var(--dark-blue);
-
-  &:hover {
-    border: 1px solid var(--dark-blue);
-    border-radius: 50%;
-  }
 `;

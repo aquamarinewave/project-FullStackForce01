@@ -8,7 +8,9 @@ import noticesOperations from 'redux/notices/operation';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
-import { NoticesPageContainer, Title } from './NoticesPage.styled';
+import { AddPetButtonBox, NoticesPageContainer, Title } from './NoticesPage.styled';
+
+import AddPetButton from 'components/AddPetButton/AddPetButton';
 
 const statusList = {
   REJECTED: 1,
@@ -133,8 +135,13 @@ const NoticesPage = () => {
   return (
     <NoticesPageContainer>
       <Title>Find your favorite pet</Title>
+
       <NoticesSearch pattern={noticesStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
       <NoticesCategoriesNav />
+      <AddPetButtonBox>
+        <AddPetButton></AddPetButton>
+      </AddPetButtonBox>
+
       {showResults(status)}
     </NoticesPageContainer>
   );

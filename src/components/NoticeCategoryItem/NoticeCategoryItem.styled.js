@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-// const stylesBtnActive = {
-//   lightblue: "var(--lightblue)",
-//   darkblue: "var(--dark-blue)",
-// };
+const heartActive = {
+  lightblue: "var(--lightblue)",
+  darkblue: "var(--dark-blue)",
+};
 
 const NoticesItemThumb = styled.div`
   position: relative;
@@ -72,6 +72,11 @@ const IconSvg = styled.svg`
   stroke: var(--dark-blue);
 `;
 
+const IconHeart = styled.svg`
+  fill:${(props) => (props.isSelected && props.isLoggedIn ? heartActive.darkblue : heartActive.lightblue)};
+  stroke: var(--dark-blue);
+`;
+
 const FavoriteBtnContainer = styled.div`
   position: absolute;
   display: flex;
@@ -98,35 +103,35 @@ const AddToFavoriteBtn = styled.button`
   }
 `;
 
-const AddPet = styled(Link)`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50%;
-  background: var(--dark-blue);
-  border: 2px solid var(--dark-blue);
-  color: var(--container-bg);
-  cursor: pointer;
-  display: inline-flex;
-  width: 80px;
-  height: 80px;
-  padding: 17px 16px;
-  gap: 4px;
-  font-size: 12px;
-  right: 0;
-  bottom: 60px;
+// const AddPet = styled(Link)`
+//   position: absolute;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   border-radius: 50%;
+//   background: var(--dark-blue);
+//   border: 2px solid var(--dark-blue);
+//   color: var(--container-bg);
+//   cursor: pointer;
+//   display: inline-flex;
+//   width: 80px;
+//   height: 80px;
+//   padding: 17px 16px;
+//   gap: 4px;
+//   font-size: 12px;
+//   right: 0;
+//   bottom: 60px;
 
-  &:hover,
-  &:focus {
-    background: var(--gradient-blue-bg);
-    border: var(--gradient-blue-bg);
-  }
-`;
+//   &:hover,
+//   &:focus {
+//     background: var(--gradient-blue-bg);
+//     border: var(--gradient-blue-bg);
+//   }
+// `;
 
-const IconPlusSmall = styled.svg`
-  stroke: var(--main-light-color);
-`;
+// const IconPlusSmall = styled.svg`
+//   stroke: var(--main-light-color);
+// `;
 const ContentContainer = styled.div`
   padding: 0 16px;
 `;
@@ -175,11 +180,10 @@ export {
   DiscriptionItem,
   TextContainer,
   IconSvg,
+  IconHeart,
   IconConatiner,
   FavoriteBtnContainer,
   AddToFavoriteBtn,
-  AddPet,
-  IconPlusSmall,
   ContentContainer,
   Title,
   LearnMoreBtn,
