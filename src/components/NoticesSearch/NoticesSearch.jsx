@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import {
   SearchContainer,
   SearchForm,
@@ -11,33 +10,24 @@ import {
 } from './NoticesSearch.styled';
 import sprite from '../../images/icons.svg';
 
-const NoticesSearch = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const text = searchParams.get('query');
-  const pattern = text && text.length > 0 ? text : '';
+const NoticesSearch = ({ pattern, onSubmit, onClear }) => {
   const [inputName, setInputName] = useState(pattern ?? '');
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    if (inputName.trim() === '') {
-      alert('Type something in search input');
-      return;
-    }
-    haldleFormSubmit(inputName);
-    setInputName('');
-  };
-
-  const handleClear = () => {
-    setInputName('');
-  };
 
   const hangleNameOnChange = event => {
     setInputName(event.currentTarget.value.toLowerCase());
   };
 
-  const haldleFormSubmit = query => {
-    const nextParams = query !== '' ? { query } : {};
-    setSearchParams(nextParams);
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (inputName.trim() === '') {
+      return;
+    }
+    onSubmit(inputName);
+  };
+
+  const handleClear = () => {
+    setInputName('');
+    onClear();
   };
 
   return (
@@ -58,11 +48,11 @@ const NoticesSearch = () => {
             </IconSvg>
           </SearchIconBtn>
           {inputName.trim() !== '' && (
-            <button type="button" onClick={handleClear}>
+            <SearchIconBtn type="button" onClick={handleClear}>
               <IconCrossSmall width={24} height={24}>
                 <use href={`${sprite}#icon-cross-small`}></use>
               </IconCrossSmall>
-            </button>
+            </SearchIconBtn>
           )}
         </SearchIconContainer>
       </SearchForm>
