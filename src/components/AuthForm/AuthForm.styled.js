@@ -10,9 +10,11 @@ export const ErrorText = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-left: 16px;
+  margin-left: 30px;
+  
 
   @media screen and (min-width: 768px) {
+    margin-left: 92px;
   }
   @media screen and (min-width: 1280px) {
   }
@@ -62,16 +64,18 @@ export const AuthTitle = styled.h1`
 export const AuthForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 `;
 
 export const AuthFieldWrap = styled.div`
   position: relative;
+  align-self: center;
 `;
 
 export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
   display: flex;
+  
   width: 256px;
   padding: 12px 16px;
   align-items: center;
@@ -85,6 +89,10 @@ export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
   line-height: 150%;
   letter-spacing: 0.64px;
   margin-top: 32px;
+  @media screen and (min-width: 768px) {
+    width: 458px;
+  }
+  
   &:focus,
   &:active {
     border: 1px solid var(--dark-blue);
@@ -95,10 +103,12 @@ export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
     valid &&
     css`
       border: 1px solid green;
+      outline: none;
 
       &:focus,
       &:active {
         border: 1px solid green;
+        outline: none;
       }
     `}
 
@@ -112,13 +122,9 @@ export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
       &:active {
         border: 1px solid red;
         outline: none;
-        color: ;
-      }
     `}
 
-  @media screen and (min-width: 768px) {
-    width: 458px;
-  }
+  
 `;
 
 export const AuthShowPassword = styled(AuthFormStyledHelpers.FilteredPropsButtonShowPassword)`
@@ -225,17 +231,11 @@ export const AuthRegisterButton = styled.button`
   line-height: normal;
   letter-spacing: 0.8px;
   margin-top: 40px;
-  &:disabled {
+  &:focus,
+  &:hover {
     cursor: pointer;
-    background-color: rgb(163, 168, 173);
-    box-shadow: none;
-    color: rgb(255, 255, 255) !important;
-
-    &:hover,
-    &:focus {
-      cursor: not-allowed;
-    }
   }
+  
   @media screen and (min-width: 768px) {
     width: 458px;
     margin-top: 52px;
@@ -264,16 +264,11 @@ export const AuthLoginButton = styled.button`
   line-height: normal;
   letter-spacing: 0.8px;
   margin-top: 110px;
-  &:disabled {
+  &:focus,
+  &:hover {
     cursor: pointer;
-    background-color: rgb(163, 168, 173);
-    box-shadow: none;
-    color: rgb(255, 255, 255) !important;
-    &:hover,
-    &:focus {
-      cursor: not-allowed;
-    }
   }
+  
   @media screen and (min-width: 768px) {
     width: 458px;
   }
@@ -310,4 +305,3 @@ export const AuthLinkLogin = styled(Link)`
   letter-spacing: 0.48px;
   text-decoration-line: underline;
 `;
-

@@ -66,7 +66,7 @@ const AuthFormRegister = props => {
     <ContainerAuth>
       <AuthTitle>Registration</AuthTitle>
       <Formik initialValues={initialValues} validationSchema={userRegisterSchema} onSubmit={toggleModal}>
-        {({ errors, touched, handleChange, handleBlur, values, isSubmitting, isValid, handleSubmit }) => {
+        {({ errors, touched, handleChange, handleBlur, values, handleSubmit }) => {
           return (
             <AuthForm onSubmit={handleSubmit}>
               <AuthFieldWrap>
@@ -96,8 +96,8 @@ const AuthFormRegister = props => {
                     </AuthIconCheck>
                   </AuthIconsValidation>
                 )}
-                <ErrorMessage name="name" render={message => <ErrorText>{message}</ErrorText>} />
               </AuthFieldWrap>
+              <ErrorMessage name="name" render={message => <ErrorText>{message}</ErrorText>} />
 
               <AuthFieldWrap>
                 <AuthField
@@ -125,11 +125,8 @@ const AuthFormRegister = props => {
                     </AuthIconCheck>
                   </AuthIconsValidation>
                 )}
-
-                {errors.email && touched.email && (
-                  <ErrorMessage name="email" render={message => <ErrorText>{message}</ErrorText>} />
-                )}
               </AuthFieldWrap>
+              <ErrorMessage name="email" render={message => <ErrorText>{message}</ErrorText>} />
 
               <AuthFieldWrap>
                 <AuthField
@@ -184,9 +181,8 @@ const AuthFormRegister = props => {
                     </AuthIconShowPassword>
                   </AuthShowPassword>
                 )}
-
-                <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
               </AuthFieldWrap>
+              <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
 
               <AuthFieldWrap>
                 <AuthField
@@ -238,12 +234,9 @@ const AuthFormRegister = props => {
                     </AuthIconShowPassword>
                   </AuthShowConfirmPassword>
                 )}
-
-                <ErrorMessage name="confirmPassword" render={message => <ErrorText>{message}</ErrorText>} />
               </AuthFieldWrap>
-              <AuthRegisterButton disabled={!isValid || isSubmitting} type="submit">
-                Registration
-              </AuthRegisterButton>
+              <ErrorMessage name="confirmPassword" render={message => <ErrorText>{message}</ErrorText>} />
+              <AuthRegisterButton type="submit">Registration</AuthRegisterButton>
               <AuthLinkToLogin>
                 Already have an account? <AuthLinkLogin to="/login">Login</AuthLinkLogin>
               </AuthLinkToLogin>

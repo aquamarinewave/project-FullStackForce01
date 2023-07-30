@@ -37,7 +37,11 @@ const Title = styled.a`
   }
 `;
 
-const Info = styled.div``;
+const Info = styled.div`
+  &:hover {
+    color: #54adff;
+  }
+`;
 
 const InfoItemFriend = styled.div`
   display: flex;
@@ -151,6 +155,8 @@ const InfoLinkAddressDiv = styled.div`
     width: 197px;
   }
 `;
+
+
 
 export {
   FriendsItemThumb,

@@ -1,75 +1,60 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import {
-  Background,
-  ModalWrapper,
-  ModalContent,
-  ModalInfo,
-  ModalImg,
-  ModalAvatar,
-  ModalCategory,
-  ModalHeader,
-  ModalInfoList,
-  ModalInfoItem,
-  ModalContact,
-  ModalComments,
-  ModalButtons,
-  ModalPhone,
-  ModalButtonAdd,
-  CloseModalButton,
-  IconHeart,
-  IconCross,
-} from './ModalNotice.styled';
+import React, { useRef, useEffect, useCallback } from 'react';
+import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvatar, ModalCategory, ModalHeader, ModalInfoList, ModalInfoItemName, ModalInfoItemValue, ModalContact, ModalComments, ModalButtons, ModalPhone, ModalButtonAdd, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
 import ModalAttention from './ModalAttention';
-import fetchModalDetail from '../ModalNotice/fetchModalDetail';
-import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
-import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
+// import fetchModalDetail from '../ModalNotice/fetchModalDetail';
+// import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
+// import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
 import sprite from '../../images/icons.svg';
-import authSelector from '../../redux/auth/authSelector';
-import { useSelector } from 'react-redux';
+// import authSelector from '../../redux/auth/authSelector';
+// import { useSelector } from 'react-redux';
 
-export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
-  const [valueModalInfo, setValueModalInfo] = useState({});
-  const [userModalInfo, setUserModalInfo] = useState({});
-  const [isSelected, setIsSelected] = useState(false);
-  const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
 
-  const isLoggedIn = useSelector(authSelector.loggedInSelector);
+export const ModalNotice = ({ 
+  showModal, 
+  setShowModal,
+  isModalOpenAttention,
+  setIsModalOpenAttention,
+  valueModalInfo,
+  userModalInfo,
+  handleAddToFavorite,
+  isSelected,
+  isLoggedIn
+}) => {
+  // const [valueModalInfo, setValueModalInfo] = useState({});
+  // const [userModalInfo, setUserModalInfo] = useState({});
+  // const [isSelected, setIsSelected] = useState(false);
+  // const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
+
+  // const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
   // useEffect(() => {
-  //   fetchModalDetail(idCard)
-  //     .then((data) => {
-  //       return [setValueModalInfo({...data.notice}), setUserModalInfo({...data.user})];
-  //       ;
-  //     })
-  //     .catch(error => console.log(error))
-  // }, [idCard]);
+  //   async function fetchModalDetailPet() {
+  //     try {
+  //       const data = await fetchModalDetail(idCard);
+  //       console.log({...data.notice})
+  //       setValueModalInfo({...data.notice});
+  //       setUserModalInfo({...data.user});
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   fetchModalDetailPet();
 
-  useEffect(() => {
-    async function fetchModalDetailPet() {
-      try {
-        const data = await fetchModalDetail(idCard);
-        setValueModalInfo({ ...data.notice });
-        setUserModalInfo({ ...data.user });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchModalDetailPet();
+  //   const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
 
-    const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
+  //   if (savedSelectedState !== null) {
+  //     setIsSelected(JSON.parse(savedSelectedState));
+  //   } else {
+  //     setIsSelected(false);
+  //   }
 
-    if (savedSelectedState !== null) {
-      setIsSelected(JSON.parse(savedSelectedState));
-    } else {
-      setIsSelected(false);
-    }
-  }, [idCard, isLoggedIn]);
+  // }, [idCard, isLoggedIn]);
 
   const modalRef = useRef();
 
   const closeModalAttention = () => {
-    setIsModalOpenAttention(!isModalOpenAttention);
-  };
+    setIsModalOpenAttention(!isModalOpenAttention)
+  }
 
   const closeModal = e => {
     if (modalRef.current === e.target) {
@@ -87,126 +72,111 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
     [setShowModal, showModal]
   );
 
-  useEffect(() => {
-    document.addEventListener('keydown', keyPress);
-    return () => document.removeEventListener('keydown', keyPress);
-  }, [keyPress]);
+  useEffect(
+    () => {
+      document.addEventListener('keydown', keyPress);
+      return () => document.removeEventListener('keydown', keyPress);
+    },
+    [keyPress]
+  );
 
-  const updateLocalStorage = () => {
-    localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
-  };
+  // const updateLocalStorage = () => {
+  //   localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
+  // };
 
-  const handleAddToFavorite = () => {
-    if (isLoggedIn) {
-      if (isSelected) {
-        fetchDeleteToFavorite(idCard);
-        setIsSelected(!isSelected);
-      } else {
-        fetchAddToFavorite(idCard, valueModalInfo);
-        setIsSelected(!isSelected);
-      }
-    } else {
-      setShowModal(false);
-      setIsModalOpenAttention(true);
-    }
-  };
+  // const handleAddToFavorite = () => {
+  //   if(isLoggedIn) {
 
-  const { name, birthday, type, sex, location, comments, avatarURL, category } = valueModalInfo;
+  //     if(isSelected) {
+  //       fetchDeleteToFavorite(idCard)
+  //       setIsSelected(!isSelected);
+  //     } else {
+  //       fetchAddToFavorite(idCard, valueModalInfo);
+  //       setIsSelected(!isSelected);
+  //     }
 
-  const { email, phone } = userModalInfo;
+  //   } else {
+  //     setShowModal(false);
+  //     setIsModalOpenAttention(true);
+  //   }
+  // };
 
-  useEffect(updateLocalStorage, [isSelected, idCard]);
+  const {title, name, birthday, type, sex, location, comments, avatarURL, category} = valueModalInfo;
+
+  const {email, phone} = userModalInfo;
+
+  // useEffect(updateLocalStorage, [isSelected, idCard]);
 
   return (
     <>
       {showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
           <ModalWrapper showModal={showModal}>
-            <ModalContent>
-              <ModalInfo>
-                <ModalImg>
-                  <ModalAvatar src={avatarURL} alt={name} />
-                  <ModalCategory>{category}</ModalCategory>
-                </ModalImg>
+              <ModalContent>
+                <ModalInfo>
+                  <ModalImg>
+                    <ModalAvatar src={avatarURL} alt={name} />
+                    <ModalCategory>{category}</ModalCategory>
+                  </ModalImg>
+                  
+                  <div>
+                    <ModalHeader>{title || "Сute pet looking for a home"}</ModalHeader>
+                    <ModalInfoList>
+                    <ModalInfoItemName>
+                      <li><strong>Name:</strong></li>
+                      <li><strong>Birthday:</strong></li>
+                      <li><strong>Type:</strong></li>
+                      <li><strong>Place:</strong></li>
+                      <li><strong>The sex:</strong></li>
+                      <li><strong>Email:</strong></li>
+                      <li><strong>Phone:</strong></li>
+                    </ModalInfoItemName>
 
-                <div>
-                  <ModalHeader>Сute dog looking for a home</ModalHeader>
-                  <ModalInfoList>
-                    <ModalInfoItem>
-                      <li>Name: {name || 'empty'}</li>
-                    </ModalInfoItem>
-                    <ModalInfoItem>
-                      <li>Birthday: {birthday || 'empty'}</li>
-                    </ModalInfoItem>
-                    <ModalInfoItem>
-                      <li>Type: {type || 'empty'}</li>
-                    </ModalInfoItem>
-                    <ModalInfoItem>
-                      <li>Place: {location || 'empty'}</li>
-                    </ModalInfoItem>
-                    <ModalInfoItem>
-                      <li>The sex: {sex || 'empty'}</li>
-                    </ModalInfoItem>
-                    <ModalInfoItem>
-                      <li>
-                        Email:{' '}
-                        <ModalContact>
-                          <a href={`mailto: ${email}`}>{email || 'email@gmail.com'}</a>
-                        </ModalContact>
-                      </li>
-                    </ModalInfoItem>
-
-                    <ModalInfoItem>
-                      <li>
-                        Phone:{' '}
-                        <ModalContact>
-                          <a href={`tel: ${phone}`}>{phone || '+380 (XXX) (XXXXXXXX)'}</a>
-                        </ModalContact>
-                      </li>
-                    </ModalInfoItem>
-
-                    {/*<ModalInfoItem>
-                      <li>{name || 'empty'}</li>
-                      <li>{birthday || 'empty'}</li>
-                      <li>{type || 'empty'}</li>
-                      <li>{location || 'empty'}</li>
-                      <li>{sex || 'empty'}</li>
+                    <ModalInfoItemValue>
+                      <li>{name || "empty"}</li>
+                      <li>{birthday || "empty"}</li>
+                      <li>{type || "empty"}</li>
+                      <li>{location || "empty"}</li>
+                      <li>{sex || "empty"}</li>
                       <ModalContact>
-                        <a href={`mailto: ${email}`}>{email || 'email@gamil.com'}</a>
+                        <a href={`mailto: ${email}`}>{email || "email@gamil.com"}</a>
                       </ModalContact>
                       <ModalContact>
-                        <a href={`tel: ${phone}`}>{phone || '+380 (XXX) (XXXXXXXX)'}</a>
+                        <a href={`tel: ${phone}`}>{phone || "+380 (XXX) (XXXXXXXX)"}</a>
                       </ModalContact>
-                    </ModalInfoItem>*/}
-                  </ModalInfoList>
-                </div>
-              </ModalInfo>
+                    </ModalInfoItemValue>
+                    </ModalInfoList>
+                  </div>
+                </ModalInfo>
 
-              <ModalComments>Comments: {comments}</ModalComments>
+                <ModalComments><strong>Comments:</strong> {comments}</ModalComments>
 
-              <ModalButtons>
-                <ModalPhone href={`tel: ${phone}`}>Contact</ModalPhone>
+                <ModalButtons>
+                  <ModalPhone href={`tel: ${phone}`}>Contact</ModalPhone>
 
-                <ModalButtonAdd onClick={handleAddToFavorite} isSelected={isSelected} isLoggedIn={isLoggedIn}>
-                  <span>{isSelected && isLoggedIn ? 'Delete' : 'Add'}</span>{' '}
-                  <span>
-                    <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
-                      <use href={`${sprite}#icon-heart`}></use>
-                    </IconHeart>
+                  <ModalButtonAdd onClick={handleAddToFavorite} isSelected = {isSelected} isLoggedIn = {isLoggedIn}><span>{isSelected && isLoggedIn? "Delete" : "Add"}</span> <span>  
+                  <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
+                    <use href={`${sprite}#icon-heart`}></use>
+                  </IconHeart>
                   </span>
-                </ModalButtonAdd>
-              </ModalButtons>
-            </ModalContent>
-            <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(prev => !prev)}>
-              <IconCross width={24} height={24}>
-                <use href={`${sprite}#icon-cross`}></use>
-              </IconCross>
-            </CloseModalButton>
-          </ModalWrapper>
+                  </ModalButtonAdd>
+
+                </ModalButtons>
+              </ModalContent>
+              <CloseModalButton
+                aria-label='Close modal'
+                onClick={() => setShowModal(prev => !prev)}
+              >
+                <IconCross width={24} height={24}>
+                  <use href={`${sprite}#icon-cross`}></use>
+                </IconCross>
+              </CloseModalButton>
+          </ModalWrapper>          
         </Background>
       ) : null}
-
-      {isModalOpenAttention ? <ModalAttention onClose={closeModalAttention} /> : null}
+      
+    {isModalOpenAttention ? (<ModalAttention onClose={closeModalAttention}/>) : null}
     </>
+    
   );
 };

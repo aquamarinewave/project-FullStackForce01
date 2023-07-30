@@ -13,7 +13,7 @@ import {
   BtnIcon,
 } from './ModalCongrats.styled';
 
-const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, children }) => {
+const ModalCongrats = ({ isOpen, onRequestClose, onApprove,children }) => {
   const modalRef = useRef();
   const portalRoot = document.getElementById('modal-root');
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,4 +67,4 @@ const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, bt
     : null;
 };
 
-export default ModalApproveAction;
+export default ModalCongrats;

@@ -7,39 +7,45 @@ const initialState = {
   isLoggedIn: false,
   error: null,
   userModal: false,
-};
+  isNewUser: true
 
+};
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {
-    [authOperations.registrationUser.fulfilled](state, action) {
+  extraReducers: builder => {
+    builder
+    .addCase(authOperations.registrationUser.fulfilled, (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-    },
-    [authOperations.loginUser.fulfilled](state, action) {
+      state.isNewUser = true;
+    })
+    .addCase(authOperations.loginUser.fulfilled, (state, action) =>  {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-    },
-    [authOperations.loginUser.rejected](state, action) {
+      state.isNewUser = false;
+    })
+    .addCase(authOperations.loginUser.rejected, (state, action) => {
       state.isLoggedIn = false;
       state.error = action.payload;
-    },
-    [authOperations.logoutUser.fulfilled](state, action) {
+    })
+    .addCase(authOperations.logoutUser.fulfilled, (state, action) => {
       state.user = { name: null, email: null, password: null };
       state.token = null;
       state.isLoggedIn = false;
-    },
-    [authOperations.refreshCurrentUser.fulfilled](state, action) {
+      state.isNewUser = false;
+    })
+    .addCase(authOperations.refreshCurrentUser.fulfilled, (state, action) => {
       state.user = action.payload.user;
       state.isLoggedIn = true;
-    },
-    [authOperations.updateUser.fulfilled](state, action) {
+      state.isNewUser = false;
+    })
+    .addCase(authOperations.updateUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.isLoggedIn = true;
-    },
+    })
   },
 });
 

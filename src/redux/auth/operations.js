@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://fullstackforce.onrender.com/api';
 
@@ -18,7 +19,8 @@ const registrationUser = createAsyncThunk('auth/register', async (registerData, 
     token.set(response.data.token);
     return response.data;
   } catch (error) {
-    alert(error.response.data.message);
+    toast.error(error.response.data.message, {
+      position: "top-center"});
     return thunkApi.rejectWithValue(error.response.data.message);
   }
 });
@@ -29,7 +31,9 @@ const loginUser = createAsyncThunk('auth/login', async (loginData, thunkApi) => 
     token.set(response.data.token);
     return response.data;
   } catch (error) {
-    alert(error.response.data.message);
+    toast.error(error.response.data.message, {
+      position: "top-center"
+    });
     return thunkApi.rejectWithValue(error.response.data.message);
   }
 });

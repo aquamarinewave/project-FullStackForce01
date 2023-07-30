@@ -1,4 +1,4 @@
-import { BoxInputField, FieldLabel, InputField } from './SecondStageForm.styled';
+import { BoxInputField, ContainerInputField, FieldLabel, InputField } from './SecondStageForm.styled';
 
 const inputs = [
   {
@@ -35,7 +35,7 @@ const SecondStageForm = ({ formik, currentRadioButton }) => {
   };
 
   return (
-    <>
+    <ContainerInputField>
       {inputs.map(({ name, placeholder, label }) =>
         currentRadioButton === 'your_pet' && ['title'].includes(name) ? null : (
           <BoxInputField key={name}>
@@ -57,7 +57,7 @@ const SecondStageForm = ({ formik, currentRadioButton }) => {
           </BoxInputField>
         )
       )}
-    </>
+    </ContainerInputField>
   );
 };
 

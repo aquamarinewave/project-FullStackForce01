@@ -11,7 +11,6 @@ const OurFriendsList = () => {
     async function fetchDataByFriends() {
       try {
         const response = await fetchByFriends();
-        console.log(response.data[0].friends);
         setResByFriends(response.data[0].friends);
       } catch (error) {}
     }
@@ -21,7 +20,6 @@ const OurFriendsList = () => {
 
   return (
     <div>
-      {/* <h3>Our friends</h3> */}
       {resByFriends && (
         <Wrapper>
           {resByFriends.map(({ _id, title, url, addressUrl, imageUrl, address, workDays, phone, email }) => {

@@ -86,11 +86,8 @@ const AuthFormLogin = props => {
                   </AuthIconCheck>
                 </AuthIconsValidation>
               )}
-
-              {errors.email && touched.email && (
-                <ErrorMessage name="email" render={message => <ErrorText>{message}</ErrorText>} />
-              )}
             </AuthFieldWrap>
+            <ErrorMessage name="email" render={message => <ErrorText>{message}</ErrorText>} />
 
             <AuthFieldWrap>
               <AuthField
@@ -144,12 +141,11 @@ const AuthFormLogin = props => {
                   </AuthIconShowPassword>
                 </AuthShowPassword>
               )}
-              <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
             </AuthFieldWrap>
-
-            <AuthLoginButton disabled={!isValid || isSubmitting} type="submit">
-              Login
-            </AuthLoginButton>
+            {errors.password && touched.password && (
+              <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
+            )}
+            <AuthLoginButton type="submit">Login</AuthLoginButton>
             <AuthLinkToLogin>
               Don't have an account? <AuthLinkLogin to="/register">Registration</AuthLinkLogin>
             </AuthLinkToLogin>
