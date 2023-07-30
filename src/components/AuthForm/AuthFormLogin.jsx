@@ -22,7 +22,6 @@ import authOperations from '../../redux/auth/operations';
 import { useState } from 'react';
 import sprite from '../../images/icons.svg';
 import authSelector from 'redux/auth/authSelector';
-import {Toaster} from 'react-hot-toast';
 
 const userLoginSchema = object({
   email: string().required().email('Please enter a valid email'),
@@ -87,11 +86,8 @@ const AuthFormLogin = props => {
                   </AuthIconCheck>
                 </AuthIconsValidation>
               )}
-
-              {errors.email && touched.email && (
-                <ErrorMessage name="email" render={message => <ErrorText>{message}</ErrorText>} />
-              )}
             </AuthFieldWrap>
+            <ErrorMessage name="email" render={message => <ErrorText>{message}</ErrorText>} />
 
             <AuthFieldWrap>
               <AuthField
@@ -145,18 +141,15 @@ const AuthFormLogin = props => {
                   </AuthIconShowPassword>
                 </AuthShowPassword>
               )}
-              <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
             </AuthFieldWrap>
-
-            <AuthLoginButton disabled={!isValid || isSubmitting} type="submit">
-              Login
-            </AuthLoginButton>
+            {errors.password && touched.password && (
+              <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
+            )}
+            <AuthLoginButton type="submit">Login</AuthLoginButton>
             <AuthLinkToLogin>
               Don't have an account? <AuthLinkLogin to="/register">Registration</AuthLinkLogin>
             </AuthLinkToLogin>
-            <Toaster />
           </AuthForm>
-         
         )}
       </Formik>
     </ContainerAuth>
