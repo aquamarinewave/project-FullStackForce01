@@ -1,60 +1,21 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvatar, ModalCategory, ModalHeader, ModalInfoList, ModalInfoItemName, ModalInfoItemValue, ModalContact, ModalComments, ModalButtons, ModalPhone, ModalButtonAdd, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
 import ModalAttention from './ModalAttention';
-// import fetchModalDetail from '../ModalNotice/fetchModalDetail';
-// import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
-// import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
 import sprite from '../../images/icons.svg';
-// import authSelector from '../../redux/auth/authSelector';
-// import { useSelector } from 'react-redux';
-
 
 export const ModalNotice = ({ 
   showModal, 
   setShowModal,
   isModalOpenAttention,
-  setIsModalOpenAttention,
+  closeModalAttention,
   valueModalInfo,
   userModalInfo,
   handleAddToFavorite,
   isSelected,
   isLoggedIn
 }) => {
-  // const [valueModalInfo, setValueModalInfo] = useState({});
-  // const [userModalInfo, setUserModalInfo] = useState({});
-  // const [isSelected, setIsSelected] = useState(false);
-  // const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
-
-  // const isLoggedIn = useSelector(authSelector.loggedInSelector);
-
-  // useEffect(() => {
-  //   async function fetchModalDetailPet() {
-  //     try {
-  //       const data = await fetchModalDetail(idCard);
-  //       console.log({...data.notice})
-  //       setValueModalInfo({...data.notice});
-  //       setUserModalInfo({...data.user});
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   fetchModalDetailPet();
-
-  //   const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
-
-  //   if (savedSelectedState !== null) {
-  //     setIsSelected(JSON.parse(savedSelectedState));
-  //   } else {
-  //     setIsSelected(false);
-  //   }
-
-  // }, [idCard, isLoggedIn]);
 
   const modalRef = useRef();
-
-  const closeModalAttention = () => {
-    setIsModalOpenAttention(!isModalOpenAttention)
-  }
 
   const closeModal = e => {
     if (modalRef.current === e.target) {
@@ -80,32 +41,11 @@ export const ModalNotice = ({
     [keyPress]
   );
 
-  // const updateLocalStorage = () => {
-  //   localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
-  // };
-
-  // const handleAddToFavorite = () => {
-  //   if(isLoggedIn) {
-
-  //     if(isSelected) {
-  //       fetchDeleteToFavorite(idCard)
-  //       setIsSelected(!isSelected);
-  //     } else {
-  //       fetchAddToFavorite(idCard, valueModalInfo);
-  //       setIsSelected(!isSelected);
-  //     }
-
-  //   } else {
-  //     setShowModal(false);
-  //     setIsModalOpenAttention(true);
-  //   }
-  // };
 
   const {title, name, birthday, type, sex, location, comments, avatarURL, category} = valueModalInfo;
 
   const {email, phone} = userModalInfo;
 
-  // useEffect(updateLocalStorage, [isSelected, idCard]);
 
   return (
     <>
