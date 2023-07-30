@@ -54,13 +54,14 @@ const NewsPage = () => {
           return <></>;
       }
     },
-    [newsStore.items, newsStore.error, newsStore.totalPages, IDLE, PENDING, REJECTED, RESOLVED]
+    [newsStore.items, newsStore.error, IDLE, PENDING, REJECTED, RESOLVED]
   );
 
   const haldleFormSubmit = useCallback(
     query => {
       dispatch(newsOperations.fetchNews({ pattern: query, currentPage: 1, perPage }));
       dispatch(newsOperations.setPattern(query));
+      dispatch(newsOperations.setCurrentPage(1));
     },
     [dispatch, perPage]
   );
@@ -70,12 +71,33 @@ const NewsPage = () => {
     dispatch(newsOperations.setPattern(''));
   };
 
+  const handleSwitchPage = (_, currentPage) => {
+    const pattern = newsStore.pattern;
+    dispatch(newsOperations.fetchNews({ pattern, currentPage, perPage }));
+    // console.log(currentPage);
+    dispatch(newsOperations.setCurrentPage(currentPage));
+  };
+
+  const showPagination = useCallback(
+    currentPage => {
+      // console.log(currentPage);
+      // console.log(newsStore.currentPage);
+
+      if (!newsStore.totalPages) {
+        return <></>;
+      }
+
+      return <Pagination count={newsStore.totalPages} variant="outlined" onChange={handleSwitchPage} />;
+    },
+    [newsStore.totalPages, newsStore.currentPage, handleSwitchPage]
+  );
+
   return (
     <div>
       <PageHeader>News</PageHeader>
       <Search pattern={newsStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
-      {showResults(status)}
-      {newsStore.totalPages.length && <Pagination count={newsStore.totalPages} variant="outlined" />}
+      {/* {showResults(status)} */}
+      {showPagination(newsStore.currentPage)}
     </div>
   );
 };

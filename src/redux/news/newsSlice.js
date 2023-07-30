@@ -14,20 +14,24 @@ const newsSlice = createSlice({
   extraReducers: {
     [newsOperations.fetchNews.fulfilled](state, action) {
       state.error = null;
-      state.items = action.payload.news.sort((a, b) => new Date(b.date) - new Date(a.date));
-      console.log('act', action.payload);
-      state.totalPages = action.payload.totalCount;
+      const { news, totalCount } = action.payload;
+      state.items = news.sort((a, b) => new Date(b.date) - new Date(a.date));
+      state.totalPages = Math.ceil(totalCount / state.perPage);
     },
     [newsOperations.setPattern.fulfilled](state, action) {
       state.error = null;
       state.pattern = action.payload.pattern;
+      console.log('setPattern', action.payload);
     },
     [newsOperations.setCurrentPage.fulfilled](state, action) {
       state.error = null;
-      state.currentPage = action.payload.currentPage;
+      state.currentPage = action.payload;
+      console.log('setCurrentPage', action.payload);
     },
     [newsOperations.setTotalPages.fulfilled](state, action) {
       state.error = null;
+      console.log('setTotalPages', action.payload);
+
       state.totalPages = action.payload.totalPages;
     },
   },
