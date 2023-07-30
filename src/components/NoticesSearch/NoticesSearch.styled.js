@@ -2,14 +2,19 @@ import styled from 'styled-components';
 
 const SearchContainer = styled.div`
   width: 100%;
+  margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 42px;
+  }
 `;
 
 const SearchForm = styled.form`
   position: relative;
   display: flex;
   justify-content: center;
-  padding-top: 24px;
-  padding-bottom: 20px;
 `;
 
 const SearchInput = styled.input`
@@ -18,9 +23,11 @@ const SearchInput = styled.input`
   padding-left: 20px;
   width: 100%;
   height: 44px;
-  padding-bottom: 4px;
   border-radius: 24px;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.2);
+  @media screen and (min-width: 768px) {
+    max-width: 608px;
+  }
 `;
 
 const SearchIconContainer = styled.div`
@@ -28,11 +35,16 @@ const SearchIconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   width: 24px;
   height: 24px;
-  bottom: 31px;
-  right: 28px;
+  bottom: 10px;
+  right: 10px;
+  @media screen and (min-width: 768px) {
+    right: 66px;
+  }
+  @media screen and (min-width: 1280px) {
+    right: 336px;
+  }
 `;
 
 const SearchIconBtn = styled.button`

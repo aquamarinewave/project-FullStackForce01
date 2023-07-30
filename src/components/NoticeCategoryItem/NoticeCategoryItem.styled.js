@@ -9,6 +9,11 @@ import styled from 'styled-components';
 const NoticesItemThumb = styled.div`
   position: relative;
 `;
+const Img = styled.img`
+  width: 100%;
+  height: 288px;
+`;
+const CategoriesAndFilterContainer = styled.div``;
 
 const CategoriesContainer = styled.div`
   position: absolute;
@@ -20,7 +25,7 @@ const CategoriesContainer = styled.div`
   height: 36px;
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
-  top: 12px;
+  top: 16px;
 `;
 
 const CategoriesName = styled.span`
@@ -31,22 +36,29 @@ const CategoriesName = styled.span`
 const DiscriptionList = styled.ul`
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 12px;
-  padding: 0 8px;
-  bottom: 0;
+  width: 100%;
+  bottom: 12px;
+  @media screen and (min-width: 768px) {
+    justify-content: space-evenly;
+  }
 `;
 
 const DiscriptionItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 4px;
   width: 80px;
+  height: 28px;
+  padding: 0 5px;
   border-radius: 16px;
   background-color: var(--lightblue);
+`;
+const TextContainer = styled.div`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const IconConatiner = styled.div`
@@ -115,17 +127,60 @@ const AddPet = styled(Link)`
 const IconPlusSmall = styled.svg`
   stroke: var(--main-light-color);
 `;
+const ContentContainer = styled.div`
+  padding: 0 16px;
+`;
+
+const Title = styled.h3`
+  font-family: Manrope;
+  font-size: 24px;
+  font-weight: 700;
+
+  margin: 20px;
+`;
+
+const LearnMoreBtn = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 38px;
+  padding: 9px 0;
+  border-radius: 40px;
+  border: 2px solid var(--dark-blue);
+  background-color: inherit;
+
+  color: var(--dark-blue);
+  font-family: Manrope;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.64px;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    border: none;
+  }
+`;
 
 export {
   NoticesItemThumb,
+  Img,
+  CategoriesAndFilterContainer,
   CategoriesName,
   CategoriesContainer,
   DiscriptionList,
   DiscriptionItem,
+  TextContainer,
   IconSvg,
   IconConatiner,
   FavoriteBtnContainer,
   AddToFavoriteBtn,
   AddPet,
   IconPlusSmall,
+  ContentContainer,
+  Title,
+  LearnMoreBtn,
 };
