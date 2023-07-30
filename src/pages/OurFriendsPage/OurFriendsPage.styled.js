@@ -3,9 +3,12 @@ import styled from 'styled-components';
 const OurFriendsPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
+  margin-top: 40px;
   align-items: center;
   width: 100%;
+  @media screen and (min-width: 768px) {
+    margin-top: 80px;
+  }
 `;
 
 const Title = styled.h1`

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const NoticesPageContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
@@ -24,5 +25,10 @@ const Title = styled.h2`
     font-size: 48px;
   }
 `;
+const AddPetButtonBox = styled.div`
+  position: absolute;
+  top: 170px;
+  right: 0px;
+`;
 
-export { NoticesPageContainer, Title };
+export { NoticesPageContainer, Title, AddPetButtonBox };
