@@ -5,17 +5,38 @@ import { useState, useEffect } from 'react';
 import authSelector from 'redux/auth/authSelector';
 import avatarDefault from 'images/profilephotos/avatar-default.png';
 import { useSelector, useDispatch } from 'react-redux';
-import { AvatarWrapper, ImgAvatar, WrapperField, Label, ProfileField, ImgWrapper } from '../UserData/UserData.styled';
-import { SubmitBtn, Container, ErrorMassege, InputWrapper, EditText, EditButton } from './UserForm.styled';
+import {
+  AvatarWrapper,
+  ImgAvatar,
+  WrapperField,
+  Label,
+  ProfileField,
+  ImgWrapper,
+  BtnConfirm,
+  BtnDecline,
+} from '../UserData/UserData.styled';
+import {
+  SubmitBtn,
+  Container,
+  ErrorMassege,
+  InputWrapper,
+  EditText,
+  EditButton,
+  IconCrossSmall,
+  IconCheck,
+} from './UserForm.styled';
 import { updateUser } from 'redux/auth/operations';
 
 import toast from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
+import sprite from '../../images/icons.svg';
 
 export const UserForm = ({ toggleModal }) => {
+  const [editAvatar, setEditAvatar] = useState(false);
+  console.log(editAvatar);
   const user = useSelector(authSelector.userSelector);
-  const [avatarUrl, setavatarUrl] = useState('');
-  const [newAvatar, setnewAvatar] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [newAvatar, setNewAvatar] = useState('');
   const [isUpdateForm, setIsUpdateForm] = useState(false);
   const dispatch = useDispatch();
 
@@ -24,7 +45,7 @@ export const UserForm = ({ toggleModal }) => {
     reader.readAsDataURL(file);
 
     reader.onloadend = () => {
-      setnewAvatar(reader.result);
+      setNewAvatar(reader.result);
       console.log(newAvatar);
     };
   }
@@ -37,9 +58,10 @@ export const UserForm = ({ toggleModal }) => {
 
   const handleChange = e => {
     const file = e.target.files[0];
-    setavatarUrl(file);
+    setAvatarUrl(file);
 
     peviewFile(file);
+    setEditAvatar(true);
   };
 
   const initialValues = {
@@ -113,15 +135,43 @@ export const UserForm = ({ toggleModal }) => {
                   <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
                 </ImgWrapper>
               )}
-              <EditButton>
-                <InputWrapper
-                  type="file"
-                  id="fileInput"
-                  onChange={e => handleChange(e)}
-                  accept="image/png, image/jpeg, image/jpg, image/jfif"
-                />
-                <EditText>Edit photo</EditText>
-              </EditButton>
+              {editAvatar ? (
+                <div>
+                  <BtnConfirm
+                    onClick={() => {
+                      setEditAvatar(false);
+                    }}
+                  >
+                    Comfirm
+                    <IconCheck width={24} height={24}>
+                      <use href={`${sprite}#icon-check`}></use>
+                    </IconCheck>
+                  </BtnConfirm>
+
+                  <BtnDecline
+                    onClick={() => {
+                      setAvatarUrl(user?.avatarURL || { avatarDefault });
+                      setNewAvatar('');
+                      setEditAvatar(false);
+                    }}
+                  >
+                    Decliene
+                    <IconCrossSmall width={24} height={24}>
+                      <use href={`${sprite}#icon-cross-small`}></use>
+                    </IconCrossSmall>
+                  </BtnDecline>
+                </div>
+              ) : (
+                <EditButton>
+                  <InputWrapper
+                    type="file"
+                    id="fileInput"
+                    onChange={e => handleChange(e)}
+                    accept="image/png, image/jpeg, image/jpg, image/jfif"
+                  />
+                  <EditText>Edit photo</EditText>
+                </EditButton>
+              )}
             </AvatarWrapper>
             <Container>
               <WrapperField>
@@ -158,7 +208,9 @@ export const UserForm = ({ toggleModal }) => {
               <ProfileField type="text" name="city" placeholder={initialValues.city} />
             </WrapperField>
             {isUpdateForm ? (
-              <SubmitBtn type="submit">Save</SubmitBtn>
+              <SubmitBtn type="submit" disabled={dirty || editAvatar}>
+                Save
+              </SubmitBtn>
             ) : (
               <SubmitBtn type="submit" disabled={!dirty}>
                 Save

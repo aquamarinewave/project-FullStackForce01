@@ -72,3 +72,15 @@ export const InputWrapper = styled.input`
   width: 0;
   height: 0;
 `;
+
+export const BtnDecline = styled.button``;
+
+export const IconCrossSmall = styled.svg`
+  fill: red;
+`;
+
+export const BtnConfirm = styled.button``;
+
+export const IconCheck = styled.svg`
+  fill: green;
+`;
