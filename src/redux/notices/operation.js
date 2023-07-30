@@ -43,7 +43,6 @@ const fetchNoticesFavorites = createAsyncThunk('notices/fetchNoticesFavorites', 
 });
 
 const setCategoryId = createAsyncThunk('notices/categoryId', async (categoryId, thunkAPI) => {
-  console.log('categoryId:', categoryId);
   try {
     return categoryId;
   } catch (error) {

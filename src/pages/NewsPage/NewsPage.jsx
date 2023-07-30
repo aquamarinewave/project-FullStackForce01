@@ -5,6 +5,7 @@ import { PageHeader } from './NewsPage.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import newsSelector from 'redux/news/newsSelector';
 import newsOperations from '../../redux/news/operations';
+import Pagination from '../../components/Pagination/Pagination';
 
 const statusList = {
   REJECTED: 1,
@@ -16,6 +17,7 @@ const statusList = {
 const NewsPage = () => {
   const dispatch = useDispatch();
   const newsStore = useSelector(newsSelector.selectNews);
+  const perPage = newsStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
 
@@ -34,8 +36,8 @@ const NewsPage = () => {
   useEffect(() => {
     setStatus(PENDING);
 
-    dispatch(newsOperations.fetchNews({ pattern: '', page: 1 }));
-  }, [dispatch, setStatus, PENDING]);
+    dispatch(newsOperations.fetchNews({ pattern: '', currentPage: 1, perPage }));
+  }, [dispatch, setStatus, PENDING, perPage]);
 
   const showResults = useCallback(
     status => {
@@ -57,22 +59,48 @@ const NewsPage = () => {
 
   const haldleFormSubmit = useCallback(
     query => {
-      dispatch(newsOperations.fetchNews({ pattern: query, page: 1 }));
+      dispatch(newsOperations.fetchNews({ pattern: query, currentPage: 1, perPage }));
       dispatch(newsOperations.setPattern(query));
+      dispatch(newsOperations.setCurrentPage(1));
     },
-    [dispatch]
+    [dispatch, perPage]
   );
 
   const clearSearch = () => {
-    dispatch(newsOperations.fetchNews({ pattern: '', page: 1 }));
+    dispatch(newsOperations.fetchNews({ pattern: '', currentPage: 1, perPage }));
     dispatch(newsOperations.setPattern(''));
   };
+
+  const handleSwitchPage = useCallback(
+    (_, currentPage) => {
+      const pattern = newsStore.pattern;
+      dispatch(newsOperations.fetchNews({ pattern, currentPage, perPage }));
+      dispatch(newsOperations.setCurrentPage(currentPage));
+    },
+    [dispatch, newsStore.pattern, perPage]
+  );
+
+  const showPagination = useCallback(() => {
+    if (!newsStore.totalPages) {
+      return <></>;
+    }
+
+    return (
+      <Pagination
+        page={newsStore.currentPage}
+        count={newsStore.totalPages}
+        variant="outlined"
+        onChange={handleSwitchPage}
+      />
+    );
+  }, [newsStore.totalPages, newsStore.currentPage, handleSwitchPage]);
 
   return (
     <div>
       <PageHeader>News</PageHeader>
       <Search pattern={newsStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
       {showResults(status)}
+      {showPagination()}
     </div>
   );
 };

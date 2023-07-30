@@ -3,9 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://fullstackforce.onrender.com/api';
 
-const fetchNews = createAsyncThunk('news/fetch', async ({ pattern, page }, thunkAPI) => {
+const fetchNews = createAsyncThunk('news/fetch', async ({ pattern, currentPage, perPage }, thunkAPI) => {
   try {
-    const response = await axios.get(`/news?title=${pattern}&page=${page}`);
+    const response = await axios.get(`/news?title=${pattern}&page=${currentPage}&limit=${perPage}`);
     return response.data.length ? response.data[0] : {};
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -20,9 +20,9 @@ const setPattern = createAsyncThunk('news/pattern', async (pattern, thunkAPI) =>
   }
 });
 
-const setPage = createAsyncThunk('news/page', async (page, thunkAPI) => {
+const setCurrentPage = createAsyncThunk('news/currentPage', async (currentPage, thunkAPI) => {
   try {
-    return page;
+    return currentPage;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -31,7 +31,7 @@ const setPage = createAsyncThunk('news/page', async (page, thunkAPI) => {
 const newsOperations = {
   fetchNews,
   setPattern,
-  setPage,
+  setCurrentPage,
 };
 
 export default newsOperations;
