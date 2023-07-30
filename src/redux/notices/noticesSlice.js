@@ -23,6 +23,11 @@ const noticesSlice = createSlice({
       state.error = null;
       state.items = action.payload.favorites;
     },
+    [noticesOperations.deleteUserNotice.fulfilled](state, action) {
+      const index = state.items.findIndex(index => index.id !== action.payload.id);
+      state.error = null;
+      state.items = state.items.splice(index, 1);
+    },
     [noticesOperations.setPattern.fulfilled](state, action) {
       state.error = null;
       state.pattern = action.payload;

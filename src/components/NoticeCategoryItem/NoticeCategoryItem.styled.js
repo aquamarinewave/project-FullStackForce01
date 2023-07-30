@@ -72,8 +72,28 @@ const IconSvg = styled.svg`
   stroke: var(--dark-blue);
 `;
 
-const FavoriteBtnContainer = styled.div`
+const IconHearts = styled.svg`
+  fill: var(--lightblue);
+  stroke: var(--dark-blue);
+`;
+
+const IconDelete = styled.svg`
+  fill: var(--lightblue);
+  stroke: var(--dark-blue);
+`;
+
+const BtnContainer = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border-radius: 50%;
+  top: 12px;
+  right: 12px;
+`;
+
+const FavoriteBtnContainer = styled.div`
   display: flex;
   width: 40px;
   height: 40px;
@@ -93,7 +113,22 @@ const AddToFavoriteBtn = styled.button`
   border-radius: 50%;
   background-color: var(--lightblue);
   padding: 0;
-  &:hover ${IconSvg}, :focus ${IconSvg} {
+  &:hover ${IconHearts}, :focus ${IconHearts} {
+    fill: var(--dark-blue);
+  }
+`;
+
+const DeleteBtn = styled.button`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: 100%;
+  border-radius: 50%;
+  background-color: var(--lightblue);
+  padding: 0;
+  &:hover ${IconHearts}, :focus ${IconHearts} {
     fill: var(--dark-blue);
   }
 `;
@@ -175,9 +210,13 @@ export {
   DiscriptionItem,
   TextContainer,
   IconSvg,
+  IconHearts,
+  IconDelete,
   IconConatiner,
+  BtnContainer,
   FavoriteBtnContainer,
   AddToFavoriteBtn,
+  DeleteBtn,
   AddPet,
   IconPlusSmall,
   ContentContainer,

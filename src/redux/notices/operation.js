@@ -42,6 +42,16 @@ const fetchNoticesFavorites = createAsyncThunk('notices/fetchNoticesFavorites', 
   }
 });
 
+const deleteUserNotice = createAsyncThunk('notices/deleteUserNotice', async (_id, thunkApi) => {
+  try {
+    const response = await axios.delete(`${baseURLForNotAuth}/${_id}`);
+    console.log('response:', response);
+    return response.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
+
 const setCategoryId = createAsyncThunk('notices/categoryId', async (categoryId, thunkAPI) => {
   try {
     return categoryId;
@@ -70,6 +80,7 @@ const noticesOperations = {
   fetchNoticesForAll,
   fetchNoticesOwn,
   fetchNoticesFavorites,
+  deleteUserNotice,
   setPattern,
   setPage,
   setCategoryId,
