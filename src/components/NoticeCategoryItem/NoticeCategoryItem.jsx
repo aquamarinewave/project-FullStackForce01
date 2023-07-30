@@ -16,6 +16,8 @@ import {
   Title,
   LearnMoreBtn,
   ContentContainer,
+  Img,
+  CategoriesAndFilterContainer,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 
@@ -39,14 +41,16 @@ const NoticeCategoryItem = ({ notices }) => {
   return (
     <>
       <NoticesItemThumb>
-        <img src={avatarURL} alt="pets avatar" width={280} height={290} />
-        <CategoriesContainer>
-          {category !== 'for-free' ? (
-            <CategoriesName>{category}</CategoriesName>
-          ) : (
-            <CategoriesName>in goood hands</CategoriesName>
-          )}
-        </CategoriesContainer>
+        <Img src={avatarURL} alt="pets avatar" />
+        <CategoriesAndFilterContainer>
+          <CategoriesContainer>
+            {category !== 'for-free' ? (
+              <CategoriesName>{category}</CategoriesName>
+            ) : (
+              <CategoriesName>in goood hands</CategoriesName>
+            )}
+          </CategoriesContainer>
+        </CategoriesAndFilterContainer>
         <DiscriptionList>
           <DiscriptionItem>
             <IconConatiner>

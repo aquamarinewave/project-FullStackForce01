@@ -7,9 +7,21 @@ const CategoriesNavContainer = styled.div`
   gap: 8px;
   width: 200px;
   margin-bottom: 24px;
+  @media screen and (min-width: 768px) {
+    width: 320px;
+    height: 82px;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: auto;
+    width: 520px;
+    margin-bottom: 42px;
+  }
 `;
 
 const CategoriesLink = styled(NavLink)`
+  height: 35px;
   font-size: 14px;
   padding: 8px 16px;
   border-radius: 40px;

@@ -4,6 +4,11 @@ import styled from 'styled-components';
 const NoticesItemThumb = styled.div`
   position: relative;
 `;
+const Img = styled.img`
+  width: 100%;
+  height: 288px;
+`;
+const CategoriesAndFilterContainer = styled.div``;
 
 const CategoriesContainer = styled.div`
   position: absolute;
@@ -26,25 +31,29 @@ const CategoriesName = styled.span`
 const DiscriptionList = styled.ul`
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 12px;
-  padding: 0 8px;
+  width: 100%;
   bottom: 12px;
+  @media screen and (min-width: 768px) {
+    justify-content: space-evenly;
+  }
 `;
 
 const DiscriptionItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
   width: 80px;
   height: 28px;
+  padding: 0 5px;
   border-radius: 16px;
   background-color: var(--lightblue);
 `;
 const TextContainer = styled.div`
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const IconConatiner = styled.div`
@@ -153,6 +162,8 @@ const LearnMoreBtn = styled.button`
 
 export {
   NoticesItemThumb,
+  Img,
+  CategoriesAndFilterContainer,
   CategoriesName,
   CategoriesContainer,
   DiscriptionList,
