@@ -4,8 +4,8 @@
 //  відкриває модальне вікно  ModalApproveAction
 
 import { useDispatch } from 'react-redux';
-import petsOperations from 'redux/pets/operations';
 import { useState } from 'react';
+import userPetsOperations from 'redux/userPets/operations';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import sprite from '../../images/icons.svg';
 import {
@@ -24,14 +24,16 @@ import defaultImage from '../../images/x1/petphoto/pet-photo-small.jpg';
 const PetItem = ({ pet }) => {
   const { _id, avatarURL, name, birthday, type, comments } = pet;
 
-  const dispatch = useDispatch();
-  const onDelete = () => {
-    dispatch(petsOperations.deletePet(_id));
-    setShowModal(showModal => !showModal);
-  };
-
   const [showModal, setShowModal] = useState(false);
   const [idPet, setIdPet] = useState('');
+
+  const dispatch = useDispatch(_id);
+
+  const onDelete = () => {
+    dispatch(userPetsOperations.deleteUserPet(_id));
+    setShowModal(showModal => !showModal);
+    setIdPet(_id);
+  };
 
   const openModal = () => {
     setShowModal(showModal => !showModal);

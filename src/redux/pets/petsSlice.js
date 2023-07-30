@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import petsOperations, { addNoticeThunk, addPetThunk } from './operations';
+import { addNoticeThunk, addPetThunk } from './operations';
 import authOperations from '../auth/operations';
 
 const listPets = {
@@ -30,16 +30,10 @@ const handleFulfilledLogOut = state => {
   state.isLoading = false;
 };
 
-const handleFulfilledDelete = (state, action) => {
-  // state.pets = state.pets.filter(pet => pet.id !== action.payload.id);
-
-  const index = state.pets.findIndex(pet => pet.id !== action.payload.id);
-  state.pets.splice(index, 1);
-};
-
 export const petsSlice = createSlice({
   name: 'pets',
   initialState: listPets,
+
   extraReducers: builder => {
     builder
       .addCase(addPetThunk.pending, handlePending)
@@ -48,10 +42,7 @@ export const petsSlice = createSlice({
       .addCase(addNoticeThunk.pending, handlePending)
       .addCase(addNoticeThunk.fulfilled, handleFulfilledAddPet)
       .addCase(addNoticeThunk.rejected, handleRejected)
-      .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut)
-      .addCase(petsOperations.deletePet.pending, handlePending)
-      .addCase(petsOperations.deletePet.fulfilled, handleFulfilledDelete)
-      .addCase(petsOperations.deletePet.rejected, handleRejected);
+      .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut);
   },
 });
 
