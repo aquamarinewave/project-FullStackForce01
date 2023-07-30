@@ -4,22 +4,13 @@ import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 
 import authOperations from 'redux/pets/operations';
-// import authOperations from '../auth/operations';
 
 import FirstStageForm from './FirstStageForm/FirstStageForm';
 import SecondStageForm from './SecondStageForm/SecondStageForm';
 import ThirdStageForm from './ThirdStageForm/ThirdStageForm';
 import FormPetButton from './FormPetButton/FormPetButton';
 
-import {
-  Form,
-  TitleAddPetForm,
-  NextStageForm,
-  BoxStageForm,
-  BoxButton,
-  BoxTitle,
-  BoxFieldsForm,
-} from './AddPetForm.styled';
+import { Form, TitleAddPetForm, NextStageForm, BoxStageForm, BoxButton, BoxFieldsForm } from './AddPetForm.styled';
 
 const titleColorText = step => {
   switch (step) {
@@ -127,20 +118,18 @@ const AddPetForm = () => {
           formik.handleChange(event);
         };
         return (
-          <Form>
+          <Form currentStage={currentStage} currentRadioButton={currentRadioButton}>
             <div>
-              <BoxTitle>
-                <TitleAddPetForm>
-                  {currentStage !== 'first' ? titleText(currentRadioButton) : 'Add pet'}
-                </TitleAddPetForm>
-                <BoxStageForm>
-                  <NextStageForm current={currentStage}>Choose option</NextStageForm>
-                  <NextStageForm title={titleColorText(currentStage)} current={currentStage}>
-                    Personal details
-                  </NextStageForm>
-                  <NextStageForm current={currentStage}>More info</NextStageForm>
-                </BoxStageForm>
-              </BoxTitle>
+              <TitleAddPetForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
+                {currentStage !== 'first' ? titleText(currentRadioButton) : 'Add pet'}{' '}
+              </TitleAddPetForm>
+              <BoxStageForm>
+                <NextStageForm current={currentStage}>Choose option</NextStageForm>
+                <NextStageForm title={titleColorText(currentStage)} current={currentStage}>
+                  Personal details
+                </NextStageForm>
+                <NextStageForm current={currentStage}>More info</NextStageForm>
+              </BoxStageForm>
               <BoxFieldsForm>
                 {currentStage === 'first' && (
                   <FirstStageForm currentRadioButton={currentRadioButton} handleOptionChange={handleOptionChange} />

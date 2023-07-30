@@ -11,14 +11,9 @@ export const NextStageForm = styled.h3`
   color: ${props => (props.current === 'first' ? 'var(--dark-blue)' : `var(--success-color)`)};
   @media screen and (min-width: 768px) {
     width: 120px;
-    /* min-height: 542px; */
+    font-size: 16px;
   }
 
-  @media screen and (min-width: 1280px) {
-    /* width: 280px; */
-    /* min-height: 542px; */
-    /* margin-top: 20px; */
-  }
   &:after {
     content: '';
     position: absolute;
@@ -30,13 +25,7 @@ export const NextStageForm = styled.h3`
     left: 0;
     @media screen and (min-width: 768px) {
       width: 120px;
-      /* min-height: 542px; */
-    }
-
-    @media screen and (min-width: 1280px) {
-      /* width: 280px; */
-      /* min-height: 542px; */
-      /* margin-top: 20px; */
+      top: 35px;
     }
   }
   &:nth-child(2) {
@@ -59,29 +48,22 @@ export const Form = styled(FormikForm)`
   justify-content: space-between;
   width: 280px;
   min-height: 496px;
-  padding: 8px;
-  margin: auto;
+  padding: 20px 8px;
+  margin: 20px auto 0;
   background-color: #fff;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
   @media screen and (min-width: 768px) {
-    width: 458px;
+    width: ${props => (props.currentStage === 'third' && props.currentRadioButton !== 'your_pet' ? '704px' : '458px')};
     min-height: 542px;
     padding: 32px;
+    margin-top: 60px;
   }
 
   @media screen and (min-width: 1280px) {
-    /* width: 280px; */
-    /* min-height: 542px; */
-    /* margin-top: 20px; */
+    width: ${props => (props.currentStage === 'third' && props.currentRadioButton !== 'your_pet' ? '822px' : '458px')};
+    margin-top: 40px;
   }
-`;
-
-export const BoxTitle = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 12px;
-  margin-bottom: 36px;
 `;
 
 export const TitleAddPetForm = styled.h2`
@@ -93,27 +75,26 @@ export const TitleAddPetForm = styled.h2`
   margin-left: 12px;
   margin-bottom: 24px;
   color: #111;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+    margin: ${props =>
+      props.currentStage === 'third' && props.currentRadioButton !== 'your_pet' ? '0 auto 24px auto' : '0 0 24px 0'};
+  }
 `;
 
 export const BoxStageForm = styled.div`
   display: flex;
+  justify-content: center;
   gap: 12px;
   color: red;
   @media screen and (min-width: 768px) {
     gap: 16px;
   }
-
-  @media screen and (min-width: 1280px) {
-    /* width: 280px; */
-    /* min-height: 542px; */
-    /* margin-top: 20px; */
-  }
 `;
 
 export const BoxFieldsForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px 0;
+  margin: 0 auto;
 `;
 
 export const BoxButton = styled.div`
@@ -123,14 +104,8 @@ export const BoxButton = styled.div`
   margin-top: 24px;
 
   @media screen and (min-width: 768px) {
-    flex-direction: row;
-    /* width: 458px;
-    min-height: 542px; */
-  }
-
-  @media screen and (min-width: 1280px) {
-    /* width: 280px; */
-    /* min-height: 542px; */
-    /* margin-top: 20px; */
+    flex-direction: row-reverse;
+    margin-top: 17px;
+    justify-content: center;
   }
 `;

@@ -1,4 +1,4 @@
-const { RadioButton, RadioInput } = require('./FirstStageForm.styled');
+const { RadioButton, RadioInput, ContainerRadioButton } = require('./FirstStageForm.styled');
 
 const options = [
   {
@@ -21,7 +21,7 @@ const options = [
 
 const FirstStageForm = ({ handleOptionChange, currentRadioButton }) => {
   return (
-    <>
+    <ContainerRadioButton>
       {options.map(({ value, label }) => (
         <RadioButton key={value} checked={currentRadioButton === value}>
           {label}
@@ -35,7 +35,7 @@ const FirstStageForm = ({ handleOptionChange, currentRadioButton }) => {
           />
         </RadioButton>
       ))}
-    </>
+    </ContainerRadioButton>
   );
 };
 
