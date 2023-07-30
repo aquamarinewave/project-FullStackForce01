@@ -1,51 +1,54 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvatar, ModalCategory, ModalHeader, ModalInfoList, ModalInfoItem, ModalContact, ModalComments, ModalButtons, ModalPhone, ModalButtonAdd, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
+import React, { useRef, useEffect, useCallback } from 'react';
+import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvatar, ModalCategory, ModalHeader, ModalInfoList, ModalInfoItemName, ModalInfoItemValue, ModalContact, ModalComments, ModalButtons, ModalPhone, ModalButtonAdd, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
 import ModalAttention from './ModalAttention';
-import fetchModalDetail from '../ModalNotice/fetchModalDetail';
-import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
-import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
+// import fetchModalDetail from '../ModalNotice/fetchModalDetail';
+// import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
+// import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
 import sprite from '../../images/icons.svg';
-import authSelector from '../../redux/auth/authSelector';
-import { useSelector } from 'react-redux';
+// import authSelector from '../../redux/auth/authSelector';
+// import { useSelector } from 'react-redux';
 
-export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
-  const [valueModalInfo, setValueModalInfo] = useState({});
-  const [userModalInfo, setUserModalInfo] = useState({});
-  const [isSelected, setIsSelected] = useState(false);
-  const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
 
-  const isLoggedIn = useSelector(authSelector.loggedInSelector);
+export const ModalNotice = ({ 
+  showModal, 
+  setShowModal,
+  isModalOpenAttention,
+  setIsModalOpenAttention,
+  valueModalInfo,
+  userModalInfo,
+  handleAddToFavorite,
+  isSelected,
+  isLoggedIn
+}) => {
+  // const [valueModalInfo, setValueModalInfo] = useState({});
+  // const [userModalInfo, setUserModalInfo] = useState({});
+  // const [isSelected, setIsSelected] = useState(false);
+  // const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
+
+  // const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
   // useEffect(() => {
-  //   fetchModalDetail(idCard)
-  //     .then((data) => {
-  //       return [setValueModalInfo({...data.notice}), setUserModalInfo({...data.user})];
-  //       ;
-  //     })
-  //     .catch(error => console.log(error))
-  // }, [idCard]);
+  //   async function fetchModalDetailPet() {
+  //     try {
+  //       const data = await fetchModalDetail(idCard);
+  //       console.log({...data.notice})
+  //       setValueModalInfo({...data.notice});
+  //       setUserModalInfo({...data.user});
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   fetchModalDetailPet();
 
-  useEffect(() => {
-    async function fetchModalDetailPet() {
-      try {
-        const data = await fetchModalDetail(idCard);
-        setValueModalInfo({...data.notice});
-        setUserModalInfo({...data.user});
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    fetchModalDetailPet();
+  //   const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
 
-    const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
+  //   if (savedSelectedState !== null) {
+  //     setIsSelected(JSON.parse(savedSelectedState));
+  //   } else {
+  //     setIsSelected(false);
+  //   }
 
-    if (savedSelectedState !== null) {
-      setIsSelected(JSON.parse(savedSelectedState));
-    } else {
-      setIsSelected(false);
-    }
-
-  }, [idCard, isLoggedIn])
+  // }, [idCard, isLoggedIn]);
 
   const modalRef = useRef();
 
@@ -77,33 +80,32 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
     [keyPress]
   );
 
-  const updateLocalStorage = () => {
-    localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
-  };
+  // const updateLocalStorage = () => {
+  //   localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
+  // };
 
+  // const handleAddToFavorite = () => {
+  //   if(isLoggedIn) {
 
-  const handleAddToFavorite = () => {
-    if(isLoggedIn) {
+  //     if(isSelected) {
+  //       fetchDeleteToFavorite(idCard)
+  //       setIsSelected(!isSelected);
+  //     } else {
+  //       fetchAddToFavorite(idCard, valueModalInfo);
+  //       setIsSelected(!isSelected);
+  //     }
 
-      if(isSelected) {
-        fetchDeleteToFavorite(idCard)
-        setIsSelected(!isSelected);
-      } else {
-        fetchAddToFavorite(idCard, valueModalInfo);
-        setIsSelected(!isSelected);
-      }
+  //   } else {
+  //     setShowModal(false);
+  //     setIsModalOpenAttention(true);
+  //   }
+  // };
 
-    } else {
-      setShowModal(false);
-      setIsModalOpenAttention(true);
-    }
-  };
-
-  const {name, birthday, type, sex, location, comments, avatarURL, category} = valueModalInfo;
+  const {title, name, birthday, type, sex, location, comments, avatarURL, category} = valueModalInfo;
 
   const {email, phone} = userModalInfo;
 
-  useEffect(updateLocalStorage, [isSelected, idCard]);
+  // useEffect(updateLocalStorage, [isSelected, idCard]);
 
   return (
     <>
@@ -118,9 +120,9 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                   </ModalImg>
                   
                   <div>
-                    <ModalHeader>Сute dog looking for a home</ModalHeader>
+                    <ModalHeader>{title || "Сute pet looking for a home"}</ModalHeader>
                     <ModalInfoList>
-                    <ModalInfoItem>
+                    <ModalInfoItemName>
                       <li><strong>Name:</strong></li>
                       <li><strong>Birthday:</strong></li>
                       <li><strong>Type:</strong></li>
@@ -128,9 +130,9 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                       <li><strong>The sex:</strong></li>
                       <li><strong>Email:</strong></li>
                       <li><strong>Phone:</strong></li>
-                    </ModalInfoItem>
+                    </ModalInfoItemName>
 
-                    <ModalInfoItem>
+                    <ModalInfoItemValue>
                       <li>{name || "empty"}</li>
                       <li>{birthday || "empty"}</li>
                       <li>{type || "empty"}</li>
@@ -142,7 +144,7 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                       <ModalContact>
                         <a href={`tel: ${phone}`}>{phone || "+380 (XXX) (XXXXXXXX)"}</a>
                       </ModalContact>
-                    </ModalInfoItem>
+                    </ModalInfoItemValue>
                     </ModalInfoList>
                   </div>
                 </ModalInfo>
@@ -156,7 +158,8 @@ export const ModalNotice = ({ showModal, setShowModal, idCard }) => {
                   <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
                     <use href={`${sprite}#icon-heart`}></use>
                   </IconHeart>
-                  </span></ModalButtonAdd>
+                  </span>
+                  </ModalButtonAdd>
 
                 </ModalButtons>
               </ModalContent>

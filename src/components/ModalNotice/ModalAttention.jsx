@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react';
-import { Background, CloseModalButton, IconCross } from './ModalNotice.styled';
-import { ModalWrapper, ModalHeader, ModalText, ModalAuth } from './ModalAttention.styled';
+import { Background, IconCross } from './ModalNotice.styled';
+import { ModalWrapper, ModalHeader, ModalText, ModalAuth, CloseModalButton } from './ModalAttention.styled';
 import sprite from '../../images/icons.svg';
 import  AuthButtonsModal  from './AuthButtonsModal';
 
