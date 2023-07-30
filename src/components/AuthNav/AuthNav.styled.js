@@ -34,6 +34,11 @@ export const LoginButton = styled(NavLink)
   margin-bottom: ${props => (props.isMobile ? '12px' : '')};
   transition: all ease-in-out 0.2s;
   color: ${({ color }) => handleFunctions.handleColorText(color)};
+  &.active{
+    background: #888888;
+    opacity: 0.7;
+    pointer-events: none; 
+  }
   &:hover {
     background: var(--main-light-color);
     color: ${({ hovercolor }) => handleFunctions.handleHoverText(hovercolor)};
@@ -74,6 +79,12 @@ export const RegisterButton = styled(NavLink)
   width: ${props => (props.isMobile ? '165px' : '142px')};
   color: ${({ color }) => handleFunctions.handleColorText(color)};
   transition: all ease-in-out 0.2s;
+ &.active{
+    background: #888888;
+    opacity: 0.7;
+    pointer-events: none; 
+    color: var(--main-light-color);
+  }
   &:hover {
     background: var(--accent-color);
     color: ${({ hovercolor }) => handleFunctions.handleHoverText(hovercolor)};

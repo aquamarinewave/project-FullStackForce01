@@ -55,7 +55,9 @@ const MobileMenu = ({ toggleMenu, isOpen }) => {
               </>
             ) : (
               <ButtonContainer>
-                {width >= 768 && width < 1280 && <Logout isMobile isRequest spacing />}
+                {width >= 768 && width < 1280 && (
+                  <Logout margin="8px" isBorder isBold isWhite isBlue isMobile isRequest spacing isDisplay/>
+                )}
                 <CloseButton type="button" onClick={() => toggleMenu()}>
                   <IconCross width={24} height={24}>
                     <use href={`${sprite}#icon-cross`}></use>
@@ -78,7 +80,7 @@ const MobileMenu = ({ toggleMenu, isOpen }) => {
             </>
           )}
           <Nav isMobile />
-          {isLogged && width < 768 && <Logout isMobile isRequest spacing />}
+          {isLogged && width < 768 && <Logout margin="8px" isBold isBorder isBlue isWhite isMobile isRequest spacing isDisplay/>}
         </Menu>,
         document.querySelector('#portal-root')
       )
