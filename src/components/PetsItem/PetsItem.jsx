@@ -5,7 +5,7 @@
 
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import userPetsOperations from 'redux/userPets/operations';
+import petsOperations from 'redux/pets/operations';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import sprite from '../../images/icons.svg';
 import {
@@ -30,7 +30,7 @@ const PetItem = ({ pet }) => {
   const dispatch = useDispatch(_id);
 
   const onDelete = () => {
-    dispatch(userPetsOperations.deleteUserPet(_id));
+    dispatch(petsOperations.deleteUserPet(_id));
     setShowModal(showModal => !showModal);
     setIdPet(_id);
   };
