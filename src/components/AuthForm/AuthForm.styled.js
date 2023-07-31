@@ -244,9 +244,8 @@ export const AuthRegisterButton = styled.button`
   margin-top: 40px;
   &:hover {
     cursor: pointer;
-    transform: scale(1.02);
-
-    /* opacity: 0.6; */
+    background: linear-gradient(315deg, rgb(65, 158, 241) 0%, rgb(155, 208, 255) 100%);
+    border: transparent;
   }
 
   @media screen and (min-width: 768px) {
@@ -280,7 +279,8 @@ export const AuthLoginButton = styled.button`
 
   &:hover {
     cursor: pointer;
-    transform: scale(1.02);
+    background: linear-gradient(315deg, rgb(65, 158, 241) 0%, rgb(155, 208, 255) 100%);
+    border: transparent;
   }
 
   @media screen and (min-width: 768px) {
