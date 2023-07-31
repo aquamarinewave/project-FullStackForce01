@@ -39,6 +39,8 @@ const NoticeCategoryItem = ({ notices }) => {
   const [idPet, setIdPet] = useState('');
   const dispatch = useDispatch(_id);
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
   const [valueModalInfo, setValueModalInfo] = useState({});
   const [userModalInfo, setUserModalInfo] = useState({});
@@ -66,7 +68,7 @@ const NoticeCategoryItem = ({ notices }) => {
 
   const onDelete = () => {
     dispatch(noticesOperations.deleteUserNotice(_id));
-    setShowModal(showModal => !showModal);
+    setShowModal(showDeleteModal => !showDeleteModal);
     setIdPet(_id);
   };
 
@@ -75,7 +77,7 @@ const NoticeCategoryItem = ({ notices }) => {
   };
 
   const openModalForDelete = () => {
-    setShowModal(showModal => !showModal);
+    setShowDeleteModal(showDeleteModal => !showDeleteModal);
   };
 
   const givenDate = new Date(birthday);
@@ -163,7 +165,7 @@ const NoticeCategoryItem = ({ notices }) => {
           </FavoriteBtnContainer>
           {categoryName === 'own' && (
             <FavoriteBtnContainer>
-              <DeleteBtn type="button" onClick={openModal}>
+              <DeleteBtn type="button" onClick={openModalForDelete}>
                 <IconDelete width={24} height={24}>
                   <use href={`${sprite}#icon-trash-2`}></use>
                 </IconDelete>
@@ -178,22 +180,24 @@ const NoticeCategoryItem = ({ notices }) => {
           Learn more
         </LearnMoreBtn>
       </ContentContainer>
-      {/* <ModalNotice
-        showModal={showModal}
-        setShowModal={setShowModal}
-        isModalOpenAttention={isModalOpenAttention}
-        setIsModalOpenAttention={setIsModalOpenAttention}
-        valueModalInfo={valueModalInfo}
-        userModalInfo={userModalInfo}
-        handleAddToFavorite={handleAddToFavorite}
-        isSelected={isSelected}
-        isLoggedIn={isLoggedIn}
-        closeModalAttention={closeModalAttention}
-      /> */}
       {showModal && (
+        <ModalNotice
+          showModal={showModal}
+          setShowModal={setShowModal}
+          isModalOpenAttention={isModalOpenAttention}
+          setIsModalOpenAttention={setIsModalOpenAttention}
+          valueModalInfo={valueModalInfo}
+          userModalInfo={userModalInfo}
+          handleAddToFavorite={handleAddToFavorite}
+          isSelected={isSelected}
+          isLoggedIn={isLoggedIn}
+          closeModalAttention={closeModalAttention}
+        />
+      )}
+      {showDeleteModal && (
         <ModalApproveAction
-          isOpen={showModal}
-          onRequestClose={openModal}
+          isOpen={showDeleteModal}
+          onRequestClose={openModalForDelete}
           onApprove={onDelete}
           idCard={idPet}
           btnIconColor={'var(--bg-color)'}
