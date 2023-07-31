@@ -15,15 +15,15 @@ const favoriteSlice = createSlice({
       state.items = action.payload;
     },
 
-    [favoriteOperations.fetchAddToFavorite.fulfilled](state, action) {
-      state.error = null;
-      state.select = true;
-    },
+    // [favoriteOperations.fetchAddToFavorite.fulfilled](state, action) {
+    //   state.error = null;
+    //   state.select = true;
+    // },
 
-    [favoriteOperations.fetchDeleteToFavorite.fulfilled](state, action) {
-      state.error = null;
-      state.select = false;
-    },
+    // [favoriteOperations.fetchDeleteToFavorite.fulfilled](state, action) {
+    //   state.error = null;
+    //   state.select = false;
+    // },
   },
 });
 

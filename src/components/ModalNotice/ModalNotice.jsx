@@ -1,13 +1,9 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvatar, ModalCategory, ModalHeader, ModalInfoList, ModalInfoItemName, ModalInfoItemValue, ModalContact, ModalComments, ModalButtons, ModalPhone, ModalButtonAdd, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
 import ModalAttention from './ModalAttention';
 import sprite from '../../images/icons.svg';
-import {getSelected} from '../../redux/favorite/favoriteSelector';
 
-export const ModalNotice = ({showModal, setShowModal,  handleAddToFavorite, favoriteNoticeStore, isLoggedIn, isModalOpenAttention, closeModalAttention}) => {
-
-  const isSelected = useSelector(getSelected);
+export const ModalNotice = ({showModal, setShowModal,  handleAddToFavorite, favoriteNoticeStore, isLoggedIn, isModalOpenAttention, closeModalAttention, isSelected}) => {
 
   const modalRef = useRef();
 

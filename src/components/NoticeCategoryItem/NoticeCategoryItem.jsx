@@ -29,15 +29,12 @@ import {
 import sprite from '../../images/icons.svg';
 import favoriteOperations from '../../redux/favorite/favoriteOperations';
 import { getNotice } from '../../redux/favorite/favoriteSelector';
-import { getSelected } from '../../redux/favorite/favoriteSelector';
 import noticesOperations from 'redux/notices/operation';
 import authSelector from '../../redux/auth/authSelector';
-// import { fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite } from '../../services/api/modalNotice';
 
 const NoticeCategoryItem = ({ notices }) => {
   const dispatch = useDispatch();
   const favoriteNoticeStore = useSelector(getNotice);
-  const isSelected = useSelector(getSelected);
 
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
   const { categoryName } = useParams();
@@ -48,6 +45,11 @@ const NoticeCategoryItem = ({ notices }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
+  const [isSelected, setIsSelected] = useState(() => {
+    const saved = localStorage.getItem(`pet_${_id}`);
+    const initialValue = JSON.parse(saved);
+    return initialValue || false;
+  });
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
@@ -85,14 +87,18 @@ const NoticeCategoryItem = ({ notices }) => {
     if (isLoggedIn) {
       if (!isSelected) {
         dispatch(favoriteOperations.fetchAddToFavorite(addToFavoriteValue));
+        setIsSelected(!isSelected);
       } else {
         dispatch(favoriteOperations.fetchDeleteToFavorite(_id));
+        setIsSelected(!isSelected);
       }
     } else {
       setShowModal(false);
       setIsModalOpenAttention(true);
     }
   };
+
+  localStorage.setItem(`pet_${_id}`, JSON.stringify(isSelected));
 
   return (
     <>
@@ -145,7 +151,7 @@ const NoticeCategoryItem = ({ notices }) => {
         <BtnContainer>
           <FavoriteBtnContainer>
             <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-              <IconHeart width={24} height={24} isSelected={isSelected}>
+              <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
                 <use href={`${sprite}#icon-heart`}></use>
               </IconHeart>
             </AddToFavoriteBtn>
@@ -176,6 +182,7 @@ const NoticeCategoryItem = ({ notices }) => {
         isLoggedIn={isLoggedIn}
         isModalOpenAttention={isModalOpenAttention}
         closeModalAttention={closeModalAttention}
+        isSelected = {isSelected}
       />
       {showDeleteModal && (
         <ModalApproveAction
