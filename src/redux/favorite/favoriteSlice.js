@@ -6,8 +6,7 @@ const favoriteSlice = createSlice({
   name: "favorite",  
   initialState: {    
     items: {},
-    error: null,
-    select: false,   
+    error: null,  
   },  
   extraReducers: {
     [favoriteOperations.fetchModalDetails.fulfilled](state, action) {
