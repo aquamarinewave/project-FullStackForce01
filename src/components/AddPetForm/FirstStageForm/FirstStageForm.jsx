@@ -2,7 +2,7 @@ const { RadioButton, RadioInput, ContainerRadioButton } = require('./FirstStageF
 
 const options = [
   {
-    value: 'your_pet',
+    value: 'my-pet',
     label: 'your pet',
   },
   {

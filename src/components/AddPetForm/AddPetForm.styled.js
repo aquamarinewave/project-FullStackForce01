@@ -1,6 +1,30 @@
 import styled from 'styled-components';
 import { Form as FormikForm } from 'formik';
 
+const titleColorText = step => {
+  switch (step) {
+    case 'second':
+      return 'var(--dark-blue)';
+    case 'third':
+      return 'var(--success-color)';
+    default:
+      return '#888';
+  }
+};
+
+const titleText = category => {
+  switch (category) {
+    case 'sell':
+      return 'Add pet for sale';
+    case 'lost-found':
+      return 'Add lost pet';
+    case 'for-free':
+      return 'Add a pet in good hands';
+    default:
+      return 'Add pet';
+  }
+};
+
 export const NextStageForm = styled.h3`
   position: relative;
   font-size: 10px;
@@ -29,10 +53,11 @@ export const NextStageForm = styled.h3`
     }
   }
   &:nth-child(2) {
-    color: ${props => props.title};
+    color: ${({ currentStage }) => titleColorText(currentStage)};
   }
   &:nth-child(2)::after {
-    background-color: ${props => (props.title === '#888' ? `var(--lightblue)` : props.title)};
+    background-color: ${({ currentStage }) =>
+      currentStage === 'first' ? 'var(--lightblue)' : titleColorText(currentStage)};
   }
   &:last-child {
     color: ${props => (props.current === 'third' ? 'var(--dark-blue)' : `#888`)};
@@ -54,14 +79,14 @@ export const ContainerForm = styled.div`
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
   @media screen and (min-width: 768px) {
-    width: ${props => (props.currentStage === 'third' && props.currentRadioButton !== 'your_pet' ? '704px' : '458px')};
+    width: ${props => (props.currentStage === 'third' && props.currentRadioButton !== 'my-pet' ? '704px' : '458px')};
     min-height: 542px;
     padding: 32px;
     margin-top: 60px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: ${props => (props.currentStage === 'third' && props.currentRadioButton !== 'your_pet' ? '822px' : '458px')};
+    width: ${props => (props.currentStage === 'third' && props.currentRadioButton !== 'my-pet' ? '822px' : '458px')};
     margin-top: 40px;
   }
 `;
@@ -82,7 +107,7 @@ export const TitleAddPetForm = styled.h2`
   @media screen and (min-width: 768px) {
     font-size: 28px;
     margin: ${props =>
-      props.currentStage === 'third' && props.currentRadioButton !== 'your_pet' ? '0 auto 24px auto' : '0 0 24px 0'};
+      props.currentStage === 'third' && props.currentRadioButton !== 'my-pet' ? '0 auto 24px auto' : '0 0 24px 0'};
   }
 `;
 
