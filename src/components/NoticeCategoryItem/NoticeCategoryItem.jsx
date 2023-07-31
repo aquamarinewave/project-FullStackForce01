@@ -27,12 +27,20 @@ import {
   Subtitle,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
+import favoriteOperations from '../../redux/favorite/favoriteOperations';
+import {getNotice} from '../../redux/favorite/favoriteSelector';
+import {getSelected} from '../../redux/favorite/favoriteSelector';
 
 import authSelector from '../../redux/auth/authSelector';
-import { fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite } from '../../services/api/modalNotice';
-import noticesOperations from 'redux/notices/operation';
+import { useSelector, useDispatch } from 'react-redux';
+// import { fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite } from '../../services/api/modalNotice';
+
 
 const NoticeCategoryItem = ({ notices }) => {
+  const dispatch = useDispatch();
+  const favoriteNoticeStore = useSelector(getNotice);
+  const isSelected = useSelector(getSelected);
+
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
   const { categoryName } = useParams();
 
@@ -42,38 +50,14 @@ const NoticeCategoryItem = ({ notices }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
-  const [valueModalInfo, setValueModalInfo] = useState({});
-  const [userModalInfo, setUserModalInfo] = useState({});
-  const [isSelected, setIsSelected] = useState(() => {
-    const saved = localStorage.getItem(`pet_${_id}`);
-    const initialValue = JSON.parse(saved);
-    return initialValue || false;
-  });
   const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
-  useEffect(() => {
-    async function fetchModalDetailPet() {
-      try {
-        const data = await fetchModalDetail(_id);
-        setValueModalInfo({ ...data.notice });
-        setUserModalInfo({ ...data.user });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchModalDetailPet();
-  }, [_id]);
-
-  const onDelete = () => {
-    dispatch(noticesOperations.deleteUserNotice(_id));
-    setShowModal(showDeleteModal => !showDeleteModal);
-    setIdPet(_id);
-  };
-
   const openModal = () => {
+    dispatch(favoriteOperations.fetchModalDetails(_id));
     setShowModal(showModal => !showModal);
+
   };
 
   const openModalForDelete = () => {
@@ -91,21 +75,25 @@ const NoticeCategoryItem = ({ notices }) => {
   };
 
   const handleAddToFavorite = () => {
-    if (isLoggedIn) {
-      if (isSelected) {
-        fetchDeleteToFavorite(_id);
-        setIsSelected(!isSelected);
+    const addToFavoriteValue = {
+      _id,
+      favoriteNoticeStore,
+    }
+
+    if(isLoggedIn) {
+
+      if(!isSelected) {
+        dispatch(favoriteOperations.fetchAddToFavorite( addToFavoriteValue));
       } else {
-        fetchAddToFavorite(_id, valueModalInfo);
-        setIsSelected(!isSelected);
+        dispatch(favoriteOperations.fetchDeleteToFavorite(_id));
       }
+
     } else {
       setShowModal(false);
       setIsModalOpenAttention(true);
     }
-  };
 
-  localStorage.setItem(`pet_${_id}`, JSON.stringify(isSelected));
+  };
 
   return (
     <>
@@ -180,20 +168,16 @@ const NoticeCategoryItem = ({ notices }) => {
           Learn more
         </LearnMoreBtn>
       </ContentContainer>
-      {showModal && (
-        <ModalNotice
-          showModal={showModal}
-          setShowModal={setShowModal}
-          isModalOpenAttention={isModalOpenAttention}
-          setIsModalOpenAttention={setIsModalOpenAttention}
-          valueModalInfo={valueModalInfo}
-          userModalInfo={userModalInfo}
-          handleAddToFavorite={handleAddToFavorite}
-          isSelected={isSelected}
-          isLoggedIn={isLoggedIn}
-          closeModalAttention={closeModalAttention}
-        />
-      )}
+      <ModalNotice
+        showModal={showModal}
+        setShowModal={setShowModal}
+        handleAddToFavorite = {handleAddToFavorite}
+        idPetAd = {_id}
+        favoriteNoticeStore = {favoriteNoticeStore}
+        isLoggedIn = {isLoggedIn}
+        isModalOpenAttention = {isModalOpenAttention}
+        closeModalAttention = {closeModalAttention}
+      />
       {showDeleteModal && (
         <ModalApproveAction
           isOpen={showDeleteModal}
