@@ -80,9 +80,14 @@ export const updateUser = createAsyncThunk('auth/profile', async (userData, thun
   token.set(persistedToken);
   try {
     const res = await axios.patch('/users', userData);
+
     return res.data.user;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(
+      toast.error('This email is already used', {
+        position: 'top-center',
+      })
+    );
   }
 });
 
