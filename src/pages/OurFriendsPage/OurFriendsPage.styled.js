@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const OurFriendsPageContainer = styled.div`
+export const OurFriendsPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
@@ -11,7 +11,7 @@ const OurFriendsPageContainer = styled.div`
   }
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   display: flex;
   font-style: normal;
   font-size: 24px;
@@ -30,4 +30,3 @@ const Title = styled.h1`
   }
 `;
 
-export { OurFriendsPageContainer, Title };
