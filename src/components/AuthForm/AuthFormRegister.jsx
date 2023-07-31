@@ -16,6 +16,7 @@ import {
   AuthIconFailed,
   AuthIconsValidation,
   AuthIconCheck,
+  ValidPassword,
 } from './AuthForm.styled';
 
 import authOperations from '../../redux/auth/operations';
@@ -44,7 +45,7 @@ const AuthFormRegister = props => {
   const dispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
-  
+
   const handleSubmitRegister = ({ name, email, password }) => {
     dispatch(authOperations.registrationUser({ name, email, password }));
   };
@@ -153,7 +154,7 @@ const AuthFormRegister = props => {
                     error={touched.password && errors.password}
                   >
                     <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                      <use href={`${sprite}#icon-eye-closed`}></use>
+                      <use href={`${sprite}#icon-eye-open`}></use>
                     </AuthIconShowPassword>
                   </AuthShowPassword>
                 ) : (
@@ -164,11 +165,14 @@ const AuthFormRegister = props => {
                     error={touched.password && errors.password}
                   >
                     <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                      <use href={`${sprite}#icon-eye-open`}></use>
+                      <use href={`${sprite}#icon-eye-closed`}></use>
                     </AuthIconShowPassword>
                   </AuthShowPassword>
                 )}
               </AuthFieldWrap>
+              {touched.password && !errors.password && !isShowPassword && (
+                <ValidPassword>Password is secure</ValidPassword>
+              )}
               <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
 
               <AuthFieldWrap>
@@ -206,7 +210,7 @@ const AuthFormRegister = props => {
                     error={touched.password && errors.password}
                   >
                     <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                      <use href={`${sprite}#icon-eye-closed`}></use>
+                      <use href={`${sprite}#icon-eye-open`}></use>
                     </AuthIconShowPassword>
                   </AuthShowConfirmPassword>
                 ) : (
@@ -217,7 +221,7 @@ const AuthFormRegister = props => {
                     error={touched.password && errors.password}
                   >
                     <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                      <use href={`${sprite}#icon-eye-open`}></use>
+                      <use href={`${sprite}#icon-eye-closed`}></use>
                     </AuthIconShowPassword>
                   </AuthShowConfirmPassword>
                 )}
