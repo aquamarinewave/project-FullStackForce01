@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import {
@@ -28,13 +28,11 @@ import {
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 import favoriteOperations from '../../redux/favorite/favoriteOperations';
-import {getNotice} from '../../redux/favorite/favoriteSelector';
-import {getSelected} from '../../redux/favorite/favoriteSelector';
-
+import { getNotice } from '../../redux/favorite/favoriteSelector';
+import { getSelected } from '../../redux/favorite/favoriteSelector';
+import noticesOperations from 'redux/notices/operation';
 import authSelector from '../../redux/auth/authSelector';
-import { useSelector, useDispatch } from 'react-redux';
 // import { fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite } from '../../services/api/modalNotice';
-
 
 const NoticeCategoryItem = ({ notices }) => {
   const dispatch = useDispatch();
@@ -45,7 +43,6 @@ const NoticeCategoryItem = ({ notices }) => {
   const { categoryName } = useParams();
 
   const [idPet, setIdPet] = useState('');
-  const dispatch = useDispatch(_id);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -54,10 +51,15 @@ const NoticeCategoryItem = ({ notices }) => {
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
+  const onDelete = () => {
+    dispatch(noticesOperations.deleteUserNotice(_id));
+    setShowDeleteModal(showDeleteModal => !showDeleteModal);
+    setIdPet(_id);
+  };
+
   const openModal = () => {
     dispatch(favoriteOperations.fetchModalDetails(_id));
     setShowModal(showModal => !showModal);
-
   };
 
   const openModalForDelete = () => {
@@ -78,21 +80,18 @@ const NoticeCategoryItem = ({ notices }) => {
     const addToFavoriteValue = {
       _id,
       favoriteNoticeStore,
-    }
+    };
 
-    if(isLoggedIn) {
-
-      if(!isSelected) {
-        dispatch(favoriteOperations.fetchAddToFavorite( addToFavoriteValue));
+    if (isLoggedIn) {
+      if (!isSelected) {
+        dispatch(favoriteOperations.fetchAddToFavorite(addToFavoriteValue));
       } else {
         dispatch(favoriteOperations.fetchDeleteToFavorite(_id));
       }
-
     } else {
       setShowModal(false);
       setIsModalOpenAttention(true);
     }
-
   };
 
   return (
@@ -171,12 +170,12 @@ const NoticeCategoryItem = ({ notices }) => {
       <ModalNotice
         showModal={showModal}
         setShowModal={setShowModal}
-        handleAddToFavorite = {handleAddToFavorite}
-        idPetAd = {_id}
-        favoriteNoticeStore = {favoriteNoticeStore}
-        isLoggedIn = {isLoggedIn}
-        isModalOpenAttention = {isModalOpenAttention}
-        closeModalAttention = {closeModalAttention}
+        handleAddToFavorite={handleAddToFavorite}
+        idPetAd={_id}
+        favoriteNoticeStore={favoriteNoticeStore}
+        isLoggedIn={isLoggedIn}
+        isModalOpenAttention={isModalOpenAttention}
+        closeModalAttention={closeModalAttention}
       />
       {showDeleteModal && (
         <ModalApproveAction
