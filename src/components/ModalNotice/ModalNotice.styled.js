@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const stylesBtnActive = {
-  lightblue: "var(--lightblue)",
-  darkblue: "var(--dark-blue)",
-  white: "var(--main-light-color)",
+  lightblue: 'var(--lightblue)',
+  darkblue: 'var(--dark-blue)',
+  white: 'var(--main-light-color)',
 };
 
 export const Background = styled.div`
@@ -11,8 +11,8 @@ export const Background = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(97, 97, 97, 0.60);
-  backdrop-filter: blur(4px); 
+  background: rgba(97, 97, 97, 0.6);
+  backdrop-filter: blur(4px);
   position: fixed;
   display: flex;
   justify-content: center;
@@ -30,7 +30,6 @@ export const ModalWrapper = styled.div`
     width: 681px;
     border-radius: 40px;
   }
-
 `;
 
 export const ModalContent = styled.div`
@@ -39,18 +38,17 @@ export const ModalContent = styled.div`
   span {
     display: flex;
   }
-  
+
   @media screen and (min-width: 768px) {
     padding: 32px 32px 24px 32px;
   }
-
 `;
 
 export const ModalInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 12px; 
+  margin-bottom: 12px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -66,7 +64,7 @@ export const ModalImg = styled.div`
   transform: translate(-50%) scale(1);
 
   @media screen and (min-width: 768px) {
-    left:0;
+    left: 0;
     transform: translate(0) scale(1);
   }
 `;
@@ -93,7 +91,7 @@ export const ModalCategory = styled.p`
   font-weight: 500;
   line-height: normal;
   border-bottom-right-radius: 50px;
-  border-top-right-radius: 50px;  
+  border-top-right-radius: 50px;
 `;
 
 export const ModalHeader = styled.h2`
@@ -104,7 +102,7 @@ export const ModalHeader = styled.h2`
   line-height: normal;
   letter-spacing: -0.24px;
   margin-bottom: 20px;
-  
+
   @media screen and (min-width: 768px) {
     font-size: 28px;
     letter-spacing: -0.28px;
@@ -155,7 +153,7 @@ export const ModalContact = styled.li`
   font-weight: 500;
 
   a {
-    border-bottom: 1px solid var(--accent-color); 
+    border-bottom: 1px solid var(--accent-color);
   }
 `;
 
@@ -171,7 +169,7 @@ export const ModalComments = styled.p`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.64px;
-    margin-bottom: 70px; 
+    margin-bottom: 70px;
   }
 `;
 
@@ -188,7 +186,6 @@ export const ModalButtons = styled.div`
   }
 `;
 
-
 export const ModalPhone = styled.a`
   display: flex;
   width: 256px;
@@ -198,22 +195,22 @@ export const ModalPhone = styled.a`
   color: var(--dark-blue);
   background: transparent;
   border: 2px solid var(--dark-blue);
-  border-radius: 40px; 
+  border-radius: 40px;
   font-size: 16px;
   font-family: inherit;
-  font-weight: 700;  
+  font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
 
   &:hover {
-    background: var(--dark-blue, linear-gradient(315deg, #419EF1 0%, #9BD0FF 100%)); 
+    background: var(--dark-blue, linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%));
     color: var(--main-light-color);
   }
 
   @media screen and (min-width: 768px) {
     width: 129px;
   }
-`
+`;
 
 export const ModalButtonAdd = styled.button`
   display: flex;
@@ -223,20 +220,20 @@ export const ModalButtonAdd = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: ${(props) => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : stylesBtnActive.white)};
-  background: ${(props) => (props.isSelected && props.isLoggedIn ? stylesBtnActive.lightblue : stylesBtnActive.darkblue)};
+  color: ${props => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : stylesBtnActive.white)};
+  background: ${props => (props.isSelected && props.isLoggedIn ? stylesBtnActive.lightblue : stylesBtnActive.darkblue)};
   border: none;
-  border-radius: 40px; 
+  border-radius: 40px;
   font-size: 16px;
   font-family: inherit;
-  font-weight: 700;  
+  font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
-  
+
   @media screen and (min-width: 768px) {
     width: 129px;
   }
-`
+`;
 
 export const CloseModalButton = styled.button`
   display: flex;
@@ -247,8 +244,8 @@ export const CloseModalButton = styled.button`
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   z-index: 10;
   border-radius: 50%;
@@ -264,11 +261,9 @@ export const CloseModalButton = styled.button`
 `;
 
 export const IconHeart = styled.svg`
-  stroke: ${(props) => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : stylesBtnActive.white)};
-  fill: ${(props) => (props.isSelected && props.isLoggedIn? stylesBtnActive.darkblue : "transparent")};
-
+  stroke: ${props => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : stylesBtnActive.white)};
+  fill: ${props => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : 'transparent')};
 `;
-
 
 export const IconCross = styled.svg`
   stroke: var(--dark-blue);

@@ -19,6 +19,8 @@ const Title = styled.h2`
 
   font-size: 24px;
   text-align: center;
+  line-height: normal;
+
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;
 

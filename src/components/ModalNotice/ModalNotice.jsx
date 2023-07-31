@@ -1,12 +1,43 @@
 import React, { useRef, useEffect, useCallback } from 'react';
+import ReactDOM from 'react-dom';
+
 import { useSelector } from 'react-redux';
-import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvatar, ModalCategory, ModalHeader, ModalInfoList, ModalInfoItemName, ModalInfoItemValue, ModalContact, ModalComments, ModalButtons, ModalPhone, ModalButtonAdd, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
+import {
+  Background,
+  ModalWrapper,
+  ModalContent,
+  ModalInfo,
+  ModalImg,
+  ModalAvatar,
+  ModalCategory,
+  ModalHeader,
+  ModalInfoList,
+  ModalInfoItemName,
+  ModalInfoItemValue,
+  ModalContact,
+  ModalComments,
+  ModalButtons,
+  ModalPhone,
+  ModalButtonAdd,
+  CloseModalButton,
+  IconHeart,
+  IconCross,
+} from './ModalNotice.styled';
 import ModalAttention from './ModalAttention';
 import sprite from '../../images/icons.svg';
-import {getSelected} from '../../redux/favorite/favoriteSelector';
+import { getSelected } from '../../redux/favorite/favoriteSelector';
 
-export const ModalNotice = ({showModal, setShowModal,  handleAddToFavorite, favoriteNoticeStore, isLoggedIn, isModalOpenAttention, closeModalAttention}) => {
+const portalRoot = document.getElementById('modal-root');
 
+export const ModalNotice = ({
+  showModal,
+  setShowModal,
+  handleAddToFavorite,
+  favoriteNoticeStore,
+  isLoggedIn,
+  isModalOpenAttention,
+  closeModalAttention,
+}) => {
   const isSelected = useSelector(getSelected);
 
   const modalRef = useRef();
@@ -27,85 +58,107 @@ export const ModalNotice = ({showModal, setShowModal,  handleAddToFavorite, favo
     [setShowModal, showModal]
   );
 
-  useEffect(
-    () => {
+  useEffect(() => {
+    if (showModal) {
       document.addEventListener('keydown', keyPress);
-      return () => document.removeEventListener('keydown', keyPress);
-    },
-    [keyPress]
-  );
-  
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.removeEventListener('keydown', keyPress);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', keyPress);
+      document.body.style.overflow = 'auto';
+    };
+  }, [keyPress, showModal]);
+
   const { notice, user } = favoriteNoticeStore;
 
   return (
     <>
-      {showModal && notice ? (
-        <Background onClick={closeModal} ref={modalRef}>
-          <ModalWrapper>
-              <ModalContent>
-                <ModalInfo>
-                  <ModalImg>
-                    <ModalAvatar src={notice.avatarURL} alt={notice.name} />
-                    <ModalCategory>{notice.category}</ModalCategory>
-                  </ModalImg>
-                  
-                  <div>
-                    <ModalHeader>{notice.title || "Сute pet looking for a home"}</ModalHeader>
-                    <ModalInfoList>
-                    <ModalInfoItemName>
-                      <li><strong>Name:</strong></li>
-                      <li><strong>Birthday:</strong></li>
-                      <li><strong>Type:</strong></li>
-                      <li><strong>Place:</strong></li>
-                      <li><strong>The sex:</strong></li>
-                      <li><strong>Email:</strong></li>
-                      <li><strong>Phone:</strong></li>
-                    </ModalInfoItemName>
+      {showModal && notice
+        ? ReactDOM.createPortal(
+            <Background onClick={closeModal} ref={modalRef}>
+              <ModalWrapper>
+                <ModalContent>
+                  <ModalInfo>
+                    <ModalImg>
+                      <ModalAvatar src={notice.avatarURL} alt={notice.name} />
+                      <ModalCategory>{notice.category}</ModalCategory>
+                    </ModalImg>
 
-                    <ModalInfoItemValue>
-                      <li>{notice.name || "empty"}</li>
-                      <li>{notice.birthday || "empty"}</li>
-                      <li>{notice.type || "empty"}</li>
-                      <li>{notice.location || "empty"}</li>
-                      <li>{notice.sex || "empty"}</li>
-                      <ModalContact>
-                        <a href={`mailto: ${user.email}`}>{user.email || "email@gamil.com"}</a>
-                      </ModalContact>
-                      <ModalContact>
-                        <a href={`tel: ${user.phone}`}>{user.phone || "+380 (XXX) (XXXXXXXX)"}</a>
-                      </ModalContact>
-                    </ModalInfoItemValue>
-                    </ModalInfoList>
-                  </div>
-                </ModalInfo>
+                    <div>
+                      <ModalHeader>{notice.title || 'Сute pet looking for a home'}</ModalHeader>
+                      <ModalInfoList>
+                        <ModalInfoItemName>
+                          <li>
+                            <strong>Name:</strong>
+                          </li>
+                          <li>
+                            <strong>Birthday:</strong>
+                          </li>
+                          <li>
+                            <strong>Type:</strong>
+                          </li>
+                          <li>
+                            <strong>Place:</strong>
+                          </li>
+                          <li>
+                            <strong>The sex:</strong>
+                          </li>
+                          <li>
+                            <strong>Email:</strong>
+                          </li>
+                          <li>
+                            <strong>Phone:</strong>
+                          </li>
+                        </ModalInfoItemName>
 
-                <ModalComments><strong>Comments:</strong> {notice.comments}</ModalComments>
+                        <ModalInfoItemValue>
+                          <li>{notice.name || 'empty'}</li>
+                          <li>{notice.birthday || 'empty'}</li>
+                          <li>{notice.type || 'empty'}</li>
+                          <li>{notice.location || 'empty'}</li>
+                          <li>{notice.sex || 'empty'}</li>
+                          <ModalContact>
+                            <a href={`mailto: ${user.email}`}>{user.email || 'email@gamil.com'}</a>
+                          </ModalContact>
+                          <ModalContact>
+                            <a href={`tel: ${user.phone}`}>{user.phone || '+380 (XXX) (XXXXXXXX)'}</a>
+                          </ModalContact>
+                        </ModalInfoItemValue>
+                      </ModalInfoList>
+                    </div>
+                  </ModalInfo>
 
-                <ModalButtons>
-                  <ModalPhone href={`tel: ${user.phone}`}>Contact</ModalPhone>
+                  <ModalComments>
+                    <strong>Comments:</strong> {notice.comments}
+                  </ModalComments>
 
-                  <ModalButtonAdd onClick={handleAddToFavorite} isSelected = {isSelected} isLoggedIn = {isLoggedIn}><span>{isSelected && isLoggedIn ? "Delete" : "Add"}</span> <span>  
-                  <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
-                    <use href={`${sprite}#icon-heart`}></use>
-                  </IconHeart>
-                  </span>
-                  </ModalButtonAdd>
+                  <ModalButtons>
+                    <ModalPhone href={`tel: ${user.phone}`}>Contact</ModalPhone>
 
-                </ModalButtons>
-              </ModalContent>
-              <CloseModalButton
-                aria-label='Close modal'
-                onClick={() => setShowModal(prev => !prev)}
-              >
-                <IconCross width={24} height={24}>
-                  <use href={`${sprite}#icon-cross`}></use>
-                </IconCross>
-              </CloseModalButton>
-          </ModalWrapper>          
-        </Background>
-      ) : null}
-      {isModalOpenAttention ? (<ModalAttention onClose={closeModalAttention}/>) : null}
+                    <ModalButtonAdd onClick={handleAddToFavorite} isSelected={isSelected} isLoggedIn={isLoggedIn}>
+                      <span>{isSelected && isLoggedIn ? 'Delete' : 'Add'}</span>{' '}
+                      <span>
+                        <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
+                          <use href={`${sprite}#icon-heart`}></use>
+                        </IconHeart>
+                      </span>
+                    </ModalButtonAdd>
+                  </ModalButtons>
+                </ModalContent>
+                <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(prev => !prev)}>
+                  <IconCross width={24} height={24}>
+                    <use href={`${sprite}#icon-cross`}></use>
+                  </IconCross>
+                </CloseModalButton>
+              </ModalWrapper>
+            </Background>,
+            portalRoot
+          )
+        : null}
+      {isModalOpenAttention ? <ModalAttention onClose={closeModalAttention} /> : null}
     </>
-    
   );
 };

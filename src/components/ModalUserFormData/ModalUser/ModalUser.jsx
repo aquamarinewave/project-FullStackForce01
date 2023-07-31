@@ -21,12 +21,14 @@ const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
   useEffect(() => {
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
     } else {
       document.removeEventListener('keydown', handleKeyDown);
     }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto';
     };
   }, [handleKeyDown, isOpen]);
 
