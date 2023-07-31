@@ -7,7 +7,7 @@ const Loader = () => {
         height="80"
         width="80"
         ariaLabel="blocks-loading"
-        wrapperStyle={{ marginTop: '200px', marginLeft: '300px' }}
+        wrapperStyle={{ marginTop: '20%', marginLeft: '45%' }}
         wrapperClass="blocks-wrapper"
       />
   );

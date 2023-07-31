@@ -26,11 +26,11 @@ import authSelector from 'redux/auth/authSelector';
 import Loader from './Loader';
 
 const userLoginSchema = object({
-  email: string().required().email('Please enter a valid email'),
+  email: string().required('Email is a required field').email('Please enter a valid email'),
   password: string()
     .min(6, 'Your password is too short.')
     .max(16, 'Your password is too long.')
-    .required()
+    .required('Password is a required field')
     .matches(/[0-9]/, 'Your password must have at least 1 number')
     .matches(/[a-z]/, 'Your password must have at least 1 lowercase letter')
     .matches(/[A-Z]/, 'Your password must have at least 1 uppercase letter'),
