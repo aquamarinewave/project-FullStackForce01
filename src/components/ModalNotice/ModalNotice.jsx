@@ -3,17 +3,7 @@ import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvata
 import ModalAttention from './ModalAttention';
 import sprite from '../../images/icons.svg';
 
-export const ModalNotice = ({ 
-  showModal, 
-  setShowModal,
-  isModalOpenAttention,
-  closeModalAttention,
-  valueModalInfo,
-  userModalInfo,
-  handleAddToFavorite,
-  isSelected,
-  isLoggedIn
-}) => {
+export const ModalNotice = ({showModal, setShowModal,  handleAddToFavorite, favoriteNoticeStore, isLoggedIn, isModalOpenAttention, closeModalAttention, isSelected}) => {
 
   const modalRef = useRef();
 
@@ -40,27 +30,23 @@ export const ModalNotice = ({
     },
     [keyPress]
   );
-
-
-  const {title, name, birthday, type, sex, location, comments, avatarURL, category} = valueModalInfo;
-
-  const {email, phone} = userModalInfo;
-
+  
+  const { notice, user } = favoriteNoticeStore;
 
   return (
     <>
-      {showModal ? (
+      {showModal && notice ? (
         <Background onClick={closeModal} ref={modalRef}>
-          <ModalWrapper showModal={showModal}>
+          <ModalWrapper>
               <ModalContent>
                 <ModalInfo>
                   <ModalImg>
-                    <ModalAvatar src={avatarURL} alt={name} />
-                    <ModalCategory>{category}</ModalCategory>
+                    <ModalAvatar src={notice.avatarURL} alt={notice.name} />
+                    <ModalCategory>{notice.category}</ModalCategory>
                   </ModalImg>
                   
                   <div>
-                    <ModalHeader>{title || "Сute pet looking for a home"}</ModalHeader>
+                    <ModalHeader>{notice.title || "Сute pet looking for a home"}</ModalHeader>
                     <ModalInfoList>
                     <ModalInfoItemName>
                       <li><strong>Name:</strong></li>
@@ -73,28 +59,28 @@ export const ModalNotice = ({
                     </ModalInfoItemName>
 
                     <ModalInfoItemValue>
-                      <li>{name || "empty"}</li>
-                      <li>{birthday || "empty"}</li>
-                      <li>{type || "empty"}</li>
-                      <li>{location || "empty"}</li>
-                      <li>{sex || "empty"}</li>
+                      <li>{notice.name || "empty"}</li>
+                      <li>{notice.birthday || "empty"}</li>
+                      <li>{notice.type || "empty"}</li>
+                      <li>{notice.location || "empty"}</li>
+                      <li>{notice.sex || "empty"}</li>
                       <ModalContact>
-                        <a href={`mailto: ${email}`}>{email || "email@gamil.com"}</a>
+                        <a href={`mailto: ${user.email}`}>{user.email || "email@gamil.com"}</a>
                       </ModalContact>
                       <ModalContact>
-                        <a href={`tel: ${phone}`}>{phone || "+380 (XXX) (XXXXXXXX)"}</a>
+                        <a href={`tel: ${user.phone}`}>{user.phone || "+380 (XXX) (XXXXXXXX)"}</a>
                       </ModalContact>
                     </ModalInfoItemValue>
                     </ModalInfoList>
                   </div>
                 </ModalInfo>
 
-                <ModalComments><strong>Comments:</strong> {comments}</ModalComments>
+                <ModalComments><strong>Comments:</strong> {notice.comments}</ModalComments>
 
                 <ModalButtons>
-                  <ModalPhone href={`tel: ${phone}`}>Contact</ModalPhone>
+                  <ModalPhone href={`tel: ${user.phone}`}>Contact</ModalPhone>
 
-                  <ModalButtonAdd onClick={handleAddToFavorite} isSelected = {isSelected} isLoggedIn = {isLoggedIn}><span>{isSelected && isLoggedIn? "Delete" : "Add"}</span> <span>  
+                  <ModalButtonAdd onClick={handleAddToFavorite} isSelected = {isSelected} isLoggedIn = {isLoggedIn}><span>{isSelected && isLoggedIn ? "Delete" : "Add"}</span> <span>  
                   <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
                     <use href={`${sprite}#icon-heart`}></use>
                   </IconHeart>
@@ -114,8 +100,7 @@ export const ModalNotice = ({
           </ModalWrapper>          
         </Background>
       ) : null}
-      
-    {isModalOpenAttention ? (<ModalAttention onClose={closeModalAttention}/>) : null}
+      {isModalOpenAttention ? (<ModalAttention onClose={closeModalAttention}/>) : null}
     </>
     
   );

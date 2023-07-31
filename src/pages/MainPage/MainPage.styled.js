@@ -8,13 +8,11 @@ import Largebg from '../../images/x1/bg/bg-lagre.png';
 import LargebgRetina from '../../images/x2/bg/bg-large.png';
 
 export const Wrapper = styled.div`
-  display: flex;
   justify-content: center;
 `;
 
 export const Title = styled.h1`
   margin-top: 60px;
-  margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
   width: 280px;
@@ -45,14 +43,12 @@ export const Title = styled.h1`
 `;
 
 export const ImgBlock = styled.div`
-  position: relative;
-  width: 320px;
-  height: 394px;
+  width: 100%;
   @media screen and (min-width: 768px) {
-    width: 768px;
-    height: 818px;
+    width: 100%;
   }
   @media screen and (min-width: 1280px) {
+    position: relative;
     width: 917px;
     height: 200px;
   }
@@ -60,24 +56,29 @@ export const ImgBlock = styled.div`
 
 export const Picture = styled.picture`
   display: block;
-  width: 320px;
-  position: absolute;
+  width: 100%;
   left: 0;
   top: -45px;
 
   @media screen and (min-width: 768px) {
-    width: 768px;
+    width: 100%;
     left: 0;
     top: -90px;
   }
 
   @media screen and (min-width: 1280px) {
+    position: absolute;
     width: 917px;
     height: 851px;
     margin-top: 0px;
-    left: 202px;
+    left: 350px;
     top: -510px;
   }
+`;
+
+export const ImgPic = styled.img`
+  width: 100%;
+  height: auto;
 `;
 
 export const BackgroundImage = styled.div`

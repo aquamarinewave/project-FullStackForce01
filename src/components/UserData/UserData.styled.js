@@ -45,7 +45,7 @@ export const Label = styled.label`
 `;
 export const ProfileField = styled(Field)`
   display: flex;
-  width: 255px;
+  width: 232px;
   padding: 4px 12px;
   align-items: center;
   border-radius: 20px;

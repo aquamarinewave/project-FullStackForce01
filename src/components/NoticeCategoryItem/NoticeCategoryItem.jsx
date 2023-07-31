@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import React, { useState } from 'react';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import {
   CategoriesContainer,
   CategoriesName,
@@ -7,53 +10,64 @@ import {
   DiscriptionList,
   DiscriptionItem,
   IconSvg,
-  IconHeart,
   IconConatiner,
   AddToFavoriteBtn,
   FavoriteBtnContainer,
+  BtnContainer,
   Img,
   TextContainer,
   Title,
   LearnMoreBtn,
   ContentContainer,
+  IconHeart,
+  IconDelete,
+  DeleteBtn,
+  InfoTitle,
+  InfoDesc,
+  Subtitle,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
-
+import favoriteOperations from '../../redux/favorite/favoriteOperations';
+import getNotice from '../../redux/favorite/favoriteSelector';
+import noticesOperations from 'redux/notices/operation';
 import authSelector from '../../redux/auth/authSelector';
-import { useSelector } from 'react-redux';
-import { fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite } from '../../services/api/modalNotice';
 
 const NoticeCategoryItem = ({ notices }) => {
+  const dispatch = useDispatch();
+  const favoriteNoticeStore = useSelector(getNotice);
+
+  console.log(favoriteNoticeStore);
+
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
+  const { categoryName } = useParams();
+
+  const [idPet, setIdPet] = useState('');
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
-  const [valueModalInfo, setValueModalInfo] = useState({});
-  const [userModalInfo, setUserModalInfo] = useState({});
+  const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
   const [isSelected, setIsSelected] = useState(() => {
     const saved = localStorage.getItem(`pet_${_id}`);
     const initialValue = JSON.parse(saved);
     return initialValue || false;
   });
-  const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
-  useEffect(() => {
-    async function fetchModalDetailPet() {
-      try {
-        const data = await fetchModalDetail(_id);
-        console.log({ ...data.notice });
-        setValueModalInfo({ ...data.notice });
-        setUserModalInfo({ ...data.user });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchModalDetailPet();
-  }, [_id]);
+  const onDelete = () => {
+    dispatch(noticesOperations.deleteUserNotice(_id));
+    setShowDeleteModal(showDeleteModal => !showDeleteModal);
+    setIdPet(_id);
+  };
 
   const openModal = () => {
+    dispatch(favoriteOperations.fetchModalDetails(_id));
     setShowModal(showModal => !showModal);
+  };
+
+  const openModalForDelete = () => {
+    setShowDeleteModal(showDeleteModal => !showDeleteModal);
   };
 
   const givenDate = new Date(birthday);
@@ -67,12 +81,17 @@ const NoticeCategoryItem = ({ notices }) => {
   };
 
   const handleAddToFavorite = () => {
+    const addToFavoriteValue = {
+      _id,
+      favoriteNoticeStore,
+    };
+
     if (isLoggedIn) {
-      if (isSelected) {
-        fetchDeleteToFavorite(_id);
+      if (!isSelected) {
+        dispatch(favoriteOperations.fetchAddToFavorite(addToFavoriteValue));
         setIsSelected(!isSelected);
       } else {
-        fetchAddToFavorite(_id, valueModalInfo);
+        dispatch(favoriteOperations.fetchDeleteToFavorite(_id));
         setIsSelected(!isSelected);
       }
     } else {
@@ -131,13 +150,24 @@ const NoticeCategoryItem = ({ notices }) => {
             <TextContainer>{sex}</TextContainer>
           </DiscriptionItem>
         </DiscriptionList>
-        <FavoriteBtnContainer>
-          <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-            <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
-              <use href={`${sprite}#icon-heart`}></use>
-            </IconHeart>
-          </AddToFavoriteBtn>
-        </FavoriteBtnContainer>
+        <BtnContainer>
+          <FavoriteBtnContainer>
+            <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
+              <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
+                <use href={`${sprite}#icon-heart`}></use>
+              </IconHeart>
+            </AddToFavoriteBtn>
+          </FavoriteBtnContainer>
+          {categoryName === 'own' && (
+            <FavoriteBtnContainer>
+              <DeleteBtn type="button" onClick={openModalForDelete}>
+                <IconDelete width={24} height={24}>
+                  <use href={`${sprite}#icon-trash-2`}></use>
+                </IconDelete>
+              </DeleteBtn>
+            </FavoriteBtnContainer>
+          )}
+        </BtnContainer>
       </NoticesItemThumb>
       <ContentContainer>
         <Title>{title}</Title>
@@ -148,15 +178,30 @@ const NoticeCategoryItem = ({ notices }) => {
       <ModalNotice
         showModal={showModal}
         setShowModal={setShowModal}
-        isModalOpenAttention={isModalOpenAttention}
-        setIsModalOpenAttention={setIsModalOpenAttention}
-        valueModalInfo={valueModalInfo}
-        userModalInfo={userModalInfo}
         handleAddToFavorite={handleAddToFavorite}
-        isSelected={isSelected}
+        idPetAd={_id}
+        favoriteNoticeStore={favoriteNoticeStore}
         isLoggedIn={isLoggedIn}
+        isModalOpenAttention={isModalOpenAttention}
         closeModalAttention={closeModalAttention}
+        isSelected = {isSelected}
       />
+      {showDeleteModal && (
+        <ModalApproveAction
+          isOpen={showDeleteModal}
+          onRequestClose={openModalForDelete}
+          onApprove={onDelete}
+          idCard={idPet}
+          btnIconColor={'var(--bg-color)'}
+          btnIconName={'icon-trash-2'}
+        >
+          <InfoTitle> Delete your pet?</InfoTitle>
+          <InfoDesc>
+            Are you sure you want to delete pet <Subtitle>{title}</Subtitle>?
+          </InfoDesc>
+          <InfoDesc>You can`t undo this action.</InfoDesc>
+        </ModalApproveAction>
+      )}
     </>
   );
 };

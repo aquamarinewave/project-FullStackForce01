@@ -2,7 +2,7 @@ const { RadioButton, RadioInput, ContainerRadioButton } = require('./FirstStageF
 
 const options = [
   {
-    value: 'your_pet',
+    value: 'my-pet',
     label: 'your pet',
   },
   {
@@ -19,7 +19,7 @@ const options = [
   },
 ];
 
-const FirstStageForm = ({ formik, currentRadioButton }) => {
+const FirstStageForm = ({ formik, handleOptionChange, currentRadioButton }) => {
   return (
     <ContainerRadioButton>
       {options.map(({ value, label }) => (
@@ -31,7 +31,7 @@ const FirstStageForm = ({ formik, currentRadioButton }) => {
             name="category"
             id={`option_${value}`}
             value={value}
-            onChange={formik.handleChange}
+            onChange={handleOptionChange}
           />
         </RadioButton>
       ))}
