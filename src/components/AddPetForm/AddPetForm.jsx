@@ -11,7 +11,15 @@ import SecondStageForm from './SecondStageForm/SecondStageForm';
 import ThirdStageForm from './ThirdStageForm/ThirdStageForm';
 import FormPetButton from './FormPetButton/FormPetButton';
 
-import { Form, TitleAddPetForm, NextStageForm, BoxStageForm, BoxButton, BoxFieldsForm } from './AddPetForm.styled';
+import {
+  Form,
+  TitleAddPetForm,
+  NextStageForm,
+  BoxStageForm,
+  BoxButton,
+  BoxFieldsForm,
+  ContainerForm,
+} from './AddPetForm.styled';
 
 const titleColorText = step => {
   switch (step) {
@@ -62,6 +70,7 @@ const AddPetForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [currentStage, setCurrentStage] = useState('first');
+  const [currentRadioButton, setCurrentRadioButton] = useState('your_pet');
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [previewImage, setPreviewImage] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -69,7 +78,7 @@ const AddPetForm = () => {
 
   const initialValues = {
     title: '',
-    category: 'your_pet',
+    category: currentRadioButton,
     avatar: '',
     name: '',
     birthday: '',
@@ -82,9 +91,13 @@ const AddPetForm = () => {
 
   useEffect(() => {
     if (submitSuccess) {
-      navigate(-1);
+      if (currentRadioButton === 'your_pet') {
+        navigate('/user');
+      } else if (currentRadioButton !== 'your_pet') {
+        navigate(`/notices/${currentRadioButton}`);
+      }
     }
-  }, [submitSuccess, navigate]);
+  }, [submitSuccess, currentRadioButton, navigate]);
 
   const handleNextStage = () => {
     if (currentStage === 'first') {
@@ -110,7 +123,7 @@ const AddPetForm = () => {
       avatar: selectedFile,
     };
     try {
-      if (values.category === 'your_pet') {
+      if (currentRadioButton === 'your_pet') {
         await dispatch(authOperations.addPetThunk(formData));
       } else {
         await dispatch(authOperations.addNoticeThunk(formData));
@@ -129,45 +142,56 @@ const AddPetForm = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={getValidationSchema(selectedFile)} onSubmit={handleSubmit}>
       {formik => {
+        const handleOptionChange = event => {
+          setCurrentRadioButton(event.target.value);
+          formik.handleChange(event);
+        };
         return (
-          <Form currentStage={currentStage} currentRadioButton={formik.values.category}>
-            <div>
-              <TitleAddPetForm currentStage={currentStage} currentRadioButton={formik.values.category}>
-                {currentStage !== 'first' ? titleText(formik.values.category) : 'Add pet'}{' '}
-              </TitleAddPetForm>
-              <BoxStageForm>
-                <NextStageForm current={currentStage}>Choose option</NextStageForm>
-                <NextStageForm title={titleColorText(currentStage)} current={currentStage}>
-                  Personal details
-                </NextStageForm>
-                <NextStageForm current={currentStage}>More info</NextStageForm>
-              </BoxStageForm>
-              <BoxFieldsForm>
-                {currentStage === 'first' && (
-                  <FirstStageForm currentRadioButton={formik.values.category} formik={formik} />
-                )}
-                {currentStage === 'second' && (
-                  <SecondStageForm currentRadioButton={formik.values.category} formik={formik} />
-                )}
-                {currentStage === 'third' && (
-                  <ThirdStageForm
-                    formik={formik}
-                    showPlaceholder={showPlaceholder}
-                    previewImage={previewImage}
-                    setPreviewImage={setPreviewImage}
-                    setShowPlaceholder={setShowPlaceholder}
-                    setSelectedFile={setSelectedFile}
-                  />
-                )}
-              </BoxFieldsForm>
-            </div>
-            <BoxButton>
-              <FormPetButton
-                currentStage={currentStage}
-                handleNextStage={handleNextStage}
-                handleCancelStage={handleCancelStage}
-              ></FormPetButton>
-            </BoxButton>
+          <Form>
+            <ContainerForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
+              <div>
+                <TitleAddPetForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
+                  {currentStage !== 'first' ? titleText(currentRadioButton) : 'Add pet'}{' '}
+                </TitleAddPetForm>
+                <BoxStageForm>
+                  <NextStageForm current={currentStage}>Choose option</NextStageForm>
+                  <NextStageForm title={titleColorText(currentStage)} current={currentStage}>
+                    Personal details
+                  </NextStageForm>
+                  <NextStageForm current={currentStage}>More info</NextStageForm>
+                </BoxStageForm>
+                <BoxFieldsForm>
+                  {currentStage === 'first' && (
+                    <FirstStageForm
+                      currentRadioButton={currentRadioButton}
+                      handleOptionChange={handleOptionChange}
+                      formik={formik}
+                    />
+                  )}
+                  {currentStage === 'second' && (
+                    <SecondStageForm currentRadioButton={currentRadioButton} formik={formik} />
+                  )}
+                  {currentStage === 'third' && (
+                    <ThirdStageForm
+                      formik={formik}
+                      currentRadioButton={currentRadioButton}
+                      showPlaceholder={showPlaceholder}
+                      previewImage={previewImage}
+                      setPreviewImage={setPreviewImage}
+                      setShowPlaceholder={setShowPlaceholder}
+                      setSelectedFile={setSelectedFile}
+                    />
+                  )}
+                </BoxFieldsForm>
+              </div>
+              <BoxButton>
+                <FormPetButton
+                  currentStage={currentStage}
+                  handleNextStage={handleNextStage}
+                  handleCancelStage={handleCancelStage}
+                ></FormPetButton>
+              </BoxButton>
+            </ContainerForm>
           </Form>
         );
       }}
