@@ -16,12 +16,13 @@ const favoriteSlice = createSlice({
 
     // [favoriteOperations.fetchAddToFavorite.fulfilled](state, action) {
     //   state.error = null;
-    //   state.select = true;
+    //   state.favoriteItems = action.payload.favoriteNoticeStore;
     // },
 
     // [favoriteOperations.fetchDeleteToFavorite.fulfilled](state, action) {
     //   state.error = null;
-    //   state.select = false;
+    //   const index = state.items.findIndex(({notice}) => notice._id === action.payload._id);      
+    //   state.items.splice(index, 1); 
     // },
   },
 });

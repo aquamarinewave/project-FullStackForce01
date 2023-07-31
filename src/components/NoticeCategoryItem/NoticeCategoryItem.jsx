@@ -28,13 +28,15 @@ import {
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 import favoriteOperations from '../../redux/favorite/favoriteOperations';
-import { getNotice } from '../../redux/favorite/favoriteSelector';
+import getNotice from '../../redux/favorite/favoriteSelector';
 import noticesOperations from 'redux/notices/operation';
 import authSelector from '../../redux/auth/authSelector';
 
 const NoticeCategoryItem = ({ notices }) => {
   const dispatch = useDispatch();
   const favoriteNoticeStore = useSelector(getNotice);
+
+  console.log(favoriteNoticeStore);
 
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
   const { categoryName } = useParams();
