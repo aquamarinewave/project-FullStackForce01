@@ -1,13 +1,14 @@
 import NewsItem from '../NewsItem/NewsItem';
+import { Item, List } from './NewsList.styled';
 
 const NewsList = ({ news }) => {
   return (
     <div>
       {news && news.length && (
-        <ul>
+        <List>
           {news.map(({ _id, title, url, imgUrl, text, date }) => {
             return (
-              <li key={_id}>
+              <Item key={_id}>
                 <NewsItem
                   responseByNews={{
                     title,
@@ -17,10 +18,10 @@ const NewsList = ({ news }) => {
                     date,
                   }}
                 />
-              </li>
+              </Item>
             );
           })}
-        </ul>
+        </List>
       )}
     </div>
   );

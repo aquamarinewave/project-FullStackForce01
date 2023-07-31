@@ -11,12 +11,25 @@ export const ErrorText = styled.p`
   font-weight: 400;
   line-height: normal;
   margin-left: 30px;
-  
 
   @media screen and (min-width: 768px) {
     margin-left: 92px;
   }
   @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const ValidPassword = styled.p`
+  color: var(--green, #00c3ad);
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 30px;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 92px;
   }
 `;
 
@@ -75,7 +88,7 @@ export const AuthFieldWrap = styled.div`
 
 export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
   display: flex;
-  
+
   width: 256px;
   padding: 12px 16px;
   align-items: center;
@@ -92,7 +105,7 @@ export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
   @media screen and (min-width: 768px) {
     width: 458px;
   }
-  
+
   &:focus,
   &:active {
     border: 1px solid var(--dark-blue);
@@ -123,8 +136,6 @@ export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
         border: 1px solid red;
         outline: none;
     `}
-
-  
 `;
 
 export const AuthShowPassword = styled(AuthFormStyledHelpers.FilteredPropsButtonShowPassword)`
@@ -231,11 +242,13 @@ export const AuthRegisterButton = styled.button`
   line-height: normal;
   letter-spacing: 0.8px;
   margin-top: 40px;
-  &:focus,
   &:hover {
     cursor: pointer;
+    transform: scale(1.02);
+
+    /* opacity: 0.6; */
   }
-  
+
   @media screen and (min-width: 768px) {
     width: 458px;
     margin-top: 52px;
@@ -264,11 +277,12 @@ export const AuthLoginButton = styled.button`
   line-height: normal;
   letter-spacing: 0.8px;
   margin-top: 110px;
-  &:focus,
+
   &:hover {
     cursor: pointer;
+    transform: scale(1.02);
   }
-  
+
   @media screen and (min-width: 768px) {
     width: 458px;
   }

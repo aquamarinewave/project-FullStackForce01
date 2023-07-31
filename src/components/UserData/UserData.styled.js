@@ -48,7 +48,6 @@ export const ProfileField = styled(Field)`
   width: 255px;
   padding: 4px 12px;
   align-items: center;
-  gap: 191px;
   border-radius: 20px;
   border: 1px solid var(--unnamed, #54adff);
   margin-bottom: 10px;

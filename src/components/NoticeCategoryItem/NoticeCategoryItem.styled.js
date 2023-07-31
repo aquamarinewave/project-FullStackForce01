@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const heartActive = {
-  lightblue: "var(--lightblue)",
-  darkblue: "var(--dark-blue)",
+  lightblue: 'var(--lightblue)',
+  darkblue: 'var(--dark-blue)',
 };
 
 const NoticesItemThumb = styled.div`
@@ -72,20 +71,33 @@ const IconSvg = styled.svg`
   stroke: var(--dark-blue);
 `;
 
-const IconHeart = styled.svg`
-  fill:${(props) => (props.isSelected && props.isLoggedIn ? heartActive.darkblue : heartActive.lightblue)};
+const IconDelete = styled.svg`
+  fill: var(--lightblue);
   stroke: var(--dark-blue);
 `;
 
-const FavoriteBtnContainer = styled.div`
+const IconHeart = styled.svg`
+  fill: ${props => (props.isSelected && props.isLoggedIn ? heartActive.darkblue : heartActive.lightblue)};
+  stroke: var(--dark-blue);
+`;
+
+const BtnContainer = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border-radius: 50%;
+  top: 12px;
+  right: 12px;
+`;
+
+const FavoriteBtnContainer = styled.div`
   display: flex;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: var(--lightblue);
-  top: 12px;
-  right: 12px;
 `;
 
 const AddToFavoriteBtn = styled.button`
@@ -98,40 +110,56 @@ const AddToFavoriteBtn = styled.button`
   border-radius: 50%;
   background-color: var(--lightblue);
   padding: 0;
-  &:hover ${IconSvg}, :focus ${IconSvg} {
+  &:hover ${IconHeart}, :focus ${IconHeart} {
     fill: var(--dark-blue);
   }
 `;
 
-const AddPet = styled(Link)`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50%;
-  background: var(--dark-blue);
-  border: 2px solid var(--dark-blue);
-  color: var(--container-bg);
+const DeleteBtn = styled.button`
   cursor: pointer;
-  display: inline-flex;
-  width: 80px;
-  height: 80px;
-  padding: 17px 16px;
-  gap: 4px;
-  font-size: 12px;
-  right: 0;
-  bottom: 60px;
-
-  &:hover,
-  &:focus {
-    background: var(--gradient-blue-bg);
-    border: var(--gradient-blue-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: 100%;
+  border-radius: 50%;
+  background-color: var(--lightblue);
+  padding: 0;
+  &:hover ${IconDelete}, :focus ${IconDelete} {
+    fill: var(--main-light-color);
+    stroke: var(--dark-blue);
   }
 `;
 
-const IconPlusSmall = styled.svg`
-  stroke: var(--main-light-color);
-`;
+// const AddPet = styled(Link)`
+//   position: absolute;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   border-radius: 50%;
+//   background: var(--dark-blue);
+//   border: 2px solid var(--dark-blue);
+//   color: var(--container-bg);
+//   cursor: pointer;
+//   display: inline-flex;
+//   width: 80px;
+//   height: 80px;
+//   padding: 17px 16px;
+//   gap: 4px;
+//   font-size: 12px;
+//   right: 0;
+//   bottom: 60px;
+
+//   &:hover,
+//   &:focus {
+//     background: var(--gradient-blue-bg);
+//     border: var(--gradient-blue-bg);
+//   }
+// `;
+
+// const IconPlusSmall = styled.svg`
+//   stroke: var(--main-light-color);
+// `;
 const ContentContainer = styled.div`
   padding: 0 16px;
 `;
@@ -170,6 +198,66 @@ const LearnMoreBtn = styled.button`
   }
 `;
 
+const InfoTitle = styled.h3`
+  color: var(--main-color);
+
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.96px;
+
+  margin-bottom: 14px;
+
+  @media screen and (min-width: 768px) {
+    color: #000;
+    font-size: 28px;
+    letter-spacing: -0.28px;
+
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+const InfoDesc = styled.p`
+  width: 240px;
+
+  color: var(--main-color);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.14px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    width: 393px;
+    color: #000;
+
+    font-size: 16px;
+    letter-spacing: -0.16px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+const Subtitle = styled.span`
+  font-weight: 700;
+
+  @media screen and (min-width: 768px) {
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
 export {
   NoticesItemThumb,
   Img,
@@ -180,13 +268,17 @@ export {
   DiscriptionItem,
   TextContainer,
   IconSvg,
+  IconDelete,
   IconHeart,
   IconConatiner,
+  BtnContainer,
   FavoriteBtnContainer,
   AddToFavoriteBtn,
-  AddPet,
-  IconPlusSmall,
+  DeleteBtn,
   ContentContainer,
   Title,
   LearnMoreBtn,
+  InfoTitle,
+  InfoDesc,
+  Subtitle,
 };
