@@ -129,7 +129,6 @@ const AddPetForm = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={getValidationSchema(selectedFile)} onSubmit={handleSubmit}>
       {formik => {
-        console.log(formik.errors, formik.values);
         return (
           <Form currentStage={currentStage} currentRadioButton={formik.values.category}>
             <div>

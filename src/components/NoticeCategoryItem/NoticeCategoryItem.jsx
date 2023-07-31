@@ -133,7 +133,7 @@ const NoticeCategoryItem = ({ notices }) => {
         </DiscriptionList>
         <FavoriteBtnContainer>
           <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-            <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn ={isLoggedIn}>
+            <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
               <use href={`${sprite}#icon-heart`}></use>
             </IconHeart>
           </AddToFavoriteBtn>
