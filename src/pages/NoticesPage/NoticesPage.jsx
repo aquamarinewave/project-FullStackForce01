@@ -8,9 +8,11 @@ import noticesOperations from 'redux/notices/operation';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
-import { AddPetButtonBox, NoticesPageContainer, Title } from './NoticesPage.styled';
+import { ButtonsBox, NoticesPageContainer, Title } from './NoticesPage.styled';
 
 import AddPetButton from 'components/AddPetButton/AddPetButton';
+import AddPetButtonSmall from 'components/AddPetButton/AddPetButtonSmall';
+import { useWindowWidth } from '@react-hook/window-size';
 
 const statusList = {
   REJECTED: 1,
@@ -131,16 +133,17 @@ const NoticesPage = () => {
       controller.abort();
     };
   };
-
+  const width = useWindowWidth();
   return (
     <NoticesPageContainer>
       <Title>Find your favorite pet</Title>
 
       <NoticesSearch pattern={noticesStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
-      <NoticesCategoriesNav />
-      <AddPetButtonBox>
-        <AddPetButton></AddPetButton>
-      </AddPetButtonBox>
+
+      <ButtonsBox>
+        <NoticesCategoriesNav />
+        {width >= 768 && <AddPetButton />} {width < 768 && <AddPetButtonSmall />}
+      </ButtonsBox>
 
       {showResults(status)}
     </NoticesPageContainer>
