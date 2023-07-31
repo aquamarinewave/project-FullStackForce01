@@ -98,8 +98,6 @@ const FavoriteBtnContainer = styled.div`
   height: 40px;
   border-radius: 50%;
   background-color: var(--lightblue);
-  top: 12px;
-  right: 12px;
 `;
 
 const AddToFavoriteBtn = styled.button`
@@ -128,7 +126,8 @@ const DeleteBtn = styled.button`
   background-color: var(--lightblue);
   padding: 0;
   &:hover ${IconDelete}, :focus ${IconDelete} {
-    fill: var(--dark-blue);
+    fill: var(--main-light-color);
+    stroke: var(--dark-blue);
   }
 `;
 
@@ -199,6 +198,66 @@ const LearnMoreBtn = styled.button`
   }
 `;
 
+const InfoTitle = styled.h3`
+  color: var(--main-color);
+
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.96px;
+
+  margin-bottom: 14px;
+
+  @media screen and (min-width: 768px) {
+    color: #000;
+    font-size: 28px;
+    letter-spacing: -0.28px;
+
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+const InfoDesc = styled.p`
+  width: 240px;
+
+  color: var(--main-color);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.14px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    width: 393px;
+    color: #000;
+
+    font-size: 16px;
+    letter-spacing: -0.16px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+const Subtitle = styled.span`
+  font-weight: 700;
+
+  @media screen and (min-width: 768px) {
+    font-weight: 600;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
 export {
   NoticesItemThumb,
   Img,
@@ -219,4 +278,7 @@ export {
   ContentContainer,
   Title,
   LearnMoreBtn,
+  InfoTitle,
+  InfoDesc,
+  Subtitle,
 };

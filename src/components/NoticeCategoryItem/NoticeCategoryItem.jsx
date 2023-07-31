@@ -1,5 +1,8 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import React, { useState, useEffect } from 'react';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import {
   CategoriesContainer,
   CategoriesName,
@@ -16,18 +19,25 @@ import {
   Title,
   LearnMoreBtn,
   ContentContainer,
-  IconHearts,
+  IconHeart,
   IconDelete,
   DeleteBtn,
+  InfoTitle,
+  InfoDesc,
+  Subtitle,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 
 import authSelector from '../../redux/auth/authSelector';
-import { useSelector } from 'react-redux';
 import { fetchModalDetail, fetchAddToFavorite, fetchDeleteToFavorite } from '../../services/api/modalNotice';
+import noticesOperations from 'redux/notices/operation';
 
 const NoticeCategoryItem = ({ notices }) => {
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
+  const { categoryName } = useParams();
+
+  const [idPet, setIdPet] = useState('');
+  const dispatch = useDispatch(_id);
 
   const [showModal, setShowModal] = useState(false);
   const [valueModalInfo, setValueModalInfo] = useState({});
@@ -54,7 +64,17 @@ const NoticeCategoryItem = ({ notices }) => {
     fetchModalDetailPet();
   }, [_id]);
 
+  const onDelete = () => {
+    dispatch(noticesOperations.deleteUserNotice(_id));
+    setShowModal(showModal => !showModal);
+    setIdPet(_id);
+  };
+
   const openModal = () => {
+    setShowModal(showModal => !showModal);
+  };
+
+  const openModalForDelete = () => {
     setShowModal(showModal => !showModal);
   };
 
@@ -136,18 +156,20 @@ const NoticeCategoryItem = ({ notices }) => {
         <BtnContainer>
           <FavoriteBtnContainer>
             <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-              <IconHearts width={24} height={24} isSelected={isSelected}>
+              <IconHeart width={24} height={24} isSelected={isSelected}>
                 <use href={`${sprite}#icon-heart`}></use>
-              </IconHearts>
+              </IconHeart>
             </AddToFavoriteBtn>
           </FavoriteBtnContainer>
-          <FavoriteBtnContainer>
-            <DeleteBtn type="button">
-              <IconDelete width={24} height={24}>
-                <use href={`${sprite}#icon-trash-2`}></use>
-              </IconDelete>
-            </DeleteBtn>
-          </FavoriteBtnContainer>
+          {categoryName === 'own' && (
+            <FavoriteBtnContainer>
+              <DeleteBtn type="button" onClick={openModal}>
+                <IconDelete width={24} height={24}>
+                  <use href={`${sprite}#icon-trash-2`}></use>
+                </IconDelete>
+              </DeleteBtn>
+            </FavoriteBtnContainer>
+          )}
         </BtnContainer>
       </NoticesItemThumb>
       <ContentContainer>
@@ -156,7 +178,7 @@ const NoticeCategoryItem = ({ notices }) => {
           Learn more
         </LearnMoreBtn>
       </ContentContainer>
-      <ModalNotice
+      {/* <ModalNotice
         showModal={showModal}
         setShowModal={setShowModal}
         isModalOpenAttention={isModalOpenAttention}
@@ -167,7 +189,23 @@ const NoticeCategoryItem = ({ notices }) => {
         isSelected={isSelected}
         isLoggedIn={isLoggedIn}
         closeModalAttention={closeModalAttention}
-      />
+      /> */}
+      {showModal && (
+        <ModalApproveAction
+          isOpen={showModal}
+          onRequestClose={openModal}
+          onApprove={onDelete}
+          idCard={idPet}
+          btnIconColor={'var(--bg-color)'}
+          btnIconName={'icon-trash-2'}
+        >
+          <InfoTitle> Delete your pet?</InfoTitle>
+          <InfoDesc>
+            Are you sure you want to delete pet <Subtitle>{title}</Subtitle>?
+          </InfoDesc>
+          <InfoDesc>You can`t undo this action.</InfoDesc>
+        </ModalApproveAction>
+      )}
     </>
   );
 };

@@ -6,22 +6,30 @@ const noticesSlice = createSlice({
   initialState: {
     items: [],
     error: null,
-    page: 1,
     pattern: '',
     categoryId: null,
+    currentPage: 1,
+    perPage: 12,
+    totalPages: 0,
   },
   extraReducers: {
     [noticesOperations.fetchNoticesForAll.fulfilled](state, action) {
       state.error = null;
-      state.items = action.payload.notices;
+      const { notices, totalCount } = action.payload;
+      state.items = notices.reverse();
+      state.totalPages = Math.ceil(totalCount / state.perPage);
     },
     [noticesOperations.fetchNoticesOwn.fulfilled](state, action) {
       state.error = null;
-      state.items = action.payload.notices;
+      const { notices, totalCount } = action.payload;
+      state.items = notices.reverse();
+      state.totalPages = Math.ceil(totalCount / state.perPage);
     },
     [noticesOperations.fetchNoticesFavorites.fulfilled](state, action) {
       state.error = null;
-      state.items = action.payload.favorites;
+      const { favorites, totalCount } = action.payload;
+      state.items = favorites.reverse();
+      state.totalPages = Math.ceil(totalCount / state.perPage);
     },
     [noticesOperations.deleteUserNotice.fulfilled](state, action) {
       const index = state.items.findIndex(index => index.id !== action.payload.id);
@@ -36,9 +44,9 @@ const noticesSlice = createSlice({
       state.error = null;
       state.categoryId = action.payload;
     },
-    [noticesOperations.setPage.fulfilled](state, action) {
+    [noticesOperations.setCurrentPage.fulfilled](state, action) {
       state.error = null;
-      state.page = action.payload;
+      state.setCurrentPage = action.payload;
     },
   },
 });
