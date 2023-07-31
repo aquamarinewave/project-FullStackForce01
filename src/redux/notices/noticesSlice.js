@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import noticesOperations from './operation';
 
 const noticesSlice = createSlice({

@@ -4,7 +4,7 @@ let controller = new AbortController();
 
 const BASE_URL = 'https://fullstackforce.onrender.com/api/notices/';
 
-export async function fetchModalDetail(id) {
+export async function fetchModalDetails(id) {
     const response = await axios.get((`${BASE_URL}${id}`), {
         signal: controller.signal
     });
