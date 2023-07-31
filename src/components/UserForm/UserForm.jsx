@@ -269,9 +269,7 @@ export const UserForm = ({ toggleModal }) => {
             </Container>
 
             {isUpdateForm ? (
-              <SubmitBtn type="submit" disabled={dirty || editAvatar}>
-                Save
-              </SubmitBtn>
+              <SubmitBtn type="submit">Save</SubmitBtn>
             ) : (
               <SubmitBtn type="submit" disabled={!dirty}>
                 Save
