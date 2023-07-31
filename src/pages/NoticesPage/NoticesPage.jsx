@@ -14,7 +14,6 @@ import AddPetButton from 'components/AddPetButton/AddPetButton';
 import AddPetButtonSmall from 'components/AddPetButton/AddPetButtonSmall';
 
 import { ButtonsBox, NoticesPageContainer, Title } from './NoticesPage.styled';
-import { AddPetButtonBox, NoticesPageContainer, Title } from './NoticesPage.styled';
 
 const statusList = {
   REJECTED: 1,
@@ -183,9 +182,8 @@ const NoticesPage = () => {
       controller.abort();
     };
   };
-      
-  const width = useWindowWidth();
 
+  const width = useWindowWidth();
 
   const handleSwitchPage = useCallback(
     (_, currentPage) => {
