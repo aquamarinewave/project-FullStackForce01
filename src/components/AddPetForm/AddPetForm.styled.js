@@ -12,19 +12,6 @@ const titleColorText = step => {
   }
 };
 
-const titleText = category => {
-  switch (category) {
-    case 'sell':
-      return 'Add pet for sale';
-    case 'lost-found':
-      return 'Add lost pet';
-    case 'for-free':
-      return 'Add a pet in good hands';
-    default:
-      return 'Add pet';
-  }
-};
-
 export const NextStageForm = styled.h3`
   position: relative;
   font-size: 10px;
