@@ -8,11 +8,13 @@ const WorkingTimeToday = styled.button`
   font-weight: 600;
   line-height: normal;
   border: none;
-  background-color: #fff;
+  background-color: var(--main-light-color);
   text-align: left;
-  padding: 0; 
+  padding: 0;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
   &:hover {
-    color: #54adff;
+    color: var(--accent-color);
   }
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -20,8 +22,6 @@ const WorkingTimeToday = styled.button`
   @media screen and (min-width: 1280px) {
     font-size: 16px;
   }
-  
-
 `;
 
 const InfoTitle = styled.p`
@@ -67,10 +67,15 @@ const EmptyBlock = styled.div`
 const ModalContent = styled.div`
   position: absolute;
   width: 126px;
-  border: 1px solid #54adff;
-  background-color: #fff;
+  border: 1px solid var(--dark-blue);
+  background-color: var(--main-light-color);
   padding: 12px;
   border-radius: 5px;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+  &:hover {
+    border: 1px solid var(--accent-color);
+  }
 `;
 
 const TableDayWeek = styled.div`

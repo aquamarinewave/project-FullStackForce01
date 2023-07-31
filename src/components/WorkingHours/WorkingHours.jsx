@@ -31,7 +31,7 @@ const WorkingHours = props => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleButtonClick = () => {
-    setModalOpen(true);
+    setModalOpen(prevState => !prevState);
   };
 
   const closeModal = () => {

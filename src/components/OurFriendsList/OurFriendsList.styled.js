@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.ul`
-  liststyle: none;
+  list-style: none;
   width: 280px;
   padding-bottom: 75px;
   @media screen and (min-width: 768px) {
