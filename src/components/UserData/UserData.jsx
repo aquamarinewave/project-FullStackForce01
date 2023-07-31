@@ -69,7 +69,7 @@ const UserData = () => {
               </WrapperField>
               <WrapperField>
                 <Label htmlFor="date"> Birthday:</Label>
-                <ProfileField type="numder" name="birthday" placeholder={initialValues.birthday} readOnly={true} />
+                <ProfileField type="date" name="birthday" placeholder={initialValues.birthday} readOnly={true} />
               </WrapperField>
               <WrapperField>
                 <Label htmlFor="phone"> Phone:</Label>

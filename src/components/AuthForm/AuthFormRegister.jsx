@@ -16,13 +16,12 @@ import {
   AuthIconFailed,
   AuthIconsValidation,
   AuthIconCheck,
+  ValidPassword,
 } from './AuthForm.styled';
-import { TitleModalCongrats, TextModalCongrats } from 'components/ModalCongrats/ModalCongrats.styled';
 
 import authOperations from '../../redux/auth/operations';
 import { useState } from 'react';
 import sprite from '../../images/icons.svg';
-import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
 import { useDispatch } from 'react-redux';
 
 const userRegisterSchema = object({
@@ -46,26 +45,15 @@ const AuthFormRegister = props => {
   const dispatch = useDispatch();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const toggleModal = values => {
-    setIsModalOpen(prevState => !prevState);
-    setEmail(values.email);
-    setName(values.name);
-    setPassword(values.password);
-  };
-
-  const handleSubmitRegister = () => {
+  const handleSubmitRegister = ({ name, email, password }) => {
     dispatch(authOperations.registrationUser({ name, email, password }));
   };
 
   return (
     <ContainerAuth>
       <AuthTitle>Registration</AuthTitle>
-      <Formik initialValues={initialValues} validationSchema={userRegisterSchema} onSubmit={toggleModal}>
+      <Formik initialValues={initialValues} validationSchema={userRegisterSchema} onSubmit={handleSubmitRegister}>
         {({ errors, touched, handleChange, handleBlur, values, handleSubmit }) => {
           return (
             <AuthForm onSubmit={handleSubmit}>
@@ -166,7 +154,7 @@ const AuthFormRegister = props => {
                     error={touched.password && errors.password}
                   >
                     <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                      <use href={`${sprite}#icon-eye-closed`}></use>
+                      <use href={`${sprite}#icon-eye-open`}></use>
                     </AuthIconShowPassword>
                   </AuthShowPassword>
                 ) : (
@@ -177,11 +165,14 @@ const AuthFormRegister = props => {
                     error={touched.password && errors.password}
                   >
                     <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                      <use href={`${sprite}#icon-eye-open`}></use>
+                      <use href={`${sprite}#icon-eye-closed`}></use>
                     </AuthIconShowPassword>
                   </AuthShowPassword>
                 )}
               </AuthFieldWrap>
+              {touched.password && !errors.password && !isShowPassword && (
+                <ValidPassword>Password is secure</ValidPassword>
+              )}
               <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
 
               <AuthFieldWrap>
@@ -219,7 +210,7 @@ const AuthFormRegister = props => {
                     error={touched.password && errors.password}
                   >
                     <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                      <use href={`${sprite}#icon-eye-closed`}></use>
+                      <use href={`${sprite}#icon-eye-open`}></use>
                     </AuthIconShowPassword>
                   </AuthShowConfirmPassword>
                 ) : (
@@ -230,7 +221,7 @@ const AuthFormRegister = props => {
                     error={touched.password && errors.password}
                   >
                     <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                      <use href={`${sprite}#icon-eye-open`}></use>
+                      <use href={`${sprite}#icon-eye-closed`}></use>
                     </AuthIconShowPassword>
                   </AuthShowConfirmPassword>
                 )}
@@ -244,17 +235,6 @@ const AuthFormRegister = props => {
           );
         }}
       </Formik>
-      {isModalOpen && (
-        <ModalCongrats
-          isOpen={isModalOpen}
-          toggleModal={toggleModal}
-          onApprove={handleSubmitRegister}
-          onRequestClose={toggleModal}
-        >
-          <TitleModalCongrats>Congrats!</TitleModalCongrats>
-          <TextModalCongrats>Your registration is success</TextModalCongrats>
-        </ModalCongrats>
-      )}
     </ContainerAuth>
   );
 };

@@ -19,7 +19,7 @@ const options = [
   },
 ];
 
-const FirstStageForm = ({ handleOptionChange, currentRadioButton }) => {
+const FirstStageForm = ({ formik, currentRadioButton }) => {
   return (
     <ContainerRadioButton>
       {options.map(({ value, label }) => (
@@ -31,7 +31,7 @@ const FirstStageForm = ({ handleOptionChange, currentRadioButton }) => {
             name="category"
             id={`option_${value}`}
             value={value}
-            onChange={handleOptionChange}
+            onChange={formik.handleChange}
           />
         </RadioButton>
       ))}
