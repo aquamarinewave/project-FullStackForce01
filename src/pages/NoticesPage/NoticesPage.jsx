@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useWindowWidth } from '@react-hook/window-size';
 import noticesSelector from 'redux/notices/noticesSelector';
 import authSelector from 'redux/auth/authSelector';
 import noticesOperations from 'redux/notices/operation';
@@ -8,10 +9,12 @@ import noticesOperations from 'redux/notices/operation';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
-import { AddPetButtonBox, NoticesPageContainer, Title } from './NoticesPage.styled';
 import Pagination from '../../components/Pagination/Pagination';
-
 import AddPetButton from 'components/AddPetButton/AddPetButton';
+import AddPetButtonSmall from 'components/AddPetButton/AddPetButtonSmall';
+
+import { ButtonsBox, NoticesPageContainer, Title } from './NoticesPage.styled';
+import { AddPetButtonBox, NoticesPageContainer, Title } from './NoticesPage.styled';
 
 const statusList = {
   REJECTED: 1,
@@ -180,6 +183,9 @@ const NoticesPage = () => {
       controller.abort();
     };
   };
+      
+  const width = useWindowWidth();
+
 
   const handleSwitchPage = useCallback(
     (_, currentPage) => {
@@ -244,10 +250,11 @@ const NoticesPage = () => {
       <Title>Find your favorite pet</Title>
 
       <NoticesSearch pattern={noticesStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
-      <NoticesCategoriesNav />
-      <AddPetButtonBox>
-        <AddPetButton></AddPetButton>
-      </AddPetButtonBox>
+
+      <ButtonsBox>
+        <NoticesCategoriesNav />
+        {width >= 768 && <AddPetButton />} {width < 768 && <AddPetButtonSmall />}
+      </ButtonsBox>
 
       {showResults(status)}
       {showPagination()}

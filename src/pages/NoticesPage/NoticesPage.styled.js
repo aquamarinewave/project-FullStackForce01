@@ -25,10 +25,9 @@ const Title = styled.h2`
     font-size: 48px;
   }
 `;
-const AddPetButtonBox = styled.div`
-  position: absolute;
-  top: 170px;
-  right: 0px;
+const ButtonsBox = styled.div`
+  display: flex;
+  align-items: baseline;
 `;
 
-export { NoticesPageContainer, Title, AddPetButtonBox };
+export { NoticesPageContainer, Title, ButtonsBox };
