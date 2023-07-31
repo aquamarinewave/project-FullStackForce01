@@ -58,26 +58,24 @@ const WorkingHours = props => {
 
   return (
     <div>
-      <WorkingTimeToday onClick={handleButtonClick}>    
-        
-        <InfoTitle>Time:</InfoTitle>
-        {(!daysWorkingInWeek || daysWorkingInWeek.length === 0) ?
-          (<EmptyBlock></EmptyBlock>) : (
-        currentDay === 0 && daysWorkingInWeek[DayIsSunday]) ? (
-          daysWorkingInWeek[DayIsSunday].isOpen ? (
-            <InfoLink>
-              {daysWorkingInWeek[DayIsSunday].from} - {daysWorkingInWeek[DayIsSunday].to}
+      <InfoTitle>Time:</InfoTitle>
+      <WorkingTimeToday>
+        {!daysWorkingInWeek || daysWorkingInWeek.length === 0 ? (
+          <EmptyBlock>-</EmptyBlock>
+        ) : currentDay !== 0 && daysWorkingInWeek[currentDay] ? (
+          daysWorkingInWeek[currentDay].isOpen ? (
+            <InfoLink onClick={handleButtonClick}>
+              {daysWorkingInWeek[currentDay-1].from} - {daysWorkingInWeek[currentDay-1].to}
             </InfoLink>
           ) : (
-            <InfoLink>closed today</InfoLink>
+            <InfoLink onClick={handleButtonClick}>closed today</InfoLink>
           )
-        ):(
-          <InfoLink>
-            {daysWorkingInWeek[DayIsSunday - 1].from} - {daysWorkingInWeek[DayIsSunday - 1].to}
+        ) : (
+          <InfoLink onClick={handleButtonClick}>
+            {daysWorkingInWeek[DayIsSunday].from} - {daysWorkingInWeek[DayIsSunday].to}
           </InfoLink>
-          )}
-        
-        </WorkingTimeToday>
+        )}
+      </WorkingTimeToday>
 
       {isModalOpen && (
         <ModalContent onClick={closeModal}>

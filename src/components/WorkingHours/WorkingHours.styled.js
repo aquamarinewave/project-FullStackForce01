@@ -1,7 +1,7 @@
 
 import styled from 'styled-components';
 
-const WorkingTimeToday = styled.button`
+export const WorkingTimeToday = styled.div`
   position: relative;
   font-size: 12px;
   font-style: normal;
@@ -24,7 +24,7 @@ const WorkingTimeToday = styled.button`
   }
 `;
 
-const InfoTitle = styled.p`
+export const InfoTitle = styled.p`
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -37,7 +37,7 @@ const InfoTitle = styled.p`
   }
 `;
 
-const InfoLink = styled.div`
+export const InfoLink = styled.div`
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -52,8 +52,12 @@ const InfoLink = styled.div`
   }
 `;
 
-const EmptyBlock = styled.div`
+export const EmptyBlock = styled.div`
   height: 17px;
+  cursor: auto;
+  
+    color: var(--main-color);
+
   @media screen and (min-width: 768px) {
     height: 19px;
     width: 173px;
@@ -64,7 +68,19 @@ const EmptyBlock = styled.div`
   }
 `;
 
-const ModalContent = styled.div`
+export const ModalWeek = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalContent = styled.div`
   position: absolute;
   width: 126px;
   border: 1px solid var(--dark-blue);
@@ -78,7 +94,7 @@ const ModalContent = styled.div`
   }
 `;
 
-const TableDayWeek = styled.div`
+export const TableDayWeek = styled.div`
   display: inline-block;
   width: 19px;
   font-size: 12px;
@@ -88,7 +104,7 @@ const TableDayWeek = styled.div`
   margin-right: 9px;  
 `;
 
-const TableDayTime = styled.div`
+export const TableDayTime = styled.div`
   display: inline-block;
   width: 72px;
   font-size: 12px;
@@ -97,5 +113,3 @@ const TableDayTime = styled.div`
   line-height: normal;
 `;
 
-
-export { ModalContent, WorkingTimeToday, InfoTitle, InfoLink, EmptyBlock, TableDayWeek, TableDayTime };

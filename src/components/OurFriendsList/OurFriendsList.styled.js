@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.ul`
+export const Wrapper = styled.ul`
   list-style: none;
   width: 280px;
   padding-bottom: 75px;
@@ -17,4 +17,3 @@ const Wrapper = styled.ul`
   }
 `;
 
-export { Wrapper };

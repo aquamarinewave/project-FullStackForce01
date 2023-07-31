@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FriendsItemThumb = styled.div`
+export const FriendsItemThumb = styled.div`
   position: relative;
   width: 280px;
   height: auto;
@@ -20,7 +20,7 @@ const FriendsItemThumb = styled.div`
   }
 `;
 
-const Title = styled.a`
+export const Title = styled.a`
   display: block;
   color: var(--dark-blue);
   text-align: center;
@@ -41,14 +41,7 @@ const Title = styled.a`
   }
 `;
 
-const Info = styled.div`
-  transition: all ease-in-out 0.2s;
-  &:hover {
-    color: var(--accent-color);
-  }
-`;
-
-const InfoItemFriend = styled.div`
+export const InfoItemFriend = styled.div`
   display: flex;
   gap: 12px;
   @media screen and (min-width: 1280px) {
@@ -56,7 +49,7 @@ const InfoItemFriend = styled.div`
   }
 `;
 
-const LogoDiv = styled.div`
+export const LogoDiv = styled.div`
   width: 100px;
   @media screen and (min-width: 768px) {
     width: 124px;
@@ -67,7 +60,7 @@ const LogoDiv = styled.div`
   }
 `;
 
-const Logo = styled.img`
+export const Logo = styled.img`
   width: 100%;
   object-fit: contain;
   }
@@ -76,14 +69,18 @@ const Logo = styled.img`
   }
 `;
 
-const InfoBlock = styled.div`
+export const InfoBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
 `;
 
-const EmptyBlock = styled.div`
+export const EmptyBlock = styled.div`
   height: 17px;
+  cursor: auto;
+  &:hover {
+    color: var(--main-color);
+  }
   @media screen and (min-width: 768px) {
     height: 19px;
     width: 173px;
@@ -94,7 +91,7 @@ const EmptyBlock = styled.div`
   }
 `;
 
-const EmptyBlockAddress = styled.div`
+export const EmptyBlockAddress = styled.div`
   height: 56px;
   width: 145px;
   @media screen and (min-width: 768px) {
@@ -105,12 +102,12 @@ const EmptyBlockAddress = styled.div`
   }
 `;
 
-const InfoTitle = styled.p`
+export const InfoTitle = styled.p`
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  cursor: pointer;
+  ${'' /* cursor: pointer; */}
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
@@ -119,11 +116,15 @@ const InfoTitle = styled.p`
   }
 `;
 
-const InfoLink = styled.a`
+export const InfoLink = styled.a`
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  transition: all ease-in-out 0.2s;
+  &:hover {
+    color: var(--accent-color);
+  }
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
@@ -134,13 +135,17 @@ const InfoLink = styled.a`
   }
 `;
 
-const InfoLinkAddress = styled.a`
+export const InfoLinkAddress = styled.a`
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   height: 56px;
   width: 145px;
+  transition: all ease-in-out 0.2s;
+  &:hover {
+    color: var(--accent-color);
+  }
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
@@ -149,7 +154,7 @@ const InfoLinkAddress = styled.a`
     width: 197px;
   }
 `;
-const InfoLinkAddressDiv = styled.div`
+export const InfoLinkAddressDiv = styled.div`
   height: 56px;
   width: 145px;
   @media screen and (min-width: 768px) {
@@ -162,20 +167,3 @@ const InfoLinkAddressDiv = styled.div`
   }
 `;
 
-
-
-export {
-  FriendsItemThumb,
-  Title,
-  LogoDiv,
-  Logo,
-  InfoItemFriend,
-  InfoBlock,
-  EmptyBlock,
-  EmptyBlockAddress,
-  Info,
-  InfoTitle,
-  InfoLink,
-  InfoLinkAddress,
-  InfoLinkAddressDiv,
-};
