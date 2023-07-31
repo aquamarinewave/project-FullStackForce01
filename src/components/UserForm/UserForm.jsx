@@ -6,16 +6,32 @@ import authSelector from 'redux/auth/authSelector';
 import avatarDefault from 'images/profilephotos/avatar-default.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { AvatarWrapper, ImgAvatar, WrapperField, Label, ProfileField, ImgWrapper } from '../UserData/UserData.styled';
-import { SubmitBtn, Container, ErrorMassege, InputWrapper, EditText, EditButton } from './UserForm.styled';
+import {
+  SubmitBtn,
+  Container,
+  ErrorMassege,
+  InputWrapper,
+  EditText,
+  EditButton,
+  IconCrossSmall,
+  IconCheck,
+  BtnConfirm,
+  BtnDecline,
+  ApproveText,
+  ApproveContainer,
+} from './UserForm.styled';
 import { updateUser } from 'redux/auth/operations';
 
 import toast from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
+import sprite from '../../images/icons.svg';
 
 export const UserForm = ({ toggleModal }) => {
+  const [editAvatar, setEditAvatar] = useState(false);
+  console.log(editAvatar);
   const user = useSelector(authSelector.userSelector);
-  const [avatarUrl, setavatarUrl] = useState('');
-  const [newAvatar, setnewAvatar] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [newAvatar, setNewAvatar] = useState('');
   const [isUpdateForm, setIsUpdateForm] = useState(false);
   const dispatch = useDispatch();
 
@@ -24,7 +40,7 @@ export const UserForm = ({ toggleModal }) => {
     reader.readAsDataURL(file);
 
     reader.onloadend = () => {
-      setnewAvatar(reader.result);
+      setNewAvatar(reader.result);
       console.log(newAvatar);
     };
   }
@@ -37,9 +53,10 @@ export const UserForm = ({ toggleModal }) => {
 
   const handleChange = e => {
     const file = e.target.files[0];
-    setavatarUrl(file);
+    setAvatarUrl(file);
 
     peviewFile(file);
+    setEditAvatar(true);
   };
 
   const initialValues = {
@@ -63,12 +80,15 @@ export const UserForm = ({ toggleModal }) => {
       if (initialValues.email !== values.email && values.email) {
         formData.append('email', values.email);
       }
+      if (initialValues.birthday !== values.birthday && values.birthday) {
+        formData.append('birthday', values.birthday);
+      }
       if (initialValues.phone !== values.phone) {
         formData.append('phone', values.phone);
       }
       if (initialValues.city !== values.city) formData.append('city', values.city);
       for (const value of formData.values()) {
-        console.log(value);
+        console.log('value city', value);
       }
       const res = await dispatch(updateUser(formData));
       console.log(res);
@@ -92,6 +112,7 @@ export const UserForm = ({ toggleModal }) => {
       .max(13, 'Phone format: +380000000000')
       .min(13, 'Phone format: +380000000000'),
     city: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your city'),
+    birthday: yup.date().nullable(),
   });
 
   return (
@@ -109,15 +130,41 @@ export const UserForm = ({ toggleModal }) => {
                   <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
                 </ImgWrapper>
               )}
-              <EditButton>
-                <InputWrapper
-                  type="file"
-                  id="fileInput"
-                  onChange={e => handleChange(e)}
-                  accept="image/png, image/jpeg, image/jpg, image/jfif"
-                />
-                <EditText>Edit photo</EditText>
-              </EditButton>
+              {editAvatar ? (
+                <ApproveContainer>
+                  <BtnConfirm
+                    onClick={() => {
+                      setEditAvatar(false);
+                    }}
+                  >
+                    <IconCheck width={24} height={24}>
+                      <use href={`${sprite}#icon-check`}></use>
+                    </IconCheck>
+                  </BtnConfirm>
+                  <ApproveText>Confirm</ApproveText>
+                  <BtnDecline
+                    onClick={() => {
+                      setAvatarUrl(user?.avatarURL || { avatarDefault });
+                      setNewAvatar('');
+                      setEditAvatar(false);
+                    }}
+                  >
+                    <IconCrossSmall width={24} height={24}>
+                      <use href={`${sprite}#icon-cross-small`}></use>
+                    </IconCrossSmall>
+                  </BtnDecline>
+                </ApproveContainer>
+              ) : (
+                <EditButton>
+                  <InputWrapper
+                    type="file"
+                    id="fileInput"
+                    onChange={e => handleChange(e)}
+                    accept="image/png, image/jpeg, image/jpg, image/jfif"
+                  />
+                  <EditText>Edit photo</EditText>
+                </EditButton>
+              )}
             </AvatarWrapper>
             <Container>
               <WrapperField>
@@ -141,12 +188,12 @@ export const UserForm = ({ toggleModal }) => {
 
             <WrapperField>
               <Label htmlFor="date"> Birthday:</Label>
-              <ProfileField type="numder" name="birthday" placeholder={initialValues.birthday} />
+              <ProfileField type="date" name="birthday" />
             </WrapperField>
 
             <WrapperField>
               <Label htmlFor="phone"> Phone:</Label>
-              <ProfileField placeholder={initialValues.phone} type="phone" name="phone" />
+              <ProfileField placeholder={initialValues.phone} type="phone" name="phone" format="dd/mm/yyyy" />
             </WrapperField>
 
             <WrapperField>
@@ -154,7 +201,9 @@ export const UserForm = ({ toggleModal }) => {
               <ProfileField type="text" name="city" placeholder={initialValues.city} />
             </WrapperField>
             {isUpdateForm ? (
-              <SubmitBtn type="submit">Save</SubmitBtn>
+              <SubmitBtn type="submit" disabled={dirty || editAvatar}>
+                Save
+              </SubmitBtn>
             ) : (
               <SubmitBtn type="submit" disabled={!dirty}>
                 Save

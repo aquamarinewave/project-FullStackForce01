@@ -8,7 +8,10 @@ import noticesOperations from 'redux/notices/operation';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
-import { NoticesPageContainer, Title } from './NoticesPage.styled';
+import { AddPetButtonBox, NoticesPageContainer, Title } from './NoticesPage.styled';
+import Pagination from '../../components/Pagination/Pagination';
+
+import AddPetButton from 'components/AddPetButton/AddPetButton';
 
 const statusList = {
   REJECTED: 1,
@@ -24,6 +27,7 @@ const NoticesPage = () => {
   console.log('category:', categoryName);
   const noticesStore = useSelector(noticesSelector.selectNotices);
   console.log('noticesStore:', noticesStore);
+  const perPage = noticesStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
 
@@ -46,14 +50,18 @@ const NoticesPage = () => {
     if (isLogged && categoryName === 'own') {
       dispatch(
         noticesOperations.fetchNoticesOwn({
-          page: 1,
+          pattern: '',
+          currentPage: 1,
+          perPage,
           controller: controller,
         })
       );
     } else if (isLogged && categoryName === 'favorite') {
       dispatch(
         noticesOperations.fetchNoticesFavorites({
-          page: 1,
+          pattern: '',
+          currentPage: 1,
+          perPage,
           controller: controller,
         })
       );
@@ -61,7 +69,8 @@ const NoticesPage = () => {
       dispatch(
         noticesOperations.fetchNoticesForAll({
           pattern: '',
-          page: 1,
+          currentPage: 1,
+          perPage,
           categoryId: categoryName,
           controller: controller,
         })
@@ -71,7 +80,7 @@ const NoticesPage = () => {
     return () => {
       controller.abort();
     };
-  }, [dispatch, categoryName, isLogged, setStatus, PENDING]);
+  }, [dispatch, categoryName, isLogged, setStatus, PENDING, perPage]);
 
   const showResults = useCallback(
     status => {
@@ -95,34 +104,76 @@ const NoticesPage = () => {
     query => {
       const controller = new AbortController();
 
-      dispatch(
-        noticesOperations.fetchNoticesForAll({
-          pattern: query,
-          page: 1,
-          categoryId: categoryName,
-          controller: controller,
-        })
-      );
-
-      dispatch(noticesOperations.setPattern(query));
+      if (isLogged && categoryName === 'own') {
+        dispatch(
+          noticesOperations.fetchNoticesOwn({
+            pattern: query,
+            currentPage: 1,
+            perPage,
+            controller: controller,
+          })
+        );
+      } else if (isLogged && categoryName === 'favorite') {
+        dispatch(
+          noticesOperations.fetchNoticesFavorites({
+            pattern: query,
+            currentPage: 1,
+            perPage,
+            controller: controller,
+          })
+        );
+      } else {
+        dispatch(
+          noticesOperations.fetchNoticesForAll({
+            pattern: query,
+            currentPage: 1,
+            perPage,
+            categoryId: categoryName,
+            controller: controller,
+          })
+        );
+      }
+      // dispatch(noticesOperations.setPattern(query));
+      // dispatch(noticesOperations.setCurrentPage(1));
       return () => {
         controller.abort();
       };
     },
-    [dispatch, categoryName]
+    [dispatch, categoryName, perPage, isLogged]
   );
 
   const clearSearch = () => {
     const controller = new AbortController();
 
-    dispatch(
-      noticesOperations.fetchNoticesForAll({
-        pattern: '',
-        page: 1,
-        categoryId: categoryName,
-        controller: controller,
-      })
-    );
+    if (isLogged && categoryName === 'own') {
+      dispatch(
+        noticesOperations.fetchNoticesOwn({
+          pattern: '',
+          currentPage: 1,
+          perPage,
+          controller: controller,
+        })
+      );
+    } else if (isLogged && categoryName === 'favorite') {
+      dispatch(
+        noticesOperations.fetchNoticesFavorites({
+          pattern: '',
+          currentPage: 1,
+          perPage,
+          controller: controller,
+        })
+      );
+    } else {
+      dispatch(
+        noticesOperations.fetchNoticesForAll({
+          pattern: '',
+          currentPage: 1,
+          perPage,
+          categoryId: categoryName,
+          controller: controller,
+        })
+      );
+    }
 
     dispatch(noticesOperations.setPattern(''));
     return () => {
@@ -130,12 +181,76 @@ const NoticesPage = () => {
     };
   };
 
+  const handleSwitchPage = useCallback(
+    (_, currentPage) => {
+      const controller = new AbortController();
+      const pattern = noticesStore.pattern;
+
+      if (isLogged && categoryName === 'own') {
+        dispatch(
+          noticesOperations.fetchNoticesOwn({
+            pattern,
+            currentPage,
+            perPage,
+            controller: controller,
+          })
+        );
+      } else if (isLogged && categoryName === 'favorite') {
+        dispatch(
+          noticesOperations.fetchNoticesFavorites({
+            pattern,
+            currentPage,
+            perPage,
+            controller: controller,
+          })
+        );
+      } else {
+        dispatch(
+          noticesOperations.fetchNoticesForAll({
+            pattern,
+            currentPage,
+            perPage,
+            categoryId: categoryName,
+            controller: controller,
+          })
+        );
+      }
+      dispatch(noticesOperations.setCurrentPage(currentPage));
+
+      return () => {
+        controller.abort();
+      };
+    },
+    [dispatch, noticesStore.pattern, perPage, categoryName, isLogged]
+  );
+
+  const showPagination = useCallback(() => {
+    if (!noticesStore.totalPages) {
+      return <></>;
+    }
+
+    return (
+      <Pagination
+        page={noticesStore.currentPage}
+        count={noticesStore.totalPages}
+        variant="outlined"
+        onChange={handleSwitchPage}
+      />
+    );
+  }, [noticesStore.totalPages, noticesStore.currentPage, handleSwitchPage]);
+
   return (
     <NoticesPageContainer>
       <Title>Find your favorite pet</Title>
+
       <NoticesSearch pattern={noticesStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
       <NoticesCategoriesNav />
+      <AddPetButtonBox>
+        <AddPetButton></AddPetButton>
+      </AddPetButtonBox>
+
       {showResults(status)}
+      {showPagination()}
     </NoticesPageContainer>
   );
 };

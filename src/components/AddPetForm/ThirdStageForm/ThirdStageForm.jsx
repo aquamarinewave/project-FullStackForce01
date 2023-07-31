@@ -1,6 +1,5 @@
 import { Field } from 'formik';
 
-// import Icon from 'utils/Icon/Icon';
 import sprite from '../../../images/icons.svg';
 
 import { BoxInputField, FieldLabel, InputField } from '../SecondStageForm/SecondStageForm.styled';
@@ -33,25 +32,14 @@ const optionsSex = [
   },
 ];
 
-const colorIcon = checked => {
+const heightTextarea = checked => {
   switch (checked) {
-    case 'male':
-      return '#fef9f9';
-    case 'female':
-      return '#888';
+    case 'your_pet':
+      return '79px';
+    case 'sell':
+      return '79px';
     default:
-      return 'var(--dark-blue)';
-  }
-};
-
-const colorIconFemale = checked => {
-  switch (checked) {
-    case 'female':
-      return '#fef9f9';
-    case 'male':
-      return '#888';
-    default:
-      return 'var(--fail-color)';
+      return '182px';
   }
 };
 
@@ -59,12 +47,10 @@ const ThirdStageForm = ({
   showPlaceholder,
   setPreviewImage,
   setShowPlaceholder,
-  setSelectedFile,
   previewImage,
   formik,
+  setSelectedFile,
   currentRadioButton,
-  selectedGender,
-  handleSexChange,
 }) => {
   const handlePhotoChange = event => {
     const file = event.currentTarget.files[0];
@@ -73,25 +59,25 @@ const ThirdStageForm = ({
       setPreviewImage(URL.createObjectURL(file));
       setShowPlaceholder(false);
     } else {
+      setSelectedFile(null);
       setShowPlaceholder(true);
       setPreviewImage('');
-      setSelectedFile(null);
     }
+    formik.handleChange(event);
   };
 
   return (
-    <ContainerFormStepThird currentRadioButton={currentRadioButton}>
+    <ContainerFormStepThird currentRadioButton={currentRadioButton !== 'your_pet'}>
       <ContainerButton>
         {currentRadioButton !== 'your_pet' && (
           <>
             <ParagraphPetAvatar>The sex</ParagraphPetAvatar>
             <BoxRadioButtonSex>
               {optionsSex.map(({ value, label }) => (
-                <RadioButtonSex key={value} checked={selectedGender === value}>
+                <RadioButtonSex key={value} checked={formik.values.sex === value}>
                   <IconSex
                     className={value === 'male' ? 'male-icon' : 'female-icon'}
-                    colorIcon={colorIcon(selectedGender)}
-                    colorIconFemale={colorIconFemale(selectedGender)}
+                    selectedGender={formik.values.sex}
                   >
                     <use href={`${sprite}#icon-${value}`}></use>
                   </IconSex>
@@ -102,15 +88,17 @@ const ThirdStageForm = ({
                     name={`sex`}
                     id={`opt${value}`}
                     value={value}
-                    onChange={handleSexChange}
+                    onChange={formik.handleChange}
                   />
                 </RadioButtonSex>
               ))}
             </BoxRadioButtonSex>
           </>
         )}
-        <ContainerAvatar currentRadioButton={currentRadioButton}>
-          <ParagraphPetAvatar currentRadioButton={currentRadioButton}>Load the pet’s image:</ParagraphPetAvatar>
+        <ContainerAvatar currentRadioButton={currentRadioButton !== 'your_pet'}>
+          <ParagraphPetAvatar currentRadioButton={currentRadioButton !== 'your_pet'}>
+            Load the pet’s image:
+          </ParagraphPetAvatar>
           <BoxPetAvatar>
             {showPlaceholder ? (
               <ShowPlaceholderAvatar>
@@ -121,7 +109,7 @@ const ThirdStageForm = ({
             ) : (
               <img src={previewImage} alt="Selected" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             )}
-            <FieldAvatar type="file" id="photoInput" name="avatar" accept="image/*" onChange={handlePhotoChange} />
+            <FieldAvatar type="file" id="avatar" name="avatar" accept="image/*" onChange={handlePhotoChange} />
           </BoxPetAvatar>
         </ContainerAvatar>
       </ContainerButton>
@@ -159,6 +147,8 @@ const ThirdStageForm = ({
         <div>
           <TextSpan>Comments</TextSpan>
           <InputFieldTextArea
+            heightTextarea={heightTextarea(currentRadioButton)}
+            // currentRadioButton={currentRadioButton === 'sell'}
             as={TextArea} // Використовуємо наші стилі для textarea
             id="comments"
             name="comments"

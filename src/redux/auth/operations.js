@@ -19,9 +19,11 @@ const registrationUser = createAsyncThunk('auth/register', async (registerData, 
     token.set(response.data.token);
     return response.data;
   } catch (error) {
-    toast.error(error.response.data.message, {
-      position: "top-center"});
-    return thunkApi.rejectWithValue(error.response.data.message);
+    return thunkApi.rejectWithValue(
+      toast.error(error.response.data.message, {
+        position: 'top-center',
+      })
+    );
   }
 });
 
@@ -31,10 +33,11 @@ const loginUser = createAsyncThunk('auth/login', async (loginData, thunkApi) => 
     token.set(response.data.token);
     return response.data;
   } catch (error) {
-    toast.error(error.response.data.message, {
-      position: "top-center"
-    });
-    return thunkApi.rejectWithValue(error.response.data.message);
+    return thunkApi.rejectWithValue(
+      toast.error(error.response.data.message, {
+        position: 'top-center',
+      })
+    );
   }
 });
 
@@ -43,7 +46,11 @@ const logoutUser = createAsyncThunk('auth/logout', async (_, thunkApi) => {
     await axios.post('users/logout');
     token.unset();
   } catch (error) {
-    return thunkApi.rejectWithValue(error.message);
+    return thunkApi.rejectWithValue(
+      toast.error(error.response.data.message, {
+        position: 'top-center',
+      })
+    );
   }
 });
 

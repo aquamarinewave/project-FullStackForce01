@@ -42,7 +42,7 @@ export const NextStageForm = styled.h3`
   }
 `;
 
-export const Form = styled(FormikForm)`
+export const ContainerForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -64,6 +64,9 @@ export const Form = styled(FormikForm)`
     width: ${props => (props.currentStage === 'third' && props.currentRadioButton !== 'your_pet' ? '822px' : '458px')};
     margin-top: 40px;
   }
+`;
+export const Form = styled(FormikForm)`
+  display: flex;
 `;
 
 export const TitleAddPetForm = styled.h2`

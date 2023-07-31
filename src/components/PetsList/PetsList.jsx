@@ -11,17 +11,8 @@ const PetsList = () => {
   const pets = useSelector(petsSelector.selectPets);
   const dispatch = useDispatch();
 
-  // const [pets, setPet] = useState([]);
-  // const pets = useSelector(userPetsSelector.selectUserPets);
-
   useEffect(() => {
     dispatch(petsOperations.fetchUserPet());
-    // const getUserPet = async () => {
-    //   const result = await fetchUserPet();
-    //   console.log('result:', result);
-    //   setPet([...result]);
-    // };
-    // getUserPet();
   }, [dispatch]);
   console.log(pets);
 

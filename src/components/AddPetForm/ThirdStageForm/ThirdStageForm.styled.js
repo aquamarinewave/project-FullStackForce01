@@ -1,14 +1,36 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
 
+const colorIconMale = selectedGender => {
+  switch (selectedGender) {
+    case 'male':
+      return '#fef9f9';
+    case 'female':
+      return '#888';
+    default:
+      return 'var(--dark-blue)';
+  }
+};
+
+const colorIconFemale = selectedGender => {
+  switch (selectedGender) {
+    case 'female':
+      return '#fef9f9';
+    case 'male':
+      return '#888';
+    default:
+      return 'var(--fail-color)';
+  }
+};
+
 export const ContainerFormStepThird = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 36px;
   gap: 12px;
   @media screen and (min-width: 768px) {
-    flex-direction: ${props => (props.currentRadioButton !== 'your_pet' ? 'row' : 'column')};
-    gap: ${props => (props.currentRadioButton !== 'your_pet' ? '34px' : '24px')};
+    flex-direction: ${props => (props.currentRadioButton ? 'row' : 'column')};
+    gap: ${props => (props.currentRadioButton ? '34px' : '24px')};
   }
 `;
 
@@ -17,10 +39,10 @@ export const ContainerAvatar = styled.div`
   gap: 14px;
   align-items: center;
   @media screen and (min-width: 768px) {
-    flex-direction: ${props => (props.currentRadioButton !== 'your_pet' ? 'column' : 'row')};
-    align-items: ${props => (props.currentRadioButton !== 'your_pet' ? 'start' : 'center')};
-    margin-top: ${props => (props.currentRadioButton !== 'your_pet' ? '40px' : '0')};
-    gap: ${props => (props.currentRadioButton !== 'your_pet' ? '8px' : '16px')};
+    flex-direction: ${props => (props.currentRadioButton ? 'column' : 'row')};
+    align-items: ${props => (props.currentRadioButton ? 'start' : 'center')};
+    margin-top: ${props => (props.currentRadioButton ? '40px' : '0')};
+    gap: ${props => (props.currentRadioButton ? '8px' : '16px')};
   }
 `;
 
@@ -33,7 +55,7 @@ export const ParagraphPetAvatar = styled.p`
   color: #111;
   @media screen and (min-width: 768px) {
     font-size: 20px;
-    width: ${props => (props.currentRadioButton !== 'your_pet' ? '200px' : '114px')};
+    width: ${props => (props.currentRadioButton ? '200px' : '114px')};
   }
 `;
 
@@ -69,11 +91,6 @@ export const TextSpan = styled.span`
   }
 `;
 
-export const InputFieldTextArea = styled(Field)`
-  margin-top: 4px;
-  width: 100%;
-`;
-
 export const FieldAvatar = styled(Field)`
   position: absolute;
   top: 0;
@@ -84,8 +101,18 @@ export const FieldAvatar = styled(Field)`
   cursor: pointer;
 `;
 
-export const TextArea = styled.textarea`
+export const InputFieldTextArea = styled(Field)`
+  margin-top: 4px;
+  width: 100%;
   height: 92px;
+
+  @media screen and (min-width: 768px) {
+    height: ${props => props.heightTextarea};
+  }
+`;
+
+export const TextArea = styled.textarea`
+  /* height: 92px; */
   padding: 8px 16px;
   border: 1px solid var(--dark-blue);
   border-radius: 20px;
@@ -116,10 +143,10 @@ export const IconSex = styled.svg`
   fill: none;
 
   &.male-icon {
-    stroke: ${props => (props.colorIcon === 'male' ? `#fef9f9` : props.colorIcon)};
+    stroke: ${({ selectedGender }) => colorIconMale(selectedGender)};
   }
   &.female-icon {
-    stroke: ${props => (props.colorIconFemale === 'female' ? '#fef9f9' : props.colorIconFemale)};
+    stroke: ${({ selectedGender }) => colorIconFemale(selectedGender)};
   }
 `;
 

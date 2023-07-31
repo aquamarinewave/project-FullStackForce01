@@ -16,6 +16,7 @@ import {
   AuthIconsValidation,
   AuthIconFailed,
   AuthIconCheck,
+  ValidPassword,
 } from './AuthForm.styled';
 
 import authOperations from '../../redux/auth/operations';
@@ -125,7 +126,7 @@ const AuthFormLogin = props => {
                   error={touched.password && errors.password}
                 >
                   <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                    <use href={`${sprite}#icon-eye-closed`}></use>
+                    <use href={`${sprite}#icon-eye-open`}></use>
                   </AuthIconShowPassword>
                 </AuthShowPassword>
               ) : (
@@ -137,11 +138,14 @@ const AuthFormLogin = props => {
                   error={touched.password && errors.password}
                 >
                   <AuthIconShowPassword width={24} height={24} valid={touched.password && !errors.password}>
-                    <use href={`${sprite}#icon-eye-open`}></use>
+                    <use href={`${sprite}#icon-eye-closed`}></use>
                   </AuthIconShowPassword>
                 </AuthShowPassword>
               )}
             </AuthFieldWrap>
+            {touched.password && !errors.password && !isShowPassword && (
+              <ValidPassword>Password is secure</ValidPassword>
+            )}
             {errors.password && touched.password && (
               <ErrorMessage name="password" render={message => <ErrorText>{message}</ErrorText>} />
             )}

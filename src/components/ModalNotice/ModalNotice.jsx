@@ -1,60 +1,15 @@
 import React, { useRef, useEffect, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import {Background , ModalWrapper, ModalContent, ModalInfo, ModalImg, ModalAvatar, ModalCategory, ModalHeader, ModalInfoList, ModalInfoItemName, ModalInfoItemValue, ModalContact, ModalComments, ModalButtons, ModalPhone, ModalButtonAdd, CloseModalButton,  IconHeart, IconCross} from './ModalNotice.styled';
 import ModalAttention from './ModalAttention';
-// import fetchModalDetail from '../ModalNotice/fetchModalDetail';
-// import fetchAddToFavorite from '../ModalNotice/fetchAddToFavorite';
-// import fetchDeleteToFavorite from '../ModalNotice/fetchDeleteToFavorite';
 import sprite from '../../images/icons.svg';
-// import authSelector from '../../redux/auth/authSelector';
-// import { useSelector } from 'react-redux';
+import {getSelected} from '../../redux/favorite/favoriteSelector';
 
+export const ModalNotice = ({showModal, setShowModal,  handleAddToFavorite, favoriteNoticeStore, isLoggedIn, isModalOpenAttention, closeModalAttention}) => {
 
-export const ModalNotice = ({ 
-  showModal, 
-  setShowModal,
-  isModalOpenAttention,
-  setIsModalOpenAttention,
-  valueModalInfo,
-  userModalInfo,
-  handleAddToFavorite,
-  isSelected,
-  isLoggedIn
-}) => {
-  // const [valueModalInfo, setValueModalInfo] = useState({});
-  // const [userModalInfo, setUserModalInfo] = useState({});
-  // const [isSelected, setIsSelected] = useState(false);
-  // const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
-
-  // const isLoggedIn = useSelector(authSelector.loggedInSelector);
-
-  // useEffect(() => {
-  //   async function fetchModalDetailPet() {
-  //     try {
-  //       const data = await fetchModalDetail(idCard);
-  //       console.log({...data.notice})
-  //       setValueModalInfo({...data.notice});
-  //       setUserModalInfo({...data.user});
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   fetchModalDetailPet();
-
-  //   const savedSelectedState = localStorage.getItem(`pet_${idCard}`);
-
-  //   if (savedSelectedState !== null) {
-  //     setIsSelected(JSON.parse(savedSelectedState));
-  //   } else {
-  //     setIsSelected(false);
-  //   }
-
-  // }, [idCard, isLoggedIn]);
+  const isSelected = useSelector(getSelected);
 
   const modalRef = useRef();
-
-  const closeModalAttention = () => {
-    setIsModalOpenAttention(!isModalOpenAttention)
-  }
 
   const closeModal = e => {
     if (modalRef.current === e.target) {
@@ -79,48 +34,23 @@ export const ModalNotice = ({
     },
     [keyPress]
   );
-
-  // const updateLocalStorage = () => {
-  //   localStorage.setItem(`pet_${idCard}`, JSON.stringify(isSelected));
-  // };
-
-  // const handleAddToFavorite = () => {
-  //   if(isLoggedIn) {
-
-  //     if(isSelected) {
-  //       fetchDeleteToFavorite(idCard)
-  //       setIsSelected(!isSelected);
-  //     } else {
-  //       fetchAddToFavorite(idCard, valueModalInfo);
-  //       setIsSelected(!isSelected);
-  //     }
-
-  //   } else {
-  //     setShowModal(false);
-  //     setIsModalOpenAttention(true);
-  //   }
-  // };
-
-  const {title, name, birthday, type, sex, location, comments, avatarURL, category} = valueModalInfo;
-
-  const {email, phone} = userModalInfo;
-
-  // useEffect(updateLocalStorage, [isSelected, idCard]);
+  
+  const { notice, user } = favoriteNoticeStore;
 
   return (
     <>
-      {showModal ? (
+      {showModal && notice ? (
         <Background onClick={closeModal} ref={modalRef}>
-          <ModalWrapper showModal={showModal}>
+          <ModalWrapper>
               <ModalContent>
                 <ModalInfo>
                   <ModalImg>
-                    <ModalAvatar src={avatarURL} alt={name} />
-                    <ModalCategory>{category}</ModalCategory>
+                    <ModalAvatar src={notice.avatarURL} alt={notice.name} />
+                    <ModalCategory>{notice.category}</ModalCategory>
                   </ModalImg>
                   
                   <div>
-                    <ModalHeader>{title || "Сute pet looking for a home"}</ModalHeader>
+                    <ModalHeader>{notice.title || "Сute pet looking for a home"}</ModalHeader>
                     <ModalInfoList>
                     <ModalInfoItemName>
                       <li><strong>Name:</strong></li>
@@ -133,28 +63,28 @@ export const ModalNotice = ({
                     </ModalInfoItemName>
 
                     <ModalInfoItemValue>
-                      <li>{name || "empty"}</li>
-                      <li>{birthday || "empty"}</li>
-                      <li>{type || "empty"}</li>
-                      <li>{location || "empty"}</li>
-                      <li>{sex || "empty"}</li>
+                      <li>{notice.name || "empty"}</li>
+                      <li>{notice.birthday || "empty"}</li>
+                      <li>{notice.type || "empty"}</li>
+                      <li>{notice.location || "empty"}</li>
+                      <li>{notice.sex || "empty"}</li>
                       <ModalContact>
-                        <a href={`mailto: ${email}`}>{email || "email@gamil.com"}</a>
+                        <a href={`mailto: ${user.email}`}>{user.email || "email@gamil.com"}</a>
                       </ModalContact>
                       <ModalContact>
-                        <a href={`tel: ${phone}`}>{phone || "+380 (XXX) (XXXXXXXX)"}</a>
+                        <a href={`tel: ${user.phone}`}>{user.phone || "+380 (XXX) (XXXXXXXX)"}</a>
                       </ModalContact>
                     </ModalInfoItemValue>
                     </ModalInfoList>
                   </div>
                 </ModalInfo>
 
-                <ModalComments><strong>Comments:</strong> {comments}</ModalComments>
+                <ModalComments><strong>Comments:</strong> {notice.comments}</ModalComments>
 
                 <ModalButtons>
-                  <ModalPhone href={`tel: ${phone}`}>Contact</ModalPhone>
+                  <ModalPhone href={`tel: ${user.phone}`}>Contact</ModalPhone>
 
-                  <ModalButtonAdd onClick={handleAddToFavorite} isSelected = {isSelected} isLoggedIn = {isLoggedIn}><span>{isSelected && isLoggedIn? "Delete" : "Add"}</span> <span>  
+                  <ModalButtonAdd onClick={handleAddToFavorite} isSelected = {isSelected} isLoggedIn = {isLoggedIn}><span>{isSelected && isLoggedIn ? "Delete" : "Add"}</span> <span>  
                   <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
                     <use href={`${sprite}#icon-heart`}></use>
                   </IconHeart>
@@ -174,8 +104,7 @@ export const ModalNotice = ({
           </ModalWrapper>          
         </Background>
       ) : null}
-      
-    {isModalOpenAttention ? (<ModalAttention onClose={closeModalAttention}/>) : null}
+      {isModalOpenAttention ? (<ModalAttention onClose={closeModalAttention}/>) : null}
     </>
     
   );
