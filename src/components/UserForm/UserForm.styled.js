@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 export const SubmitBtn = styled.button`
   display: flex;
-  width: 255px;
-  padding: 6px 108px;
+  width: 232px;
+  padding: 6px;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -20,22 +20,26 @@ export const SubmitBtn = styled.button`
   :disabled {
     opacity: 0.4;
   }
-  margin-left: 116px;
+  margin-left: 140px;
 `;
 
 export const Container = styled.div`
-  /* height: 45px;
-  position: relative; */
+  position: relative;
 `;
 
 export const ErrorMassege = styled.div`
-  /* position: absolute;
-  bottom: 3px;
-  left: 15px;
-  font-size: 10px;
-  line-height: 1.16;
-  top: 30px;
-  right: 230px; */
+  position: absolute;
+  top: -11px;
+  left: 159px;
+  color: red;
+  font-size: 9px;
+`;
+export const ApprovedMassege = styled.div`
+  position: absolute;
+  top: -11px;
+  left: 159px;
+  color: green;
+  font-size: 9px;
 `;
 
 export const EditButton = styled.label`
@@ -49,19 +53,13 @@ export const EditText = styled.span`
   cursor: pointer;
   outline: none;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
   vertical-align: middle;
-  color: rgb(255 255 255);
+  color: #111;
   text-align: center;
-  border-radius: 4px;
-  background-color: #419152;
-  line-height: 22px;
+
+  line-height: 28px;
   height: 40px;
-  padding: 10px 20px;
-  box-sizing: border-box;
-  border: none;
-  margin: 0;
-  transition: background-color 0.2s;
 `;
 
 export const InputWrapper = styled.input`
@@ -91,6 +89,12 @@ export const IconCrossSmall = styled.svg`
   stroke: var(--fail-color);
 `;
 
+export const IconCamera = styled.svg`
+  stroke: var(--dark-blue);
+  cursor: pointer;
+  margin-right: 8px;
+`;
+
 export const BtnConfirm = styled.button`
   cursor: pointer;
   border: none;
@@ -105,3 +109,17 @@ export const IconCheck = styled.svg`
 `;
 
 export const ApproveText = styled.div``;
+
+export const IconCheckForm = styled.svg`
+  stroke: green;
+  top: 13px;
+  position: absolute;
+  right: -200px;
+`;
+
+export const IconCheckBirthday = styled.svg`
+  stroke: green;
+  top: 13px;
+  position: absolute;
+  right: -180px;
+`;
