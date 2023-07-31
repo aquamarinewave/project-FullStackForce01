@@ -39,7 +39,7 @@ const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunk
     if (category === 'sell') {
       data.append('price', price);
     }
-    if (category !== 'your pet') {
+    if (category !== 'my-pet') {
       data.append('title', title);
     }
 

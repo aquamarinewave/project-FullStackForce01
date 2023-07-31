@@ -22,22 +22,23 @@ const inputs = [
     label: 'Type',
   },
 ];
-const SecondStageForm = ({ formik, currentRadioButton }) => {
-  const inputType = name => {
-    switch (name) {
-      case 'birthday':
-        return 'date';
-      case 'price':
-        return 'number';
-      default:
-        return 'text';
-    }
-  };
 
+const inputType = name => {
+  switch (name) {
+    case 'birthday':
+      return 'date';
+    case 'price':
+      return 'number';
+    default:
+      return 'text';
+  }
+};
+
+const SecondStageForm = ({ formik, currentRadioButton }) => {
   return (
     <ContainerInputField>
       {inputs.map(({ name, placeholder, label }) =>
-        currentRadioButton === 'your_pet' && ['title'].includes(name) ? null : (
+        currentRadioButton === 'my-pet' && ['title'].includes(name) ? null : (
           <BoxInputField key={name}>
             <FieldLabel htmlFor={name}>{label}</FieldLabel>
             <InputField

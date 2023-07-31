@@ -37,8 +37,11 @@ export const ModalNotice = ({
   isLoggedIn,
   isModalOpenAttention,
   closeModalAttention,
+  isSelected
 }) => {
-  const isSelected = useSelector(getSelected);
+  
+const isSelected = useSelector(getSelected);
+
 
   const modalRef = useRef();
 

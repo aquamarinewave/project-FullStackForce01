@@ -25,15 +25,7 @@ export const Button = styled.button`
   letter-spacing: 0.64px;
 
   @media screen and (min-width: 768px) {
-    /* flex-direction: row-reverse; */
     width: 248px;
-    /* min-height: 542px;  */
-  }
-
-  @media screen and (min-width: 1280px) {
-    /* width: 280px; */
-    /* min-height: 542px; */
-    /* margin-top: 20px; */
   }
 
   & span {
@@ -59,15 +51,7 @@ export const Button = styled.button`
     align-content: center;
     align-items: center;
     @media screen and (min-width: 768px) {
-      /* flex-direction: row-reverse; */
       width: 148px;
-      /* min-height: 542px;  */
-    }
-
-    @media screen and (min-width: 1280px) {
-      /* width: 280px; */
-      /* min-height: 542px; */
-      /* margin-top: 20px; */
     }
   }
   &:last-child:hover {
