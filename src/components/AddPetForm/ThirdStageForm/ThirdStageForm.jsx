@@ -50,6 +50,7 @@ const ThirdStageForm = ({
   previewImage,
   formik,
   setSelectedFile,
+  currentRadioButton,
 }) => {
   const handlePhotoChange = event => {
     const file = event.currentTarget.files[0];
@@ -66,9 +67,9 @@ const ThirdStageForm = ({
   };
 
   return (
-    <ContainerFormStepThird currentRadioButton={formik.values.category !== 'your_pet'}>
+    <ContainerFormStepThird currentRadioButton={currentRadioButton !== 'your_pet'}>
       <ContainerButton>
-        {formik.values.category !== 'your_pet' && (
+        {currentRadioButton !== 'your_pet' && (
           <>
             <ParagraphPetAvatar>The sex</ParagraphPetAvatar>
             <BoxRadioButtonSex>
@@ -94,8 +95,8 @@ const ThirdStageForm = ({
             </BoxRadioButtonSex>
           </>
         )}
-        <ContainerAvatar currentRadioButton={formik.values.category !== 'your_pet'}>
-          <ParagraphPetAvatar currentRadioButton={formik.values.category !== 'your_pet'}>
+        <ContainerAvatar currentRadioButton={currentRadioButton !== 'your_pet'}>
+          <ParagraphPetAvatar currentRadioButton={currentRadioButton !== 'your_pet'}>
             Load the pet’s image:
           </ParagraphPetAvatar>
           <BoxPetAvatar>
@@ -113,7 +114,7 @@ const ThirdStageForm = ({
         </ContainerAvatar>
       </ContainerButton>
       <ContainerInput>
-        {formik.values.category !== 'your_pet' && (
+        {currentRadioButton !== 'your_pet' && (
           <BoxInputField key="location">
             <FieldLabel htmlFor="location">Location</FieldLabel>
             <InputField
@@ -128,7 +129,7 @@ const ThirdStageForm = ({
             {/* {formik.touched[name] && formik.errors[name] && <div style={{ color: 'red' }}>{formik.errors[name]}</div>} */}
           </BoxInputField>
         )}
-        {formik.values.category === 'sell' && (
+        {currentRadioButton === 'sell' && (
           <BoxInputField key="price">
             <FieldLabel htmlFor="price">Price</FieldLabel>
             <InputField
@@ -146,7 +147,7 @@ const ThirdStageForm = ({
         <div>
           <TextSpan>Comments</TextSpan>
           <InputFieldTextArea
-            heightTextarea={heightTextarea(formik.values.category)}
+            heightTextarea={heightTextarea(currentRadioButton)}
             // currentRadioButton={currentRadioButton === 'sell'}
             as={TextArea} // Використовуємо наші стилі для textarea
             id="comments"
