@@ -23,6 +23,17 @@ const colorIconFemale = selectedGender => {
   }
 };
 
+const heightTextarea = checked => {
+  switch (checked) {
+    case 'my-pet':
+      return '79px';
+    case 'sell':
+      return '79px';
+    default:
+      return '182px';
+  }
+};
+
 export const ContainerFormStepThird = styled.div`
   display: flex;
   flex-direction: column;
@@ -107,12 +118,11 @@ export const InputFieldTextArea = styled(Field)`
   height: 92px;
 
   @media screen and (min-width: 768px) {
-    height: ${props => props.heightTextarea};
+    height: ${({ currentRadioButton }) => heightTextarea(currentRadioButton)};
   }
 `;
 
 export const TextArea = styled.textarea`
-  /* height: 92px; */
   padding: 8px 16px;
   border: 1px solid var(--dark-blue);
   border-radius: 20px;
