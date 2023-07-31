@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/project-FullStackForce01/static/css/main.892df6f8.css",
-    "main.js": "/project-FullStackForce01/static/js/main.5934ce8a.js",
-    "static/js/208.9335f90c.chunk.js": "/project-FullStackForce01/static/js/208.9335f90c.chunk.js",
+    "main.js": "/project-FullStackForce01/static/js/main.22b44d56.js",
+    "static/js/117.e530720f.chunk.js": "/project-FullStackForce01/static/js/117.e530720f.chunk.js",
     "static/js/758.cca0cb16.chunk.js": "/project-FullStackForce01/static/js/758.cca0cb16.chunk.js",
     "static/js/913.4bc7f3ab.chunk.js": "/project-FullStackForce01/static/js/913.4bc7f3ab.chunk.js",
     "static/js/106.dda276bb.chunk.js": "/project-FullStackForce01/static/js/106.dda276bb.chunk.js",
@@ -44,10 +44,11 @@
     "static/media/404-small.webp": "/project-FullStackForce01/static/media/404-small.7b207b5ed619a1bf45f8.webp",
     "static/media/bg-lagre.png": "/project-FullStackForce01/static/media/bg-lagre.eb77352f1e49a1bcfad5.png",
     "static/media/logo-default.webp": "/project-FullStackForce01/static/media/logo-default.5742edbb186b697753bd.webp",
+    "static/media/logo-small.webp": "/project-FullStackForce01/static/media/logo-small.1debf6693c81405101b6.webp",
     "index.html": "/project-FullStackForce01/index.html",
     "main.892df6f8.css.map": "/project-FullStackForce01/static/css/main.892df6f8.css.map",
-    "main.5934ce8a.js.map": "/project-FullStackForce01/static/js/main.5934ce8a.js.map",
-    "208.9335f90c.chunk.js.map": "/project-FullStackForce01/static/js/208.9335f90c.chunk.js.map",
+    "main.22b44d56.js.map": "/project-FullStackForce01/static/js/main.22b44d56.js.map",
+    "117.e530720f.chunk.js.map": "/project-FullStackForce01/static/js/117.e530720f.chunk.js.map",
     "758.cca0cb16.chunk.js.map": "/project-FullStackForce01/static/js/758.cca0cb16.chunk.js.map",
     "913.4bc7f3ab.chunk.js.map": "/project-FullStackForce01/static/js/913.4bc7f3ab.chunk.js.map",
     "106.dda276bb.chunk.js.map": "/project-FullStackForce01/static/js/106.dda276bb.chunk.js.map",
@@ -65,6 +66,6 @@
   },
   "entrypoints": [
     "static/css/main.892df6f8.css",
-    "static/js/main.5934ce8a.js"
+    "static/js/main.22b44d56.js"
   ]
 }
