@@ -196,9 +196,7 @@ export const UserForm = ({ toggleModal }) => {
                 <Label htmlFor="email"> Email:</Label>
                 <ProfileField type="email" name="email" placeholder={initialValues.email} />
                 {errors.email && touched.name ? (
-                  <ErrorMassege>
-                    <IconFailedWrapper>{errors.email}</IconFailedWrapper>
-                  </ErrorMassege>
+                  <ErrorMassege>{errors.email}</ErrorMassege>
                 ) : !errors.email && touched.email && values.email !== user?.email ? (
                   <ApprovedMassege>
                     <span>
