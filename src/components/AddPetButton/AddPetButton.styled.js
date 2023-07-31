@@ -35,8 +35,8 @@ export const AddPetSmall = styled(Link)`
   z-index: 2;
   bottom: 61px;
   right: 20px;
-  background: black;
-  /* background: var(--dark-blue); */
+
+  background: var(--dark-blue);
   color: var(--container-bg);
 
   cursor: pointer;
