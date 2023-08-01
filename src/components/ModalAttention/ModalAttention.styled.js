@@ -64,8 +64,8 @@ export const CloseModalButton = styled.button`
   border: transparent;
   background: transparent;
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 8px;
+  right: 8px;
   width: 40px;
   height: 40px;
   padding: 0;
@@ -77,7 +77,7 @@ export const CloseModalButton = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    top: 20px;
-    right: 20px;
+    top: 16px;
+    right: 16px;
   }
 `;
