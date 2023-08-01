@@ -24,12 +24,12 @@ export const ModalHeader = styled.h2`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  letter-spacing: 0.96px; 
-  margin-bottom: 20px; 
+  letter-spacing: 0.96px;
+  margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
     font-size: 36px;
-    letter-spacing: 1.44px; 
+    letter-spacing: 1.44px;
   }
 `;
 
@@ -41,13 +41,13 @@ export const ModalText = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: 18px;
-  letter-spacing: 0.56px; 
+  letter-spacing: 0.56px;
   margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
     line-height: 28px;
-    letter-spacing: 0.8px; 
+    letter-spacing: 0.8px;
   }
 `;
 
@@ -64,21 +64,20 @@ export const CloseModalButton = styled.button`
   border: transparent;
   background: transparent;
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   z-index: 10;
   border-radius: 50%;
 
-  
   &:hover {
     background: var(--lightblue);
   }
 
   @media screen and (min-width: 768px) {
-    top: 24px;
-    right: 24px;
+    top: 16px;
+    right: 16px;
   }
 `;

@@ -40,7 +40,6 @@ export const Label = styled.label`
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.72px;
-  margin-right: 41px;
   margin-left: 16px;
 `;
 export const ProfileField = styled(Field)`

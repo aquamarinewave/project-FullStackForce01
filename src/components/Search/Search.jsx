@@ -49,11 +49,11 @@ const Search = ({ pattern, onSubmit, onClear }) => {
             </IconSearch>
           </SearchIconBtn>
           {inputName.trim() !== '' && (
-            <button type="button" onClick={handleClear}>
+            <SearchIconBtn type="button" onClick={handleClear}>
               <IconCrossSmall width={24} height={24}>
                 <use href={`${sprite}#icon-cross-small`}></use>
               </IconCrossSmall>
-            </button>
+            </SearchIconBtn>
           )}
         </SearchIconContainer>
       </SearchForm>
