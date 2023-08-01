@@ -72,7 +72,8 @@ const PetItem = ({ pet }) => {
             onRequestClose={openModal}
             onApprove={onDelete}
             idCard={idPet}
-            btnIconColor={'var(--bg-color)'}
+            btnIconStroke={'var(--bg-color)'}
+            btnIconColor={'var(--dark-blue)'}
             btnIconName={'icon-trash-2'}
           >
             <InfoTitle> Delete your pet?</InfoTitle>

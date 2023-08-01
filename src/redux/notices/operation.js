@@ -59,7 +59,7 @@ const fetchNoticesFavorites = createAsyncThunk(
 const deleteUserNotice = createAsyncThunk('notices/deleteUserNotice', async (_id, thunkApi) => {
   try {
     const response = await axios.delete(`${baseURLForAll}/${_id}`);
-
+    response.data.id = _id;
     return response.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
@@ -132,6 +132,7 @@ const fetchDeleteToFavorite = createAsyncThunk('notices/fetchDeleteToFavorite', 
         'Authorization': `${axios.defaults.headers.common.Authorization}`,
       },
     });
+    response.data.id = _id;
     console.log('res', response.data);
     return response.data;
   } catch (error) {
