@@ -17,7 +17,6 @@ const statusList = {
 const NewsPage = () => {
   const dispatch = useDispatch();
   const newsStore = useSelector(newsSelector.selectNews);
-  console.log('newsStore:', newsStore);
   const perPage = newsStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
