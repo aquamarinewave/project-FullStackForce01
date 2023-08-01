@@ -18,7 +18,7 @@ const OurFriendsList = () => {
 
   return (
     <>
-      {isLoading ? (
+      {!isLoading ? (
         <Loader />
       ) : (
         <div>
