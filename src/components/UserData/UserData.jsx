@@ -24,6 +24,7 @@ import { useEffect } from 'react';
 const UserData = () => {
   const newUser = useSelector(authSelector.newUserSelector);
   const user = useSelector(authSelector.userSelector);
+  console.log('user:', user);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {

@@ -14,6 +14,7 @@ import AddPetButton from 'components/AddPetButton/AddPetButton';
 import AddPetButtonSmall from 'components/AddPetButton/AddPetButtonSmall';
 
 import { ButtonsBox, NoticesPageContainer, Title } from './NoticesPage.styled';
+import Loader from '../../components/Loader/Loader';
 
 const statusList = {
   REJECTED: 1,
@@ -26,9 +27,7 @@ const NoticesPage = () => {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
   const isLogged = useSelector(authSelector.loggedInSelector);
-  console.log('category:', categoryName);
   const noticesStore = useSelector(noticesSelector.selectNotices);
-  console.log('noticesStore:', noticesStore);
   const perPage = noticesStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
@@ -99,7 +98,7 @@ const NoticesPage = () => {
         case IDLE:
           return <div>Please, type something to the search</div>;
         case PENDING:
-          return <div>Loading....</div>;
+          return <Loader />;
         case REJECTED:
           return <div>Oopps...no listings found.{noticesStore.error && <div>{noticesStore.error}</div>}</div>;
         case RESOLVED:
@@ -144,8 +143,6 @@ const NoticesPage = () => {
           })
         );
       }
-      // dispatch(noticesOperations.setPattern(query));
-      // dispatch(noticesOperations.setCurrentPage(1));
       return () => {
         controller.abort();
       };
@@ -256,7 +253,12 @@ const NoticesPage = () => {
     <NoticesPageContainer>
       <Title>Find your favorite pet</Title>
 
-      <NoticesSearch pattern={noticesStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
+      <NoticesSearch
+        pattern={noticesStore.pattern}
+        onSubmit={haldleFormSubmit}
+        onClear={clearSearch}
+        categoryName={categoryName}
+      />
 
       <ButtonsBox>
         <NoticesCategoriesNav />

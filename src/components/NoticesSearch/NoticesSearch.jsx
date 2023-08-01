@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   SearchContainer,
   SearchForm,
@@ -10,8 +10,12 @@ import {
 } from './NoticesSearch.styled';
 import sprite from '../../images/icons.svg';
 
-const NoticesSearch = ({ pattern, onSubmit, onClear }) => {
+const NoticesSearch = ({ pattern, onSubmit, onClear, categoryName }) => {
   const [inputName, setInputName] = useState(pattern ?? '');
+
+  useEffect(() => {
+    setInputName('');
+  }, [categoryName]);
 
   const hangleNameOnChange = event => {
     setInputName(event.currentTarget.value.toLowerCase());
