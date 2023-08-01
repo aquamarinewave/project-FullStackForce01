@@ -27,9 +27,7 @@ const NoticesPage = () => {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
   const isLogged = useSelector(authSelector.loggedInSelector);
-  console.log('category:', categoryName);
   const noticesStore = useSelector(noticesSelector.selectNotices);
-  console.log('noticesStore:', noticesStore);
   const perPage = noticesStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
