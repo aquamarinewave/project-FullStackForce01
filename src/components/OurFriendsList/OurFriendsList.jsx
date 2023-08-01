@@ -19,7 +19,7 @@ const OurFriendsList = () => {
   return (
     <>
       {!isLoading ? (
-        <Loader />
+        <Loader props={{ marginTop: '20%', marginLeft: '5%' }} />
       ) : (
         <div>
           {friendsStore.items.length && (

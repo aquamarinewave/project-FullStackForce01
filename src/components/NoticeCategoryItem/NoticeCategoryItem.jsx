@@ -5,7 +5,6 @@ import { ModalNotice } from '../ModalNotice/ModalNotice';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import {
   CategoriesContainer,
-  CategoriesName,
   NoticesItemThumb,
   DiscriptionList,
   DiscriptionItem,
@@ -25,6 +24,7 @@ import {
   InfoTitle,
   InfoDesc,
   Subtitle,
+  CategoriesName,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 import noticesOperations from 'redux/notices/operation';
@@ -35,9 +35,7 @@ const NoticeCategoryItem = ({ notices }) => {
   const dispatch = useDispatch();
   const favoriteNoticeStore = useSelector(noticesSelector.getNotice);
 
-  console.log(favoriteNoticeStore);
-
-  const { _id, title, birthday, category, location, sex, avatarURL } = notices;
+  const { _id, title, birthday, category, location, sex, avatarURL, allowDelete } = notices;
   const { categoryName } = useParams();
 
   const [idPet, setIdPet] = useState('');
@@ -101,15 +99,34 @@ const NoticeCategoryItem = ({ notices }) => {
 
   localStorage.setItem(`pet_${_id}`, JSON.stringify(isSelected));
 
+  let categoryContent;
+
+  switch (categoryName) {
+    case 'lost-found':
+      categoryContent = 'lost/found';
+      break;
+    case 'for-free':
+      categoryContent = 'in good hands';
+      break;
+    case 'favorite':
+      categoryContent = 'favorite ads';
+      break;
+    case 'own':
+      categoryContent = 'my ads';
+      break;
+    default:
+      categoryContent = 'sell';
+  }
+
   return (
     <>
       <NoticesItemThumb>
         <Img src={avatarURL} alt="pets avatar" width={280} height={290} />
         <CategoriesContainer>
-          {category !== 'for-free' ? (
+          {categoryContent === 'my ads' ? (
             <CategoriesName>{category}</CategoriesName>
           ) : (
-            <CategoriesName>in goood hands</CategoriesName>
+            <CategoriesName>{categoryContent}</CategoriesName>
           )}
         </CategoriesContainer>
         <DiscriptionList>
@@ -152,12 +169,12 @@ const NoticeCategoryItem = ({ notices }) => {
         <BtnContainer>
           <FavoriteBtnContainer>
             <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-              <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
+              <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
                 <use href={`${sprite}#icon-heart`}></use>
               </IconHeart>
             </AddToFavoriteBtn>
           </FavoriteBtnContainer>
-          {categoryName === 'own' && (
+          {allowDelete === true && (
             <FavoriteBtnContainer>
               <DeleteBtn type="button" onClick={openModalForDelete}>
                 <IconDelete width={24} height={24}>
@@ -183,7 +200,7 @@ const NoticeCategoryItem = ({ notices }) => {
         isLoggedIn={isLoggedIn}
         isModalOpenAttention={isModalOpenAttention}
         closeModalAttention={closeModalAttention}
-        isSelected = {isSelected}
+        isSelected={isSelected}
       />
       {showDeleteModal && (
         <ModalApproveAction

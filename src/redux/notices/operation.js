@@ -15,7 +15,6 @@ const fetchNoticesForAll = createAsyncThunk(
           signal: controller.signal,
         }
       );
-      console.log('response:', response);
 
       return response.data.length ? response.data[0] : {};
     } catch (error) {
@@ -60,9 +59,7 @@ const fetchNoticesFavorites = createAsyncThunk(
 const deleteUserNotice = createAsyncThunk('notices/deleteUserNotice', async (_id, thunkApi) => {
   try {
     const response = await axios.delete(`${baseURLForAll}/${_id}`);
-
     response.data.id = _id;
-    console.log('response.id:', response.data.id);
     return response.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
