@@ -1,13 +1,14 @@
 import { Blocks } from 'react-loader-spinner';
 
-const Loader = () => {
+const Loader = ({props}) => {
+  console.log(props);
   return (
     <Blocks
       visible={true}
       height="80"
       width="80"
       ariaLabel="blocks-loading"
-      wrapperStyle={{ marginTop: '20%', marginLeft: '45%' }}
+      wrapperStyle={ props}
       wrapperClass="blocks-wrapper"
     />
   );
