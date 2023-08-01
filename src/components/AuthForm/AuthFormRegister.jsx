@@ -23,7 +23,7 @@ import authOperations from '../../redux/auth/operations';
 import { useState } from 'react';
 import sprite from '../../images/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from './Loader';
+import Loader from '../Loader/Loader';
 import authSelector from 'redux/auth/authSelector';
 
 const userRegisterSchema = object({
