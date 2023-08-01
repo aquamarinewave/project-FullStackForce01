@@ -35,6 +35,7 @@ const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, bt
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
+      document.body.style.marginRight = '17px';
     } else {
       document.removeEventListener('keydown', handleKeyDown);
     }
@@ -42,6 +43,7 @@ const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, bt
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'auto';
+      document.body.style.marginRight = '0px';
     };
   }, [handleKeyDown, isOpen]);
 

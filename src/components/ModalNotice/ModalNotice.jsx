@@ -58,6 +58,7 @@ export const ModalNotice = ({
     if (showModal) {
       document.addEventListener('keydown', keyPress);
       document.body.style.overflow = 'hidden';
+      document.body.style.marginRight = '17px';
     } else {
       document.removeEventListener('keydown', keyPress);
     }
@@ -65,6 +66,7 @@ export const ModalNotice = ({
     return () => {
       document.removeEventListener('keydown', keyPress);
       document.body.style.overflow = 'auto';
+      document.body.style.marginRight = '0px';
     };
   }, [keyPress, showModal]);
 
