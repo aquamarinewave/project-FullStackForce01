@@ -146,6 +146,6 @@ export const BtnText = styled.span`
 `;
 
 export const BtnIcon = styled.svg`
-  stroke: ${({ color }) => color};
-  fill: ${({ color }) => color};
+  stroke: ${({ btnIconStroke }) => btnIconStroke};
+  fill: ${({ btnIconColor }) => btnIconColor};
 `;

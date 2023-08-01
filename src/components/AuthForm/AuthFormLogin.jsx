@@ -23,7 +23,7 @@ import authOperations from '../../redux/auth/operations';
 import { useState } from 'react';
 import sprite from '../../images/icons.svg';
 import authSelector from 'redux/auth/authSelector';
-import Loader from './Loader';
+import Loader from '../Loader/Loader';
 
 const userLoginSchema = object({
   email: string().required('Email is a required field').email('Please enter a valid email'),

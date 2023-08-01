@@ -21,7 +21,6 @@ const CategoriesContainer = styled.div`
   align-items: center;
   width: 126px;
   background-color: var(--lightblue);
-  padding: 10px 16px;
   height: 36px;
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;

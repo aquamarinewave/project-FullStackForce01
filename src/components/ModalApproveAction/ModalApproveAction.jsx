@@ -14,7 +14,16 @@ import {
   BtnIcon,
 } from './ModalApproveAction.styled';
 
-const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, btnIconColor, children, isLogout }) => {
+const ModalApproveAction = ({
+  isOpen,
+  onRequestClose,
+  onApprove,
+  btnIconName,
+  btnIconColor,
+  btnIconStroke,
+  children,
+  isLogout,
+}) => {
   const modalRef = useRef();
   const iconPath = sprite + '#' + btnIconName;
   const portalRoot = document.getElementById('modal-root');
@@ -60,7 +69,7 @@ const ModalApproveAction = ({ isOpen, onRequestClose, onApprove, btnIconName, bt
               <CancelBtn onClick={() => onRequestClose()}>Cancel</CancelBtn>
               <ApproveBtn onClick={onApprove}>
                 <BtnText>Yes</BtnText>
-                <BtnIcon width={24} height={24} color={btnIconColor}>
+                <BtnIcon width={24} height={24} fill={btnIconColor} stroke={btnIconStroke}>
                   <use href={iconPath}></use>
                 </BtnIcon>
               </ApproveBtn>
