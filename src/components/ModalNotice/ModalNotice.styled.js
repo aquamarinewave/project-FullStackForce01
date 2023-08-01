@@ -25,7 +25,8 @@ export const ModalWrapper = styled.div`
   background: var(--main-light-color);
   border-radius: 20px;
   position: relative;
-
+  overflow-y: auto;
+  max-height: calc(100vh - 40px);
   @media screen and (min-width: 768px) {
     width: 681px;
     border-radius: 40px;
