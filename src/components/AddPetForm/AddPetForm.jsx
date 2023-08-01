@@ -34,6 +34,17 @@ const titleText = category => {
   }
 };
 
+const today = new Date();
+
+const validateDate = dateString => {
+  const selectedDate = new Date(dateString);
+
+  if (isNaN(selectedDate.getTime())) {
+    return false;
+  }
+  return selectedDate <= today;
+};
+
 const firstStageValidationSchema = yup.object().shape({
   category: yup.string().oneOf(['sell', 'lost-found', 'for-free', 'my-pet']).required(),
 });
@@ -42,14 +53,20 @@ const secondStageValidationSchema = category => {
   if (category === 'my-pet') {
     return yup.object().shape({
       name: yup.string().required().min(2).max(16),
-      birthday: yup.date().required(),
+      birthday: yup
+        .date()
+        .required('Birthday is required')
+        .test('is-future-date', 'Please select a past or today date', validateDate),
       type: yup.string().required().min(2).max(16),
     });
   } else {
     return yup.object().shape({
-      title: yup.string().required('Title is required').min(5),
+      title: yup.string().required('Title is required').min(3).max(30),
       name: yup.string().required().min(2).max(16),
-      birthday: yup.date().required(),
+      birthday: yup
+        .date()
+        .required('Birthday is required')
+        .test('is-future-date', 'Please select a past or today date', validateDate),
       type: yup.string().required().min(2).max(16),
     });
   }
