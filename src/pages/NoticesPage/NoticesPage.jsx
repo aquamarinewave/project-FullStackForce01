@@ -135,8 +135,6 @@ const NoticesPage = () => {
           })
         );
       }
-      // dispatch(noticesOperations.setPattern(query));
-      // dispatch(noticesOperations.setCurrentPage(1));
       return () => {
         controller.abort();
       };
@@ -247,7 +245,12 @@ const NoticesPage = () => {
     <NoticesPageContainer>
       <Title>Find your favorite pet</Title>
 
-      <NoticesSearch pattern={noticesStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
+      <NoticesSearch
+        pattern={noticesStore.pattern}
+        onSubmit={haldleFormSubmit}
+        onClear={clearSearch}
+        categoryName={categoryName}
+      />
 
       <ButtonsBox>
         <NoticesCategoriesNav />

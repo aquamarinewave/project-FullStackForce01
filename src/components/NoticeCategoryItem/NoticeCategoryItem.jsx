@@ -30,15 +30,19 @@ import sprite from '../../images/icons.svg';
 import noticesOperations from 'redux/notices/operation';
 import authSelector from '../../redux/auth/authSelector';
 import noticesSelector from '../../redux/notices/noticesSelector';
+// import petsOperations from 'redux/pets/operations';
+// import petsSelector from 'redux/pets/selectors';
 
 const NoticeCategoryItem = ({ notices }) => {
   const dispatch = useDispatch();
   const favoriteNoticeStore = useSelector(noticesSelector.getNotice);
 
-  console.log(favoriteNoticeStore);
-
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
   const { categoryName } = useParams();
+
+  // const userPets = useSelector(petsSelector.selectPets);
+
+  // const userPetsId = userPets.map(pet => pet._id);
 
   const [idPet, setIdPet] = useState('');
 
@@ -53,6 +57,12 @@ const NoticeCategoryItem = ({ notices }) => {
   });
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
+
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     dispatch(petsOperations.fetchUserPet());
+  //   }
+  // }, [dispatch, isLoggedIn]);
 
   const onDelete = () => {
     dispatch(noticesOperations.deleteUserNotice(_id));
@@ -107,7 +117,7 @@ const NoticeCategoryItem = ({ notices }) => {
         <Img src={avatarURL} alt="pets avatar" width={280} height={290} />
         <CategoriesContainer>
           {category !== 'for-free' ? (
-            <CategoriesName>{category}</CategoriesName>
+            category === 'lost-found' && <CategoriesName>lost/found</CategoriesName>
           ) : (
             <CategoriesName>in goood hands</CategoriesName>
           )}
@@ -152,7 +162,7 @@ const NoticeCategoryItem = ({ notices }) => {
         <BtnContainer>
           <FavoriteBtnContainer>
             <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-              <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
+              <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
                 <use href={`${sprite}#icon-heart`}></use>
               </IconHeart>
             </AddToFavoriteBtn>
@@ -183,7 +193,7 @@ const NoticeCategoryItem = ({ notices }) => {
         isLoggedIn={isLoggedIn}
         isModalOpenAttention={isModalOpenAttention}
         closeModalAttention={closeModalAttention}
-        isSelected = {isSelected}
+        isSelected={isSelected}
       />
       {showDeleteModal && (
         <ModalApproveAction

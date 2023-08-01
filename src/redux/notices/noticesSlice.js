@@ -48,7 +48,7 @@ const noticesSlice = createSlice({
     },
     [noticesOperations.setCurrentPage.fulfilled](state, action) {
       state.error = null;
-      state.setCurrentPage = action.payload;
+      state.currentPage = action.payload;
     },
 
     [noticesOperations.fetchModalDetails.fulfilled](state, action) {
@@ -58,8 +58,8 @@ const noticesSlice = createSlice({
 
     [noticesOperations.fetchDeleteToFavorite.fulfilled](state, action) {
       state.error = null;
-      const index = state.items.findIndex(item => item.id === action.payload.id);      
-      state.items.splice(index, 1); 
+      const index = state.items.findIndex(item => item.id === action.payload.id);
+      state.items.splice(index, 1);
     },
   },
 });
