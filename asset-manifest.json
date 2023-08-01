@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/project-FullStackForce01/static/css/main.892df6f8.css",
-    "main.js": "/project-FullStackForce01/static/js/main.0216b28c.js",
+    "main.js": "/project-FullStackForce01/static/js/main.6512a712.js",
     "static/js/213.617f94b1.chunk.js": "/project-FullStackForce01/static/js/213.617f94b1.chunk.js",
     "static/js/758.82551497.chunk.js": "/project-FullStackForce01/static/js/758.82551497.chunk.js",
     "static/js/913.19e462af.chunk.js": "/project-FullStackForce01/static/js/913.19e462af.chunk.js",
     "static/js/106.c7a330ef.chunk.js": "/project-FullStackForce01/static/js/106.c7a330ef.chunk.js",
     "static/js/538.e4cfbf4a.chunk.js": "/project-FullStackForce01/static/js/538.e4cfbf4a.chunk.js",
-    "static/js/997.0d36c34c.chunk.js": "/project-FullStackForce01/static/js/997.0d36c34c.chunk.js",
+    "static/js/997.43ab9b98.chunk.js": "/project-FullStackForce01/static/js/997.43ab9b98.chunk.js",
     "static/js/676.36ef4642.chunk.js": "/project-FullStackForce01/static/js/676.36ef4642.chunk.js",
     "static/js/939.53802bd4.chunk.js": "/project-FullStackForce01/static/js/939.53802bd4.chunk.js",
     "static/js/581.861772d9.chunk.js": "/project-FullStackForce01/static/js/581.861772d9.chunk.js",
@@ -48,13 +48,13 @@
     "static/media/logo-small.webp": "/project-FullStackForce01/static/media/logo-small.1debf6693c81405101b6.webp",
     "index.html": "/project-FullStackForce01/index.html",
     "main.892df6f8.css.map": "/project-FullStackForce01/static/css/main.892df6f8.css.map",
-    "main.0216b28c.js.map": "/project-FullStackForce01/static/js/main.0216b28c.js.map",
+    "main.6512a712.js.map": "/project-FullStackForce01/static/js/main.6512a712.js.map",
     "213.617f94b1.chunk.js.map": "/project-FullStackForce01/static/js/213.617f94b1.chunk.js.map",
     "758.82551497.chunk.js.map": "/project-FullStackForce01/static/js/758.82551497.chunk.js.map",
     "913.19e462af.chunk.js.map": "/project-FullStackForce01/static/js/913.19e462af.chunk.js.map",
     "106.c7a330ef.chunk.js.map": "/project-FullStackForce01/static/js/106.c7a330ef.chunk.js.map",
     "538.e4cfbf4a.chunk.js.map": "/project-FullStackForce01/static/js/538.e4cfbf4a.chunk.js.map",
-    "997.0d36c34c.chunk.js.map": "/project-FullStackForce01/static/js/997.0d36c34c.chunk.js.map",
+    "997.43ab9b98.chunk.js.map": "/project-FullStackForce01/static/js/997.43ab9b98.chunk.js.map",
     "676.36ef4642.chunk.js.map": "/project-FullStackForce01/static/js/676.36ef4642.chunk.js.map",
     "939.53802bd4.chunk.js.map": "/project-FullStackForce01/static/js/939.53802bd4.chunk.js.map",
     "581.861772d9.chunk.js.map": "/project-FullStackForce01/static/js/581.861772d9.chunk.js.map",
@@ -68,6 +68,6 @@
   },
   "entrypoints": [
     "static/css/main.892df6f8.css",
-    "static/js/main.0216b28c.js"
+    "static/js/main.6512a712.js"
   ]
 }
