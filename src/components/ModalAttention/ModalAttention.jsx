@@ -16,9 +16,12 @@ const ModalAttention = ({ onClose }) => {
 
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
+    document.body.style.marginRight = '17px';
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'auto';
+      document.body.style.marginRight = '0px';
     };
   }, [onClose]);
 
