@@ -110,16 +110,23 @@ export const DeleteButton = styled.button`
   border-radius: 50%;
 
   cursor: pointer;
-  color: var(--dark-blue);
+  /* color: var(--dark-blue); */
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--dark-blue);
-    color: white;
   }
 `;
 
 export const IconTrash = styled.svg`
-  stroke: currentColor;
+  fill: var(--main-light-color);
+  stroke: var(--dark-blue);
+
+  &:hover,
+  &:focus {
+    fill: var(--dark-blue);
+    stroke: var(--main-light-color);
+  }
 `;
 
 export const InfoTitle = styled.h3`
