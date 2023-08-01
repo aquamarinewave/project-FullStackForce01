@@ -97,6 +97,11 @@ export const Subtitle = styled.span`
   }
 `;
 
+export const IconTrash = styled.svg`
+  fill: var(--main-light-color);
+  stroke: var(--dark-blue);
+`;
+
 export const DeleteButton = styled.button`
   position: absolute;
   top: -12px;
@@ -110,16 +115,17 @@ export const DeleteButton = styled.button`
   border-radius: 50%;
 
   cursor: pointer;
-  color: var(--dark-blue);
 
-  &:hover {
-    background: var(--dark-blue);
-    color: white;
+    &:hover,
+    &:focus {
+      background: var(--dark-blue);
+    }
+
+    &: hover ${IconTrash} {
+      fill: var(--dark-blue);
+      stroke: var(--main-light-color);
+    }
   }
-`;
-
-export const IconTrash = styled.svg`
-  stroke: currentColor;
 `;
 
 export const InfoTitle = styled.h3`
