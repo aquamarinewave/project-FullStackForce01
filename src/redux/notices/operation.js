@@ -84,6 +84,14 @@ const setPattern = createAsyncThunk('notices/pattern', async (pattern, thunkAPI)
   }
 });
 
+const setIsSelected = createAsyncThunk('notices/isSelected', async (isSelected, thunkAPI) => {
+  try {
+    return isSelected;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 const setCurrentPage = createAsyncThunk('notices/currentPage', async (page, thunkAPI) => {
   try {
     return page;
@@ -109,15 +117,14 @@ const fetchModalDetails = createAsyncThunk(
 
 const fetchAddToFavorite = createAsyncThunk(
   'notices/fetchAddToFavorite',
-  async ({_id, favoriteNoticeStore}, thunkAPI) => {
+  async (_id, thunkAPI) => {
     try {
-      const response = await axios.patch(`${baseURLForAll}/${_id}/favorites`, {favoriteNoticeStore}, {
+      const response = await axios.patch(`${baseURLForAll}/${_id}/favorites`, {
         signal: controller.signal,
         headers: {
           "Authorization": `${axios.defaults.headers.common.Authorization}`
         },
       });
-      
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -136,7 +143,6 @@ const fetchDeleteToFavorite = createAsyncThunk(
           "Authorization": `${axios.defaults.headers.common.Authorization}`
         },
       });
-      console.log('res', response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -154,7 +160,8 @@ const noticesOperations = {
   setCategoryId,
   fetchModalDetails,
   fetchAddToFavorite,
-  fetchDeleteToFavorite
+  fetchDeleteToFavorite,
+  setIsSelected
 };
 
 export default noticesOperations;

@@ -5,7 +5,7 @@ const getNotice = state => state.notices.favorite;
 const noticesSelector = {
   selectNotices,
   selectNoticesError,
-  getNotice,
+  getNotice
 };
 
 export default noticesSelector;

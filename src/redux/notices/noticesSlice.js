@@ -7,6 +7,7 @@ const noticesSlice = createSlice({
   initialState: {
     items: [],
     favorite: {},
+    isSelected: false,
     error: null,
     pattern: '',
     categoryId: null,
@@ -56,10 +57,21 @@ const noticesSlice = createSlice({
       state.favorite = action.payload;
     },
 
+    [noticesOperations.fetchAddToFavorite.fulfilled](state, action) {
+      state.error = null;
+      state.isSelected = action.payload;
+    },
+
+    [noticesOperations.setIsSelected.fulfilled](state, action) {
+      state.error = null;
+      state.isSelected = action.payload;
+    },
+
     [noticesOperations.fetchDeleteToFavorite.fulfilled](state, action) {
       state.error = null;
-      const index = state.items.findIndex(item => item.id === action.payload.id);      
-      state.items.splice(index, 1); 
+      state.isSelected = action.payload;
+      // const index = state.items.findIndex(item => item.id === action.payload.id);      
+      // state.items.splice(index, 1); 
     },
   },
 });

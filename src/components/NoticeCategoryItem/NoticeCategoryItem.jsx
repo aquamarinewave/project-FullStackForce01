@@ -35,9 +35,14 @@ const NoticeCategoryItem = ({ notices }) => {
   const dispatch = useDispatch();
   const favoriteNoticeStore = useSelector(noticesSelector.getNotice);
 
-  console.log(favoriteNoticeStore);
+  const { notice } = favoriteNoticeStore;
+
+  // const storeIsSelected = useSelector(favoriteNoticeStore.isSelected);
+
+  console.log(favoriteNoticeStore.isSelected);
 
   const { _id, title, birthday, category, location, sex, avatarURL } = notices;
+
   const { categoryName } = useParams();
 
   const [idPet, setIdPet] = useState('');
@@ -46,11 +51,6 @@ const NoticeCategoryItem = ({ notices }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
-  const [isSelected, setIsSelected] = useState(() => {
-    const saved = localStorage.getItem(`pet_${_id}`);
-    const initialValue = JSON.parse(saved);
-    return initialValue || false;
-  });
 
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
@@ -80,18 +80,15 @@ const NoticeCategoryItem = ({ notices }) => {
   };
 
   const handleAddToFavorite = () => {
-    const addToFavoriteValue = {
-      _id,
-      favoriteNoticeStore,
-    };
-
     if (isLoggedIn) {
-      if (!isSelected) {
-        dispatch(noticesOperations.fetchAddToFavorite(addToFavoriteValue));
-        setIsSelected(!isSelected);
+      if (!notice.favorite) {
+        dispatch(noticesOperations.fetchAddToFavorite(_id));
+        dispatch(noticesOperations.setIsSelected(true));
+        setIdPet(_id);
       } else {
         dispatch(noticesOperations.fetchDeleteToFavorite(_id));
-        setIsSelected(!isSelected);
+        dispatch(noticesOperations.setIsSelected(false));
+        setIdPet(_id);
       }
     } else {
       setShowModal(false);
@@ -99,7 +96,8 @@ const NoticeCategoryItem = ({ notices }) => {
     }
   };
 
-  localStorage.setItem(`pet_${_id}`, JSON.stringify(isSelected));
+
+  // localStorage.setItem(`pet_${_id}`, JSON.stringify(isSelected));
 
   return (
     <>
@@ -152,7 +150,7 @@ const NoticeCategoryItem = ({ notices }) => {
         <BtnContainer>
           <FavoriteBtnContainer>
             <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-              <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
+              <IconHeart width={24} height={24} isSelected = {favoriteNoticeStore.isSelected} isLoggedIn = {isLoggedIn}>
                 <use href={`${sprite}#icon-heart`}></use>
               </IconHeart>
             </AddToFavoriteBtn>
@@ -183,7 +181,7 @@ const NoticeCategoryItem = ({ notices }) => {
         isLoggedIn={isLoggedIn}
         isModalOpenAttention={isModalOpenAttention}
         closeModalAttention={closeModalAttention}
-        isSelected = {isSelected}
+        isSelected = {favoriteNoticeStore.isSelected}
       />
       {showDeleteModal && (
         <ModalApproveAction
