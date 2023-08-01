@@ -111,7 +111,7 @@ const AddToFavoriteBtn = styled.button`
   border-radius: 50%;
   background-color: var(--lightblue);
   padding: 0;
-  &:hover ${IconHeart}, :focus ${IconHeart} {
+  &:hover ${IconHeart} {
     fill: var(--dark-blue);
   }
 `;

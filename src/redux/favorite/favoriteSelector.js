@@ -1,2 +1,3 @@
-export const getNotice = state => state.favorite.items;
-export const getSelected = state => state.favorite.select;
+const getNotice = state => state.favorite.items;
+
+export default getNotice;

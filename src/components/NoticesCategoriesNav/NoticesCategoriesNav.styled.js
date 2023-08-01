@@ -7,6 +7,7 @@ const CategoriesNavContainer = styled.div`
   gap: 8px;
   width: 200px;
   margin-bottom: 24px;
+  margin-right: auto;
   @media screen and (min-width: 768px) {
     width: 320px;
     height: 82px;

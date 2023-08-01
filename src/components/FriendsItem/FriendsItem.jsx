@@ -10,7 +10,7 @@ import {
   InfoBlock,
   EmptyBlock,
   EmptyBlockAddress,
-  Info,
+  // Info,
   InfoTitle,
   InfoLink,
   InfoLinkAddress,
@@ -36,10 +36,10 @@ const FriendsItem = ({ responseByFriends }) => {
 
               <WorkingHours daysWorkingInWeek={workDays}></WorkingHours>
 
-            <Info>
+            <div>
               <InfoTitle>Address:</InfoTitle>
               {!address ? (
-                <EmptyBlockAddress></EmptyBlockAddress>
+                <EmptyBlockAddress>-</EmptyBlockAddress>
               ) : (
                 <InfoLinkAddressDiv>
                   <InfoLinkAddress href={addressUrl} target="_blank" rel="noopener noreferrer">
@@ -47,17 +47,17 @@ const FriendsItem = ({ responseByFriends }) => {
                   </InfoLinkAddress>
                 </InfoLinkAddressDiv>
               )}
-            </Info>
+            </div>
 
-            <Info>
+            <div>
               <InfoTitle>Email:</InfoTitle>
-              {!email ? <EmptyBlock></EmptyBlock> : <InfoLink href={`mailto:${email}`}> {email} </InfoLink>}
-            </Info>
+              {!email ? <EmptyBlock>-</EmptyBlock> : <InfoLink href={`mailto:${email}`}> {email} </InfoLink>}
+            </div>
 
-            <Info>
+            <div>
               <InfoTitle>Phone:</InfoTitle>
-              {!phone ? <EmptyBlock></EmptyBlock> : <InfoLink href={`tel:${phone}`}> {phone} </InfoLink>}
-            </Info>
+              {!phone ? <EmptyBlock>-</EmptyBlock> : <InfoLink href={`tel:${phone}`}> {phone} </InfoLink>}
+            </div>
           </InfoBlock>
         </InfoItemFriend>
       </FriendsItemThumb>

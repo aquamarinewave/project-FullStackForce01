@@ -32,17 +32,6 @@ const optionsSex = [
   },
 ];
 
-const heightTextarea = checked => {
-  switch (checked) {
-    case 'your_pet':
-      return '79px';
-    case 'sell':
-      return '79px';
-    default:
-      return '182px';
-  }
-};
-
 const ThirdStageForm = ({
   showPlaceholder,
   setPreviewImage,
@@ -63,13 +52,14 @@ const ThirdStageForm = ({
       setShowPlaceholder(true);
       setPreviewImage('');
     }
-    formik.handleChange(event);
+    // formik.handleChange(event);
+    // formik.setFieldValue('avatar', file);
   };
 
   return (
-    <ContainerFormStepThird currentRadioButton={currentRadioButton !== 'your_pet'}>
+    <ContainerFormStepThird currentRadioButton={currentRadioButton !== 'my-pet'}>
       <ContainerButton>
-        {currentRadioButton !== 'your_pet' && (
+        {currentRadioButton !== 'my-pet' && (
           <>
             <ParagraphPetAvatar>The sex</ParagraphPetAvatar>
             <BoxRadioButtonSex>
@@ -95,8 +85,8 @@ const ThirdStageForm = ({
             </BoxRadioButtonSex>
           </>
         )}
-        <ContainerAvatar currentRadioButton={currentRadioButton !== 'your_pet'}>
-          <ParagraphPetAvatar currentRadioButton={currentRadioButton !== 'your_pet'}>
+        <ContainerAvatar currentRadioButton={currentRadioButton !== 'my-pet'}>
+          <ParagraphPetAvatar currentRadioButton={currentRadioButton !== 'my-pet'}>
             Load the pet’s image:
           </ParagraphPetAvatar>
           <BoxPetAvatar>
@@ -114,7 +104,7 @@ const ThirdStageForm = ({
         </ContainerAvatar>
       </ContainerButton>
       <ContainerInput>
-        {currentRadioButton !== 'your_pet' && (
+        {currentRadioButton !== 'my-pet' && (
           <BoxInputField key="location">
             <FieldLabel htmlFor="location">Location</FieldLabel>
             <InputField
@@ -147,8 +137,7 @@ const ThirdStageForm = ({
         <div>
           <TextSpan>Comments</TextSpan>
           <InputFieldTextArea
-            heightTextarea={heightTextarea(currentRadioButton)}
-            // currentRadioButton={currentRadioButton === 'sell'}
+            currentRadioButton={currentRadioButton}
             as={TextArea} // Використовуємо наші стилі для textarea
             id="comments"
             name="comments"

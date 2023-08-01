@@ -6,8 +6,7 @@ const favoriteSlice = createSlice({
   name: "favorite",  
   initialState: {    
     items: {},
-    error: null,
-    select: false,   
+    error: null,  
   },  
   extraReducers: {
     [favoriteOperations.fetchModalDetails.fulfilled](state, action) {
@@ -15,15 +14,16 @@ const favoriteSlice = createSlice({
       state.items = action.payload;
     },
 
-    [favoriteOperations.fetchAddToFavorite.fulfilled](state, action) {
-      state.error = null;
-      state.select = true;
-    },
+    // [favoriteOperations.fetchAddToFavorite.fulfilled](state, action) {
+    //   state.error = null;
+    //   state.favoriteItems = action.payload.favoriteNoticeStore;
+    // },
 
-    [favoriteOperations.fetchDeleteToFavorite.fulfilled](state, action) {
-      state.error = null;
-      state.select = false;
-    },
+    // [favoriteOperations.fetchDeleteToFavorite.fulfilled](state, action) {
+    //   state.error = null;
+    //   const index = state.items.findIndex(({notice}) => notice._id === action.payload._id);      
+    //   state.items.splice(index, 1); 
+    // },
   },
 });
 

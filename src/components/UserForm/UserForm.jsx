@@ -17,8 +17,11 @@ import {
   IconCheck,
   BtnConfirm,
   BtnDecline,
-  ApproveText,
   ApproveContainer,
+  IconCamera,
+  ApprovedMassege,
+  IconCheckForm,
+  IconCheckBirthday,
 } from './UserForm.styled';
 import { updateUser } from 'redux/auth/operations';
 
@@ -28,7 +31,6 @@ import sprite from '../../images/icons.svg';
 
 export const UserForm = ({ toggleModal }) => {
   const [editAvatar, setEditAvatar] = useState(false);
-  console.log(editAvatar);
   const user = useSelector(authSelector.userSelector);
   const [avatarUrl, setAvatarUrl] = useState('');
   const [newAvatar, setNewAvatar] = useState('');
@@ -80,6 +82,7 @@ export const UserForm = ({ toggleModal }) => {
       if (initialValues.email !== values.email && values.email) {
         formData.append('email', values.email);
       }
+
       if (initialValues.birthday !== values.birthday && values.birthday) {
         formData.append('birthday', values.birthday);
       }
@@ -91,7 +94,6 @@ export const UserForm = ({ toggleModal }) => {
         console.log('value city', value);
       }
       const res = await dispatch(updateUser(formData));
-      console.log(res);
       toggleModal();
 
       if (res.data.status === '200') {
@@ -141,7 +143,7 @@ export const UserForm = ({ toggleModal }) => {
                       <use href={`${sprite}#icon-check`}></use>
                     </IconCheck>
                   </BtnConfirm>
-                  <ApproveText>Confirm</ApproveText>
+                  <p>Confirm</p>
                   <BtnDecline
                     onClick={() => {
                       setAvatarUrl(user?.avatarURL || { avatarDefault });
@@ -162,6 +164,9 @@ export const UserForm = ({ toggleModal }) => {
                     onChange={e => handleChange(e)}
                     accept="image/png, image/jpeg, image/jpg, image/jfif"
                   />
+                  <IconCamera width={24} height={24}>
+                    <use href={`${sprite}#icon-camera`}></use>
+                  </IconCamera>
                   <EditText>Edit photo</EditText>
                 </EditButton>
               )}
@@ -175,35 +180,96 @@ export const UserForm = ({ toggleModal }) => {
               {errors.name && touched.name ? (
                 <ErrorMassege>{errors.name}</ErrorMassege>
               ) : !errors.name && touched.name && values.name !== user?.name ? (
-                <ErrorMassege>Great</ErrorMassege>
+                <ApprovedMassege>
+                  <span>
+                    <IconCheckForm width={24} height={24}>
+                      <use href={`${sprite}#icon-check`}></use>
+                    </IconCheckForm>
+                  </span>
+                </ApprovedMassege>
               ) : (
                 ''
               )}
             </Container>
+            <Container>
+              <WrapperField>
+                <Label htmlFor="email"> Email:</Label>
+                <ProfileField type="email" name="email" placeholder={initialValues.email} />
+                {errors.email && touched.name ? (
+                  <ErrorMassege>{errors.email}</ErrorMassege>
+                ) : !errors.email && touched.email && values.email !== user?.email ? (
+                  <ApprovedMassege>
+                    <span>
+                      <IconCheckForm width={24} height={24}>
+                        <use href={`${sprite}#icon-check`}></use>
+                      </IconCheckForm>
+                    </span>
+                  </ApprovedMassege>
+                ) : (
+                  ''
+                )}
+              </WrapperField>
+            </Container>
+            <Container>
+              <WrapperField>
+                <Label htmlFor="date"> Birthday:</Label>
+                <ProfileField type="date" name="birthday" />
+                {errors.birthday && touched.birthday ? (
+                  <ErrorMassege>{errors.birthday}</ErrorMassege>
+                ) : !errors.birthday && touched.birthday && values.birthday !== user?.birthday ? (
+                  <ApprovedMassege>
+                    <span>
+                      <IconCheckBirthday width={24} height={24}>
+                        <use href={`${sprite}#icon-check`}></use>
+                      </IconCheckBirthday>
+                    </span>
+                  </ApprovedMassege>
+                ) : (
+                  ''
+                )}
+              </WrapperField>
+            </Container>
+            <Container>
+              <WrapperField>
+                <Label htmlFor="phone"> Phone:</Label>
+                <ProfileField placeholder={initialValues.phone} type="phone" name="phone" format="dd/mm/yyyy" />
+                {errors.phone && touched.phone ? (
+                  <ErrorMassege>{errors.phone}</ErrorMassege>
+                ) : !errors.phone && touched.phone && values.phone !== user?.phone ? (
+                  <ApprovedMassege>
+                    <span>
+                      <IconCheckForm width={24} height={24}>
+                        <use href={`${sprite}#icon-check`}></use>
+                      </IconCheckForm>
+                    </span>
+                  </ApprovedMassege>
+                ) : (
+                  ''
+                )}
+              </WrapperField>
+            </Container>
+            <Container>
+              <WrapperField>
+                <Label htmlFor="city"> City:</Label>
+                <ProfileField type="text" name="city" placeholder={initialValues.city} />
+                {errors.city && touched.city ? (
+                  <ErrorMassege>{errors.city}</ErrorMassege>
+                ) : !errors.city && touched.city && values.city !== user?.city ? (
+                  <ApprovedMassege>
+                    <span>
+                      <IconCheckForm width={24} height={24}>
+                        <use href={`${sprite}#icon-check`}></use>
+                      </IconCheckForm>
+                    </span>
+                  </ApprovedMassege>
+                ) : (
+                  ''
+                )}
+              </WrapperField>
+            </Container>
 
-            <WrapperField>
-              <Label htmlFor="email"> Email:</Label>
-              <ProfileField type="email" name="email" placeholder={initialValues.email} />
-            </WrapperField>
-
-            <WrapperField>
-              <Label htmlFor="date"> Birthday:</Label>
-              <ProfileField type="date" name="birthday" />
-            </WrapperField>
-
-            <WrapperField>
-              <Label htmlFor="phone"> Phone:</Label>
-              <ProfileField placeholder={initialValues.phone} type="phone" name="phone" format="dd/mm/yyyy" />
-            </WrapperField>
-
-            <WrapperField>
-              <Label htmlFor="city"> City:</Label>
-              <ProfileField type="text" name="city" placeholder={initialValues.city} />
-            </WrapperField>
             {isUpdateForm ? (
-              <SubmitBtn type="submit" disabled={dirty || editAvatar}>
-                Save
-              </SubmitBtn>
+              <SubmitBtn type="submit">Save</SubmitBtn>
             ) : (
               <SubmitBtn type="submit" disabled={!dirty}>
                 Save
