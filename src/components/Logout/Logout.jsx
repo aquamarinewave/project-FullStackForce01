@@ -55,6 +55,7 @@ const Logout = ({
           btnIconColor={'var(--bg-color)'}
           btnIconName={'icon-logout'}
           isLogout
+          btnIconStroke={'var(--bg-color)'}
         >
           <ModalText weight="500" isRequest={isRequest} spacing={spacing} isLogout={isLogout}>
             Already leaving?
