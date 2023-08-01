@@ -55,15 +55,15 @@ export const ImgBlock = styled.div`
 `;
 
 export const Picture = styled.picture`
-  display: block;
-  width: 100%;
+  position: absolute;
   left: 0;
-  top: -45px;
+  top: 120px;
+  width: 100%;
+  }
 
   @media screen and (min-width: 768px) {
+    top: 210px;
     width: 100%;
-    left: 0;
-    top: -90px;
   }
 
   @media screen and (min-width: 1280px) {
