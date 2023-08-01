@@ -1,24 +1,7 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
 
-export const ProfileInfo = styled.div`
-  position: relative;
-  width: 100%;
-
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: center;
-  padding: 20px 8px 68px 8px;
-  gap: 21px;
-  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-  border-radius: 40px;
-  background: var(--unnamed, #fff);
-  margin-bottom: 57px;
-`;
-
-export const WrapperCard = styled.div`
-  margin-right: 32px;
-`;
+export const WrapperCard = styled.div``;
 
 export const ProfileTitle = styled.h2`
   font-weight: 500;
@@ -41,16 +24,26 @@ export const Label = styled.label`
   line-height: normal;
   letter-spacing: 0.72px;
   margin-left: 16px;
+  margin-right: 15px;
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    margin: 0;
+    margin-right: 8px;
+  }
 `;
 export const ProfileField = styled(Field)`
   display: flex;
-  width: 232px;
+  width: 190px;
   padding: 4px 12px;
   align-items: center;
   border-radius: 20px;
   border: 1px solid var(--unnamed, #54adff);
   margin-bottom: 10px;
-  margin-right: 24px;
+
   ::placeholder {
     color: var(--unnamed, #111);
     font-family: Manrope;
@@ -60,11 +53,18 @@ export const ProfileField = styled(Field)`
     line-height: normal;
     letter-spacing: 0.64px;
   }
+  @media screen and (min-width: 768px) {
+    width: 255px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 255px;
+  }
 `;
 
 export const WrapperField = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 `;
 
 export const ImgAvatar = styled.img`
@@ -73,10 +73,19 @@ export const ImgAvatar = styled.img`
   border: none;
   border-radius: 40px;
   object-fit: cover;
+  @media screen and (min-width: 768px) {
+    margin-left: 71px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin: 0 auto;
+  }
 `;
 
 export const AvatarWrapper = styled.div`
   margin-bottom: 26px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 0px;
+  }
 `;
 
 export const ImgWrapper = styled.div`
@@ -91,4 +100,23 @@ export const ImgWrapper = styled.div`
   border-radius: 40px;
   margin: 0 auto;
   margin-bottom: 15px;
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+  }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;

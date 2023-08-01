@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 export const SubmitBtn = styled.button`
   display: flex;
-  width: 232px;
+  width: 248px;
   padding: 6px;
   justify-content: center;
   align-items: center;
@@ -17,10 +17,29 @@ export const SubmitBtn = styled.button`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
+  right: 50px;
+  position: relative;
+  right: 68px;
+  top: 13px;
   :disabled {
     opacity: 0.4;
   }
   margin-left: 140px;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+
+    width: 255px;
+    right: 341px;
+    top: 210px;
+    height: 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    position: relative;
+    width: 255px;
+    right: 26px;
+    top: -1px;
+    height: 32px;
+  }
 `;
 
 export const Container = styled.div`
@@ -45,6 +64,12 @@ export const ApprovedMassege = styled.div`
 export const EditButton = styled.label`
   position: relative;
   display: inline-block;
+  @media screen and (min-width: 768px) {
+    left: 64px;
+  }
+  @media screen and (min-width: 1280px) {
+    left: 107px;
+  }
 `;
 
 export const EditText = styled.span`
@@ -75,6 +100,14 @@ export const ApproveContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    right: 117px;
+  }
+  @media screen and (min-width: 1280px) {
+    position: relative;
+    right: -107px;
+  }
 `;
 
 export const BtnDecline = styled.button`
@@ -115,6 +148,9 @@ export const IconCheckForm = styled.svg`
   top: 13px;
   position: absolute;
   right: -200px;
+  @media screen and (min-width: 768px) {
+    right: -176px;
+  }
 `;
 
 export const IconCheckBirthday = styled.svg`
@@ -122,4 +158,39 @@ export const IconCheckBirthday = styled.svg`
   top: 13px;
   position: absolute;
   right: -180px;
+  @media screen and (min-width: 768px) {
+    right: -154px;
+  }
+`;
+
+export const WrapperModalCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+
+    margin-right: 160px;
+    justify-content: flex-start;
+  }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const ImgAvatarForm = styled.img`
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 40px;
+  object-fit: cover;
+  @media screen and (min-width: 768px) {
+    margin-left: 71px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: 107px;
+  }
 `;
