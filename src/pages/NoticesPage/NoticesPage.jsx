@@ -14,6 +14,7 @@ import AddPetButton from 'components/AddPetButton/AddPetButton';
 import AddPetButtonSmall from 'components/AddPetButton/AddPetButtonSmall';
 
 import { ButtonsBox, NoticesPageContainer, Title } from './NoticesPage.styled';
+import Loader from '../../components/Loader/Loader';
 
 const statusList = {
   REJECTED: 1,
@@ -90,7 +91,7 @@ const NoticesPage = () => {
         case IDLE:
           return <div>Please, type something to the search</div>;
         case PENDING:
-          return <div>Loading....</div>;
+          return <Loader />;
         case REJECTED:
           return <div>Oopps...no listings found.{noticesStore.error && <div>{noticesStore.error}</div>}</div>;
         case RESOLVED:
