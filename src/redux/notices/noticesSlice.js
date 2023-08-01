@@ -34,9 +34,9 @@ const noticesSlice = createSlice({
       state.totalPages = Math.ceil(totalCount / state.perPage);
     },
     [noticesOperations.deleteUserNotice.fulfilled](state, action) {
-      const index = state.items.findIndex(index => index.id !== action.payload.id);
+      const index = state.items.findIndex(item => item._id === action.payload.id);
       state.error = null;
-      state.items = state.items.splice(index, 1);
+      state.items.splice(index, 1);
     },
     [noticesOperations.setPattern.fulfilled](state, action) {
       state.error = null;
@@ -58,8 +58,8 @@ const noticesSlice = createSlice({
 
     [noticesOperations.fetchDeleteToFavorite.fulfilled](state, action) {
       state.error = null;
-      const index = state.items.findIndex(item => item.id === action.payload.id);      
-      state.items.splice(index, 1); 
+      const index = state.items.findIndex(item => item._id === action.payload.id);
+      state.items.splice(index, 1);
     },
   },
 });
