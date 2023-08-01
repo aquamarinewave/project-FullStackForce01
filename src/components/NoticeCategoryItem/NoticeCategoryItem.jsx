@@ -27,14 +27,13 @@ import {
   Subtitle,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
-import favoriteOperations from '../../redux/favorite/favoriteOperations';
-import getNotice from '../../redux/favorite/favoriteSelector';
 import noticesOperations from 'redux/notices/operation';
 import authSelector from '../../redux/auth/authSelector';
+import noticesSelector from '../../redux/notices/noticesSelector';
 
 const NoticeCategoryItem = ({ notices }) => {
   const dispatch = useDispatch();
-  const favoriteNoticeStore = useSelector(getNotice);
+  const favoriteNoticeStore = useSelector(noticesSelector.getNotice);
 
   console.log(favoriteNoticeStore);
 
@@ -62,7 +61,7 @@ const NoticeCategoryItem = ({ notices }) => {
   };
 
   const openModal = () => {
-    dispatch(favoriteOperations.fetchModalDetails(_id));
+    dispatch(noticesOperations.fetchModalDetails(_id));
     setShowModal(showModal => !showModal);
   };
 
@@ -88,10 +87,10 @@ const NoticeCategoryItem = ({ notices }) => {
 
     if (isLoggedIn) {
       if (!isSelected) {
-        dispatch(favoriteOperations.fetchAddToFavorite(addToFavoriteValue));
+        dispatch(noticesOperations.fetchAddToFavorite(addToFavoriteValue));
         setIsSelected(!isSelected);
       } else {
-        dispatch(favoriteOperations.fetchDeleteToFavorite(_id));
+        dispatch(noticesOperations.fetchDeleteToFavorite(_id));
         setIsSelected(!isSelected);
       }
     } else {
