@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import authSelector from 'redux/auth/authSelector';
 import avatarDefault from 'images/profilephotos/avatar-default.png';
 import { useSelector, useDispatch } from 'react-redux';
-import { AvatarWrapper, ImgAvatar, WrapperField, Label, ProfileField, ImgWrapper } from '../UserData/UserData.styled';
+import { AvatarWrapper, WrapperField, Label, ProfileField, ImgWrapper } from '../UserData/UserData.styled';
 import {
   SubmitBtn,
   Container,
@@ -22,6 +22,8 @@ import {
   ApprovedMassege,
   IconCheckForm,
   IconCheckBirthday,
+  WrapperModalCard,
+  ImgAvatarForm,
 } from './UserForm.styled';
 import { updateUser } from 'redux/auth/operations';
 
@@ -105,6 +107,16 @@ export const UserForm = ({ toggleModal }) => {
     } catch (e) {}
   };
 
+  const today = new Date();
+
+  const validateDate = dateString => {
+    const selectedDate = new Date(dateString);
+
+    if (isNaN(selectedDate.getTime())) {
+      return false;
+    }
+    return selectedDate <= today;
+  };
   const shema = yup.object().shape({
     name: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your name'),
     email: yup.string().email('Incorrect email').required('Email is required'),
@@ -114,7 +126,10 @@ export const UserForm = ({ toggleModal }) => {
       .max(13, 'Phone format: +380000000000')
       .min(13, 'Phone format: +380000000000'),
     city: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your city'),
-    birthday: yup.date().nullable(),
+    birthday: yup
+      .date()
+      .required('Birthday is required')
+      .test('is-future-date', 'Please select a past or today date', validateDate),
   });
 
   return (
@@ -122,159 +137,165 @@ export const UserForm = ({ toggleModal }) => {
       <Formik initialValues={initialValues} dirty validationSchema={shema} onSubmit={handleFormSubmit}>
         {({ dirty, errors, touched, values }) => (
           <Form>
-            <AvatarWrapper>
-              {newAvatar ? (
-                <ImgWrapper>
-                  <ImgAvatar src={newAvatar} alt="avatar" />
-                </ImgWrapper>
-              ) : (
-                <ImgWrapper>
-                  <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
-                </ImgWrapper>
-              )}
-              {editAvatar ? (
-                <ApproveContainer>
-                  <BtnConfirm
-                    onClick={() => {
-                      setEditAvatar(false);
-                    }}
-                  >
-                    <IconCheck width={24} height={24}>
-                      <use href={`${sprite}#icon-check`}></use>
-                    </IconCheck>
-                  </BtnConfirm>
-                  <p>Confirm</p>
-                  <BtnDecline
-                    onClick={() => {
-                      setAvatarUrl(user?.avatarURL || { avatarDefault });
-                      setNewAvatar('');
-                      setEditAvatar(false);
-                    }}
-                  >
-                    <IconCrossSmall width={24} height={24}>
-                      <use href={`${sprite}#icon-cross-small`}></use>
-                    </IconCrossSmall>
-                  </BtnDecline>
-                </ApproveContainer>
-              ) : (
-                <EditButton>
-                  <InputWrapper
-                    type="file"
-                    id="fileInput"
-                    onChange={e => handleChange(e)}
-                    accept="image/png, image/jpeg, image/jpg, image/jfif"
-                  />
-                  <IconCamera width={24} height={24}>
-                    <use href={`${sprite}#icon-camera`}></use>
-                  </IconCamera>
-                  <EditText>Edit photo</EditText>
-                </EditButton>
-              )}
-            </AvatarWrapper>
-            <Container>
-              <WrapperField>
-                <Label htmlFor="name"> Name:</Label>
+            <WrapperModalCard>
+              <div>
+                <AvatarWrapper>
+                  {newAvatar ? (
+                    <ImgWrapper>
+                      <ImgAvatarForm src={newAvatar} alt="avatar" />
+                    </ImgWrapper>
+                  ) : (
+                    <ImgWrapper>
+                      <ImgAvatarForm src={initialValues.avatarURL} alt="avatar" />
+                    </ImgWrapper>
+                  )}
+                  {editAvatar ? (
+                    <ApproveContainer>
+                      <BtnConfirm
+                        onClick={() => {
+                          setEditAvatar(false);
+                        }}
+                      >
+                        <IconCheck width={24} height={24}>
+                          <use href={`${sprite}#icon-check`}></use>
+                        </IconCheck>
+                      </BtnConfirm>
+                      <p>Confirm</p>
+                      <BtnDecline
+                        onClick={() => {
+                          setAvatarUrl(user?.avatarURL || { avatarDefault });
+                          setNewAvatar(initialValues.avatarURL);
+                          setEditAvatar(false);
+                        }}
+                      >
+                        <IconCrossSmall width={24} height={24}>
+                          <use href={`${sprite}#icon-cross-small`}></use>
+                        </IconCrossSmall>
+                      </BtnDecline>
+                    </ApproveContainer>
+                  ) : (
+                    <EditButton>
+                      <InputWrapper
+                        type="file"
+                        id="fileInput"
+                        onChange={e => handleChange(e)}
+                        accept="image/png, image/jpeg, image/jpg, image/jfif"
+                      />
+                      <IconCamera width={24} height={24}>
+                        <use href={`${sprite}#icon-camera`}></use>
+                      </IconCamera>
+                      <EditText>Edit photo</EditText>
+                    </EditButton>
+                  )}
+                </AvatarWrapper>
+              </div>
+              <div>
+                <Container>
+                  <WrapperField>
+                    <Label htmlFor="name"> Name:</Label>
 
-                <ProfileField type="text" name="name" placeholder={initialValues.name} />
-              </WrapperField>
-              {errors.name && touched.name ? (
-                <ErrorMassege>{errors.name}</ErrorMassege>
-              ) : !errors.name && touched.name && values.name !== user?.name ? (
-                <ApprovedMassege>
-                  <span>
-                    <IconCheckForm width={24} height={24}>
-                      <use href={`${sprite}#icon-check`}></use>
-                    </IconCheckForm>
-                  </span>
-                </ApprovedMassege>
-              ) : (
-                ''
-              )}
-            </Container>
-            <Container>
-              <WrapperField>
-                <Label htmlFor="email"> Email:</Label>
-                <ProfileField type="email" name="email" placeholder={initialValues.email} />
-                {errors.email && touched.name ? (
-                  <ErrorMassege>{errors.email}</ErrorMassege>
-                ) : !errors.email && touched.email && values.email !== user?.email ? (
-                  <ApprovedMassege>
-                    <span>
-                      <IconCheckForm width={24} height={24}>
-                        <use href={`${sprite}#icon-check`}></use>
-                      </IconCheckForm>
-                    </span>
-                  </ApprovedMassege>
-                ) : (
-                  ''
-                )}
-              </WrapperField>
-            </Container>
-            <Container>
-              <WrapperField>
-                <Label htmlFor="date"> Birthday:</Label>
-                <ProfileField type="date" name="birthday" />
-                {errors.birthday && touched.birthday ? (
-                  <ErrorMassege>{errors.birthday}</ErrorMassege>
-                ) : !errors.birthday && touched.birthday && values.birthday !== user?.birthday ? (
-                  <ApprovedMassege>
-                    <span>
-                      <IconCheckBirthday width={24} height={24}>
-                        <use href={`${sprite}#icon-check`}></use>
-                      </IconCheckBirthday>
-                    </span>
-                  </ApprovedMassege>
-                ) : (
-                  ''
-                )}
-              </WrapperField>
-            </Container>
-            <Container>
-              <WrapperField>
-                <Label htmlFor="phone"> Phone:</Label>
-                <ProfileField placeholder={initialValues.phone} type="phone" name="phone" format="dd/mm/yyyy" />
-                {errors.phone && touched.phone ? (
-                  <ErrorMassege>{errors.phone}</ErrorMassege>
-                ) : !errors.phone && touched.phone && values.phone !== user?.phone ? (
-                  <ApprovedMassege>
-                    <span>
-                      <IconCheckForm width={24} height={24}>
-                        <use href={`${sprite}#icon-check`}></use>
-                      </IconCheckForm>
-                    </span>
-                  </ApprovedMassege>
-                ) : (
-                  ''
-                )}
-              </WrapperField>
-            </Container>
-            <Container>
-              <WrapperField>
-                <Label htmlFor="city"> City:</Label>
-                <ProfileField type="text" name="city" placeholder={initialValues.city} />
-                {errors.city && touched.city ? (
-                  <ErrorMassege>{errors.city}</ErrorMassege>
-                ) : !errors.city && touched.city && values.city !== user?.city ? (
-                  <ApprovedMassege>
-                    <span>
-                      <IconCheckForm width={24} height={24}>
-                        <use href={`${sprite}#icon-check`}></use>
-                      </IconCheckForm>
-                    </span>
-                  </ApprovedMassege>
-                ) : (
-                  ''
-                )}
-              </WrapperField>
-            </Container>
+                    <ProfileField type="text" name="name" placeholder={initialValues.name} />
+                  </WrapperField>
+                  {errors.name && touched.name ? (
+                    <ErrorMassege>{errors.name}</ErrorMassege>
+                  ) : !errors.name && touched.name && values.name !== user?.name ? (
+                    <ApprovedMassege>
+                      <span>
+                        <IconCheckForm width={24} height={24}>
+                          <use href={`${sprite}#icon-check`}></use>
+                        </IconCheckForm>
+                      </span>
+                    </ApprovedMassege>
+                  ) : (
+                    ''
+                  )}
+                </Container>
+                <Container>
+                  <WrapperField>
+                    <Label htmlFor="email"> Email:</Label>
+                    <ProfileField type="email" name="email" placeholder={initialValues.email} />
+                    {errors.email && touched.name ? (
+                      <ErrorMassege>{errors.email}</ErrorMassege>
+                    ) : !errors.email && touched.email && values.email !== user?.email ? (
+                      <ApprovedMassege>
+                        <span>
+                          <IconCheckForm width={24} height={24}>
+                            <use href={`${sprite}#icon-check`}></use>
+                          </IconCheckForm>
+                        </span>
+                      </ApprovedMassege>
+                    ) : (
+                      ''
+                    )}
+                  </WrapperField>
+                </Container>
+                <Container>
+                  <WrapperField>
+                    <Label htmlFor="date"> Birthday:</Label>
+                    <ProfileField type="date" name="birthday" />
+                    {errors.birthday && touched.birthday ? (
+                      <ErrorMassege>{errors.birthday}</ErrorMassege>
+                    ) : !errors.birthday && touched.birthday && values.birthday !== user?.birthday ? (
+                      <ApprovedMassege>
+                        <span>
+                          <IconCheckBirthday width={24} height={24}>
+                            <use href={`${sprite}#icon-check`}></use>
+                          </IconCheckBirthday>
+                        </span>
+                      </ApprovedMassege>
+                    ) : (
+                      ''
+                    )}
+                  </WrapperField>
+                </Container>
+                <Container>
+                  <WrapperField>
+                    <Label htmlFor="phone"> Phone:</Label>
+                    <ProfileField placeholder={initialValues.phone} type="phone" name="phone" format="dd/mm/yyyy" />
+                    {errors.phone && touched.phone ? (
+                      <ErrorMassege>{errors.phone}</ErrorMassege>
+                    ) : !errors.phone && touched.phone && values.phone !== user?.phone ? (
+                      <ApprovedMassege>
+                        <span>
+                          <IconCheckForm width={24} height={24}>
+                            <use href={`${sprite}#icon-check`}></use>
+                          </IconCheckForm>
+                        </span>
+                      </ApprovedMassege>
+                    ) : (
+                      ''
+                    )}
+                  </WrapperField>
+                </Container>
+                <Container>
+                  <WrapperField>
+                    <Label htmlFor="city"> City:</Label>
+                    <ProfileField type="text" name="city" placeholder={initialValues.city} />
+                    {errors.city && touched.city ? (
+                      <ErrorMassege>{errors.city}</ErrorMassege>
+                    ) : !errors.city && touched.city && values.city !== user?.city ? (
+                      <ApprovedMassege>
+                        <span>
+                          <IconCheckForm width={24} height={24}>
+                            <use href={`${sprite}#icon-check`}></use>
+                          </IconCheckForm>
+                        </span>
+                      </ApprovedMassege>
+                    ) : (
+                      ''
+                    )}
+                  </WrapperField>
+                </Container>
+              </div>
 
-            {isUpdateForm ? (
-              <SubmitBtn type="submit">Save</SubmitBtn>
-            ) : (
-              <SubmitBtn type="submit" disabled={!dirty}>
-                Save
-              </SubmitBtn>
-            )}
+              {isUpdateForm ? (
+                <SubmitBtn type="submit">Save</SubmitBtn>
+              ) : (
+                <SubmitBtn type="submit" disabled={!dirty}>
+                  Save
+                </SubmitBtn>
+              )}
+            </WrapperModalCard>
           </Form>
         )}
       </Formik>

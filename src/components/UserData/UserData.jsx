@@ -7,12 +7,12 @@ import { ModalUserEdit } from '../ModalUserFormData/UserEdit/UserEdit';
 import {
   Label,
   AvatarWrapper,
-  ProfileTitle,
   ImgAvatar,
   ProfileField,
   WrapperCard,
   WrapperField,
   ImgWrapper,
+  Wrapper,
 } from './UserData.styled';
 import avatarDefault from '../../images/profilephotos/avatar-default.png';
 import ModalCongrats from '../ModalCongrats/ModalCongrats';
@@ -46,18 +46,19 @@ const UserData = () => {
   };
 
   return (
-    <>
-      <WrapperCard>
-        <ProfileTitle>My information:</ProfileTitle>
-        <div>
-          <ModalUserEdit />
-          <Formik initialValues={initialValues} enableReinitialize>
-            <Form>
+    <WrapperCard>
+      <ModalUserEdit />
+      <Formik initialValues={initialValues} enableReinitialize>
+        <Form>
+          <Wrapper>
+            <div>
               <AvatarWrapper>
                 <ImgWrapper>
                   <ImgAvatar src={initialValues.avatarURL} alt="avatar" />
                 </ImgWrapper>
               </AvatarWrapper>
+            </div>
+            <div>
               <WrapperField>
                 <Label htmlFor="name"> Name:</Label>
 
@@ -80,22 +81,23 @@ const UserData = () => {
                 <Label htmlFor="city"> City:</Label>
                 <ProfileField type="text" name="city" placeholder={initialValues.city} readOnly={true} />
               </WrapperField>
-            </Form>
-          </Formik>
-        </div>
-        {isModalOpen && (
-          <ModalCongrats
-            isOpen={isModalOpen}
-            toggleModal={toggleModal}
-            onApprove={toggleModal}
-            onRequestClose={toggleModal}
-          >
-            <TitleModalCongrats>Congrats!</TitleModalCongrats>
-            <TextModalCongrats>Your registration is success</TextModalCongrats>
-          </ModalCongrats>
-        )}
-      </WrapperCard>
-    </>
+            </div>
+          </Wrapper>
+        </Form>
+      </Formik>
+
+      {isModalOpen && (
+        <ModalCongrats
+          isOpen={isModalOpen}
+          toggleModal={toggleModal}
+          onApprove={toggleModal}
+          onRequestClose={toggleModal}
+        >
+          <TitleModalCongrats>Congrats!</TitleModalCongrats>
+          <TextModalCongrats>Your registration is success</TextModalCongrats>
+        </ModalCongrats>
+      )}
+    </WrapperCard>
   );
 };
 
