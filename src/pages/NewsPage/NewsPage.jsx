@@ -22,6 +22,15 @@ const NewsPage = () => {
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
 
+  if (window.innerWidth > 1279 && window.innerWidth < 1300) {
+    document.body.style.marginRight = 'calc(-1 * (100vw - 100%))';
+    document.body.style.overflowX = 'hidden';
+  }
+  if (window.innerWidth >= 1300) {
+    document.body.style.marginRight = '0';
+    document.body.style.overflowX = 'auto';
+  }
+
   const switchStatus = useCallback(async () => {
     if (newsStore.error || newsStore.items.length === 0) {
       setStatus(REJECTED);
