@@ -28,12 +28,12 @@ import Loader from '../Loader/Loader';
 const userLoginSchema = object({
   email: string().required('Email is a required field').email('Please enter a valid email'),
   password: string()
-    .min(6, 'Your password is too short.')
-    .max(16, 'Your password is too long.')
+    .min(6, 'Please enter a correct password')
+    .max(16, 'Please enter a correct password')
     .required('Password is a required field')
-    .matches(/[0-9]/, 'Your password must have at least 1 number')
-    .matches(/[a-z]/, 'Your password must have at least 1 lowercase letter')
-    .matches(/[A-Z]/, 'Your password must have at least 1 uppercase letter'),
+    .matches(/[0-9]/, 'Please enter a correct password')
+    .matches(/[a-z]/, 'Please enter a correct password')
+    .matches(/[A-Z]/, 'Please enter a correct password'),
 });
 
 const initialValues = { name: '', email: '', password: '', confirmPassword: '' };
@@ -56,7 +56,7 @@ const AuthFormLogin = props => {
   return (
     <>
       {isLoading ? (
-        <Loader />
+        <Loader props={{ marginTop: '20%', marginLeft: '45%' }}/>
       ) : (
         <ContainerAuth>
           <AuthTitle>Login</AuthTitle>

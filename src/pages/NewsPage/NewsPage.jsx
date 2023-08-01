@@ -55,7 +55,7 @@ const NewsPage = () => {
         case IDLE:
           return <div>Please, type something to the search</div>;
         case PENDING:
-          return <Loader />;
+          return <Loader props={{ marginTop: '10%', marginLeft: '45%' }} />;
         case REJECTED:
           return <div>Oopps...no news with this text.{newsStore.error && <div>{newsStore.error}</div>}</div>;
         case RESOLVED:

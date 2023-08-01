@@ -79,15 +79,18 @@ export const updateUser = createAsyncThunk('auth/profile', async (userData, thun
   }
   token.set(persistedToken);
   try {
-    const res = await axios.patch('/users', userData);
+    const res = await axios.patch('/users', userData).catch(function (error) {
+      console.log(JSON.stringify(error.message));
+      if (error.message === 'Request failed with status code 409') {
+        toast.error('This email is already used', {
+          position: 'top-center',
+        });
+      }
+    });
 
     return res.data.user;
   } catch (error) {
-    return thunkAPI.rejectWithValue(
-      toast.error('This email is already used', {
-        position: 'top-center',
-      })
-    );
+    return thunkAPI.rejectWithValue();
   }
 });
 
