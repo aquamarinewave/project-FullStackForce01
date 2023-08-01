@@ -122,7 +122,7 @@ export const ModalNotice = ({
                             <a href={`mailto: ${user.email}`}>{user.email || 'email@gamil.com'}</a>
                           </ModalContact>
                           <ModalContact>
-                            <a href={`tel: ${user.phone}`}>{user.phone || '+380 (XXX) (XXXXXXXX)'}</a>
+                            {user.phone ? <a href={`tel: ${user.phone}`}>{user.phone}</a> : 'no phone'}
                           </ModalContact>
                         </ModalInfoItemValue>
                       </ModalInfoList>
@@ -130,11 +130,11 @@ export const ModalNotice = ({
                   </ModalInfo>
 
                   <ModalComments>
-                    <strong>Comments:</strong> {notice.comments}
+                    <strong>Comments:</strong> {notice.comments ? notice.comments : "no comments"}
                   </ModalComments>
 
                   <ModalButtons>
-                    <ModalPhone href={`tel: ${user.phone}`}>Contact</ModalPhone>
+                    {user.phone && <ModalPhone href={`tel: ${user.phone}`}>Contact</ModalPhone>}
 
                     <ModalButtonAdd onClick={handleAddToFavorite} isSelected={isSelected} isLoggedIn={isLoggedIn}>
                       <span>{isSelected && isLoggedIn ? 'Delete' : 'Add'}</span>{' '}

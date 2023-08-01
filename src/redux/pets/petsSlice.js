@@ -38,7 +38,7 @@ const handleFulfilledPetFetch = (state, action) => {
 };
 
 const handleFulfilledDelete = (state, action) => {
-  const index = state.pets.findIndex(pet => pet.id !== action.payload.id);
+  const index = state.pets.findIndex(pet => pet.id === action.payload.id);
   state.pets.splice(index, 1);
 };
 //=================================//

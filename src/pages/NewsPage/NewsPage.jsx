@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import newsSelector from 'redux/news/newsSelector';
 import newsOperations from '../../redux/news/operations';
 import Pagination from '../../components/Pagination/Pagination';
+import Loader from '../../components/Loader/Loader';
 
 const statusList = {
   REJECTED: 1,
@@ -17,7 +18,6 @@ const statusList = {
 const NewsPage = () => {
   const dispatch = useDispatch();
   const newsStore = useSelector(newsSelector.selectNews);
-  console.log('newsStore:', newsStore);
   const perPage = newsStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
@@ -55,7 +55,7 @@ const NewsPage = () => {
         case IDLE:
           return <div>Please, type something to the search</div>;
         case PENDING:
-          return <div>Loading....</div>;
+          return <Loader />;
         case REJECTED:
           return <div>Oopps...no news with this text.{newsStore.error && <div>{newsStore.error}</div>}</div>;
         case RESOLVED:

@@ -6,11 +6,13 @@ const friendsSlice = createSlice({
   initialState: {
     items: [],
     error: null,
+    isLoading: false,
   },
   extraReducers: {
     [friendsOperations.fetchFriends.fulfilled](state, action) {
       state.items = action.payload.friends;
       state.error = null;
+      state.isLoading = true;
     },
   },
 });

@@ -1,8 +1,12 @@
-import { Button, IconFormButton } from './FormPetButton.styled';
+import { useSelector } from 'react-redux';
 
+import petsSelector from '../../../redux/pets/selectors';
+
+import { Button, IconFormButton } from './FormPetButton.styled';
 import sprite from '../../../images/icons.svg';
 
 const FormPetButton = ({ handleNextStage, handleCancelStage, currentStage }) => {
+  const isLoading = useSelector(petsSelector.selectIsLoading);
   return (
     <>
       {currentStage !== 'third' && (
@@ -14,7 +18,7 @@ const FormPetButton = ({ handleNextStage, handleCancelStage, currentStage }) => 
         </Button>
       )}
       {currentStage === 'third' && (
-        <Button type="submit">
+        <Button type="submit" disabled={isLoading}>
           <span>Done</span>
           <IconFormButton width={24} height={24}>
             <use href={`${sprite}#icon-pawprint-1`}></use>
