@@ -6,6 +6,7 @@ const noticesSlice = createSlice({
   name: 'notices',
   initialState: {
     items: [],
+    favorite: {},
     error: null,
     pattern: '',
     categoryId: null,
@@ -48,6 +49,17 @@ const noticesSlice = createSlice({
     [noticesOperations.setCurrentPage.fulfilled](state, action) {
       state.error = null;
       state.setCurrentPage = action.payload;
+    },
+
+    [noticesOperations.fetchModalDetails.fulfilled](state, action) {
+      state.error = null;
+      state.favorite = action.payload;
+    },
+
+    [noticesOperations.fetchDeleteToFavorite.fulfilled](state, action) {
+      state.error = null;
+      const index = state.items.findIndex(item => item.id !== action.payload.id);      
+      state.items.splice(index, 1); 
     },
   },
 });
