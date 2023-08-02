@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const SubmitBtn = styled.button`
   display: flex;
   width: 248px;
@@ -6,25 +7,37 @@ export const SubmitBtn = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
+
   border-radius: 40px;
-  background: var(--unnamed, #54adff);
+  background: var(--dark-blue);
+
   cursor: pointer;
+
   border: none;
-  color: var(--unnamed, #fef9f9);
+  color: var(--bg-color);
+
   font-family: Manrope;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
+
   right: 50px;
   position: relative;
   right: 68px;
   top: 13px;
+
   :disabled {
     opacity: 0.4;
   }
   margin-left: 140px;
+
+  &:hover,
+  &:focus {
+    background: var(--gradient-blue-bg);
+  }
+
   @media screen and (min-width: 768px) {
     position: absolute;
 
@@ -126,6 +139,11 @@ export const IconCamera = styled.svg`
   stroke: var(--dark-blue);
   cursor: pointer;
   margin-right: 8px;
+
+  &:hover,
+  &:focus {
+    stroke: var(--lightblue);
+  }
 `;
 
 export const BtnConfirm = styled.button`

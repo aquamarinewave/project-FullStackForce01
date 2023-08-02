@@ -32,13 +32,6 @@ export const PetFoto = styled.img`
 
   margin-bottom: 20px;
 
-  /* padding: 20px;
-  margin: 0 auto;
-  border-radius: 20px;
-  background: #fff; */
-  /* Shadow default */
-  /* box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19); */
-
   @media screen and (min-width: 768px) {
     width: 128px;
     height: 128px;
@@ -98,7 +91,7 @@ export const Subtitle = styled.span`
 `;
 
 export const IconTrash = styled.svg`
-  fill: var(--main-light-color);
+  fill: transparent;
   stroke: var(--dark-blue);
 `;
 
@@ -106,6 +99,13 @@ export const DeleteButton = styled.button`
   position: absolute;
   top: -12px;
   right: -12px;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 0;
   width: 40px;
   height: 40px;
@@ -114,17 +114,9 @@ export const DeleteButton = styled.button`
   border: none;
   border-radius: 50%;
 
-  cursor: pointer;
-
-    &:hover,
-    &:focus {
-      background: var(--dark-blue);
-    }
-
-    &: hover ${IconTrash} {
-      fill: var(--dark-blue);
-      stroke: var(--main-light-color);
-    }
+  &:hover,
+  &:focus {
+    background: var(--lightblue);
   }
 `;
 

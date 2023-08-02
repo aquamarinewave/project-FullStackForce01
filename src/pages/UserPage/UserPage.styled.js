@@ -14,6 +14,14 @@ export const UserPageContainer = styled.div`
   }
 `;
 
+export const WrapperPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
 export const UserCard = styled.div`
   margin-right: 32px;
   position: relative;
@@ -26,7 +34,7 @@ export const UserCard = styled.div`
   gap: 21px;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
-  background: var(--unnamed, #fff);
+  background: var(--main-light-color);
   margin-bottom: 57px;
   @media screen and (min-width: 768px) {
     margin: 0px;
@@ -47,11 +55,4 @@ export const ProfileTitle = styled.h2`
   font-weight: 500;
   line-height: normal;
   margin-bottom: 24px;
-`;
-export const WrapperPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  @media screen and (min-width: 1280px) {
-  }
 `;

@@ -84,4 +84,3 @@ const PetItem = ({ pet }) => {
 };
 
 export default PetItem;
-// fill="var(--bg-color)" stroke="var(--dark-blue)"
