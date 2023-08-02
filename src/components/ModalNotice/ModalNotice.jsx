@@ -1,5 +1,8 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
+import { useSelector } from 'react-redux';
+
+import authSelector from 'redux/auth/authSelector';
 
 import {
   Background,
@@ -22,61 +25,46 @@ import {
   IconHeart,
   IconCross,
 } from './ModalNotice.styled';
-import ModalAttention from '../ModalAttention/ModalAttention';
 import sprite from '../../images/icons.svg';
 
-export const ModalNotice = ({
-  showModal,
-  setShowModal,
-  handleAddToFavorite,
-  favoriteNoticeStore,
-  isLoggedIn,
-  isModalOpenAttention,
-  closeModalAttention,
-  isSelected,
-}) => {
+export const ModalNotice = ({ onRequestClose, handleAddToFavorite, notice }) => {
   const modalRef = useRef();
   const portalRoot = document.getElementById('modal-root');
+  const user = useSelector(authSelector.userSelector);
+  const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
-  const closeModal = e => {
+  const handleClickOutside = e => {
     if (modalRef.current === e.target) {
-      setShowModal(false);
+      onRequestClose(false);
     }
   };
 
   const keyPress = useCallback(
     e => {
-      if (e.key === 'Escape' && showModal) {
-        setShowModal(false);
-        console.log('I pressed');
+      if (e.key === 'Escape') {
+        onRequestClose();
       }
     },
-    [setShowModal, showModal]
+    [onRequestClose]
   );
 
   useEffect(() => {
-    if (showModal) {
-      document.addEventListener('keydown', keyPress);
-      document.body.style.overflow = 'hidden';
-      document.body.style.marginRight = 'calc(-1 * (100vw - 100%))';
-    } else {
-      document.removeEventListener('keydown', keyPress);
-    }
+    document.addEventListener('keydown', keyPress);
+    document.body.style.overflow = 'hidden';
+    document.body.style.marginRight = '17px';
 
     return () => {
       document.removeEventListener('keydown', keyPress);
       document.body.style.overflow = 'auto';
-      document.body.style.marginRight = '0';
+      document.body.style.marginRight = '0px';
     };
-  }, [keyPress, showModal]);
-
-  const { notice, user } = favoriteNoticeStore;
+  }, [keyPress]);
 
   return (
     <>
-      {showModal && notice
+      {notice
         ? ReactDOM.createPortal(
-            <Background onClick={closeModal} ref={modalRef}>
+            <Background onClick={handleClickOutside} ref={modalRef}>
               <ModalWrapper>
                 <ModalContent>
                   <ModalInfo>
@@ -130,23 +118,23 @@ export const ModalNotice = ({
                   </ModalInfo>
 
                   <ModalComments>
-                    <strong>Comments:</strong> {notice.comments ? notice.comments : "no comments"}
+                    <strong>Comments:</strong> {notice.comments ? notice.comments : 'no comments'}
                   </ModalComments>
 
                   <ModalButtons>
                     {user.phone && <ModalPhone href={`tel: ${user.phone}`}>Contact</ModalPhone>}
 
-                    <ModalButtonAdd onClick={handleAddToFavorite} isSelected={isSelected} isLoggedIn={isLoggedIn}>
-                      <span>{isSelected && isLoggedIn ? 'Delete' : 'Add'}</span>{' '}
+                    <ModalButtonAdd onClick={handleAddToFavorite} isPrimary={notice.favorite && isLoggedIn}>
+                      <span>{notice.favorite && isLoggedIn ? 'Delete' : 'Add'}</span>{' '}
                       <span>
-                        <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
+                        <IconHeart width={24} height={24} isPrimary={notice.favorite && isLoggedIn}>
                           <use href={`${sprite}#icon-heart`}></use>
                         </IconHeart>
                       </span>
                     </ModalButtonAdd>
                   </ModalButtons>
                 </ModalContent>
-                <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(prev => !prev)}>
+                <CloseModalButton aria-label="Close modal" onClick={onRequestClose}>
                   <IconCross width={24} height={24}>
                     <use href={`${sprite}#icon-cross`}></use>
                   </IconCross>
@@ -156,7 +144,6 @@ export const ModalNotice = ({
             portalRoot
           )
         : null}
-      {isModalOpenAttention ? <ModalAttention onClose={closeModalAttention} /> : null}
     </>
   );
 };

@@ -59,7 +59,6 @@ const fetchNoticesFavorites = createAsyncThunk(
 const deleteUserNotice = createAsyncThunk('notices/deleteUserNotice', async (_id, thunkApi) => {
   try {
     const response = await axios.delete(`${baseURLForAll}/${_id}`);
-    response.data.id = _id;
     return response.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
@@ -102,39 +101,38 @@ const fetchModalDetails = createAsyncThunk('notices/fetchModalDetails', async (_
   }
 });
 
-const fetchAddToFavorite = createAsyncThunk(
-  'notices/fetchAddToFavorite',
-  async ({ _id, favoriteNoticeStore }, thunkAPI) => {
-    try {
-      const response = await axios.patch(
-        `${baseURLForAll}/${_id}/favorites`,
-        { favoriteNoticeStore },
-        {
-          signal: controller.signal,
-          headers: {
-            'Authorization': `${axios.defaults.headers.common.Authorization}`,
-          },
-        }
-      );
-
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-const fetchDeleteToFavorite = createAsyncThunk('notices/fetchDeleteToFavorite', async (_id, thunkAPI) => {
+const fetchAddToFavorite = createAsyncThunk('notices/fetchAddToFavorite', async (_id, thunkAPI) => {
   try {
-    const response = await axios.delete(`${baseURLForAll}/${_id}/favorites`, {
+    await axios.patch(`${baseURLForAll}/${_id}/favorites`, {
       signal: controller.signal,
       headers: {
         'Authorization': `${axios.defaults.headers.common.Authorization}`,
       },
     });
-    response.data.id = _id;
-    console.log('res', response.data);
-    return response.data;
+
+    return _id;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+const fetchDeleteToFavorite = createAsyncThunk('notices/fetchDeleteToFavorite', async (_id, thunkAPI) => {
+  try {
+    await axios.delete(`${baseURLForAll}/${_id}/favorites`, {
+      signal: controller.signal,
+      headers: {
+        'Authorization': `${axios.defaults.headers.common.Authorization}`,
+      },
+    });
+    return _id;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+const removeNotice = createAsyncThunk('notices/removeItem', async (_id, thunkAPI) => {
+  try {
+    return _id;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -151,6 +149,7 @@ const noticesOperations = {
   fetchModalDetails,
   fetchAddToFavorite,
   fetchDeleteToFavorite,
+  removeNotice,
 };
 
 export default noticesOperations;

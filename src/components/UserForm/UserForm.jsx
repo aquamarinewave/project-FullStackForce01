@@ -45,7 +45,6 @@ export const UserForm = ({ toggleModal }) => {
 
     reader.onloadend = () => {
       setNewAvatar(reader.result);
-      console.log(newAvatar);
     };
   }
 
@@ -92,9 +91,6 @@ export const UserForm = ({ toggleModal }) => {
         formData.append('phone', values.phone);
       }
       if (initialValues.city !== values.city) formData.append('city', values.city);
-      for (const value of formData.values()) {
-        console.log('value city', value);
-      }
       const res = await dispatch(updateUser(formData));
       toggleModal();
 
