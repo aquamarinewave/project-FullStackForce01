@@ -51,12 +51,11 @@ export const ModalNotice = ({ onRequestClose, handleAddToFavorite, notice }) => 
   useEffect(() => {
     document.addEventListener('keydown', keyPress);
     document.body.style.overflow = 'hidden';
-    document.body.style.marginRight = '17px';
-
+    document.body.style.marginRight = 'calc(-1 * (100vw - 100%))';
     return () => {
       document.removeEventListener('keydown', keyPress);
       document.body.style.overflow = 'auto';
-      document.body.style.marginRight = '0px';
+      document.body.style.marginRight = '0';
     };
   }, [keyPress]);
 

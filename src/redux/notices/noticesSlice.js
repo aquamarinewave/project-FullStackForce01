@@ -47,7 +47,7 @@ const noticesSlice = createSlice({
     },
     [noticesOperations.setCurrentPage.fulfilled](state, action) {
       state.error = null;
-      state.setCurrentPage = action.payload;
+      state.currentPage = action.payload;
     },
 
     [noticesOperations.fetchModalDetails.fulfilled](state, action) {
