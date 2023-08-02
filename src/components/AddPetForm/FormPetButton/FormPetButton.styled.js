@@ -24,6 +24,16 @@ export const Button = styled.button`
   line-height: normal;
   letter-spacing: 0.64px;
 
+  &[disabled] {
+    background-color: #ccc;
+    color: #888;
+    cursor: not-allowed;
+
+    ${IconFormButton} {
+      fill: #888;
+    }
+  }
+
   @media screen and (min-width: 768px) {
     width: 248px;
   }

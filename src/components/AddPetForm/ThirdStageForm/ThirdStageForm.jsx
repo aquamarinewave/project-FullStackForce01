@@ -32,6 +32,17 @@ const optionsSex = [
   },
 ];
 
+const heightTextarea = (currentRadioButton, checked) => {
+  switch (checked) {
+    case 'my-pet':
+      return '79px';
+    case 'sell':
+      return '79px';
+    default:
+      return currentRadioButton !== 'my-pet' ? '182px' : '120px';
+  }
+};
+
 const ThirdStageForm = ({
   showPlaceholder,
   setPreviewImage,
@@ -136,7 +147,7 @@ const ThirdStageForm = ({
         )}
         <div>
           <TextSpan>Comments</TextSpan>
-          <InputFieldTextArea
+          {/* <InputFieldTextArea
             currentRadioButton={currentRadioButton}
             as={TextArea} // Використовуємо наші стилі для textarea
             id="comments"
@@ -144,6 +155,17 @@ const ThirdStageForm = ({
             placeholder="Type of pet"
             value={formik.values.comments}
             onChange={formik.handleChange}
+          /> */}
+          <InputFieldTextArea
+            currentRadioButton={currentRadioButton}
+            as={TextArea}
+            id="comments"
+            name="comments"
+            placeholder="Type of pet"
+            value={formik.values.comments}
+            onChange={formik.handleChange}
+            checked={currentRadioButton} // Додаємо параметр checked
+            style={{ height: heightTextarea(currentRadioButton, formik.values.category) }} // Передаємо параметри до стилізації
           />
         </div>
       </ContainerInput>

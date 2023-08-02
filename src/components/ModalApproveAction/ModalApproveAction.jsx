@@ -60,13 +60,13 @@ const ModalApproveAction = ({
     ? ReactDOM.createPortal(
         <Backdrop ref={modalRef} onClick={handleBackdropClick}>
           <Container isLogout={isLogout}>
-            <CloseIcon onClick={() => onRequestClose()}>
+            <CloseIcon onClick={onRequestClose}>
               <Icon name="cross" size="24" color="var(--dark-blue)" />
             </CloseIcon>
 
             <Content>{children}</Content>
             <BtnContainer>
-              <CancelBtn onClick={() => onRequestClose()}>Cancel</CancelBtn>
+              <CancelBtn onClick={onRequestClose}>Cancel</CancelBtn>
               <ApproveBtn onClick={onApprove}>
                 <BtnText>Yes</BtnText>
                 <BtnIcon width={24} height={24} fill={btnIconColor} stroke={btnIconStroke}>

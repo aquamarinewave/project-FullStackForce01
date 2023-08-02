@@ -19,12 +19,13 @@ const NoticesCategoriesList = ({ notices }) => {
               sex,
               type,
               avatarURL,
+              favorite,
               allowDelete,
             }) => {
               return (
                 <Item key={_id}>
                   <NoticeCategoryItem
-                    notices={{
+                    notice={{
                       _id,
                       comments,
                       title,
@@ -36,6 +37,7 @@ const NoticesCategoriesList = ({ notices }) => {
                       sex,
                       type,
                       avatarURL,
+                      favorite,
                       allowDelete,
                     }}
                   />

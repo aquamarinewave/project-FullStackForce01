@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import authOperations from 'redux/pets/operations';
+import petsSelector from 'redux/pets/selectors';
 
 import FirstStageForm from './FirstStageForm/FirstStageForm';
 import SecondStageForm from './SecondStageForm/SecondStageForm';
 import ThirdStageForm from './ThirdStageForm/ThirdStageForm';
 import FormPetButton from './FormPetButton/FormPetButton';
+import Loader from '../../components/Loader/Loader';
 
 import {
   Form,
@@ -108,6 +110,8 @@ const AddPetForm = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [selectedFile, setSelectedFile] = useState('');
 
+  const isLoading = useSelector(petsSelector.selectIsLoading);
+
   const initialValues = {
     title: '',
     category: currentRadioButton,
@@ -177,11 +181,9 @@ const AddPetForm = () => {
 
         const handleNextStage = async () => {
           try {
-            // Перевірка валідації на поточному етапі
             const currentStageValidationSchema = getValidationSchema(selectedFile, currentStage, currentRadioButton);
             await currentStageValidationSchema.validate(formik.values, { abortEarly: false });
 
-            // Перевірка обов'язкових полів на пусте значення
             let requiredFields = [];
             if (currentStage === 'first') {
               requiredFields = ['category'];
@@ -193,14 +195,12 @@ const AddPetForm = () => {
             const missingRequiredFields = requiredFields.filter(field => !formik.values[field]);
 
             if (missingRequiredFields.length > 0) {
-              // Якщо є незаповнені обов'язкові поля, встановлюємо помилку для кожного з них
               const validationErrors = missingRequiredFields.reduce((acc, field) => {
                 acc[field] = 'This field is required';
                 return acc;
               }, {});
               formik.setErrors(validationErrors);
             } else {
-              // Якщо немає помилок, перехід до наступного етапу
               if (currentStage === 'first') {
                 setCurrentStage('second');
               } else if (currentStage === 'second') {
@@ -208,7 +208,6 @@ const AddPetForm = () => {
               }
             }
           } catch (errors) {
-            // Перетворюємо масив помилок у об'єкт та встановлюємо їх у форму
             const validationErrors = errors.inner.reduce((acc, error) => {
               acc[error.path] = error.message;
               return acc;
@@ -219,6 +218,11 @@ const AddPetForm = () => {
 
         return (
           <Form>
+            {isLoading && (
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 10 }}>
+                <Loader />
+              </div>
+            )}
             <ContainerForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
               <div>
                 <TitleAddPetForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
