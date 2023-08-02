@@ -1,15 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useWindowWidth } from '@react-hook/window-size';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 import { Nav, ButtonText, UserButton, BurgerButton, IconUser, IconBurger } from './UserNav.styled';
 import Logout from 'components/Logout/Logout';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 import sprite from '../../images/icons.svg';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
+import { useEffect } from 'react';
+import authOperations from 'redux/auth/operations';
 
 const UserNav = ({ toggleMenu, menuOpen, closeMenu }) => {
+  const dispatch = useDispatch()
   const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
+  const newUser = useSelector(authSelector.newUserSelector);
+
+  useEffect(() => {
+    if (newUser === true) {
+      dispatch(authOperations.refreshCurrentUser())
+    }
+  }, []);
 
   return (
     <>
