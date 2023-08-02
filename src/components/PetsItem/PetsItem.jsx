@@ -1,8 +1,3 @@
-// Компонент рендерить детальну інформацію про власного
-// домашнього улюбленця користувача з можливістю
-//  видалення картки.Клік по кнопці видалення картки
-//  відкриває модальне вікно  ModalApproveAction
-
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import petsOperations from 'redux/pets/operations';
