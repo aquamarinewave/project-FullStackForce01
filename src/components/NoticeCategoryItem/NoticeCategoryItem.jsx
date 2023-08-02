@@ -65,22 +65,6 @@ const NoticeCategoryItem = ({ notice }) => {
     setIsModalOpenAttention(!isModalOpenAttention);
   };
 
-  // const handleAddToFavorite = () => {
-  //   if (isLoggedIn) {
-  //     if (!favorite) {
-  //       dispatch(noticesOperations.fetchAddToFavorite(_id));
-  //     }
-  //       if (categoryName === 'favorite') {
-  //         dispatch(noticesOperations.removeNotice(_id));
-  //         else { dispatch(noticesOperations.fetchDeleteFavorite(_id))}
-  //       }
-  //     }
-  //   } else {
-  //     setShowNoticeModal(false);
-  //     setIsModalOpenAttention(true);
-  //   }
-  // };
-
   const handleAddToFavorite = () => {
     if (isLoggedIn) {
       if (!favorite) {

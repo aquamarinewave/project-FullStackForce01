@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import sprite from '../../images/icons.svg';
-import Icon from 'utils/Icon/Icon';
 import {
   ApproveBtn,
   Backdrop,
@@ -12,6 +11,7 @@ import {
   Container,
   Content,
   BtnIcon,
+  CrossIcon,
 } from './ModalApproveAction.styled';
 
 const ModalApproveAction = ({
@@ -61,7 +61,9 @@ const ModalApproveAction = ({
         <Backdrop ref={modalRef} onClick={handleBackdropClick}>
           <Container isLogout={isLogout}>
             <CloseIcon onClick={onRequestClose}>
-              <Icon name="cross" size="24" color="var(--dark-blue)" />
+              <CrossIcon width={24} height={24}>
+                <use href={`${sprite}#icon-cross`}></use>
+              </CrossIcon>
             </CloseIcon>
 
             <Content>{children}</Content>

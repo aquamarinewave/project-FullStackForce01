@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import sprite from '../../images/icons.svg';
-import Icon from 'utils/Icon/Icon';
 import {
   ApproveBtnModalCongrats,
   BackdropModalCongrats,
@@ -11,9 +10,10 @@ import {
   ContainerModalCongrats,
   ContentModalCongrats,
   BtnIcon,
+  CrossIcon,
 } from './ModalCongrats.styled';
 
-const ModalCongrats = ({ isOpen, onRequestClose, onApprove,children }) => {
+const ModalCongrats = ({ isOpen, onRequestClose, onApprove, children }) => {
   const modalRef = useRef();
   const portalRoot = document.getElementById('modal-root');
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,7 +48,9 @@ const ModalCongrats = ({ isOpen, onRequestClose, onApprove,children }) => {
         <BackdropModalCongrats ref={modalRef} onClick={handleBackdropClick}>
           <ContainerModalCongrats>
             <CloseIconModalCongrats onClick={() => onRequestClose()}>
-              <Icon name="cross" size="24" color="var(--dark-blue)" />
+              <CrossIcon width={24} height={24}>
+                <use href={`${sprite}#icon-cross`}></use>
+              </CrossIcon>
             </CloseIconModalCongrats>
 
             <ContentModalCongrats>{children}</ContentModalCongrats>
