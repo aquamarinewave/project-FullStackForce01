@@ -1,26 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useWindowWidth } from '@react-hook/window-size';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import authSelector from 'redux/auth/authSelector';
 import { Nav, ButtonText, UserButton, BurgerButton, IconUser, IconBurger } from './UserNav.styled';
 import Logout from 'components/Logout/Logout';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 import sprite from '../../images/icons.svg';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
-import { useEffect } from 'react';
-import authOperations from 'redux/auth/operations';
+import { useEffect, useState } from 'react';
+import ModalCongrats from '../ModalCongrats/ModalCongrats';
+import { TitleModalCongrats, TextModalCongrats } from 'components/ModalCongrats/ModalCongrats.styled';
+
+
 
 const UserNav = ({ toggleMenu, menuOpen, closeMenu }) => {
-  const dispatch = useDispatch()
   const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
   const newUser = useSelector(authSelector.newUserSelector);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (newUser === true) {
-      dispatch(authOperations.refreshCurrentUser())
+      setIsModalOpen(true);
     }
   }, []);
+
+  const toggleModal = () => {
+    setIsModalOpen(prevState => !prevState);
+  };
 
   return (
     <>
@@ -63,6 +70,17 @@ const UserNav = ({ toggleMenu, menuOpen, closeMenu }) => {
         )}
       </Nav>
       {width < 1280 && <MobileMenu toggleMenu={toggleMenu} isOpen={menuOpen} openMenu={menuOpen} />}
+      {isModalOpen && (
+        <ModalCongrats
+          isOpen={isModalOpen}
+          toggleModal={toggleModal}
+          onApprove={toggleModal}
+          onRequestClose={toggleModal}
+        >
+          <TitleModalCongrats>Congrats!</TitleModalCongrats>
+          <TextModalCongrats>Your registration is success</TextModalCongrats>
+        </ModalCongrats>
+      )}
     </>
   );
 };
