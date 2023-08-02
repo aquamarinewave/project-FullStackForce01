@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import Icon from 'utils/Icon/Icon';
-import { Backdrop, BtnContainer, CloseIcon, Container, Content } from './ModalUserStyled';
+import sprite from '../../../images/icons.svg';
+import { Backdrop, BtnContainer, CloseIcon, Container, Content, CrossIcon } from './ModalUserStyled';
 
 const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
   const modalRef = useRef();
@@ -41,7 +41,9 @@ const Modal = ({ isOpen, onRequestClose, onApprove, children }) => {
         <Backdrop ref={modalRef} onClick={handleBackdropClick}>
           <Container>
             <CloseIcon onClick={() => onRequestClose()}>
-              <Icon name="cross" size="24" color="var(--dark-blue)" />
+              <CrossIcon width={24} height={24}>
+                <use href={`${sprite}#icon-cross`}></use>
+              </CrossIcon>
             </CloseIcon>
 
             <Content>{children}</Content>

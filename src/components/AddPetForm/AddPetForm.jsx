@@ -159,7 +159,6 @@ const AddPetForm = () => {
 
       setSubmitSuccess(true);
     } catch (error) {
-      console.log('Error submitting form:', error);
       // Тут можна виконати додаткові дії або показати повідомлення про помилку
     }
 
@@ -217,57 +216,58 @@ const AddPetForm = () => {
         };
 
         return (
-          <Form>
-            {isLoading && (
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 10 }}>
-                <Loader />
-              </div>
+          <>
+            {isLoading ? (
+              <Loader props={{ marginTop: '10%', marginLeft: '45%' }} />
+            ) : (
+              <Form>
+                <ContainerForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
+                  <div>
+                    <TitleAddPetForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
+                      {currentStage !== 'first' ? titleText(currentRadioButton) : 'Add pet'}
+                    </TitleAddPetForm>
+                    <BoxStageForm>
+                      <NextStageForm current={currentStage}>Choose option</NextStageForm>
+                      <NextStageForm currentStage={currentStage} current={currentStage}>
+                        Personal details
+                      </NextStageForm>
+                      <NextStageForm current={currentStage}>More info</NextStageForm>
+                    </BoxStageForm>
+                    <BoxFieldsForm>
+                      {currentStage === 'first' && (
+                        <FirstStageForm
+                          currentRadioButton={currentRadioButton}
+                          handleOptionChange={handleOptionChange}
+                          formik={formik}
+                        />
+                      )}
+                      {currentStage === 'second' && (
+                        <SecondStageForm currentRadioButton={currentRadioButton} formik={formik} />
+                      )}
+                      {currentStage === 'third' && (
+                        <ThirdStageForm
+                          formik={formik}
+                          currentRadioButton={currentRadioButton}
+                          showPlaceholder={showPlaceholder}
+                          previewImage={previewImage}
+                          setPreviewImage={setPreviewImage}
+                          setShowPlaceholder={setShowPlaceholder}
+                          setSelectedFile={setSelectedFile}
+                        />
+                      )}
+                    </BoxFieldsForm>
+                  </div>
+                  <BoxButton>
+                    <FormPetButton
+                      currentStage={currentStage}
+                      handleNextStage={handleNextStage}
+                      handleCancelStage={handleCancelStage}
+                    ></FormPetButton>
+                  </BoxButton>
+                </ContainerForm>
+              </Form>
             )}
-            <ContainerForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
-              <div>
-                <TitleAddPetForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
-                  {currentStage !== 'first' ? titleText(currentRadioButton) : 'Add pet'}
-                </TitleAddPetForm>
-                <BoxStageForm>
-                  <NextStageForm current={currentStage}>Choose option</NextStageForm>
-                  <NextStageForm currentStage={currentStage} current={currentStage}>
-                    Personal details
-                  </NextStageForm>
-                  <NextStageForm current={currentStage}>More info</NextStageForm>
-                </BoxStageForm>
-                <BoxFieldsForm>
-                  {currentStage === 'first' && (
-                    <FirstStageForm
-                      currentRadioButton={currentRadioButton}
-                      handleOptionChange={handleOptionChange}
-                      formik={formik}
-                    />
-                  )}
-                  {currentStage === 'second' && (
-                    <SecondStageForm currentRadioButton={currentRadioButton} formik={formik} />
-                  )}
-                  {currentStage === 'third' && (
-                    <ThirdStageForm
-                      formik={formik}
-                      currentRadioButton={currentRadioButton}
-                      showPlaceholder={showPlaceholder}
-                      previewImage={previewImage}
-                      setPreviewImage={setPreviewImage}
-                      setShowPlaceholder={setShowPlaceholder}
-                      setSelectedFile={setSelectedFile}
-                    />
-                  )}
-                </BoxFieldsForm>
-              </div>
-              <BoxButton>
-                <FormPetButton
-                  currentStage={currentStage}
-                  handleNextStage={handleNextStage}
-                  handleCancelStage={handleCancelStage}
-                ></FormPetButton>
-              </BoxButton>
-            </ContainerForm>
-          </Form>
+          </>
         );
       }}
     </Formik>

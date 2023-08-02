@@ -36,6 +36,10 @@ export const Container = styled.div`
   }
 `;
 
+export const CrossIcon = styled.svg`
+  stroke: var(--dark-blue);
+`;
+
 export const CloseIcon = styled.div`
   position: absolute;
   display: flex;
