@@ -197,7 +197,8 @@ const NoticeCategoryItem = ({ notice }) => {
         isOpen={showDeleteModal}
         onRequestClose={() => setShowDeleteModal(false)}
         onApprove={onDelete}
-        btnIconColor={'var(--bg-color)'}
+        btnIconStroke={'var(--bg-color)'}
+        btnIconColor={'var(--dark-blue)'}
         btnIconName={'icon-trash-2'}
       >
         <InfoTitle> Delete your pet?</InfoTitle>
