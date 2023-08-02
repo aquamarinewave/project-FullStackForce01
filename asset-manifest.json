@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/project-FullStackForce01/static/css/main.892df6f8.css",
-    "main.js": "/project-FullStackForce01/static/js/main.22664f6a.js",
+    "main.js": "/project-FullStackForce01/static/js/main.0218344f.js",
     "static/js/213.617f94b1.chunk.js": "/project-FullStackForce01/static/js/213.617f94b1.chunk.js",
     "static/js/758.82551497.chunk.js": "/project-FullStackForce01/static/js/758.82551497.chunk.js",
     "static/js/913.c43a827f.chunk.js": "/project-FullStackForce01/static/js/913.c43a827f.chunk.js",
     "static/js/106.d6d485bf.chunk.js": "/project-FullStackForce01/static/js/106.d6d485bf.chunk.js",
-    "static/js/538.e99cef4d.chunk.js": "/project-FullStackForce01/static/js/538.e99cef4d.chunk.js",
-    "static/js/997.24b30f86.chunk.js": "/project-FullStackForce01/static/js/997.24b30f86.chunk.js",
-    "static/js/676.8bf6f627.chunk.js": "/project-FullStackForce01/static/js/676.8bf6f627.chunk.js",
+    "static/js/538.05219b7d.chunk.js": "/project-FullStackForce01/static/js/538.05219b7d.chunk.js",
+    "static/js/997.ce26ede1.chunk.js": "/project-FullStackForce01/static/js/997.ce26ede1.chunk.js",
+    "static/js/676.9565dc32.chunk.js": "/project-FullStackForce01/static/js/676.9565dc32.chunk.js",
     "static/js/939.155252e9.chunk.js": "/project-FullStackForce01/static/js/939.155252e9.chunk.js",
     "static/js/581.6896743b.chunk.js": "/project-FullStackForce01/static/js/581.6896743b.chunk.js",
     "static/js/498.77ae2892.chunk.js": "/project-FullStackForce01/static/js/498.77ae2892.chunk.js",
@@ -16,7 +16,7 @@
     "static/js/402.23d38e16.chunk.js": "/project-FullStackForce01/static/js/402.23d38e16.chunk.js",
     "static/js/568.d5d8cde2.chunk.js": "/project-FullStackForce01/static/js/568.d5d8cde2.chunk.js",
     "static/js/531.0bf7f4a9.chunk.js": "/project-FullStackForce01/static/js/531.0bf7f4a9.chunk.js",
-    "static/js/897.920aaed8.chunk.js": "/project-FullStackForce01/static/js/897.920aaed8.chunk.js",
+    "static/js/897.ab20a693.chunk.js": "/project-FullStackForce01/static/js/897.ab20a693.chunk.js",
     "static/js/130.792bd788.chunk.js": "/project-FullStackForce01/static/js/130.792bd788.chunk.js",
     "static/js/253.65ee439a.chunk.js": "/project-FullStackForce01/static/js/253.65ee439a.chunk.js",
     "static/media/pets-large.png": "/project-FullStackForce01/static/media/pets-large.7fd8e42366bf9e50c29e.png",
@@ -48,14 +48,14 @@
     "static/media/logo-small.webp": "/project-FullStackForce01/static/media/logo-small.1debf6693c81405101b6.webp",
     "index.html": "/project-FullStackForce01/index.html",
     "main.892df6f8.css.map": "/project-FullStackForce01/static/css/main.892df6f8.css.map",
-    "main.22664f6a.js.map": "/project-FullStackForce01/static/js/main.22664f6a.js.map",
+    "main.0218344f.js.map": "/project-FullStackForce01/static/js/main.0218344f.js.map",
     "213.617f94b1.chunk.js.map": "/project-FullStackForce01/static/js/213.617f94b1.chunk.js.map",
     "758.82551497.chunk.js.map": "/project-FullStackForce01/static/js/758.82551497.chunk.js.map",
     "913.c43a827f.chunk.js.map": "/project-FullStackForce01/static/js/913.c43a827f.chunk.js.map",
     "106.d6d485bf.chunk.js.map": "/project-FullStackForce01/static/js/106.d6d485bf.chunk.js.map",
-    "538.e99cef4d.chunk.js.map": "/project-FullStackForce01/static/js/538.e99cef4d.chunk.js.map",
-    "997.24b30f86.chunk.js.map": "/project-FullStackForce01/static/js/997.24b30f86.chunk.js.map",
-    "676.8bf6f627.chunk.js.map": "/project-FullStackForce01/static/js/676.8bf6f627.chunk.js.map",
+    "538.05219b7d.chunk.js.map": "/project-FullStackForce01/static/js/538.05219b7d.chunk.js.map",
+    "997.ce26ede1.chunk.js.map": "/project-FullStackForce01/static/js/997.ce26ede1.chunk.js.map",
+    "676.9565dc32.chunk.js.map": "/project-FullStackForce01/static/js/676.9565dc32.chunk.js.map",
     "939.155252e9.chunk.js.map": "/project-FullStackForce01/static/js/939.155252e9.chunk.js.map",
     "581.6896743b.chunk.js.map": "/project-FullStackForce01/static/js/581.6896743b.chunk.js.map",
     "498.77ae2892.chunk.js.map": "/project-FullStackForce01/static/js/498.77ae2892.chunk.js.map",
@@ -63,11 +63,11 @@
     "402.23d38e16.chunk.js.map": "/project-FullStackForce01/static/js/402.23d38e16.chunk.js.map",
     "568.d5d8cde2.chunk.js.map": "/project-FullStackForce01/static/js/568.d5d8cde2.chunk.js.map",
     "531.0bf7f4a9.chunk.js.map": "/project-FullStackForce01/static/js/531.0bf7f4a9.chunk.js.map",
-    "897.920aaed8.chunk.js.map": "/project-FullStackForce01/static/js/897.920aaed8.chunk.js.map",
+    "897.ab20a693.chunk.js.map": "/project-FullStackForce01/static/js/897.ab20a693.chunk.js.map",
     "253.65ee439a.chunk.js.map": "/project-FullStackForce01/static/js/253.65ee439a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.892df6f8.css",
-    "static/js/main.22664f6a.js"
+    "static/js/main.0218344f.js"
   ]
 }
