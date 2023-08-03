@@ -77,10 +77,6 @@ const NoticesPage = () => {
         })
       );
     }
-
-    return () => {
-      controller.abort();
-    };
   }, [dispatch, categoryName, isLoggedIn, setStatus, PENDING, perPage]);
 
   const showResults = useCallback(
