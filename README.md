@@ -1,8 +1,8 @@
 # Your Pet
 
 Welcome to our React-based pets app, designed for anyone who loves pets! This app offers a range of features, including
-the ability to save and add your own pets, create your favorite list, and read some news about pets! Our site will help
-you to buy or take a new pet to your home. Or if you have pet for sale - just do it here!
+the ability to save and add your own pets, create your favorite list of ads, and read some news about pets! Our site
+will help you to buy or take a new pet to your home. Or if you have pet for sale - just do it here!
 
 ## Screenshots
 
