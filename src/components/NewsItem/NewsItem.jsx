@@ -8,6 +8,7 @@ import {
   Description,
   DateD,
 } from './NewsItem.styled';
+import DefaultImg from '../../images/x1/petphoto/pet-photo-large.jpg';
 
 const formatDate = date => {
   const formatedDate = new Date(date);
@@ -23,7 +24,14 @@ const NewsItem = ({ responseByNews }) => {
     <NewsItemWrapper>
       {imgUrl && (
         <ImgWrapper>
-          <Img src={imgUrl} alt={title} />
+          <Img
+            src={imgUrl}
+            alt={title}
+            onError={e => {
+              console.log(e.nativeEvent.target.src);
+              e.nativeEvent.target.src = DefaultImg;
+            }}
+          />
         </ImgWrapper>
       )}
       <ContentContainer>
