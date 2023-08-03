@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import React, { useState } from 'react';
 import { ModalNotice } from '../ModalNotice/ModalNotice';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
+import ModalAttention from 'components/ModalAttention/ModalAttention';
 import {
   CategoriesContainer,
   CategoriesName,
@@ -29,44 +30,29 @@ import {
 import sprite from '../../images/icons.svg';
 import noticesOperations from 'redux/notices/operation';
 import authSelector from '../../redux/auth/authSelector';
-import noticesSelector from '../../redux/notices/noticesSelector';
 
-const NoticeCategoryItem = ({ notices }) => {
+const NoticeCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
-  const favoriteNoticeStore = useSelector(noticesSelector.getNotice);
-
-  console.log(favoriteNoticeStore);
-
-  const { _id, title, birthday, category, location, sex, avatarURL } = notices;
+  const { _id, title, birthday, category, location, sex, avatarURL, favorite, allowDelete } = notice;
   const { categoryName } = useParams();
 
-  const [idPet, setIdPet] = useState('');
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  const [showModal, setShowModal] = useState(false);
+  const [showNoticeModal, setShowNoticeModal] = useState(false);
   const [isModalOpenAttention, setIsModalOpenAttention] = useState(false);
-  const [isSelected, setIsSelected] = useState(() => {
-    const saved = localStorage.getItem(`pet_${_id}`);
-    const initialValue = JSON.parse(saved);
-    return initialValue || false;
-  });
-
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
   const onDelete = () => {
     dispatch(noticesOperations.deleteUserNotice(_id));
-    setShowDeleteModal(showDeleteModal => !showDeleteModal);
-    setIdPet(_id);
+    setShowDeleteModal(false);
   };
 
-  const openModal = () => {
+  const openDetailsModal = () => {
     dispatch(noticesOperations.fetchModalDetails(_id));
-    setShowModal(showModal => !showModal);
+    setShowNoticeModal(true);
   };
 
-  const openModalForDelete = () => {
-    setShowDeleteModal(showDeleteModal => !showDeleteModal);
+  const openDeleteModal = () => {
+    setShowDeleteModal(true);
   };
 
   const givenDate = new Date(birthday);
@@ -80,37 +66,33 @@ const NoticeCategoryItem = ({ notices }) => {
   };
 
   const handleAddToFavorite = () => {
-    const addToFavoriteValue = {
-      _id,
-      favoriteNoticeStore,
-    };
-
     if (isLoggedIn) {
-      if (!isSelected) {
-        dispatch(noticesOperations.fetchAddToFavorite(addToFavoriteValue));
-        setIsSelected(!isSelected);
+      if (!favorite) {
+        dispatch(noticesOperations.fetchAddToFavorite(_id));
       } else {
         dispatch(noticesOperations.fetchDeleteToFavorite(_id));
-        setIsSelected(!isSelected);
+        if (categoryName === 'favorite') {
+          dispatch(noticesOperations.removeNotice(_id));
+        }
       }
     } else {
-      setShowModal(false);
+      setShowNoticeModal(false);
       setIsModalOpenAttention(true);
     }
   };
 
-  localStorage.setItem(`pet_${_id}`, JSON.stringify(isSelected));
+  const categoryOnCart = {
+    'sell': 'sell',
+    'for-free': 'In good hands',
+    'lost-found': 'lost/found',
+  };
 
   return (
     <>
       <NoticesItemThumb>
-        <Img src={avatarURL} alt="pets avatar" />
+        <Img src={avatarURL} alt="pets avatar" width={280} height={290} />
         <CategoriesContainer>
-          {category !== 'for-free' ? (
-            <CategoriesName>{category}</CategoriesName>
-          ) : (
-            <CategoriesName>in goood hands</CategoriesName>
-          )}
+          <CategoriesName>{categoryOnCart[category]}</CategoriesName>
         </CategoriesContainer>
         <DiscriptionList>
           <DiscriptionItem>
@@ -121,7 +103,7 @@ const NoticeCategoryItem = ({ notices }) => {
             </IconConatiner>
             <TextContainer>{location}</TextContainer>
           </DiscriptionItem>
-          {yearsDiff === 1 || yearsDiff === 0 ? (
+          {yearsDiff === 1 ? (
             <DiscriptionItem>
               <IconConatiner>
                 <IconSvg width={24} height={24}>
@@ -129,6 +111,15 @@ const NoticeCategoryItem = ({ notices }) => {
                 </IconSvg>
               </IconConatiner>
               <TextContainer>{`${yearsDiff} year`}</TextContainer>
+            </DiscriptionItem>
+          ) : yearsDiff === 0 ? (
+            <DiscriptionItem>
+              <IconConatiner>
+                <IconSvg width={24} height={24}>
+                  <use href={`${sprite}#icon-clock`}></use>
+                </IconSvg>
+              </IconConatiner>
+              <TextContainer>&lt;1 year</TextContainer>
             </DiscriptionItem>
           ) : (
             <DiscriptionItem>
@@ -152,14 +143,14 @@ const NoticeCategoryItem = ({ notices }) => {
         <BtnContainer>
           <FavoriteBtnContainer>
             <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-              <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
+              <IconHeart width={24} height={24} isSelected={favorite} isLoggedIn={isLoggedIn}>
                 <use href={`${sprite}#icon-heart`}></use>
               </IconHeart>
             </AddToFavoriteBtn>
           </FavoriteBtnContainer>
-          {categoryName === 'own' && (
+          {allowDelete && (
             <FavoriteBtnContainer>
-              <DeleteBtn type="button" onClick={openModalForDelete}>
+              <DeleteBtn type="button" onClick={openDeleteModal}>
                 <IconDelete width={24} height={24}>
                   <use href={`${sprite}#icon-trash-2`}></use>
                 </IconDelete>
@@ -170,37 +161,35 @@ const NoticeCategoryItem = ({ notices }) => {
       </NoticesItemThumb>
       <ContentContainer>
         <Title>{title}</Title>
-        <LearnMoreBtn type="button" onClick={openModal}>
+        <LearnMoreBtn type="button" onClick={openDetailsModal}>
           Learn more
         </LearnMoreBtn>
       </ContentContainer>
-      <ModalNotice
-        showModal={showModal}
-        setShowModal={setShowModal}
-        handleAddToFavorite={handleAddToFavorite}
-        idPetAd={_id}
-        favoriteNoticeStore={favoriteNoticeStore}
-        isLoggedIn={isLoggedIn}
-        isModalOpenAttention={isModalOpenAttention}
-        closeModalAttention={closeModalAttention}
-        isSelected={isSelected}
-      />
-      {showDeleteModal && (
-        <ModalApproveAction
-          isOpen={showDeleteModal}
-          onRequestClose={openModalForDelete}
-          onApprove={onDelete}
-          idCard={idPet}
-          btnIconColor={'var(--bg-color)'}
-          btnIconName={'icon-trash-2'}
-        >
-          <InfoTitle> Delete your pet?</InfoTitle>
-          <InfoDesc>
-            Are you sure you want to delete pet <Subtitle>{title}</Subtitle>?
-          </InfoDesc>
-          <InfoDesc>You can`t undo this action.</InfoDesc>
-        </ModalApproveAction>
+      {showNoticeModal && (
+        <ModalNotice
+          isOpen={showNoticeModal}
+          onRequestClose={() => setShowNoticeModal(false)}
+          handleAddToFavorite={handleAddToFavorite}
+          notice={notice}
+        />
       )}
+
+      {isModalOpenAttention && <ModalAttention onClose={closeModalAttention} />}
+
+      <ModalApproveAction
+        isOpen={showDeleteModal}
+        onRequestClose={() => setShowDeleteModal(false)}
+        onApprove={onDelete}
+        btnIconStroke={'var(--bg-color)'}
+        btnIconColor={'var(--dark-blue)'}
+        btnIconName={'icon-trash-2'}
+      >
+        <InfoTitle> Delete your pet?</InfoTitle>
+        <InfoDesc>
+          Are you sure you want to delete pet <Subtitle>{title}</Subtitle>?
+        </InfoDesc>
+        <InfoDesc>You can`t undo this action.</InfoDesc>
+      </ModalApproveAction>
     </>
   );
 };

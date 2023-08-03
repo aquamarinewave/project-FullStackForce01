@@ -14,7 +14,6 @@ const PetsList = () => {
   useEffect(() => {
     dispatch(petsOperations.fetchUserPet());
   }, [dispatch]);
-  console.log(pets);
 
   return (
     <>

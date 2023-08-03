@@ -38,8 +38,10 @@ const handleFulfilledPetFetch = (state, action) => {
 };
 
 const handleFulfilledDelete = (state, action) => {
-  const index = state.pets.findIndex(pet => pet.id === action.payload.id);
+  const idToDelete = action.meta.arg;
+  const index = state.pets.findIndex(pet => pet._id === idToDelete);
   state.pets.splice(index, 1);
+  state.error = null;
 };
 //=================================//
 
@@ -55,7 +57,6 @@ export const petsSlice = createSlice({
       .addCase(petsOperations.addNoticeThunk.fulfilled, handleFulfilledAddPet)
       .addCase(petsOperations.addNoticeThunk.rejected, handleRejected)
       .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut)
-
       .addCase(petsOperations.fetchUserPet.pending, handlePending)
       .addCase(petsOperations.fetchUserPet.fulfilled, handleFulfilledPetFetch)
       .addCase(petsOperations.fetchUserPet.rejected, handleRejected)

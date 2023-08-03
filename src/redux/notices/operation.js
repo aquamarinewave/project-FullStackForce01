@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-
 const controller = new AbortController();
 
 const baseURLForAll = 'https://fullstackforce.onrender.com/api/notices';
@@ -16,7 +15,6 @@ const fetchNoticesForAll = createAsyncThunk(
           signal: controller.signal,
         }
       );
-      console.log('response:', response);
 
       return response.data.length ? response.data[0] : {};
     } catch (error) {
@@ -61,7 +59,6 @@ const fetchNoticesFavorites = createAsyncThunk(
 const deleteUserNotice = createAsyncThunk('notices/deleteUserNotice', async (_id, thunkApi) => {
   try {
     const response = await axios.delete(`${baseURLForAll}/${_id}`);
-    console.log('response:', response);
     return response.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
@@ -92,57 +89,54 @@ const setCurrentPage = createAsyncThunk('notices/currentPage', async (page, thun
   }
 });
 
-const fetchModalDetails = createAsyncThunk(
-  'notices/fetchModalDetails',
-  async (_id, thunkAPI) => {
-    try {
-      const response = await axios.get(`${baseURLForAll}/${_id}`, {
-        signal: controller.signal,
-      });
-      
-      return response.data  || {};
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+const fetchModalDetails = createAsyncThunk('notices/fetchModalDetails', async (_id, thunkAPI) => {
+  try {
+    const response = await axios.get(`${baseURLForAll}/${_id}`, {
+      signal: controller.signal,
+    });
 
-const fetchAddToFavorite = createAsyncThunk(
-  'notices/fetchAddToFavorite',
-  async ({_id, favoriteNoticeStore}, thunkAPI) => {
-    try {
-      const response = await axios.patch(`${baseURLForAll}/${_id}/favorites`, {favoriteNoticeStore}, {
-        signal: controller.signal,
-        headers: {
-          "Authorization": `${axios.defaults.headers.common.Authorization}`
-        },
-      });
-      
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+    return response.data || {};
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
 
+const fetchAddToFavorite = createAsyncThunk('notices/fetchAddToFavorite', async (_id, thunkAPI) => {
+  try {
+    await axios.patch(`${baseURLForAll}/${_id}/favorites`, {
+      signal: controller.signal,
+      headers: {
+        'Authorization': `${axios.defaults.headers.common.Authorization}`,
+      },
+    });
 
-const fetchDeleteToFavorite = createAsyncThunk(
-  'notices/fetchDeleteToFavorite',
-  async (_id, thunkAPI) => {
-    try {
-      const response = await axios.delete(`${baseURLForAll}/${_id}/favorites`, {
-        signal: controller.signal,
-        headers: {
-          "Authorization": `${axios.defaults.headers.common.Authorization}`
-        },
-      });
-      console.log('res', response.data);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+    return _id;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
+
+const fetchDeleteToFavorite = createAsyncThunk('notices/fetchDeleteToFavorite', async (_id, thunkAPI) => {
+  try {
+    await axios.delete(`${baseURLForAll}/${_id}/favorites`, {
+      signal: controller.signal,
+      headers: {
+        'Authorization': `${axios.defaults.headers.common.Authorization}`,
+      },
+    });
+    return _id;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+const removeNotice = createAsyncThunk('notices/removeItem', async (_id, thunkAPI) => {
+  try {
+    return _id;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 const noticesOperations = {
   fetchNoticesForAll,
@@ -154,7 +148,8 @@ const noticesOperations = {
   setCategoryId,
   fetchModalDetails,
   fetchAddToFavorite,
-  fetchDeleteToFavorite
+  fetchDeleteToFavorite,
+  removeNotice,
 };
 
 export default noticesOperations;

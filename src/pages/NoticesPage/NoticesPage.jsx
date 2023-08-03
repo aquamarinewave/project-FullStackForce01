@@ -12,6 +12,8 @@ import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import Pagination from '../../components/Pagination/Pagination';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 import AddPetButtonSmall from 'components/AddPetButton/AddPetButtonSmall';
+import Loader from '../../components/Loader/Loader';
+import ContentNotFound from '../../components/ContentNotFound/ContentNotFound';
 
 import { ButtonsBox, NoticesPageContainer, Title } from './NoticesPage.styled';
 
@@ -25,13 +27,12 @@ const statusList = {
 const NoticesPage = () => {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
-  const isLogged = useSelector(authSelector.loggedInSelector);
-  console.log('category:', categoryName);
+  const isLoggedIn = useSelector(authSelector.loggedInSelector);
   const noticesStore = useSelector(noticesSelector.selectNotices);
-  console.log('noticesStore:', noticesStore);
   const perPage = noticesStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
+  const contentNotFoundText = 'Oopps...no listings found.';
 
   if (window.innerWidth > 1279 && window.innerWidth < 1300) {
     document.body.style.marginRight = 'calc(-1 * (100vw - 100%))';
@@ -57,33 +58,22 @@ const NoticesPage = () => {
   useEffect(() => {
     const controller = new AbortController();
     setStatus(PENDING);
+    const params = {
+      pattern: '',
+      currentPage: 1,
+      perPage,
+      controller: controller,
+    };
 
-    if (isLogged && categoryName === 'own') {
-      dispatch(
-        noticesOperations.fetchNoticesOwn({
-          pattern: '',
-          currentPage: 1,
-          perPage,
-          controller: controller,
-        })
-      );
-    } else if (isLogged && categoryName === 'favorite') {
-      dispatch(
-        noticesOperations.fetchNoticesFavorites({
-          pattern: '',
-          currentPage: 1,
-          perPage,
-          controller: controller,
-        })
-      );
+    if (isLoggedIn && categoryName === 'own') {
+      dispatch(noticesOperations.fetchNoticesOwn(params));
+    } else if (isLoggedIn && categoryName === 'favorite') {
+      dispatch(noticesOperations.fetchNoticesFavorites(params));
     } else {
       dispatch(
         noticesOperations.fetchNoticesForAll({
-          pattern: '',
-          currentPage: 1,
-          perPage,
+          ...params,
           categoryId: categoryName,
-          controller: controller,
         })
       );
     }
@@ -91,7 +81,7 @@ const NoticesPage = () => {
     return () => {
       controller.abort();
     };
-  }, [dispatch, categoryName, isLogged, setStatus, PENDING, perPage]);
+  }, [dispatch, categoryName, isLoggedIn, setStatus, PENDING, perPage]);
 
   const showResults = useCallback(
     status => {
@@ -99,9 +89,9 @@ const NoticesPage = () => {
         case IDLE:
           return <div>Please, type something to the search</div>;
         case PENDING:
-          return <div>Loading....</div>;
+          return <Loader props={{ marginTop: '10%', marginLeft: '47%' }} />;
         case REJECTED:
-          return <div>Oopps...no listings found.{noticesStore.error && <div>{noticesStore.error}</div>}</div>;
+          return <ContentNotFound notFoundText={contentNotFoundText} pageError={noticesStore.error}></ContentNotFound>;
         case RESOLVED:
           return <NoticesCategoriesList notices={noticesStore.items} />;
         default:
@@ -111,36 +101,25 @@ const NoticesPage = () => {
     [noticesStore.items, noticesStore.error, IDLE, PENDING, REJECTED, RESOLVED]
   );
 
-  const haldleFormSubmit = useCallback(
+  const handleFormSubmit = useCallback(
     query => {
       const controller = new AbortController();
+      const params = {
+        pattern: query,
+        currentPage: 1,
+        perPage,
+        controller: controller,
+      };
 
-      if (isLogged && categoryName === 'own') {
-        dispatch(
-          noticesOperations.fetchNoticesOwn({
-            pattern: query,
-            currentPage: 1,
-            perPage,
-            controller: controller,
-          })
-        );
-      } else if (isLogged && categoryName === 'favorite') {
-        dispatch(
-          noticesOperations.fetchNoticesFavorites({
-            pattern: query,
-            currentPage: 1,
-            perPage,
-            controller: controller,
-          })
-        );
+      if (isLoggedIn && categoryName === 'own') {
+        dispatch(noticesOperations.fetchNoticesOwn(params));
+      } else if (isLoggedIn && categoryName === 'favorite') {
+        dispatch(noticesOperations.fetchNoticesFavorites(params));
       } else {
         dispatch(
           noticesOperations.fetchNoticesForAll({
-            pattern: query,
-            currentPage: 1,
-            perPage,
+            ...params,
             categoryId: categoryName,
-            controller: controller,
           })
         );
       }
@@ -150,38 +129,27 @@ const NoticesPage = () => {
         controller.abort();
       };
     },
-    [dispatch, categoryName, perPage, isLogged]
+    [dispatch, categoryName, perPage, isLoggedIn]
   );
 
   const clearSearch = () => {
     const controller = new AbortController();
+    const params = {
+      pattern: '',
+      currentPage: 1,
+      perPage,
+      controller: controller,
+    };
 
-    if (isLogged && categoryName === 'own') {
-      dispatch(
-        noticesOperations.fetchNoticesOwn({
-          pattern: '',
-          currentPage: 1,
-          perPage,
-          controller: controller,
-        })
-      );
-    } else if (isLogged && categoryName === 'favorite') {
-      dispatch(
-        noticesOperations.fetchNoticesFavorites({
-          pattern: '',
-          currentPage: 1,
-          perPage,
-          controller: controller,
-        })
-      );
+    if (isLoggedIn && categoryName === 'own') {
+      dispatch(noticesOperations.fetchNoticesOwn(params));
+    } else if (isLoggedIn && categoryName === 'favorite') {
+      dispatch(noticesOperations.fetchNoticesFavorites(params));
     } else {
       dispatch(
         noticesOperations.fetchNoticesForAll({
-          pattern: '',
-          currentPage: 1,
-          perPage,
+          ...params,
           categoryId: categoryName,
-          controller: controller,
         })
       );
     }
@@ -198,33 +166,22 @@ const NoticesPage = () => {
     (_, currentPage) => {
       const controller = new AbortController();
       const pattern = noticesStore.pattern;
+      const params = {
+        pattern,
+        currentPage,
+        perPage,
+        controller: controller,
+      };
 
-      if (isLogged && categoryName === 'own') {
-        dispatch(
-          noticesOperations.fetchNoticesOwn({
-            pattern,
-            currentPage,
-            perPage,
-            controller: controller,
-          })
-        );
-      } else if (isLogged && categoryName === 'favorite') {
-        dispatch(
-          noticesOperations.fetchNoticesFavorites({
-            pattern,
-            currentPage,
-            perPage,
-            controller: controller,
-          })
-        );
+      if (isLoggedIn && categoryName === 'own') {
+        dispatch(noticesOperations.fetchNoticesOwn(params));
+      } else if (isLoggedIn && categoryName === 'favorite') {
+        dispatch(noticesOperations.fetchNoticesFavorites(params));
       } else {
         dispatch(
           noticesOperations.fetchNoticesForAll({
-            pattern,
-            currentPage,
-            perPage,
+            ...params,
             categoryId: categoryName,
-            controller: controller,
           })
         );
       }
@@ -234,7 +191,7 @@ const NoticesPage = () => {
         controller.abort();
       };
     },
-    [dispatch, noticesStore.pattern, perPage, categoryName, isLogged]
+    [dispatch, noticesStore.pattern, perPage, categoryName, isLoggedIn]
   );
 
   const showPagination = useCallback(() => {
@@ -243,12 +200,16 @@ const NoticesPage = () => {
     }
 
     return (
-      <Pagination
-        page={noticesStore.currentPage}
-        count={noticesStore.totalPages}
-        variant="outlined"
-        onChange={handleSwitchPage}
-      />
+      <>
+        {noticesStore.totalPages > 1 && (
+          <Pagination
+            page={noticesStore.currentPage}
+            count={noticesStore.totalPages}
+            variant="outlined"
+            onChange={handleSwitchPage}
+          />
+        )}
+      </>
     );
   }, [noticesStore.totalPages, noticesStore.currentPage, handleSwitchPage]);
 
@@ -256,7 +217,12 @@ const NoticesPage = () => {
     <NoticesPageContainer>
       <Title>Find your favorite pet</Title>
 
-      <NoticesSearch pattern={noticesStore.pattern} onSubmit={haldleFormSubmit} onClear={clearSearch} />
+      <NoticesSearch
+        pattern={noticesStore.pattern}
+        onSubmit={handleFormSubmit}
+        onClear={clearSearch}
+        categoryName={categoryName}
+      />
 
       <ButtonsBox>
         <NoticesCategoriesNav />

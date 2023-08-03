@@ -16,6 +16,7 @@ const addPetThunk = createAsyncThunk('pets/addPets', async (formData, thunkAPI) 
     const response = await axios.post('/pets', data);
 
     toast.success('Pet successfully added!');
+
     return response.data;
   } catch (e) {
     toast.error(e.message);
@@ -56,7 +57,6 @@ const addNoticeThunk = createAsyncThunk('pets/addNotice', async (formData, thunk
 const fetchUserPet = createAsyncThunk('pets/fetchUserPets', async (_, thunkAPI) => {
   try {
     const response = await axios.get(`/pets`);
-    console.log('responsePet.data:', response.data);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -66,7 +66,6 @@ const fetchUserPet = createAsyncThunk('pets/fetchUserPets', async (_, thunkAPI) 
 const deleteUserPet = createAsyncThunk('pets/deleteUserPet', async (_id, thunkApi) => {
   try {
     const response = await axios.delete(`pets/${_id}`);
-    console.log('response:', response);
     return response.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);

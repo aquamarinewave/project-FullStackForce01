@@ -59,7 +59,6 @@ export const Picture = styled.picture`
   left: 0;
   top: 120px;
   width: 100%;
-  }
 
   @media screen and (min-width: 768px) {
     top: 210px;

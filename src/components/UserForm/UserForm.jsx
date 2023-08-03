@@ -13,6 +13,7 @@ import {
   InputWrapper,
   EditText,
   EditButton,
+  IconCameraBtn,
   IconCrossSmall,
   IconCheck,
   BtnConfirm,
@@ -28,7 +29,7 @@ import {
 import { updateUser } from 'redux/auth/operations';
 
 import toast from 'react-hot-toast';
-import { Toaster } from 'react-hot-toast';
+
 import sprite from '../../images/icons.svg';
 
 export const UserForm = ({ toggleModal }) => {
@@ -45,7 +46,6 @@ export const UserForm = ({ toggleModal }) => {
 
     reader.onloadend = () => {
       setNewAvatar(reader.result);
-      console.log(newAvatar);
     };
   }
 
@@ -69,7 +69,7 @@ export const UserForm = ({ toggleModal }) => {
     email: user?.email || 'example@mail.com',
     phone: user?.phone || '+380000000000',
     birthday: user?.birthday || '01.01.2000',
-    city: user?.city || 'Kiev',
+    city: user?.city || 'Krivoy Rog',
   };
 
   const handleFormSubmit = async (values, { resetForm }) => {
@@ -92,17 +92,18 @@ export const UserForm = ({ toggleModal }) => {
         formData.append('phone', values.phone);
       }
       if (initialValues.city !== values.city) formData.append('city', values.city);
-      for (const value of formData.values()) {
-        console.log('value city', value);
-      }
       const res = await dispatch(updateUser(formData));
+
       toggleModal();
 
-      if (res.data.status === '200') {
-        toast.success('Profile  updated');
-      } else {
-        toast.success('Profile successfully updated');
+      if (res.meta.requestStatus === 'fulfilled') {
+        toast.success('User data updated!');
       }
+      if (res.error.message === 'Rejected') {
+        toast.error('This email is already used!', {});
+        return toggleModal(false);
+      }
+
       resetForm();
     } catch (e) {}
   };
@@ -181,10 +182,12 @@ export const UserForm = ({ toggleModal }) => {
                         onChange={e => handleChange(e)}
                         accept="image/png, image/jpeg, image/jpg, image/jfif"
                       />
-                      <IconCamera width={24} height={24}>
-                        <use href={`${sprite}#icon-camera`}></use>
-                      </IconCamera>
-                      <EditText>Edit photo</EditText>
+                      <IconCameraBtn>
+                        <IconCamera width={24} height={24}>
+                          <use href={`${sprite}#icon-camera`}></use>
+                        </IconCamera>
+                        <EditText>Edit photo</EditText>
+                      </IconCameraBtn>
                     </EditButton>
                   )}
                 </AvatarWrapper>
@@ -232,7 +235,7 @@ export const UserForm = ({ toggleModal }) => {
                 <Container>
                   <WrapperField>
                     <Label htmlFor="date"> Birthday:</Label>
-                    <ProfileField type="date" name="birthday" />
+                    <ProfileField type="date" name="birthday" placeholder={initialValues.birthday} />
                     {errors.birthday && touched.birthday ? (
                       <ErrorMassege>{errors.birthday}</ErrorMassege>
                     ) : !errors.birthday && touched.birthday && values.birthday !== user?.birthday ? (
@@ -251,7 +254,7 @@ export const UserForm = ({ toggleModal }) => {
                 <Container>
                   <WrapperField>
                     <Label htmlFor="phone"> Phone:</Label>
-                    <ProfileField placeholder={initialValues.phone} type="phone" name="phone" format="dd/mm/yyyy" />
+                    <ProfileField placeholder={initialValues.phone} type="phone" name="phone" />
                     {errors.phone && touched.phone ? (
                       <ErrorMassege>{errors.phone}</ErrorMassege>
                     ) : !errors.phone && touched.phone && values.phone !== user?.phone ? (
@@ -270,7 +273,7 @@ export const UserForm = ({ toggleModal }) => {
                 <Container>
                   <WrapperField>
                     <Label htmlFor="city"> City:</Label>
-                    <ProfileField type="text" name="city" placeholder={initialValues.city} />
+                    <ProfileField type="string" name="city" placeholder={initialValues.city} />
                     {errors.city && touched.city ? (
                       <ErrorMassege>{errors.city}</ErrorMassege>
                     ) : !errors.city && touched.city && values.city !== user?.city ? (
@@ -299,7 +302,6 @@ export const UserForm = ({ toggleModal }) => {
           </Form>
         )}
       </Formik>
-      <Toaster />
     </div>
   );
 };

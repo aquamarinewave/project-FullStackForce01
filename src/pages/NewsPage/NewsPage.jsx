@@ -7,6 +7,7 @@ import newsSelector from 'redux/news/newsSelector';
 import newsOperations from '../../redux/news/operations';
 import Pagination from '../../components/Pagination/Pagination';
 import Loader from '../../components/Loader/Loader';
+import ContentNotFound from '../../components/ContentNotFound/ContentNotFound';
 
 const statusList = {
   REJECTED: 1,
@@ -21,6 +22,7 @@ const NewsPage = () => {
   const perPage = newsStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
+  const contentNotFoundText = 'Oopps...no news with this text.';
 
   if (window.innerWidth > 1279 && window.innerWidth < 1300) {
     document.body.style.marginRight = 'calc(-1 * (100vw - 100%))';
@@ -57,7 +59,7 @@ const NewsPage = () => {
         case PENDING:
           return <Loader props={{ marginTop: '10%', marginLeft: '45%' }} />;
         case REJECTED:
-          return <div>Oopps...no news with this text.{newsStore.error && <div>{newsStore.error}</div>}</div>;
+          return <ContentNotFound notFoundText={contentNotFoundText} pageError={newsStore.error}></ContentNotFound>;
         case RESOLVED:
           return <NewsList news={newsStore.items} />;
         default:
@@ -96,12 +98,16 @@ const NewsPage = () => {
     }
 
     return (
-      <Pagination
-        page={newsStore.currentPage}
-        count={newsStore.totalPages}
-        variant="outlined"
-        onChange={handleSwitchPage}
-      />
+      <>
+        {newsStore.totalPages > 1 && (
+          <Pagination
+            page={newsStore.currentPage}
+            count={newsStore.totalPages}
+            variant="outlined"
+            onChange={handleSwitchPage}
+          />
+        )}
+      </>
     );
   }, [newsStore.totalPages, newsStore.currentPage, handleSwitchPage]);
 

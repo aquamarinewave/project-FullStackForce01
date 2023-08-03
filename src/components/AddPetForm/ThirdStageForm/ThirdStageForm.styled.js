@@ -23,16 +23,27 @@ const colorIconFemale = selectedGender => {
   }
 };
 
-const heightTextarea = checked => {
-  switch (checked) {
-    case 'my-pet':
-      return '79px';
-    case 'sell':
-      return '79px';
-    default:
-      return '182px';
-  }
-};
+// const heightTextarea = checked => {
+//   switch (checked) {
+//     case 'my-pet':
+//       return '79px';
+//     case 'sell':
+//       return '79px';
+//     default:
+//       return '182px';
+//   }
+// };
+
+// const heightTextarea = (currentRadioButton, checked) => {
+//   switch (checked) {
+//     case 'my-pet':
+//       return '79px';
+//     case 'sell':
+//       return '79px';
+//     default:
+//       return currentRadioButton !== 'my-pet' ? '182px' : '120px';
+//   }
+// };
 
 export const ContainerFormStepThird = styled.div`
   display: flex;
@@ -117,9 +128,6 @@ export const InputFieldTextArea = styled(Field)`
   width: 100%;
   height: 92px;
 
-  @media screen and (min-width: 768px) {
-    height: ${({ currentRadioButton }) => heightTextarea(currentRadioButton)};
-  }
 `;
 
 export const TextArea = styled.textarea`

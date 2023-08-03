@@ -43,7 +43,7 @@ const ModalAttention = ({ onClose }) => {
         <ModalAuth>
           <AuthButtonsModal />
         </ModalAuth>
-        <CloseModalButton aria-label="Close modal" onClick={() => onClose(prev => !prev)}>
+        <CloseModalButton aria-label="Close modal" onClick={onClose}>
           <IconCross width={24} height={24}>
             <use href={`${sprite}#icon-cross`}></use>
           </IconCross>

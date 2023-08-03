@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Pagination as MuiPagination } from '@mui/material';
 
-const PaginationList = styled(MuiPagination)`
+export const PaginationList = styled(MuiPagination)`
   display: flex;
   justify-content: center;
 
@@ -13,5 +13,3 @@ const PaginationList = styled(MuiPagination)`
     margin: 38px 0;
   }
 `;
-
-export { PaginationList };

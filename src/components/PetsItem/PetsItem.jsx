@@ -1,8 +1,3 @@
-// Компонент рендерить детальну інформацію про власного
-// домашнього улюбленця користувача з можливістю
-//  видалення картки.Клік по кнопці видалення картки
-//  відкриває модальне вікно  ModalApproveAction
-
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import petsOperations from 'redux/pets/operations';
@@ -72,7 +67,8 @@ const PetItem = ({ pet }) => {
             onRequestClose={openModal}
             onApprove={onDelete}
             idCard={idPet}
-            btnIconColor={'var(--bg-color)'}
+            btnIconStroke={'var(--bg-color)'}
+            btnIconColor={'var(--dark-blue)'}
             btnIconName={'icon-trash-2'}
           >
             <InfoTitle> Delete your pet?</InfoTitle>
@@ -88,4 +84,3 @@ const PetItem = ({ pet }) => {
 };
 
 export default PetItem;
-// fill="var(--bg-color)" stroke="var(--dark-blue)"

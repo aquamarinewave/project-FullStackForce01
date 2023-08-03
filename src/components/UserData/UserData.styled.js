@@ -8,7 +8,7 @@ export const ProfileTitle = styled.h2`
   font-size: 20px;
   line-height: 1.37;
   letter-spacing: 4%;
-  color: var(--unnamed, #111);
+  color: var(--main-color);
 
   text-align: left;
   margin-bottom: 24px;
@@ -16,7 +16,7 @@ export const ProfileTitle = styled.h2`
 
 export const Label = styled.label`
   display: flex;
-  color: var(--unnamed, #111);
+  color: var(--main-color);
   font-family: Manrope;
   font-size: 18px;
   font-style: normal;
@@ -41,11 +41,11 @@ export const ProfileField = styled(Field)`
   padding: 4px 12px;
   align-items: center;
   border-radius: 20px;
-  border: 1px solid var(--unnamed, #54adff);
+  border: 1px solid var(--dark-blue);
   margin-bottom: 10px;
 
   ::placeholder {
-    color: var(--unnamed, #111);
+    color: var(--main-color);
     font-family: Manrope;
     font-size: 16px;
     font-style: normal;
