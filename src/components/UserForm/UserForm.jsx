@@ -65,11 +65,11 @@ export const UserForm = ({ toggleModal }) => {
 
   const initialValues = {
     avatarURL: user?.avatarURL || { avatarDefault },
-    name: user?.name || 'Enter your name',
-    email: user?.email || 'example@mail.com',
-    phone: user?.phone || '+380000000000',
-    birthday: user?.birthday || '01.01.2000',
-    city: user?.city || '-',
+    name: user?.name || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    birthday: user?.birthday || '',
+    city: user?.city || '',
   };
 
   const handleFormSubmit = async (values, { resetForm }) => {
@@ -125,13 +125,9 @@ export const UserForm = ({ toggleModal }) => {
       .string()
       .matches(/^\+?3?8?(0\d{9})$/, 'Phone format: +380000000000')
       .max(13, 'Phone format: +380000000000')
-      .min(13, 'Phone format: +380000000000')
-      .required('Please enter your Phone'),
-    city: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your city'),
-    birthday: yup
-      .date()
-      .required('Birthday is required')
-      .test('is-future-date', 'Please select a past or today date', validateDate),
+      .min(13, 'Phone format: +380000000000'),
+    city: yup.string().max(16, 'Name must be less than 16 characters').trim(),
+    birthday: yup.date().test('is-future-date', 'Please select a past or today date', validateDate),
   });
 
   return (
@@ -198,7 +194,7 @@ export const UserForm = ({ toggleModal }) => {
                   <WrapperField>
                     <Label htmlFor="name"> Name:</Label>
 
-                    <ProfileField type="text" name="name" placeholder={initialValues.name} />
+                    <ProfileField type="text" name="name" placeholder="Enter your name" />
                   </WrapperField>
                   {errors.name && touched.name ? (
                     <ErrorMassege>{errors.name}</ErrorMassege>
@@ -217,7 +213,7 @@ export const UserForm = ({ toggleModal }) => {
                 <Container>
                   <WrapperField>
                     <Label htmlFor="email"> Email:</Label>
-                    <ProfileField type="email" name="email" placeholder={initialValues.email} />
+                    <ProfileField type="email" name="email" placeholder="Enter your email" />
                     {errors.email && touched.name ? (
                       <ErrorMassege>{errors.email}</ErrorMassege>
                     ) : !errors.email && touched.email && values.email !== user?.email ? (
@@ -236,7 +232,7 @@ export const UserForm = ({ toggleModal }) => {
                 <Container>
                   <WrapperField>
                     <Label htmlFor="date"> Birthday:</Label>
-                    <ProfileField type="date" name="birthday" placeholder={initialValues.birthday} />
+                    <ProfileField type="date" name="birthday" placeholder="01.01.2000" />
                     {errors.birthday && touched.birthday ? (
                       <ErrorMassege>{errors.birthday}</ErrorMassege>
                     ) : !errors.birthday && touched.birthday && values.birthday !== user?.birthday ? (
@@ -255,7 +251,7 @@ export const UserForm = ({ toggleModal }) => {
                 <Container>
                   <WrapperField>
                     <Label htmlFor="phone"> Phone:</Label>
-                    <ProfileField placeholder={initialValues.phone} type="phone" name="phone" />
+                    <ProfileField placeholder="+380000000000" type="phone" name="phone" />
                     {errors.phone && touched.phone ? (
                       <ErrorMassege>{errors.phone}</ErrorMassege>
                     ) : !errors.phone && touched.phone && values.phone !== user?.phone ? (
@@ -274,7 +270,7 @@ export const UserForm = ({ toggleModal }) => {
                 <Container>
                   <WrapperField>
                     <Label htmlFor="city"> City:</Label>
-                    <ProfileField type="string" name="city" placeholder={initialValues.city} />
+                    <ProfileField type="string" name="city" placeholder="Enter your city" />
                     {errors.city && touched.city ? (
                       <ErrorMassege>{errors.city}</ErrorMassege>
                     ) : !errors.city && touched.city && values.city !== user?.city ? (
