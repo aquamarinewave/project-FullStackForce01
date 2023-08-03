@@ -69,7 +69,7 @@ export const UserForm = ({ toggleModal }) => {
     email: user?.email || 'example@mail.com',
     phone: user?.phone || '+380000000000',
     birthday: user?.birthday || '01.01.2000',
-    city: user?.city || 'Krivoy Rog',
+    city: user?.city || '-',
   };
 
   const handleFormSubmit = async (values, { resetForm }) => {
@@ -120,12 +120,13 @@ export const UserForm = ({ toggleModal }) => {
   };
   const shema = yup.object().shape({
     name: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your name'),
-    email: yup.string().email('Incorrect email').required('Email is required'),
+    email: yup.string().email('Incorrect email').required('Please enter your email'),
     phone: yup
       .string()
       .matches(/^\+?3?8?(0\d{9})$/, 'Phone format: +380000000000')
       .max(13, 'Phone format: +380000000000')
-      .min(13, 'Phone format: +380000000000'),
+      .min(13, 'Phone format: +380000000000')
+      .required('Please enter your Phone'),
     city: yup.string().max(16, 'Name must be less than 16 characters').trim().required('Please enter your city'),
     birthday: yup
       .date()
