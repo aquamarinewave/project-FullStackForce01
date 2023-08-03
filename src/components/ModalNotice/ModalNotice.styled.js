@@ -221,8 +221,8 @@ export const ModalButtonAdd = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: ${props => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : stylesBtnActive.white)};
-  background: ${props => (props.isSelected && props.isLoggedIn ? stylesBtnActive.lightblue : stylesBtnActive.darkblue)};
+  color: ${props => (props.isPrimary ? stylesBtnActive.darkblue : stylesBtnActive.white)};
+  background: ${props => (props.isPrimary ? stylesBtnActive.lightblue : stylesBtnActive.darkblue)};
   border: none;
   border-radius: 40px;
   font-size: 16px;
@@ -262,8 +262,8 @@ export const CloseModalButton = styled.button`
 `;
 
 export const IconHeart = styled.svg`
-  stroke: ${props => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : stylesBtnActive.white)};
-  fill: ${props => (props.isSelected && props.isLoggedIn ? stylesBtnActive.darkblue : 'transparent')};
+  stroke: ${props => (props.isPrimary ? stylesBtnActive.darkblue : stylesBtnActive.white)};
+  fill: ${props => (props.isPrimary ? stylesBtnActive.darkblue : 'transparent')};
 `;
 
 export const IconCross = styled.svg`
