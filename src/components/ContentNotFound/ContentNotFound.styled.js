@@ -17,7 +17,7 @@ const NotFoundContainer = styled.div`
 const NotFoundText = styled.p`
   font-size: 20px;
   font-weight: 700;
-  color: blue;
+  color: var(--accent-color);
   @media screen and (min-width: 768px) {
     font-size: 25px;
   }
