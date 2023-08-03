@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Wrapper, Title, BackgroundImage, ImgBlock, Picture, ImgPic } from './MainPage.styled';
+import { Wrapper, Title, ImgBlock, Picture, ImgPic } from './MainPage.styled';
 
 import PetsLargeDef from '../../images/x1/homepagefull/pets-large.png';
 import PetsLarge from '../../images/x1/homepagefull/pets-large.webp';
@@ -15,7 +15,7 @@ const MainPage = () => {
   return (
     <>
       <Wrapper>
-        <BackgroundImage>
+        <div>
           <Title>Take good care of your small pets</Title>
           <ImgBlock>
             <Picture>
@@ -25,7 +25,7 @@ const MainPage = () => {
               <ImgPic src={PetsLargeDef} alt="Pictures small pets" />
             </Picture>
           </ImgBlock>
-        </BackgroundImage>
+        </div>
       </Wrapper>
     </>
   );
