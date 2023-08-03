@@ -1,59 +1,40 @@
 # So Yummy
 
-Welcome to our React-based cooking app, designed for anyone who loves to cook! This app offers a range of features,
-including the ability to save and write recipes, add your own recipes, create shopping lists for ingredients, and select
-recipes by category or ingredients. Whether you're an experienced cook or just starting out, our app is here to help you
-streamline your cooking experience and make meal planning a breeze. Enjoy!
+Welcome to our React-based pets app, designed for anyone who loves pets! This app offers a range of features, including
+the ability to save and add your own pets, create your favorite list, and read some news about pets! Our site will help
+you to buy or take a new pet to your home. Or if you have pet for sale - just do it here!
 
 ## Screenshots
 
-[![Screenshot-6.png](https://i.postimg.cc/63nb5Kyg/Screenshot-6.png)](https://postimg.cc/626fYDVf)
+[!https://postimg.cc/rDQG42vY]
 
-[![Screenshot-11.png](https://i.postimg.cc/qRVndbzM/Screenshot-11.png)](https://postimg.cc/R3dq7T7j)
+[!https://postimg.cc/3kKCWxbv]
 
-[![Screenshot-10.png](https://i.postimg.cc/k5kNgMhC/Screenshot-10.png)](https://postimg.cc/xk3NsQ2p)
+[!https://postimg.cc/fJQvnKc5]
 
 ## Authors
 
-- [Bondar Viktoriia](https://github.com/BondarViktoriia)
-- [Kate Dziubchuk](https://github.com/KateKitKat19)
-- [Andrii Utkin](https://github.com/AndreyNik2)
-- [Julia Parkhomenko](https://github.com/lady-araminta)
-- [Roman Baitala](https://github.com/RomanBaitala)
-- [El Comondear](https://github.com/Comondear)
-- [Andrew-aka-Lemon](https://github.com/Andrew-aka-Lemon)
-- [Alexander Solomiannyk](https://github.com/SashaSolo)
-- [Slava Hlushko](https://github.com/SlavaHlushko)
-- [Uliana Kolesnikova](https://github.com/Anakole)
+- [Maryna Medynska](https://github.com/aquamarinewave)
+- [kkasyan](https://github.com/kkasyan)
+- [Valentyn Pakhniuk](https://github.com/ValentynPakhniuk)
+- [AlexTigra1974](https://github.com/AlexTigra1974)
+- [Volodymyr Sochko](https://github.com/Woodiik)
+- [Kravchenko Yevhenii](https://github.com/iEfir)
+- [Inna Kukla](https://github.com/InnaKukla)
+- [HaidaienkoK](https://github.com/HaidaienkoK)
+- [Vladyslav](https://github.com/vladsimak11)
+- [Igor Sedura](https://github.com/IgorSedura)
 - [Yaroslava Vorobets](https://github.com/Yaroslava-Vorobets)
 
 ## 🛠 Tech stack
 
-**Client:** React, Redux Toolkit, Styled Components, Axios, Webpack
+**Client:** HTML/CSS JavaScript Axios React Redux Persist Emotion Mui Formik Styled components Yup e.t.c.
 
-**Server:** Node, Express, Swagger, MongoDB
+**Server:** Node.js Express Mongoose Swagger Cloudinary JWT Token Joi e.t.c.
 
-## Features
-
-- Backend developed with Node.js, providing robust and scalable functionality for the application
-- Secure sign-up and sign-in functionality, allowing users to create and access their accounts
-- Light/dark mode toggle, providing a comfortable viewing experience for users in any lighting condition
-- Fully adaptive design, optimizing the application's layout and usability across various devices and screen sizes
-- Easy navigation, ensuring users can quickly and easily find the features they need.
+**Utilities:** VSCode Webpack Figma Git/GitHub
 
 ## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/BondarViktoriia/so-yummy-front.git
-```
-
-Go to the project directory
-
-```bash
-  cd so-yummy-front
-```
 
 Install dependencies
 
