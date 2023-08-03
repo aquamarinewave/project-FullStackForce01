@@ -57,6 +57,28 @@ body {
   font-size: 16px;
   color: var(--main-color);
   background-color: var(--bg-color);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+
+  background-image: url('./images/x1/bg/bg-small.webp');
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    background-image: url('./images/x2/bg/bg-small.webp');
+  }
+
+  @media screen and (min-width: 768px) {
+    background-image: url('./images/x1/bg/bg-medium.webp');
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background-image: url('./images/x2/bg/bg-medium.webp');
+    }
+  }
+  @media screen and (min-width: 1280px) {
+    background-image: url('./images/x1/bg/bg-lagre.webp');
+    @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background-image: url('./images/x2/bg/bg-large.webp');
+    }
+  }
 }
 
 code {

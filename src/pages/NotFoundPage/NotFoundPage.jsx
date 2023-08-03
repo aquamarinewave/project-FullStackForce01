@@ -1,13 +1,4 @@
-import {
-  PageHeader,
-  BackgroundImage,
-  LinkBtn,
-  ImageError,
-  BtnText,
-  IconPawPrint,
-  LinkWrapper,
-  Wrapper,
-} from './NotFoundPage.styled';
+import { PageHeader, LinkBtn, ImageError, BtnText, IconPawPrint, LinkWrapper, Wrapper } from './NotFoundPage.styled';
 import Smallpng from '../../images/x1/page404/404-small.png';
 import Small from '../../images/x1/page404/404-small.webp';
 import SmallRetina from '../../images/x2/page404/404-small.webp';
@@ -20,7 +11,7 @@ import sprite from '../../images/icons.svg';
 const NotFoundPage = () => {
   return (
     <Wrapper>
-      <BackgroundImage>
+      <div>
         <PageHeader>Ooops! This page not found :</PageHeader>
         <ImageError>
           <source
@@ -54,7 +45,7 @@ const NotFoundPage = () => {
             </IconPawPrint>
           </LinkBtn>
         </LinkWrapper>
-      </BackgroundImage>
+      </div>
     </Wrapper>
   );
 };
