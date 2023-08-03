@@ -58,7 +58,7 @@ body {
   color: var(--main-color);
   background-color: var(--bg-color);
 
-  background-size: cover;
+  /* background-size: cover;
   background-position: center;
   background-repeat: repeat;
 
@@ -78,7 +78,7 @@ body {
     @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
       background-image: url('./images/x2/bg/bg-large.webp');
     }
-  }
+  } */
 }
 
 code {
