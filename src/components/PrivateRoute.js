@@ -4,8 +4,8 @@ import authSelector from 'redux/auth/authSelector';
 
 const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   const isLogged = useSelector(authSelector.loggedInSelector);
-
-  const shouldRedirect = !isLogged;
+  const isRefreshing = useSelector(authSelector.loadingSelector);
+  const shouldRedirect = !isLogged && !isRefreshing;
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };
