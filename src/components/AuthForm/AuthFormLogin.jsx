@@ -56,7 +56,7 @@ const AuthFormLogin = props => {
   return (
     <>
       {isLoading ? (
-        <Loader props={{ marginTop: '20%', marginLeft: '45%' }}/>
+        <Loader/>
       ) : (
         <ContainerAuth>
           <AuthTitle>Login</AuthTitle>

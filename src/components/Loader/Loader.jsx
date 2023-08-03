@@ -1,15 +1,18 @@
 import { Blocks } from 'react-loader-spinner';
+import LoaderWrapper from './Loader.styled';
 
-const Loader = ({ props }) => {
+const Loader = () => {
   return (
-    <Blocks
+    <LoaderWrapper>
+      <Blocks
       visible={true}
       height="80"
-      width="80"
+      width="150"
       ariaLabel="blocks-loading"
-      wrapperStyle={props}
       wrapperClass="blocks-wrapper"
     />
+    </LoaderWrapper>
+    
   );
 };
 

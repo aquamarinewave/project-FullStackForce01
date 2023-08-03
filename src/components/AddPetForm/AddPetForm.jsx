@@ -218,7 +218,7 @@ const AddPetForm = () => {
         return (
           <>
             {isLoading ? (
-              <Loader props={{ marginTop: '10%', marginLeft: '45%' }} />
+              <Loader />
             ) : (
               <Form>
                 <ContainerForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
