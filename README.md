@@ -1,4 +1,4 @@
-# So Yummy
+# Your Pet
 
 Welcome to our React-based pets app, designed for anyone who loves pets! This app offers a range of features, including
 the ability to save and add your own pets, create your favorite list, and read some news about pets! Our site will help
@@ -6,11 +6,11 @@ you to buy or take a new pet to your home. Or if you have pet for sale - just do
 
 ## Screenshots
 
-[![Screenshot-6.png](https://i.postimg.cc/rDQG42vY/Screenshot-6.png)](https://postimg.cc/rDQG42vY)
+[![Screenshot-5.png](https://i.postimg.cc/PqkSBtKh/Screenshot-5.png)](https://postimg.cc/rDQG42vY)
 
-[![Screenshot-11.png](https://i.postimg.cc/3kKCWxbv/Screenshot-11.png)](https://postimg.cc/3kKCWxbv)
+[![Screenshot-6.png](https://i.postimg.cc/Sx9ZTX6D/Screenshot-6.png)](https://postimg.cc/3kKCWxbv)
 
-[![Screenshot-10.png](https://i.postimg.cc/fJQvnKc5/Screenshot-10.png)](https://postimg.cc/fJQvnKc5)
+[![Screenshot-7.png](https://i.postimg.cc/CLzr8rzy/Screenshot-7.png)](https://postimg.cc/fJQvnKc5)
 
 ## Authors
 
@@ -19,12 +19,12 @@ you to buy or take a new pet to your home. Or if you have pet for sale - just do
 - [Valentyn Pakhniuk](https://github.com/ValentynPakhniuk)
 - [AlexTigra1974](https://github.com/AlexTigra1974)
 - [Volodymyr Sochko](https://github.com/Woodiik)
-- [Kravchenko Yevhenii](https://github.com/iEfir)
+- [Yevhenii Kravchenko](https://github.com/iEfir)
 - [Inna Kukla](https://github.com/InnaKukla)
 - [HaidaienkoK](https://github.com/HaidaienkoK)
 - [Vladyslav](https://github.com/vladsimak11)
 - [Igor Sedura](https://github.com/IgorSedura)
-- [Yaroslava Vorobets](https://github.com/Yaroslava-Vorobets)
+- [Andriy Nich](https://github.com/AndriyNich)
 
 ## 🛠 Tech stack
 
