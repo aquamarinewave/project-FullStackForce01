@@ -8,18 +8,9 @@ const heartActive = {
 const NoticesItemThumb = styled.div`
   position: relative;
 `;
-const ImgThumb = styled.div`
-  width: 288px;
-  height: 288px;
-  display: block;
-  position: relative;
-  overflow: hidden;
-`;
 const Img = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
+  height: 288px;
 `;
 const CategoriesAndFilterContainer = styled.div``;
 
@@ -278,7 +269,6 @@ const Subtitle = styled.span`
 
 export {
   NoticesItemThumb,
-  ImgThumb,
   Img,
   CategoriesAndFilterContainer,
   CategoriesName,

@@ -25,7 +25,6 @@ import {
   InfoTitle,
   InfoDesc,
   Subtitle,
-  ImgThumb,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 import noticesOperations from 'redux/notices/operation';
@@ -105,10 +104,7 @@ const NoticeCategoryItem = ({ notices }) => {
   return (
     <>
       <NoticesItemThumb>
-        <ImgThumb>
-          <Img src={avatarURL} alt="pets avatar" />
-        </ImgThumb>
-
+        <Img src={avatarURL} alt="pets avatar" />
         <CategoriesContainer>
           {category !== 'for-free' ? (
             <CategoriesName>{category}</CategoriesName>
