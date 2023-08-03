@@ -96,12 +96,16 @@ const NewsPage = () => {
     }
 
     return (
-      <Pagination
-        page={newsStore.currentPage}
-        count={newsStore.totalPages}
-        variant="outlined"
-        onChange={handleSwitchPage}
-      />
+      <>
+        {newsStore.totalPages > 1 && (
+          <Pagination
+            page={newsStore.currentPage}
+            count={newsStore.totalPages}
+            variant="outlined"
+            onChange={handleSwitchPage}
+          />
+        )}
+      </>
     );
   }, [newsStore.totalPages, newsStore.currentPage, handleSwitchPage]);
 
