@@ -15,16 +15,16 @@ you to buy or take a new pet to your home. Or if you have pet for sale - just do
 ## Authors
 
 - [Maryna Medynska](https://github.com/aquamarinewave)
-- [kkasyan](https://github.com/kkasyan)
+- [Kateryna Kasian](https://github.com/kkasyan)
 - [Valentyn Pakhniuk](https://github.com/ValentynPakhniuk)
-- [AlexTigra1974](https://github.com/AlexTigra1974)
+- [Lesia Viitenko](https://github.com/AlexTigra1974)
 - [Volodymyr Sochko](https://github.com/Woodiik)
 - [Yevhenii Kravchenko](https://github.com/iEfir)
 - [Inna Kukla](https://github.com/InnaKukla)
-- [HaidaienkoK](https://github.com/HaidaienkoK)
-- [Vladyslav](https://github.com/vladsimak11)
-- [Igor Sedura](https://github.com/IgorSedura)
-- [Andriy Nich](https://github.com/AndriyNich)
+- [Kostiantyn Haidaienko](https://github.com/HaidaienkoK)
+- [Vladyslav Simak](https://github.com/vladsimak11)
+- [Ihor Sedura](https://github.com/IgorSedura)
+- [Andrii Nych](https://github.com/AndriyNich)
 
 ## 🛠 Tech stack
 
