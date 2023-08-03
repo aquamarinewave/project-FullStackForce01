@@ -177,9 +177,12 @@ export const IconCheckForm = styled.svg`
   stroke: green;
   top: 13px;
   position: absolute;
-  right: -200px;
+  right: -90px;
   @media screen and (min-width: 768px) {
-    right: -176px;
+    right: -199px;
+  }
+  @media screen and (min-width: 1280px) {
+    right: -200px;
   }
 `;
 
@@ -187,9 +190,12 @@ export const IconCheckBirthday = styled.svg`
   stroke: green;
   top: 13px;
   position: absolute;
-  right: -180px;
+  right: -71px;
   @media screen and (min-width: 768px) {
-    right: -154px;
+    right: -177px;
+  }
+  @media screen and (min-width: 1280px) {
+    right: -180px;
   }
 `;
 
