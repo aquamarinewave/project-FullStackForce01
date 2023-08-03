@@ -57,6 +57,34 @@ body {
   font-size: 16px;
   color: var(--main-color);
   background-color: var(--bg-color);
+  background-size: contain;
+  background-image: url('./images/x1/bg/bg-small.png');
+}
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  body {
+    background-image: url('./images/x2/bg/bg-small.png');
+  }
+}
+@media screen and (min-width: 768px) {
+  body {
+    background-image: url('./images/x1/bg/bg-medium.png');
+  }
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    body {
+      background-image: url('./images/x2/bg/bg-medium.png');
+    }
+  }
+  @media screen and (min-width: 1280px) {
+    body {
+      background-image: url('./images/x1/bg/bg-lagre.png');
+    }
+  }
+  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    body {
+      background-image: url('./images/x2/bg/bg-large.png');
+    }
+  }
+
 }
 
 code {
