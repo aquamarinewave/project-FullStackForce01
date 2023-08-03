@@ -5,15 +5,17 @@ const userAvatarSelector = state => state.auth.user.avatarURL;
 const newUserSelector = state => state.auth.isNewUser;
 const userErrorSelector = state => state.auth.error;
 const loadingSelector = state => state.auth.isLoading;
+const isRefreshingUserSelector = state => state.auth.selectIsRefreshingUser;
 
 const authSelector = {
-    loggedInSelector,
-    userSelector,
-    userNameSelector,
-    userAvatarSelector,
-    userErrorSelector,
-    newUserSelector,
-    loadingSelector,
+  loggedInSelector,
+  userSelector,
+  userNameSelector,
+  userAvatarSelector,
+  userErrorSelector,
+  newUserSelector,
+  loadingSelector,
+  isRefreshingUserSelector,
 };
 
 export default authSelector;

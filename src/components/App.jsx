@@ -1,11 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { lazy, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 import authOperations from 'redux/auth/operations';
+import authSelector from 'redux/auth/authSelector';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
+import Loader from './Loader/Loader';
 
 const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout'));
 const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
@@ -21,11 +23,13 @@ const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 const App = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(authOperations.refreshCurrentUser());
-  }, [dispatch]);
+  const userRefresh = useSelector(authSelector.isRefreshingUserSelector);
 
-  return (
+  useEffect(() => {
+    dispatch(authOperations.refreshCurrentUser(userRefresh));
+  }, [dispatch, userRefresh]);
+
+  return !userRefresh ? (
     <Suspense>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
@@ -43,6 +47,8 @@ const App = () => {
       </Routes>
       <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
     </Suspense>
+  ) : (
+    <Loader />
   );
 };
 
