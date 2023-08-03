@@ -13,6 +13,7 @@ import {
   InputWrapper,
   EditText,
   EditButton,
+  IconCameraBtn,
   IconCrossSmall,
   IconCheck,
   BtnConfirm,
@@ -181,10 +182,12 @@ export const UserForm = ({ toggleModal }) => {
                         onChange={e => handleChange(e)}
                         accept="image/png, image/jpeg, image/jpg, image/jfif"
                       />
-                      <IconCamera width={24} height={24}>
-                        <use href={`${sprite}#icon-camera`}></use>
-                      </IconCamera>
-                      <EditText>Edit photo</EditText>
+                      <IconCameraBtn>
+                        <IconCamera width={24} height={24}>
+                          <use href={`${sprite}#icon-camera`}></use>
+                        </IconCamera>
+                        <EditText>Edit photo</EditText>
+                      </IconCameraBtn>
                     </EditButton>
                   )}
                 </AvatarWrapper>

@@ -23,7 +23,7 @@ export const Container = styled.div`
   height: 517px;
   padding: 20px 0 21px;
   border-radius: 20px;
-  background-color: #fff;
+  background-color: var(--main-light-color);
 
   transform: translate(-50%, -50%);
   @media screen and (min-width: 768px) {
@@ -34,10 +34,6 @@ export const Container = styled.div`
     width: 395px;
     height: 520px;
   }
-`;
-
-export const CrossIcon = styled.svg`
-  stroke: var(--dark-blue);
 `;
 
 export const CloseIcon = styled.div`
@@ -52,12 +48,16 @@ export const CloseIcon = styled.div`
   border-radius: 50%;
   cursor: pointer;
   &:hover {
-    background-color: #c5dff6;
+    background-color: var(--lightblue);
   }
   @media screen and (min-width: 768px) {
     top: 16px;
     right: 16px;
   }
+`;
+
+export const CrossIcon = styled.svg`
+  stroke: var(--dark-blue);
 `;
 
 export const Content = styled.div`
@@ -101,7 +101,8 @@ export const CancelBtn = styled.button`
 
   &:hover {
     color: white;
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    background: var(--gradient-blue-bg);
+
     border: none;
   }
 
@@ -133,7 +134,7 @@ export const ApproveBtn = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    background: var(--gradient-blue-bg);
   }
   @media screen and (min-width: 768px) {
     width: 129px;
@@ -145,5 +146,5 @@ export const BtnText = styled.span`
 `;
 
 export const TrashIcon = styled.svg`
-  stroke: #fef9f9;
+  stroke: var(--bg-color);
 `;

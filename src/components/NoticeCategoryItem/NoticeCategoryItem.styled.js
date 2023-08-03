@@ -125,9 +125,13 @@ const DeleteBtn = styled.button`
   border-radius: 50%;
   background-color: var(--lightblue);
   padding: 0;
+  &:hover {
+    background-color: var(--dark-blue);
+  }
+
   &:hover ${IconDelete}, :focus ${IconDelete} {
-    fill: var(--main-light-color);
-    stroke: var(--dark-blue);
+    fill: var(--dark-blue);
+    stroke: var(--lightblue);
   }
 `;
 
