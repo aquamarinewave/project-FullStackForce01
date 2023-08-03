@@ -24,7 +24,7 @@ const UserData = () => {
     name: user?.name || 'Enter your name',
     email: user?.email || 'example@mail.com',
     phone: user?.phone || '+380000000000',
-    birthday: user?.birthday || '01.01.2000',
+    birthday: user?.birthday || '2000-01-01',
     city: user?.city || '-',
   };
 
