@@ -6,11 +6,8 @@ you to buy or take a new pet to your home. Or if you have pet for sale - just do
 
 ## Screenshots
 
-[url=https://postimg.cc/rDQG42vY][img]https://i.postimg.cc/rDQG42vY/Screenshot-5.png[/img][/url]
-
-[!https://postimg.cc/3kKCWxbv]
-
-[!https://postimg.cc/fJQvnKc5]
+![Зображення 1](https://i.postimg.cc/rDQG42vY/image1.png) ![Зображення 2](https://i.postimg.cc/3kKCWxbv/image2.png)
+![Зображення 3](https://i.postimg.cc/fJQvnKc5/image3.png)
 
 ## Authors
 
