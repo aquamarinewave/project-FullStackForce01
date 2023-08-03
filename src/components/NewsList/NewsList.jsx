@@ -8,7 +8,6 @@ const NewsList = ({ news }) => {
       {news && news.length && (
         <List>
           {news.map(({ _id, title, url, imgUrl, text, date }) => {
-            console.log('imgUrl', imgUrl);
             return (
               <Item key={_id}>
                 <NewsItem

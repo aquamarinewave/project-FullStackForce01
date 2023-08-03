@@ -28,7 +28,6 @@ const NewsItem = ({ responseByNews }) => {
             src={imgUrl}
             alt={title}
             onError={e => {
-              console.log(e.nativeEvent.target.src);
               e.nativeEvent.target.src = DefaultImg;
             }}
           />

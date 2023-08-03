@@ -75,7 +75,7 @@ export const UserForm = ({ toggleModal }) => {
   const handleFormSubmit = async (values, { resetForm }) => {
     const formData = new FormData();
     try {
-      if (initialValues.avatarUrl !== avatarUrl && avatarUrl) {
+      if (newAvatar) {
         formData.append('avatar', avatarUrl);
       }
       if (initialValues.name !== values.name && values.name) {
@@ -129,7 +129,7 @@ export const UserForm = ({ toggleModal }) => {
     city: yup.string().max(16, 'Name must be less than 16 characters').trim(),
     birthday: yup.date().test('is-future-date', 'Please select a past or today date', validateDate),
   });
-  console.log(isUpdateForm);
+
   return (
     <div>
       <Formik initialValues={initialValues} dirty validationSchema={shema} onSubmit={handleFormSubmit}>
