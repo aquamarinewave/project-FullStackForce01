@@ -25,6 +25,7 @@ import {
   InfoTitle,
   InfoDesc,
   Subtitle,
+  ImgThumb,
 } from './NoticeCategoryItem.styled';
 import sprite from '../../images/icons.svg';
 import noticesOperations from 'redux/notices/operation';
@@ -104,7 +105,10 @@ const NoticeCategoryItem = ({ notices }) => {
   return (
     <>
       <NoticesItemThumb>
-        <Img src={avatarURL} alt="pets avatar" width={280} height={290} />
+        <ImgThumb>
+          <Img src={avatarURL} alt="pets avatar" />
+        </ImgThumb>
+
         <CategoriesContainer>
           {category !== 'for-free' ? (
             <CategoriesName>{category}</CategoriesName>
@@ -152,7 +156,7 @@ const NoticeCategoryItem = ({ notices }) => {
         <BtnContainer>
           <FavoriteBtnContainer>
             <AddToFavoriteBtn type="button" onClick={handleAddToFavorite}>
-              <IconHeart width={24} height={24} isSelected = {isSelected} isLoggedIn = {isLoggedIn}>
+              <IconHeart width={24} height={24} isSelected={isSelected} isLoggedIn={isLoggedIn}>
                 <use href={`${sprite}#icon-heart`}></use>
               </IconHeart>
             </AddToFavoriteBtn>
@@ -183,7 +187,7 @@ const NoticeCategoryItem = ({ notices }) => {
         isLoggedIn={isLoggedIn}
         isModalOpenAttention={isModalOpenAttention}
         closeModalAttention={closeModalAttention}
-        isSelected = {isSelected}
+        isSelected={isSelected}
       />
       {showDeleteModal && (
         <ModalApproveAction
