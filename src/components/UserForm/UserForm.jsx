@@ -75,7 +75,7 @@ export const UserForm = ({ toggleModal }) => {
   const handleFormSubmit = async (values, { resetForm }) => {
     const formData = new FormData();
     try {
-      if (avatarUrl) {
+      if (newAvatar) {
         formData.append('avatar', avatarUrl);
       }
       if (initialValues.name !== values.name && values.name) {
@@ -162,8 +162,9 @@ export const UserForm = ({ toggleModal }) => {
                       <BtnDecline
                         onClick={() => {
                           setAvatarUrl(user?.avatarURL || { avatarDefault });
-                          setNewAvatar(initialValues.avatarURL);
+                          setNewAvatar('');
                           setEditAvatar(false);
+                          setIsUpdateForm(false);
                         }}
                       >
                         <IconCrossSmall width={24} height={24}>
@@ -287,14 +288,9 @@ export const UserForm = ({ toggleModal }) => {
                   </WrapperField>
                 </Container>
               </div>
-
-              {isUpdateForm ? (
-                <SubmitBtn type="submit">Save</SubmitBtn>
-              ) : (
-                <SubmitBtn type="submit" disabled={!dirty}>
-                  Save
-                </SubmitBtn>
-              )}
+              <SubmitBtn type="submit" disabled={!dirty && !isUpdateForm}>
+                Save
+              </SubmitBtn>
             </WrapperModalCard>
           </Form>
         )}
