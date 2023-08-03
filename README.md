@@ -6,11 +6,11 @@ you to buy or take a new pet to your home. Or if you have pet for sale - just do
 
 ## Screenshots
 
-[![Screenshot-6.png](https://i.postimg.cc/63nb5Kyg/Screenshot-6.png)](https://postimg.cc/626fYDVf)
+[![Screenshot-6.png](https://i.postimg.cc/rDQG42vY/Screenshot-6.png)](https://postimg.cc/rDQG42vY)
 
-[![Screenshot-11.png](https://i.postimg.cc/qRVndbzM/Screenshot-11.png)](https://postimg.cc/R3dq7T7j)
+[![Screenshot-11.png](https://i.postimg.cc/3kKCWxbv/Screenshot-11.png)](https://postimg.cc/3kKCWxbv)
 
-[![Screenshot-10.png](https://i.postimg.cc/k5kNgMhC/Screenshot-10.png)](https://postimg.cc/xk3NsQ2p)
+[![Screenshot-10.png](https://i.postimg.cc/fJQvnKc5/Screenshot-10.png)](https://postimg.cc/fJQvnKc5)
 
 ## Authors
 
