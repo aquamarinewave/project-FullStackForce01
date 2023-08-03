@@ -85,7 +85,7 @@ const NoticesPage = () => {
         case IDLE:
           return <div>Please, type something to the search</div>;
         case PENDING:
-          return <Loader props={{ marginTop: '10%', marginLeft: '47%' }} />;
+          return <Loader />;
         case REJECTED:
           return <ContentNotFound notFoundText={contentNotFoundText} pageError={noticesStore.error}></ContentNotFound>;
         case RESOLVED:
