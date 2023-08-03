@@ -6,7 +6,7 @@ you to buy or take a new pet to your home. Or if you have pet for sale - just do
 
 ## Screenshots
 
-[!https://postimg.cc/rDQG42vY]
+[url=https://postimg.cc/rDQG42vY][img]https://i.postimg.cc/rDQG42vY/Screenshot-5.png[/img][/url]
 
 [!https://postimg.cc/3kKCWxbv]
 
