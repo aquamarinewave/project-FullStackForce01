@@ -13,6 +13,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 import AddPetButtonSmall from 'components/AddPetButton/AddPetButtonSmall';
 import Loader from '../../components/Loader/Loader';
+import ContentNotFound from '../../components/ContentNotFound/ContentNotFound';
 
 import { ButtonsBox, NoticesPageContainer, Title } from './NoticesPage.styled';
 
@@ -31,6 +32,7 @@ const NoticesPage = () => {
   const perPage = noticesStore.perPage;
   const { REJECTED, RESOLVED, PENDING, IDLE } = statusList;
   const [status, setStatus] = useState(IDLE);
+  const contentNotFoundText = 'Oopps...no listings found.';
 
   if (window.innerWidth > 1279 && window.innerWidth < 1300) {
     document.body.style.marginRight = 'calc(-1 * (100vw - 100%))';
@@ -89,7 +91,7 @@ const NoticesPage = () => {
         case PENDING:
           return <Loader props={{ marginTop: '10%', marginLeft: '47%' }} />;
         case REJECTED:
-          return <div>Oopps...no listings found.{noticesStore.error && <div>{noticesStore.error}</div>}</div>;
+          return <ContentNotFound notFoundText={contentNotFoundText} pageError={noticesStore.error}></ContentNotFound>;
         case RESOLVED:
           return <NoticesCategoriesList notices={noticesStore.items} />;
         default:
