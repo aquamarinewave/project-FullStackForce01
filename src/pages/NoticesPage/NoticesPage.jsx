@@ -198,12 +198,16 @@ const NoticesPage = () => {
     }
 
     return (
-      <Pagination
-        page={noticesStore.currentPage}
-        count={noticesStore.totalPages}
-        variant="outlined"
-        onChange={handleSwitchPage}
-      />
+      <>
+        {noticesStore.totalPages > 1 && (
+          <Pagination
+            page={noticesStore.currentPage}
+            count={noticesStore.totalPages}
+            variant="outlined"
+            onChange={handleSwitchPage}
+          />
+        )}
+      </>
     );
   }, [noticesStore.totalPages, noticesStore.currentPage, handleSwitchPage]);
 
