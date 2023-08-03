@@ -81,35 +81,18 @@ const NoticeCategoryItem = ({ notice }) => {
     }
   };
 
-  let categoryContent;
-
-  switch (categoryName) {
-    case 'lost-found':
-      categoryContent = 'lost/found';
-      break;
-    case 'for-free':
-      categoryContent = 'in good hands';
-      break;
-    case 'favorite':
-      categoryContent = 'favorite ads';
-      break;
-    case 'own':
-      categoryContent = 'my ads';
-      break;
-    default:
-      categoryContent = 'sell';
-  }
+  const categoryOnCart = {
+    'sell': 'sell',
+    'for-free': 'In good hands',
+    'lost-found': 'lost/found',
+  };
 
   return (
     <>
       <NoticesItemThumb>
         <Img src={avatarURL} alt="pets avatar" width={280} height={290} />
         <CategoriesContainer>
-          {categoryContent === 'my ads' ? (
-            <CategoriesName>{category}</CategoriesName>
-          ) : (
-            <CategoriesName>{categoryContent}</CategoriesName>
-          )}
+          <CategoriesName>{categoryOnCart[category]}</CategoriesName>
         </CategoriesContainer>
         <DiscriptionList>
           <DiscriptionItem>
