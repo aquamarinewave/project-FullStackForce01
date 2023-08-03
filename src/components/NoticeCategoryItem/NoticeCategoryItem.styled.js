@@ -177,11 +177,14 @@ const Title = styled.h3`
 `;
 
 const LearnMoreBtn = styled.button`
+  position: absolute;
+  bottom: 24px;
+  left: 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  width: 100%;
+  width: 248px;
   height: 38px;
   padding: 9px 0;
   border-radius: 40px;
@@ -199,6 +202,12 @@ const LearnMoreBtn = styled.button`
     color: white;
     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
     border: none;
+  }
+  @media screen and (min-width: 768px) {
+    left: 44px;
+  }
+  @media screen and (min-width: 1280px) {
+    left: 20px;
   }
 `;
 

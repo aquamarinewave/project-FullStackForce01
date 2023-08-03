@@ -12,7 +12,10 @@ const List = styled.ul`
   }
 `;
 const Item = styled.li`
+  position: relative;
+
   width: 280px;
+  height: 456px;
 
   padding-bottom: 20px;
   margin-bottom: 24px;
