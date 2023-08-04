@@ -127,7 +127,10 @@ export const UserForm = ({ toggleModal }) => {
       .max(13, 'Phone format: +380000000000')
       .min(13, 'Phone format: +380000000000'),
     city: yup.string().max(16, 'Name must be less than 16 characters').trim(),
-    birthday: yup.date().test('is-future-date', 'Please select a past or today date', validateDate),
+    birthday: yup
+      .date()
+      .required('Type is required')
+      .test('is-future-date', 'Please select a past or today date', validateDate),
   });
 
   return (
