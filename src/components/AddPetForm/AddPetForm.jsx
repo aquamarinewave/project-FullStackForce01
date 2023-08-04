@@ -80,7 +80,11 @@ const thirdStepValidationSchema = file =>
     }),
     location: yup.string().when('category', {
       is: category => ['sell', 'lost-found', 'for-free'].includes(category),
-      then: () => yup.string().required('Location is required'),
+      then: () =>
+        yup
+          .string()
+          .required('City is required')
+          .matches(/^[A-Z][a-zA-Z]*(?:,\s?[A-Z][a-zA-Z]*)*$/, 'Invalid city format'),
     }),
     price: yup.number().when('category', {
       is: 'sell',

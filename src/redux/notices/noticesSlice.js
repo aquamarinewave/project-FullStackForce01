@@ -10,6 +10,10 @@ const noticesList = {
   currentPage: 1,
   perPage: 12,
   totalPages: 0,
+  details: {
+    notice: null,
+    user: null,
+  },
 };
 
 const handleFulfielldNoticesAll = (state, action) => {
@@ -50,7 +54,7 @@ const handleFulfielldCurrentPage = (state, action) => {
 
 const handleFulfielldModalDetails = (state, action) => {
   state.error = null;
-  state.favorite = action.payload;
+  state.details = action.payload;
 };
 
 const handleFulfielldAddToFavorite = (state, action) => {
