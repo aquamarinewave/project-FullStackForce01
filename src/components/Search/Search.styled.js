@@ -19,10 +19,10 @@ const SearchForm = styled.form`
 
 const SearchInput = styled.input`
   font-size: 14px;
-  border: none;
+  border: 2px solid transparent;
   padding-left: 20px;
   width: 100%;
-  height: 44px;
+  height: 42px;
   border-radius: 24px;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.2);
 
