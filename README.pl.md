@@ -7,13 +7,13 @@ na sprzedaż - po prostu zrób to tutaj!
 
 ## Zrzuty ekranu
 
-[![Screenshot-8.png](https://i.postimg.cc/bJ29L4N4/Screenshot-8.png)](https://postimg.cc/7GwzZszN)
+[![Screenshot-5.png](https://i.postimg.cc/vZ7GpmDv/Screenshot-5.png)](https://postimg.cc/8758vNRF)
 
-[![Screenshot-5.png](https://i.postimg.cc/PqkSBtKh/Screenshot-5.png)](https://postimg.cc/rDQG42vY)
+[![Screenshot-6.png](https://i.postimg.cc/fRQw2dWL/Screenshot-6.png)](https://postimg.cc/ppkbypFb)
 
-[![Screenshot-6.png](https://i.postimg.cc/Sx9ZTX6D/Screenshot-6.png)](https://postimg.cc/3kKCWxbv)
+[![Screenshot-7.png](https://i.postimg.cc/J4kr5xLv/Screenshot-7.png)](https://postimg.cc/3d3QKgWF)
 
-[![Screenshot-7.png](https://i.postimg.cc/CLzr8rzy/Screenshot-7.png)](https://postimg.cc/fJQvnKc5)
+[![Screenshot-8.png](https://i.postimg.cc/y656R5w0/Screenshot-8.png)](https://postimg.cc/V5qcQ7sN)
 
 ## Autorzy
 
