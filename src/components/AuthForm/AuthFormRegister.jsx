@@ -27,7 +27,10 @@ import Loader from '../Loader/Loader';
 import authSelector from 'redux/auth/authSelector';
 
 const userRegisterSchema = object({
-  name: string().required('Name is a required field').min(2, 'Your name is too short.').max(16, 'Your name is too long.'),
+  name: string()
+    .required('Name is a required field')
+    .min(2, 'Your name is too short.')
+    .max(16, 'Your name is too long.'),
   email: string().required('Email is a required field').email('Please enter a valid email'),
   password: string()
     .min(6, 'Your password is too short.')
@@ -212,6 +215,7 @@ const AuthFormRegister = props => {
 
                     {isShowConfirmPassword ? (
                       <AuthShowConfirmPassword
+                        name="AuthShowConfirmPassword"
                         type="button"
                         onClick={() => setIsShowConfirmPassword(!isShowConfirmPassword)}
                         valid={touched.password && !errors.password}
@@ -223,6 +227,7 @@ const AuthFormRegister = props => {
                       </AuthShowConfirmPassword>
                     ) : (
                       <AuthShowConfirmPassword
+                        name="AuthShowConfirmPassword"
                         type="button"
                         onClick={() => setIsShowConfirmPassword(!isShowConfirmPassword)}
                         valid={touched.password && !errors.password}
