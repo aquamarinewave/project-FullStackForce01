@@ -95,7 +95,7 @@ const fetchModalDetails = createAsyncThunk('notices/fetchModalDetails', async (_
       signal: controller.signal,
     });
 
-    return response.data || {};
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

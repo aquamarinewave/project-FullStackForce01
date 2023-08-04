@@ -1,11 +1,11 @@
 const selectNotices = state => state.notices;
 const selectNoticesError = state => state.notices.error;
-const getNotice = state => state.notices.favorite;
+const selectNoticeDetails = state => state.notices.details;
 
 const noticesSelector = {
   selectNotices,
   selectNoticesError,
-  getNotice,
+  selectNoticeDetails,
 };
 
 export default noticesSelector;

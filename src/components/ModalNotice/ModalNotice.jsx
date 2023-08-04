@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 
+import noticeSelector from 'redux/notices/noticesSelector';
 import authSelector from 'redux/auth/authSelector';
 
 import {
@@ -30,7 +31,7 @@ import sprite from '../../images/icons.svg';
 export const ModalNotice = ({ onRequestClose, handleAddToFavorite, notice }) => {
   const modalRef = useRef();
   const portalRoot = document.getElementById('modal-root');
-  const user = useSelector(authSelector.userSelector);
+  const { user } = useSelector(noticeSelector.selectNoticeDetails);
   const isLoggedIn = useSelector(authSelector.loggedInSelector);
 
   const handleClickOutside = e => {
@@ -106,10 +107,10 @@ export const ModalNotice = ({ onRequestClose, handleAddToFavorite, notice }) => 
                           <li>{notice.location || 'empty'}</li>
                           <li>{notice.sex || 'empty'}</li>
                           <ModalContact>
-                            <a href={`mailto: ${user.email}`}>{user.email || 'email@gamil.com'}</a>
+                            <a href={`mailto: ${user?.email}`}>{user?.email || 'email@gamil.com'}</a>
                           </ModalContact>
                           <ModalContact>
-                            {user.phone ? <a href={`tel: ${user.phone}`}>{user.phone}</a> : 'no phone'}
+                            {user?.phone ? <a href={`tel: ${user?.phone}`}>{user?.phone}</a> : 'no phone'}
                           </ModalContact>
                         </ModalInfoItemValue>
                       </ModalInfoList>
@@ -121,7 +122,7 @@ export const ModalNotice = ({ onRequestClose, handleAddToFavorite, notice }) => 
                   </ModalComments>
 
                   <ModalButtons>
-                    {user.phone && <ModalPhone href={`tel: ${user.phone}`}>Contact</ModalPhone>}
+                    {user?.phone && <ModalPhone href={`tel: ${user?.phone}`}>Contact</ModalPhone>}
 
                     <ModalButtonAdd onClick={handleAddToFavorite} isPrimary={notice.favorite && isLoggedIn}>
                       <span>{notice.favorite && isLoggedIn ? 'Delete' : 'Add'}</span>{' '}
