@@ -135,35 +135,6 @@ const DeleteBtn = styled.button`
   }
 `;
 
-// const AddPet = styled(Link)`
-//   position: absolute;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   border-radius: 50%;
-//   background: var(--dark-blue);
-//   border: 2px solid var(--dark-blue);
-//   color: var(--container-bg);
-//   cursor: pointer;
-//   display: inline-flex;
-//   width: 80px;
-//   height: 80px;
-//   padding: 17px 16px;
-//   gap: 4px;
-//   font-size: 12px;
-//   right: 0;
-//   bottom: 60px;
-
-//   &:hover,
-//   &:focus {
-//     background: var(--gradient-blue-bg);
-//     border: var(--gradient-blue-bg);
-//   }
-// `;
-
-// const IconPlusSmall = styled.svg`
-//   stroke: var(--main-light-color);
-// `;
 const ContentContainer = styled.div`
   padding: 0 16px;
 `;

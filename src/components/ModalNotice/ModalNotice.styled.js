@@ -104,10 +104,12 @@ export const ModalHeader = styled.h2`
   line-height: normal;
   letter-spacing: -0.24px;
   margin-bottom: 20px;
+  height: 66px;
 
   @media screen and (min-width: 768px) {
     font-size: 28px;
     letter-spacing: -0.28px;
+    height: 66px;
   }
 `;
 
