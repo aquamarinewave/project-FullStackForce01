@@ -120,7 +120,7 @@ export const BoxButton = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
-    margin-top: 17px;
     justify-content: center;
+    margin-top: ${props => (props.currentStage === 'second' ? '40px' : '17px')};
   }
 `;

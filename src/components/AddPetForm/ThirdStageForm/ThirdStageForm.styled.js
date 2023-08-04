@@ -65,12 +65,19 @@ export const BoxPetAvatar = styled.div`
   height: 112px;
   border-radius: 20px;
   overflow: hidden;
+
   @media screen and (min-width: 768px) {
     width: 182px;
     height: 182px;
     border-radius: 40px;
   }
 `;
+export const PetImgAvatar = styled.img`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+`;
+
 export const ShowPlaceholderAvatar = styled.div`
   background-color: var(--lightblue);
   display: flex;
@@ -99,13 +106,16 @@ export const FieldAvatar = styled(Field)`
   height: 100%;
   opacity: 0;
   cursor: pointer;
+
+  &.error-input {
+    border: 1px solid red;
+  }
 `;
 
 export const InputFieldTextArea = styled(Field)`
   margin-top: 4px;
   width: 100%;
   height: 92px;
-
 `;
 
 export const TextArea = styled.textarea`
@@ -122,6 +132,7 @@ export const TextArea = styled.textarea`
     font-size: 16px;
   }
 `;
+
 export const IconPlaceholder = styled.svg`
   width: 30px;
   height: 30px;
@@ -171,13 +182,16 @@ export const RadioButtonSex = styled.label`
 `;
 
 export const BoxRadioButtonSex = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
 `;
+
 export const ContainerButton = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 export const ContainerInput = styled.div`
   display: flex;
   flex-direction: column;
@@ -187,4 +201,22 @@ export const ContainerInput = styled.div`
   @media screen and (min-width: 768px) {
     gap: 24px;
   }
+`;
+
+export const BoxSexErrorMessage = styled.div`
+  color: red;
+  position: absolute;
+  top: 70%;
+  left: 0;
+`;
+
+export const BoxAvatarErrorMessage = styled.div`
+  color: red;
+  position: absolute;
+  top: 60%;
+  left: 20px;
+`;
+
+export const BoxComment = styled.div`
+  position: relative;
 `;

@@ -12,6 +12,7 @@ export const ContainerInputField = styled.div`
   }
 `;
 export const BoxInputField = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -31,6 +32,12 @@ export const FieldLabel = styled.label`
   @media screen and (min-width: 768px) {
     font-size: 20px;
   }
+`;
+export const BoxErrorMessage = styled.div`
+  color: red;
+  position: absolute;
+  top: 100%;
+  left: 0;
 `;
 
 export const InputField = styled(Field)`

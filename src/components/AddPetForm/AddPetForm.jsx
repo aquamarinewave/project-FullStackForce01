@@ -242,7 +242,7 @@ const AddPetForm = () => {
                       )}
                     </BoxFieldsForm>
                   </div>
-                  <BoxButton>
+                  <BoxButton currentStage={currentStage}>
                     <FormPetButton
                       currentStage={currentStage}
                       handleNextStage={handleNextStage}

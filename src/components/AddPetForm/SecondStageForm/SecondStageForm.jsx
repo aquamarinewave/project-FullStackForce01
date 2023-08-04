@@ -1,4 +1,4 @@
-import { BoxInputField, ContainerInputField, FieldLabel, InputField } from './SecondStageForm.styled';
+import { BoxErrorMessage, BoxInputField, ContainerInputField, FieldLabel, InputField } from './SecondStageForm.styled';
 
 const inputs = [
   {
@@ -39,20 +39,18 @@ const SecondStageForm = ({ formik, currentRadioButton }) => {
     <ContainerInputField>
       {inputs.map(({ name, placeholder, label }) =>
         currentRadioButton === 'my-pet' && name === 'title' ? null : (
-          <BoxInputField key={name} style={{ position: 'relative' }}>
-            <FieldLabel htmlFor={name}>{label}</FieldLabel>
+          <BoxInputField key={`pet-key-${name}`}>
+            <FieldLabel htmlFor={`pet-${name}`}>{label}</FieldLabel>
             <InputField
               type={inputType(name)}
-              id={name}
+              id={`pet-${name}`}
               name={name}
               autoComplete="off"
               placeholder={placeholder}
               value={formik.values[name]}
               className={formik.touched[name] && formik.errors[name] ? 'error-input' : ''}
             />
-            {formik.touched[name] && formik.errors[name] && (
-              <div style={{ color: 'red', position: 'absolute', top: '100%', left: 0 }}>{formik.errors[name]}</div>
-            )}
+            {formik.touched[name] && formik.errors[name] && <BoxErrorMessage>{formik.errors[name]}</BoxErrorMessage>}
           </BoxInputField>
         )
       )}

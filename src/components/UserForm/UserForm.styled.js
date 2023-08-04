@@ -147,7 +147,7 @@ export const IconCamera = styled.svg`
 
 export const IconCameraBtn = styled.div`
   display: flex;
-  align-item: center;
+  align-items: center;
   border-radius: 10px;
   padding: 2px 5px;
   &:hover {

@@ -135,7 +135,8 @@ export const AuthField = styled(AuthFormStyledHelpers.FilteredPropsInputField)`
       &:active {
         border: 1px solid red;
         outline: none;
-    `}
+      }`
+    }
 `;
 
 export const AuthShowPassword = styled(AuthFormStyledHelpers.FilteredPropsButtonShowPassword)`

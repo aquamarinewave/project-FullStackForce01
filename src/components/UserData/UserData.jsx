@@ -45,24 +45,30 @@ const UserData = () => {
               <WrapperField>
                 <Label htmlFor="name"> Name:</Label>
 
-                <ProfileField type="text" name="name" placeholder={initialValues.name} readOnly={true} />
+                <ProfileField type="text" id="name" name="name" placeholder={initialValues.name} readOnly={true} />
               </WrapperField>
               <WrapperField>
                 <Label htmlFor="email"> Email:</Label>
-                <ProfileField type="email" name="email" placeholder={initialValues.email} readOnly={true} />
+                <ProfileField type="email" id="email" name="email" placeholder={initialValues.email} readOnly={true} />
               </WrapperField>
               <WrapperField>
                 <Label htmlFor="date"> Birthday:</Label>
-                <ProfileField type="date" name="birthday" placeholder={initialValues.birthday} readOnly={true} />
+                <ProfileField
+                  type="date"
+                  id="date"
+                  name="birthday"
+                  placeholder={initialValues.birthday}
+                  readOnly={true}
+                />
               </WrapperField>
               <WrapperField>
                 <Label htmlFor="phone"> Phone:</Label>
 
-                <ProfileField placeholder={initialValues.phone} type="phone" name="phone" readOnly={true} />
+                <ProfileField placeholder={initialValues.phone} id="phone" type="phone" name="phone" readOnly={true} />
               </WrapperField>
               <WrapperField>
                 <Label htmlFor="city"> City:</Label>
-                <ProfileField type="text" name="city" placeholder={initialValues.city} readOnly={true} />
+                <ProfileField type="text" name="city" id="city" placeholder={initialValues.city} readOnly={true} />
               </WrapperField>
             </div>
           </Wrapper>
