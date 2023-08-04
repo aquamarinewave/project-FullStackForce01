@@ -7,6 +7,8 @@
 
 ## Скріншоти
 
+[![Screenshot-8.png](https://i.postimg.cc/bJ29L4N4/Screenshot-8.png)](https://postimg.cc/7GwzZszN)
+
 [![Screenshot-5.png](https://i.postimg.cc/PqkSBtKh/Screenshot-5.png)](https://postimg.cc/rDQG42vY)
 
 [![Screenshot-6.png](https://i.postimg.cc/Sx9ZTX6D/Screenshot-6.png)](https://postimg.cc/3kKCWxbv)
