@@ -235,7 +235,7 @@ export const ModalButtonAdd = styled.button`
   &:hover,
   &:focus {
     background: ${props => (props.isPrimary ? 'transparent' : 'var(--gradient-blue-bg)')};
-    border: ${props => (props.isPrimary ? '2px solid var(--dark-blue)' : 'none')};
+    border: ${props => (props.isPrimary ? '2px solid var(--dark-blue)' : '2px solid transparent')};
   }
 
   @media screen and (min-width: 768px) {
