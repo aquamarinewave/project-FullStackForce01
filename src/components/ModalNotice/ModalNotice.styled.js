@@ -223,7 +223,7 @@ export const ModalButtonAdd = styled.button`
   cursor: pointer;
   color: ${props => (props.isPrimary ? stylesBtnActive.darkblue : stylesBtnActive.white)};
   background: ${props => (props.isPrimary ? stylesBtnActive.lightblue : stylesBtnActive.darkblue)};
-  border: none;
+  border: 2px solid transparent;
   border-radius: 40px;
   font-size: 16px;
   font-family: inherit;
