@@ -57,7 +57,7 @@ const AuthFormRegister = props => {
     <>
       {' '}
       {isLoading ? (
-        <Loader props={{ marginTop: '20%', marginLeft: '45%' }}/>
+        <Loader />
       ) : (
         <ContainerAuth>
           <AuthTitle>Registration</AuthTitle>

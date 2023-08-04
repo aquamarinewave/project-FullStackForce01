@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { toast } from 'react-hot-toast';
 
 import authOperations from 'redux/pets/operations';
 import petsSelector from 'redux/pets/selectors';
@@ -52,27 +53,40 @@ const firstStageValidationSchema = yup.object().shape({
 });
 
 const secondStageValidationSchema = category => {
-  if (category === 'my-pet') {
-    return yup.object().shape({
-      name: yup.string().required().min(2).max(16),
-      birthday: yup
-        .date()
-        .required('Birthday is required')
-        .test('is-future-date', 'Please select a past or today date', validateDate),
-      type: yup.string().required().min(2).max(16),
-    });
-  } else {
-    return yup.object().shape({
-      title: yup.string().required('Title is required').min(3).max(30),
-      name: yup.string().required().min(2).max(16),
-      birthday: yup
-        .date()
-        .required('Birthday is required')
-        .test('is-future-date', 'Please select a past or today date', validateDate),
-      type: yup.string().required().min(2).max(16),
-    });
-  }
+  const titleSchema =
+    category === 'my-pet'
+      ? {}
+      : {
+          title: yup.string().required('Title is required').min(3).max(30),
+        };
+  return yup.object().shape({
+    ...titleSchema,
+    name: yup.string().required('Name is required').min(2).max(16),
+    birthday: yup
+      .date()
+      .required('Birthday is required')
+      .test('is-future-date', 'Please select a past or today date', validateDate),
+    type: yup.string().required('Type is required').min(2).max(16),
+  });
 };
+
+const thirdStepValidationSchema = file =>
+  yup.object().shape({
+    avatar: yup.mixed().test('required', 'Please select a file', () => !!file),
+    comments: yup.string().max(120),
+    sex: yup.string().when('category', {
+      is: category => ['sell', 'lost-found', 'for-free'].includes(category),
+      then: () => yup.string().oneOf(['male', 'female']).required(),
+    }),
+    location: yup.string().when('category', {
+      is: category => ['sell', 'lost-found', 'for-free'].includes(category),
+      then: () => yup.string().required('Location is required'),
+    }),
+    price: yup.number().when('category', {
+      is: 'sell',
+      then: () => yup.number().required().positive().typeError('Price must be a number'),
+    }),
+  });
 
 const getValidationSchema = (file, currentStage, currentRadioButton) => {
   switch (currentStage) {
@@ -80,23 +94,9 @@ const getValidationSchema = (file, currentStage, currentRadioButton) => {
       return firstStageValidationSchema;
     case 'second':
       return secondStageValidationSchema(currentRadioButton);
+    case 'third':
     default:
-      return yup.object().shape({
-        avatar: yup.mixed().test('required', 'Please select a file', () => !!file),
-        comments: yup.string().max(120),
-        sex: yup.string().when('category', {
-          is: category => ['sell', 'lost-found', 'for-free'].includes(category),
-          then: () => yup.string().oneOf(['male', 'female']).required(),
-        }),
-        location: yup.string().when('category', {
-          is: category => ['sell', 'lost-found', 'for-free'].includes(category),
-          then: () => yup.string().required('Location is required'),
-        }),
-        price: yup.number().when('category', {
-          is: 'sell',
-          then: () => yup.number().required().positive().typeError('Price must be a number'),
-        }),
-      });
+      return thirdStepValidationSchema(file);
   }
 };
 
@@ -129,7 +129,7 @@ const AddPetForm = () => {
     if (submitSuccess) {
       if (currentRadioButton === 'my-pet') {
         navigate('/user');
-      } else if (currentRadioButton !== 'my-pet') {
+      } else {
         navigate(`/notices/${currentRadioButton}`);
       }
     }
@@ -159,7 +159,7 @@ const AddPetForm = () => {
 
       setSubmitSuccess(true);
     } catch (error) {
-      // Тут можна виконати додаткові дії або показати повідомлення про помилку
+      toast.error(error);
     }
 
     setSubmitting(false);
@@ -169,7 +169,7 @@ const AddPetForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={getValidationSchema(selectedFile, currentStage)}
+      validationSchema={getValidationSchema(selectedFile, currentStage, currentRadioButton)}
       onSubmit={handleSubmit}
     >
       {formik => {
@@ -179,46 +179,32 @@ const AddPetForm = () => {
         };
 
         const handleNextStage = async () => {
-          try {
-            const currentStageValidationSchema = getValidationSchema(selectedFile, currentStage, currentRadioButton);
-            await currentStageValidationSchema.validate(formik.values, { abortEarly: false });
-
-            let requiredFields = [];
-            if (currentStage === 'first') {
-              requiredFields = ['category'];
-            } else if (currentStage === 'second') {
-              requiredFields =
-                currentRadioButton === 'my-pet' ? ['name', 'birthday', 'type'] : ['title', 'name', 'birthday', 'type'];
-            }
-
-            const missingRequiredFields = requiredFields.filter(field => !formik.values[field]);
-
-            if (missingRequiredFields.length > 0) {
-              const validationErrors = missingRequiredFields.reduce((acc, field) => {
-                acc[field] = 'This field is required';
-                return acc;
-              }, {});
-              formik.setErrors(validationErrors);
-            } else {
-              if (currentStage === 'first') {
-                setCurrentStage('second');
-              } else if (currentStage === 'second') {
+          if (currentStage === 'first') {
+            setCurrentStage('second');
+          } else if (currentStage === 'second') {
+            try {
+              const errors = await formik.validateForm();
+              if (!Object.values(errors).length) {
                 setCurrentStage('third');
               }
+              const touchedFields = Object.keys(errors).reduce(
+                (acc, curr) => ({
+                  ...acc,
+                  [curr]: true,
+                }),
+                {}
+              );
+              formik.setTouched(touchedFields);
+            } catch (error) {
+              toast.error(error);
             }
-          } catch (errors) {
-            const validationErrors = errors.inner.reduce((acc, error) => {
-              acc[error.path] = error.message;
-              return acc;
-            }, {});
-            formik.setErrors(validationErrors);
           }
         };
 
         return (
           <>
             {isLoading ? (
-              <Loader props={{ marginTop: '10%', marginLeft: '45%' }} />
+              <Loader />
             ) : (
               <Form>
                 <ContainerForm currentStage={currentStage} currentRadioButton={currentRadioButton}>
@@ -238,7 +224,6 @@ const AddPetForm = () => {
                         <FirstStageForm
                           currentRadioButton={currentRadioButton}
                           handleOptionChange={handleOptionChange}
-                          formik={formik}
                         />
                       )}
                       {currentStage === 'second' && (

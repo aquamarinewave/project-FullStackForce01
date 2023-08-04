@@ -1,7 +1,15 @@
 import styled from 'styled-components';
-import { Blocks } from 'react-loader-spinner';
 
-export const LoaderWrapper = styled(Blocks)`
+ const LoaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
-  justyfy-content: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 `;
+export default LoaderWrapper;
+

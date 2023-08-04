@@ -14,7 +14,7 @@ const handlePending = state => {
 };
 
 const handleFulfilledAddPet = (state, action) => {
-  state.pets.push(action.payload);
+  state.pets.push({ ...action.payload, _id: 'fake_id' });
   state.isLoading = false;
   state.error = null;
 };
@@ -29,7 +29,6 @@ const handleFulfilledLogOut = state => {
   state.error = null;
   state.isLoading = false;
 };
-//==============================//
 
 const handleFulfilledPetFetch = (state, action) => {
   state.isLoading = false;
@@ -38,12 +37,12 @@ const handleFulfilledPetFetch = (state, action) => {
 };
 
 const handleFulfilledDelete = (state, action) => {
+  state.isLoading = false;
   const idToDelete = action.meta.arg;
   const index = state.pets.findIndex(pet => pet._id === idToDelete);
   state.pets.splice(index, 1);
   state.error = null;
 };
-//=================================//
 
 export const petsSlice = createSlice({
   name: 'pets',
@@ -57,9 +56,9 @@ export const petsSlice = createSlice({
       .addCase(petsOperations.addNoticeThunk.fulfilled, handleFulfilledAddPet)
       .addCase(petsOperations.addNoticeThunk.rejected, handleRejected)
       .addCase(authOperations.logoutUser.fulfilled, handleFulfilledLogOut)
-      .addCase(petsOperations.fetchUserPet.pending, handlePending)
-      .addCase(petsOperations.fetchUserPet.fulfilled, handleFulfilledPetFetch)
-      .addCase(petsOperations.fetchUserPet.rejected, handleRejected)
+      .addCase(petsOperations.fetchUserPets.pending, handlePending)
+      .addCase(petsOperations.fetchUserPets.fulfilled, handleFulfilledPetFetch)
+      .addCase(petsOperations.fetchUserPets.rejected, handleRejected)
       .addCase(petsOperations.deleteUserPet.pending, handlePending)
       .addCase(petsOperations.deleteUserPet.fulfilled, handleFulfilledDelete)
       .addCase(petsOperations.deleteUserPet.rejected, handleRejected);

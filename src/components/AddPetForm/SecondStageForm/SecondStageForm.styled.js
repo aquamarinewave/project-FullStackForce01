@@ -44,6 +44,10 @@ export const InputField = styled(Field)`
   border: 1px solid var(--dark-blue);
   border-radius: 40px;
 
+  &.error-input {
+    border: 1px solid red;
+  }
+
   @media screen and (min-width: 768px) {
     font-size: 16px;
     padding: 12px 16px;

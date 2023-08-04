@@ -25,6 +25,12 @@ const SearchInput = styled.input`
   height: 44px;
   border-radius: 24px;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.2);
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--accent-color);
+  }
+
   @media screen and (min-width: 768px) {
     max-width: 608px;
   }

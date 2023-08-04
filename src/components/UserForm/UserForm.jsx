@@ -75,7 +75,7 @@ export const UserForm = ({ toggleModal }) => {
   const handleFormSubmit = async (values, { resetForm }) => {
     const formData = new FormData();
     try {
-      if (avatarUrl) {
+      if (newAvatar) {
         formData.append('avatar', avatarUrl);
       }
       if (initialValues.name !== values.name && values.name) {
@@ -127,7 +127,10 @@ export const UserForm = ({ toggleModal }) => {
       .max(13, 'Phone format: +380000000000')
       .min(13, 'Phone format: +380000000000'),
     city: yup.string().max(16, 'Name must be less than 16 characters').trim(),
-    birthday: yup.date().test('is-future-date', 'Please select a past or today date', validateDate),
+    birthday: yup
+      .date()
+      .required('Type is required')
+      .test('is-future-date', 'Please select a past or today date', validateDate),
   });
 
   return (
@@ -162,8 +165,9 @@ export const UserForm = ({ toggleModal }) => {
                       <BtnDecline
                         onClick={() => {
                           setAvatarUrl(user?.avatarURL || { avatarDefault });
-                          setNewAvatar(initialValues.avatarURL);
+                          setNewAvatar('');
                           setEditAvatar(false);
+                          setIsUpdateForm(false);
                         }}
                       >
                         <IconCrossSmall width={24} height={24}>
@@ -287,14 +291,9 @@ export const UserForm = ({ toggleModal }) => {
                   </WrapperField>
                 </Container>
               </div>
-
-              {isUpdateForm ? (
-                <SubmitBtn type="submit">Save</SubmitBtn>
-              ) : (
-                <SubmitBtn type="submit" disabled={!dirty}>
-                  Save
-                </SubmitBtn>
-              )}
+              <SubmitBtn type="submit" disabled={!dirty && !isUpdateForm}>
+                Save
+              </SubmitBtn>
             </WrapperModalCard>
           </Form>
         )}

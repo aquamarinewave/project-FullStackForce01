@@ -1,5 +1,6 @@
 import NewsItem from '../NewsItem/NewsItem';
 import { Item, List } from './NewsList.styled';
+import DefaultImg from '../../images/x1/petphoto/pet-photo-large.jpg';
 
 const NewsList = ({ news }) => {
   return (
@@ -13,7 +14,7 @@ const NewsList = ({ news }) => {
                   responseByNews={{
                     title,
                     url,
-                    imgUrl,
+                    imgUrl: imgUrl || DefaultImg,
                     text,
                     date,
                   }}
