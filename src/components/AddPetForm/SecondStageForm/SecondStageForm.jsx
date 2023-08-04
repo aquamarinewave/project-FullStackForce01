@@ -38,8 +38,8 @@ const SecondStageForm = ({ formik, currentRadioButton }) => {
   return (
     <ContainerInputField>
       {inputs.map(({ name, placeholder, label }) =>
-        currentRadioButton === 'my-pet' && ['title'].includes(name) ? null : (
-          <BoxInputField key={name}>
+        currentRadioButton === 'my-pet' && name === 'title' ? null : (
+          <BoxInputField key={name} style={{ position: 'relative' }}>
             <FieldLabel htmlFor={name}>{label}</FieldLabel>
             <InputField
               type={inputType(name)}
@@ -48,13 +48,11 @@ const SecondStageForm = ({ formik, currentRadioButton }) => {
               autoComplete="off"
               placeholder={placeholder}
               value={formik.values[name]}
-              // onChange={name === 'birthday' ? handleDateInput : formik.handleChange}
-              // onKeyPress={name === 'birthday' ? handleNumericInput : null}
-              // inputMode={name === 'birthday' ? 'numeric' : 'text'}
-              // maxLength={10}
-              // pattern={pattern}
+              className={formik.touched[name] && formik.errors[name] ? 'error-input' : ''}
             />
-            {formik.touched[name] && formik.errors[name] && <div style={{ color: 'red' }}>{formik.errors[name]}</div>}
+            {formik.touched[name] && formik.errors[name] && (
+              <div style={{ color: 'red', position: 'absolute', top: '100%', left: 0 }}>{formik.errors[name]}</div>
+            )}
           </BoxInputField>
         )
       )}

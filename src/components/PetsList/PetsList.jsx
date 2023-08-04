@@ -12,7 +12,7 @@ const PetsList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(petsOperations.fetchUserPet());
+    dispatch(petsOperations.fetchUserPets());
   }, [dispatch]);
 
   return (
