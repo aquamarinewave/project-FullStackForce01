@@ -20,7 +20,7 @@ import Nav from '../Nav/Nav';
 import Logout from 'components/Logout/Logout';
 import sprite from '../../images/icons.svg';
 
-const MobileMenu = ({ toggleMenu, isOpen }) => {
+const MobileMenu = ({ toggleMenu, isOpen, closeMenu }) => {
   const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
   const isLogged = useSelector(authSelector.loggedInSelector);
@@ -38,12 +38,12 @@ const MobileMenu = ({ toggleMenu, isOpen }) => {
         <Menu isOpen={isOpen}>
           <TopMenu>
             <div>
-              <Logo />
+              <Logo isMobile closeMenu={closeMenu} />
             </div>
             {!isLogged ? (
               <>
                 <Container>
-                  {width > 768 && width < 1280 && <AuthNav isMobile />}
+                  {width > 768 && width < 1280 && <AuthNav isMobile close={closeMenu} />}
                   <CloseButton type="button" onClick={() => toggleMenu()}>
                     <IconCross width={24} height={24}>
                       <use href={`${sprite}#icon-cross`}></use>
@@ -64,7 +64,7 @@ const MobileMenu = ({ toggleMenu, isOpen }) => {
               </ButtonContainer>
             )}
           </TopMenu>
-          {!isLogged && width < 768 && <AuthNav isMobile />}
+          {!isLogged && width < 768 && <AuthNav isMobile close={closeMenu} />}
           {isLogged && width < 768 && (
             <>
               <UserButton to="/user" onClick={() => toggleMenu()}>
@@ -77,7 +77,7 @@ const MobileMenu = ({ toggleMenu, isOpen }) => {
               </UserButton>
             </>
           )}
-          <Nav isMobile />
+          <Nav isMobile closeMenu={closeMenu} />
           {isLogged && width < 768 && (
             <Logout isLogout margin="8px" isBold isBorder isBlue isWhite isMobile isRequest spacing isDisplay />
           )}
