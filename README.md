@@ -1,16 +1,18 @@
 # Your Pet
 
 Welcome to our React-based pets app, designed for anyone who loves pets! This app offers a range of features, including
-the ability to save and add your own pets, create your favorite list, and read some news about pets! Our site will help
-you to buy or take a new pet to your home. Or if you have pet for sale - just do it here!
+the ability to save and add your own pets, create your favorite list of ads, and read some news about pets! Our site
+will help you to buy or take a new pet to your home. Or if you have pet for sale - just do it here!
 
 ## Screenshots
 
-[![Screenshot-5.png](https://i.postimg.cc/PqkSBtKh/Screenshot-5.png)](https://postimg.cc/rDQG42vY)
+[![Screenshot-5.png](https://i.postimg.cc/vZ7GpmDv/Screenshot-5.png)](https://postimg.cc/8758vNRF)
 
-[![Screenshot-6.png](https://i.postimg.cc/Sx9ZTX6D/Screenshot-6.png)](https://postimg.cc/3kKCWxbv)
+[![Screenshot-6.png](https://i.postimg.cc/fRQw2dWL/Screenshot-6.png)](https://postimg.cc/ppkbypFb)
 
-[![Screenshot-7.png](https://i.postimg.cc/CLzr8rzy/Screenshot-7.png)](https://postimg.cc/fJQvnKc5)
+[![Screenshot-7.png](https://i.postimg.cc/J4kr5xLv/Screenshot-7.png)](https://postimg.cc/3d3QKgWF)
+
+[![Screenshot-8.png](https://i.postimg.cc/y656R5w0/Screenshot-8.png)](https://postimg.cc/V5qcQ7sN)
 
 ## Authors
 
