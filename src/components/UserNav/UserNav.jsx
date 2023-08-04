@@ -11,13 +11,12 @@ import { useEffect, useState } from 'react';
 import ModalCongrats from '../ModalCongrats/ModalCongrats';
 import { TitleModalCongrats, TextModalCongrats } from 'components/ModalCongrats/ModalCongrats.styled';
 
-
-
-const UserNav = ({ toggleMenu, menuOpen, closeMenu }) => {
+const UserNav = () => {
   const width = useWindowWidth();
   const name = useSelector(authSelector.userNameSelector);
   const newUser = useSelector(authSelector.newUserSelector);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (newUser === true) {
@@ -25,8 +24,20 @@ const UserNav = ({ toggleMenu, menuOpen, closeMenu }) => {
     }
   }, []);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(prevState => !prevState);
+  };
+
   const toggleModal = () => {
     setIsModalOpen(prevState => !prevState);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
@@ -69,7 +80,9 @@ const UserNav = ({ toggleMenu, menuOpen, closeMenu }) => {
           </BurgerButton>
         )}
       </Nav>
-      {width < 1280 && <MobileMenu toggleMenu={toggleMenu} isOpen={menuOpen} openMenu={menuOpen} />}
+      {width < 1280 && isMenuOpen && (
+        <MobileMenu closeMenu={closeMenu} toggleMenu={toggleMenu} isOpen={isMenuOpen} />
+      )}
       {isModalOpen && (
         <ModalCongrats
           isOpen={isModalOpen}
