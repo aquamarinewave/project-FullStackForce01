@@ -63,8 +63,6 @@ const ThirdStageForm = ({
       setShowPlaceholder(true);
       setPreviewImage('');
     }
-    // formik.handleChange(event);
-    // formik.setFieldValue('avatar', file);
   };
 
   return (
@@ -73,7 +71,7 @@ const ThirdStageForm = ({
         {currentRadioButton !== 'my-pet' && (
           <>
             <ParagraphPetAvatar>The sex</ParagraphPetAvatar>
-            <BoxRadioButtonSex>
+            <BoxRadioButtonSex style={{ position: 'relative' }}>
               {optionsSex.map(({ value, label }) => (
                 <RadioButtonSex key={value} checked={formik.values.sex === value}>
                   <IconSex
@@ -93,6 +91,9 @@ const ThirdStageForm = ({
                   />
                 </RadioButtonSex>
               ))}
+              {formik.touched.sex && formik.errors.sex && (
+                <div style={{ color: 'red', position: 'absolute', top: '70%', left: 0 }}>{formik.errors.sex}</div>
+              )}
             </BoxRadioButtonSex>
           </>
         )}
@@ -100,7 +101,7 @@ const ThirdStageForm = ({
           <ParagraphPetAvatar currentRadioButton={currentRadioButton !== 'my-pet'}>
             Load the pet’s image:
           </ParagraphPetAvatar>
-          <BoxPetAvatar>
+          <BoxPetAvatar style={{ position: 'relative' }}>
             {showPlaceholder ? (
               <ShowPlaceholderAvatar>
                 <IconPlaceholder>
@@ -111,12 +112,15 @@ const ThirdStageForm = ({
               <img src={previewImage} alt="Selected" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             )}
             <FieldAvatar type="file" id="avatar" name="avatar" accept="image/*" onChange={handlePhotoChange} />
+            {formik.touched.avatar && formik.errors.avatar && (
+              <div style={{ color: 'red', position: 'absolute', top: '60%', left: '20px' }}>{formik.errors.avatar}</div>
+            )}
           </BoxPetAvatar>
         </ContainerAvatar>
       </ContainerButton>
       <ContainerInput>
         {currentRadioButton !== 'my-pet' && (
-          <BoxInputField key="location">
+          <BoxInputField key="location" style={{ position: 'relative' }}>
             <FieldLabel htmlFor="location">Location</FieldLabel>
             <InputField
               type="text"
@@ -127,11 +131,13 @@ const ThirdStageForm = ({
               value={formik.values.location}
               onChange={formik.handleChange}
             />
-            {/* {formik.touched[name] && formik.errors[name] && <div style={{ color: 'red' }}>{formik.errors[name]}</div>} */}
+            {formik.errors.location && (
+              <div style={{ color: 'red', position: 'absolute', top: '100%', left: 0 }}>{formik.errors.location}</div>
+            )}
           </BoxInputField>
         )}
         {currentRadioButton === 'sell' && (
-          <BoxInputField key="price">
+          <BoxInputField key="price" style={{ position: 'relative' }}>
             <FieldLabel htmlFor="price">Price</FieldLabel>
             <InputField
               type="text"
@@ -142,20 +148,13 @@ const ThirdStageForm = ({
               value={formik.values.price}
               onChange={formik.handleChange}
             />
-            {/* {formik.touched[name] && formik.errors[name] && <div style={{ color: 'red' }}>{formik.errors[name]}</div>} */}
+            {formik.touched.price && formik.errors.price && (
+              <div style={{ color: 'red', position: 'absolute', top: '100%', left: 0 }}>{formik.errors.price}</div>
+            )}
           </BoxInputField>
         )}
         <div>
           <TextSpan>Comments</TextSpan>
-          {/* <InputFieldTextArea
-            currentRadioButton={currentRadioButton}
-            as={TextArea} // Використовуємо наші стилі для textarea
-            id="comments"
-            name="comments"
-            placeholder="Type of pet"
-            value={formik.values.comments}
-            onChange={formik.handleChange}
-          /> */}
           <InputFieldTextArea
             currentRadioButton={currentRadioButton}
             as={TextArea}
@@ -164,8 +163,8 @@ const ThirdStageForm = ({
             placeholder="Type of pet"
             value={formik.values.comments}
             onChange={formik.handleChange}
-            checked={currentRadioButton} // Додаємо параметр checked
-            style={{ height: heightTextarea(currentRadioButton, formik.values.category) }} // Передаємо параметри до стилізації
+            checked={currentRadioButton}
+            style={{ height: heightTextarea(currentRadioButton, formik.values.category) }}
           />
         </div>
       </ContainerInput>
