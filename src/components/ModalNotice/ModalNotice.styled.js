@@ -231,6 +231,12 @@ export const ModalButtonAdd = styled.button`
   line-height: normal;
   letter-spacing: 0.64px;
 
+  &:hover,
+  &:focus {
+    background: transparent;
+    border: 2px solid var(--dark-blue);
+  }
+
   @media screen and (min-width: 768px) {
     width: 129px;
   }
@@ -251,7 +257,8 @@ export const CloseModalButton = styled.button`
   z-index: 10;
   border-radius: 50%;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--lightblue);
   }
 
