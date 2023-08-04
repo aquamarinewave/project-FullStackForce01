@@ -63,7 +63,7 @@ export const LogoDiv = styled.div`
 export const Logo = styled.img`
   width: 100%;
   object-fit: contain;
-  }
+
   @media screen and (min-width: 1280px) {
     width: 146px;
   }
@@ -166,4 +166,3 @@ export const InfoLinkAddressDiv = styled.div`
     width: 197px;
   }
 `;
-

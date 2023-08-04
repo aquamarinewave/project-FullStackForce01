@@ -2,10 +2,13 @@ import { Field } from 'formik';
 
 import sprite from '../../../images/icons.svg';
 
-import { BoxInputField, FieldLabel, InputField } from '../SecondStageForm/SecondStageForm.styled';
+import { BoxErrorMessage, BoxInputField, FieldLabel, InputField } from '../SecondStageForm/SecondStageForm.styled';
 import {
+  BoxAvatarErrorMessage,
+  BoxComment,
   BoxPetAvatar,
   BoxRadioButtonSex,
+  BoxSexErrorMessage,
   ContainerAvatar,
   ContainerButton,
   ContainerFormStepThird,
@@ -15,6 +18,7 @@ import {
   IconSex,
   InputFieldTextArea,
   ParagraphPetAvatar,
+  PetImgAvatar,
   RadioButtonSex,
   ShowPlaceholderAvatar,
   TextArea,
@@ -71,7 +75,7 @@ const ThirdStageForm = ({
         {currentRadioButton !== 'my-pet' && (
           <>
             <ParagraphPetAvatar>The sex</ParagraphPetAvatar>
-            <BoxRadioButtonSex style={{ position: 'relative' }}>
+            <BoxRadioButtonSex>
               {optionsSex.map(({ value, label }) => (
                 <RadioButtonSex key={value} checked={formik.values.sex === value}>
                   <IconSex
@@ -91,9 +95,7 @@ const ThirdStageForm = ({
                   />
                 </RadioButtonSex>
               ))}
-              {formik.touched.sex && formik.errors.sex && (
-                <div style={{ color: 'red', position: 'absolute', top: '70%', left: 0 }}>{formik.errors.sex}</div>
-              )}
+              {formik.touched.sex && formik.errors.sex && <BoxSexErrorMessage>{formik.errors.sex}</BoxSexErrorMessage>}
             </BoxRadioButtonSex>
           </>
         )}
@@ -101,7 +103,7 @@ const ThirdStageForm = ({
           <ParagraphPetAvatar currentRadioButton={currentRadioButton !== 'my-pet'}>
             Load the pet’s image:
           </ParagraphPetAvatar>
-          <BoxPetAvatar style={{ position: 'relative' }}>
+          <BoxPetAvatar>
             {showPlaceholder ? (
               <ShowPlaceholderAvatar>
                 <IconPlaceholder>
@@ -109,18 +111,18 @@ const ThirdStageForm = ({
                 </IconPlaceholder>
               </ShowPlaceholderAvatar>
             ) : (
-              <img src={previewImage} alt="Selected" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <PetImgAvatar src={previewImage} alt="Selected" />
             )}
             <FieldAvatar type="file" id="avatar" name="avatar" accept="image/*" onChange={handlePhotoChange} />
             {formik.touched.avatar && formik.errors.avatar && (
-              <div style={{ color: 'red', position: 'absolute', top: '60%', left: '20px' }}>{formik.errors.avatar}</div>
+              <BoxAvatarErrorMessage>{formik.errors.avatar}</BoxAvatarErrorMessage>
             )}
           </BoxPetAvatar>
         </ContainerAvatar>
       </ContainerButton>
       <ContainerInput>
         {currentRadioButton !== 'my-pet' && (
-          <BoxInputField key="location" style={{ position: 'relative' }}>
+          <BoxInputField key="location">
             <FieldLabel htmlFor="location">Location</FieldLabel>
             <InputField
               type="text"
@@ -130,14 +132,13 @@ const ThirdStageForm = ({
               placeholder="Type of location"
               value={formik.values.location}
               onChange={formik.handleChange}
+              className={formik.touched.price && formik.errors.price ? 'error-input' : ''}
             />
-            {formik.errors.location && (
-              <div style={{ color: 'red', position: 'absolute', top: '100%', left: 0 }}>{formik.errors.location}</div>
-            )}
+            {formik.errors.location && <BoxErrorMessage>{formik.errors.location}</BoxErrorMessage>}
           </BoxInputField>
         )}
         {currentRadioButton === 'sell' && (
-          <BoxInputField key="price" style={{ position: 'relative' }}>
+          <BoxInputField key="price">
             <FieldLabel htmlFor="price">Price</FieldLabel>
             <InputField
               type="text"
@@ -147,13 +148,12 @@ const ThirdStageForm = ({
               placeholder="Type of price"
               value={formik.values.price}
               onChange={formik.handleChange}
+              className={formik.touched.price && formik.errors.price ? 'error-input' : ''}
             />
-            {formik.touched.price && formik.errors.price && (
-              <div style={{ color: 'red', position: 'absolute', top: '100%', left: 0 }}>{formik.errors.price}</div>
-            )}
+            {formik.touched.price && formik.errors.price && <BoxErrorMessage>{formik.errors.price}</BoxErrorMessage>}
           </BoxInputField>
         )}
-        <div>
+        <BoxComment>
           <TextSpan>Comments</TextSpan>
           <InputFieldTextArea
             currentRadioButton={currentRadioButton}
@@ -166,7 +166,10 @@ const ThirdStageForm = ({
             checked={currentRadioButton}
             style={{ height: heightTextarea(currentRadioButton, formik.values.category) }}
           />
-        </div>
+          {formik.touched.price && formik.errors.comments && (
+            <BoxErrorMessage>{formik.errors.comments}</BoxErrorMessage>
+          )}
+        </BoxComment>
       </ContainerInput>
     </ContainerFormStepThird>
   );
